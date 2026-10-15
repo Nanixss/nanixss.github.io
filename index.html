@@ -67,9 +67,15 @@
 
   footer{margin-top:34px;font-size:12px;color:var(--muted);text-align:center;line-height:1.8}
   footer a{color:var(--muted)}
+  .dvd{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+  .dvd img{position:absolute;top:0;left:0;opacity:.13;will-change:transform;transition:opacity .35s,filter .35s}
+  .dvd img.hit{opacity:.35;filter:drop-shadow(0 0 18px rgba(3,235,202,.8))}
+  .wrap{position:relative;z-index:1}
+  @media (prefers-reduced-motion: reduce){.dvd{display:none}}
 </style>
 </head>
 <body>
+<div class="dvd" aria-hidden="true"><img src="n.png" alt=""><img src="n.png" alt=""><img src="n.png" alt=""></div>
 <main class="wrap">
   <img class="logo" src="logo.png" alt="Logo Nanixss">
   <h1>NANIXSS<span>.</span></h1>
@@ -152,6 +158,34 @@
         badge.textContent = `PLUS QUE ${d.remaining} PLACE${d.remaining > 1 ? 'S' : ''}`;
       }
     } catch (e) { /* on garde « PLACES LIMITÉES » */ }
+  })();
+  // N qui rebondissent façon écran DVD
+  (() => {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const els = [...document.querySelectorAll('.dvd img')];
+    const sizes = [96, 72, 120];
+    const ns = els.map((el, i) => {
+      const w = sizes[i % sizes.length]; el.style.width = w + 'px';
+      const sp = 55 + i * 18, a = (0.6 + i * 1.7);
+      return { el, w, h: w * 0.51, x: Math.random() * (innerWidth - w), y: Math.random() * (innerHeight - w),
+               vx: Math.cos(a) * sp * (i % 2 ? -1 : 1), vy: Math.sin(a) * sp };
+    });
+    let last = performance.now();
+    function tick(now) {
+      const dt = Math.min((now - last) / 1000, 0.05); last = now;
+      const W = innerWidth, H = innerHeight;
+      for (const n of ns) {
+        n.x += n.vx * dt; n.y += n.vy * dt; let hit = false;
+        if (n.x < 0) { n.x = 0; n.vx = Math.abs(n.vx); hit = true; }
+        if (n.x > W - n.w) { n.x = W - n.w; n.vx = -Math.abs(n.vx); hit = true; }
+        if (n.y < 0) { n.y = 0; n.vy = Math.abs(n.vy); hit = true; }
+        if (n.y > H - n.h) { n.y = H - n.h; n.vy = -Math.abs(n.vy); hit = true; }
+        if (hit) { n.el.classList.add('hit'); clearTimeout(n.t); n.t = setTimeout(() => n.el.classList.remove('hit'), 350); }
+        n.el.style.transform = `translate(${n.x}px,${n.y}px)`;
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
   })();
 </script>
 </body>
