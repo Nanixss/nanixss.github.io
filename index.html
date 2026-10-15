@@ -82,24 +82,24 @@
   <p class="tag">Achat-revente de jeux vidéo · Bot Vinted, formation et communauté pour repérer les bonnes affaires</p>
 
   <nav class="socials" aria-label="Réseaux">
-    <a class="soc" href="https://www.tiktok.com/@nanixss.off" target="_blank" rel="noopener">TikTok</a>
-    <a class="soc" href="https://www.twitch.tv/NanixssOff" target="_blank" rel="noopener">Twitch</a>
-    <a class="soc" href="https://discord.gg/cyReW8sVJm" target="_blank" rel="noopener">Discord</a>
+    <a data-k="tiktok" class="soc" href="https://www.tiktok.com/@nanixss.off" target="_blank" rel="noopener">TikTok</a>
+    <a data-k="twitch" class="soc" href="https://www.twitch.tv/NanixssOff" target="_blank" rel="noopener">Twitch</a>
+    <a data-k="discord-icone" class="soc" href="https://discord.gg/cyReW8sVJm" target="_blank" rel="noopener">Discord</a>
   </nav>
 
   <section class="links">
-    <a class="btn main" href="https://discord.gg/cyReW8sVJm" target="_blank" rel="noopener">
+    <a data-k="discord" class="btn main" href="https://discord.gg/cyReW8sVJm" target="_blank" rel="noopener">
       <span class="ic"><img src="logo.png" alt=""></span>
       <span class="txt"><span class="t1 d">Rejoindre Nanixss Hub</span><span class="t2" style="display:block">Le Discord · bot Vinted, alertes, entraide</span></span>
       <span class="arrow">→</span>
     </a>
-    <a class="btn hot" href="https://buy.stripe.com/eVq14odiP95Sg5kdBV8g000" target="_blank" rel="noopener">
+    <a data-k="founders" class="btn hot" href="https://buy.stripe.com/eVq14odiP95Sg5kdBV8g000" target="_blank" rel="noopener">
       <span class="badge" id="places">PLACES LIMITÉES</span>
       <span class="ic">★</span>
       <span class="txt"><span class="t1" style="display:block">Offre Founders</span><span class="t2" style="display:block">Accès Elite · 19,99 €/mois, prix bloqué à vie</span></span>
       <span class="arrow">→</span>
     </a>
-    <a class="btn" href="https://discord.gg/cyReW8sVJm" target="_blank" rel="noopener">
+    <a data-k="formation" class="btn" href="https://discord.gg/cyReW8sVJm" target="_blank" rel="noopener">
       <span class="ic">🎮</span>
       <span class="txt"><span class="t1" style="display:block">Formation achat-revente</span><span class="t2" style="display:block">Jeux vidéo · cotes et méthode, sur le Discord</span></span>
       <span class="arrow">→</span>
@@ -108,31 +108,31 @@
 
   <div class="sec">MES CODES PROMO</div>
   <section class="partners">
-    <a class="btn partner" href="https://discord.gg/ahW6qVAZEb" target="_blank" rel="noopener">
+    <a data-k="vtools-discord" class="btn partner" href="https://discord.gg/ahW6qVAZEb" target="_blank" rel="noopener">
       <span class="ic"><img src="vtools.png" alt="V-Tools"></span>
       <span class="txt"><span class="t1" style="display:block">Discord V-Tools</span><span class="t2" style="display:block">Support et annonces V-Tools</span></span>
       <span class="arrow">→</span>
     </a>
-    <a class="btn partner" href="https://www.v-tools.com/" target="_blank" rel="noopener">
+    <a data-k="vtools" class="btn partner" href="https://www.v-tools.com/" target="_blank" rel="noopener">
       <span class="ic"><img src="vtools.png" alt="V-Tools"></span>
       <span class="txt"><span class="t1" style="display:block">V-Tools</span><span class="t2" style="display:block">−10 € le 1er mois</span></span>
-      <span class="code" role="button" tabindex="0" data-code="N10">N10</span>
+      <span class="code" role="button" tabindex="0" data-code="N10" data-k="code-vtools">N10</span>
     </a>
-    <a class="btn partner" href="https://www.vinteer.io/?ref=NANIXSS" target="_blank" rel="noopener">
+    <a data-k="vinteer" class="btn partner" href="https://www.vinteer.io/?ref=NANIXSS" target="_blank" rel="noopener">
       <span class="ic"><img src="vinteer.png" alt="Vinteer"></span>
       <span class="txt"><span class="t1" style="display:block">Vinteer</span><span class="t2" style="display:block">−20 % avec ce lien</span></span>
-      <span class="code" role="button" tabindex="0" data-code="NANIXSS">NANIXSS</span>
+      <span class="code" role="button" tabindex="0" data-code="NANIXSS" data-k="code-vinteer">NANIXSS</span>
     </a>
-    <a class="btn partner" href="https://bleam.app/fr" target="_blank" rel="noopener">
+    <a data-k="bleam" class="btn partner" href="https://bleam.app/fr" target="_blank" rel="noopener">
       <span class="ic"><img src="bleam.png" alt="Bleam"></span>
       <span class="txt"><span class="t1" style="display:block">Bleam</span><span class="t2" style="display:block">−10 % sur l'extension Vinted</span></span>
-      <span class="code" role="button" tabindex="0" data-code="START10">START10</span>
+      <span class="code" role="button" tabindex="0" data-code="START10" data-k="code-bleam">START10</span>
     </a>
   </section>
 
   <footer>
     Touche un code pour le copier<br>
-    <a href="https://nanixss.github.io/legal/">CGV &amp; confidentialité</a> · © Lucas1up
+    <a data-k="cgv" href="https://nanixss.github.io/legal/">CGV &amp; confidentialité</a> · © Lucas1up
   </footer>
 </main>
 <script>
@@ -186,6 +186,16 @@
       requestAnimationFrame(tick);
     }
     requestAnimationFrame(tick);
+  })();
+  // Statistiques anonymes (visites et clics), envoyées au bot Nanixss Hub. Aucun cookie.
+  (() => {
+    const T = 'https://nanixss-pay-production.up.railway.app/t';
+    const send = (o) => { try { const b = JSON.stringify(o); if (!(navigator.sendBeacon && navigator.sendBeacon(T, b))) fetch(T, { method: 'POST', body: b, keepalive: true, mode: 'no-cors' }); } catch (e) {} };
+    send({ e: 'v' });
+    document.addEventListener('click', (ev) => {
+      const el = ev.target.closest('[data-k]');
+      if (el) send({ e: 'c', k: el.dataset.k });
+    }, true);
   })();
 </script>
 </body>
