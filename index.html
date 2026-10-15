@@ -181,7 +181,7 @@
         if (n.y < 0) { n.y = 0; n.vy = Math.abs(n.vy); hit = true; }
         if (n.y > H - n.h) { n.y = H - n.h; n.vy = -Math.abs(n.vy); hit = true; }
         if (hit) { n.el.classList.add('hit'); clearTimeout(n.t); n.t = setTimeout(() => n.el.classList.remove('hit'), 350); }
-        n.el.style.transform = `translate(${n.x}px,${n.y}px)`;
+        n.el.style.transform = `translate3d(${n.x}px,${n.y}px,0)`;
       }
       requestAnimationFrame(tick);
     }
