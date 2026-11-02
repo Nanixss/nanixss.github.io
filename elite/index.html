@@ -190,10 +190,10 @@
 
   /* ---------- relief 3D ---------- */
   .tilt{transform:perspective(1100px) var(--base,translateZ(0)) rotateX(var(--tx,0deg)) rotateY(var(--ty,0deg));transform-style:preserve-3d;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
-  .tilt.live{transition:transform .12s linear}
-  .tilt .ui,.tilt .vis,.tilt .vs-vis{transform:translateZ(36px)}
-  .tilt h3,.tilt .price,.tilt .rv-h{transform:translateZ(24px)}
-  .tilt .btn{transform:translateZ(30px)}
+  .tilt.is-tilting{transition:transform .12s linear}
+  .tilt .ui,.tilt .vis,.tilt .vs-vis{transform:translateZ(14px)}
+  .tilt h3,.tilt .price,.tilt .rv-h{transform:translateZ(8px)}
+  .tilt .btn{transform:translateZ(10px)}
   @media (hover:none){.tilt .ui,.tilt .vis,.tilt .vs-vis,.tilt h3,.tilt .price,.tilt .rv-h,.tilt .btn{transform:none}}
   @media (min-width:821px){.plans{perspective:1600px}.plan:not(.elite){--base:rotateY(8deg) translateZ(-26px)}.plan.elite{--base:rotateY(-4deg) translateZ(34px)}}
 
@@ -966,11 +966,11 @@
   (() => {
     if (RM || !matchMedia('(hover: hover)').matches) return;
     document.querySelectorAll('.tilt').forEach(el => {
-      el.addEventListener('pointerenter', () => el.classList.add('live'));
+      el.addEventListener('pointerenter', () => el.classList.add('is-tilting'));
       el.addEventListener('pointermove', e => { const r = el.getBoundingClientRect();
-        el.style.setProperty('--ty', (((e.clientX - r.left) / r.width) - .5) * 12 + 'deg');
-        el.style.setProperty('--tx', (.5 - ((e.clientY - r.top) / r.height)) * 10 + 'deg'); });
-      el.addEventListener('pointerleave', () => { el.classList.remove('live'); el.style.setProperty('--tx', '0deg'); el.style.setProperty('--ty', '0deg'); });
+        el.style.setProperty('--ty', (((e.clientX - r.left) / r.width) - .5) * 7 + 'deg');
+        el.style.setProperty('--tx', (.5 - ((e.clientY - r.top) / r.height)) * 6 + 'deg'); });
+      el.addEventListener('pointerleave', () => { el.classList.remove('is-tilting'); el.style.setProperty('--tx', '0deg'); el.style.setProperty('--ty', '0deg'); });
     });
   })();
 
