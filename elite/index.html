@@ -425,6 +425,103 @@
   }
 
 
+
+  /* ---------- ordi + téléphone ---------- */
+  .plat{list-style:none;margin-top:24px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+  .plat li{display:inline-flex;align-items:center;gap:8px;padding:9px 15px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font-size:14px;font-weight:600}
+  .plat .i{width:18px;height:18px;color:var(--accent)}
+  .dev-stage{position:relative;margin:clamp(40px,6vw,80px) auto 0;width:min(900px,100%);container-type:inline-size;perspective:2600px;perspective-origin:50% -10%;padding-bottom:20cqw;touch-action:pan-y}
+  .dev-rig{position:relative;transform-style:preserve-3d;transform:rotateX(var(--drx,-11deg)) rotateY(var(--dry,-14deg));transition:transform 1s cubic-bezier(.2,.7,.2,1)}
+  .lp{position:relative;width:72cqw;margin:0 auto;transform-style:preserve-3d}
+  .lp-lid{position:relative;aspect-ratio:16/10.4;transform-origin:50% 100%;transform:rotateX(var(--lid,17deg));transform-style:preserve-3d;transition:transform 1.6s cubic-bezier(.16,1,.3,1)}
+  .lp-front,.lp-back{position:absolute;inset:0;border-radius:2.4cqw;-webkit-backface-visibility:hidden;backface-visibility:hidden}
+  .lp-front{padding:1.4cqw 1.4cqw 2.2cqw;background:linear-gradient(160deg,#21393d,#0a1517 60%);box-shadow:inset 0 0 0 1.5px rgba(3,210,182,.32),0 50px 80px -40px rgba(0,0,0,.9)}
+  .lp-back{transform:rotateY(180deg);display:grid;place-items:center;background:linear-gradient(160deg,#2c4448,#132426 70%);box-shadow:inset 0 0 0 1.5px rgba(3,210,182,.25)}
+  .lp-back img{width:10cqw;border-radius:50%;opacity:.9}
+  .lp-screen{position:relative;width:100%;height:100%;overflow:hidden;border-radius:.6cqw;background:#031A19;container-type:size}
+  .lp-base{position:absolute;left:-5cqw;right:-5cqw;top:100%;height:44cqw;transform-origin:50% 0;transform:rotateX(90deg);transform-style:preserve-3d;
+    border-radius:0 0 2.6cqw 2.6cqw;background:linear-gradient(180deg,#2b4145,#182b2e 70%,#11201f);box-shadow:inset 0 0 0 1.5px rgba(3,210,182,.22)}
+  .lp-base::after{content:"";position:absolute;left:1cqw;right:1cqw;top:100%;height:1.6cqw;transform-origin:50% 0;transform:rotateX(-90deg);border-radius:0 0 1.6cqw 1.6cqw;background:linear-gradient(#1d3236,#091315)}
+  .lp-kb{position:absolute;left:9%;right:9%;top:7%;height:47%;border-radius:1cqw;background-color:#0b1618;
+    background-image:repeating-linear-gradient(90deg,transparent 0 calc(100%/15 - .45cqw),#24393d calc(100%/15 - .45cqw) calc(100%/15)),repeating-linear-gradient(0deg,transparent 0 calc(100%/6 - .45cqw),#24393d calc(100%/6 - .45cqw) calc(100%/6))}
+  .lp-pad{position:absolute;left:33%;right:33%;top:60%;height:31%;border-radius:1.4cqw;background:rgba(255,255,255,.035);box-shadow:inset 0 0 0 1px rgba(255,255,255,.09)}
+  .dph{position:absolute;right:-9cqw;bottom:-1cqw;width:19cqw;aspect-ratio:9/19.4;border-radius:3.2cqw;padding:.9cqw;background:linear-gradient(155deg,#14454D,#062126 45%,#03161B);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 0 0 1.2px rgba(3,210,182,.45),0 40px 60px -26px rgba(0,0,0,.95),0 30px 60px -40px rgba(3,210,182,.6);
+    transform:translateZ(30cqw) rotateY(-12deg);transition:transform 1.4s cubic-bezier(.16,1,.3,1) .35s,opacity .9s .35s}
+  .dph-screen{position:relative;height:100%;overflow:hidden;border-radius:2.4cqw;background:linear-gradient(#073330,#041d1b 60%);container-type:size}
+  .dev-stage.shut{--lid:-86deg}
+  .dev-stage.shut .dph{transform:translateZ(30cqw) translateY(26%) rotateY(-46deg);opacity:0}
+  @media (max-width:640px){.plat{gap:8px}.plat li{font-size:12.5px;padding:7px 11px;gap:6px}.plat .i{width:15px;height:15px}.lp{width:80cqw;margin-left:1cqw}.dph{width:29cqw;right:-9cqw}.dev-rig{--drx:-8deg;--dry:-9deg}}
+
+  /* écran de l'ordi : Discord */
+  .dk{display:grid;grid-template-columns:6.5cqw 22cqw minmax(0,1fr);grid-template-rows:minmax(0,1fr);height:100%;color:#DBDEE1;font-family:var(--font)}
+  .dk-rail{background:#001212;display:flex;flex-direction:column;align-items:center;gap:1.6cqw;padding-top:2cqw}
+  .dk-rail span{width:4.4cqw;height:4.4cqw;border-radius:50%;background:#0c2a28}
+  .dk-rail span.on{border-radius:1.4cqw;overflow:hidden;box-shadow:0 0 0 .35cqw rgba(3,235,202,.35)}
+  .dk-rail img{width:100%;height:100%}
+  .dk-side{background:linear-gradient(#013A33,#02302C);padding:2.2cqw 1.4cqw}
+  .dk-srv{font-size:1.75cqw;font-weight:700;color:#fff;line-height:1.3;padding-bottom:1.6cqw;border-bottom:1px solid rgba(0,0,0,.35)}
+  .dk-srv i{display:block;font-style:normal;font-weight:500;color:#8FB3AD;font-size:1.35cqw}
+  .dk-cat{margin-top:2cqw;font-size:1.2cqw;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#7FA49E}
+  .dk-ch{list-style:none;margin-top:.8cqw;display:flex;flex-direction:column;gap:.3cqw}
+  .dk-ch li{display:flex;gap:.8cqw;align-items:center;padding:.65cqw 1cqw;border-radius:.6cqw;font-size:1.6cqw;font-weight:500;color:#8FB3AD;transition:background-color .3s,color .3s}
+  .dk-ch li span{color:#5f8a84}
+  .dk-ch li.on{background:rgba(255,255,255,.09);color:#fff}
+  .dk-main{display:flex;flex-direction:column;min-width:0;min-height:0;background:linear-gradient(#073330,#041d1b 70%)}
+  .dk-head{display:flex;align-items:center;gap:.8cqw;padding:1.6cqw 2.4cqw;font-size:1.8cqw;color:#fff;border-bottom:1px solid rgba(0,0,0,.4);box-shadow:0 1px 0 rgba(255,255,255,.03)}
+  .dk-head span{color:#7FA49E}
+  .dk-feed,.dph-feed{position:relative;flex:1;min-height:0;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end}
+  .msg{position:relative;flex:0 0 auto;transition:transform .8s cubic-bezier(.16,1,.3,1),opacity .6s}
+  .msg.enter{transform:translateY(30%);opacity:0}
+  .msg.fresh .dka-embed{animation:dflash 1.8s cubic-bezier(.16,1,.3,1)}
+  @keyframes dflash{0%,15%{background:#2E6A60}100%{background:#184640}}
+  .dka{padding:1.4cqw 2.4cqw 2cqw;font-size:1.45cqw;line-height:1.35}
+  .dka-top{display:flex;align-items:center;gap:.8cqw}
+  .dka-top img{width:3.4cqw;height:3.4cqw;border-radius:50%}
+  .dka-top b{font-size:1.7cqw;color:#fff;font-weight:600}
+  .dka-top .bot{font-size:1cqw;padding:.15cqw .5cqw;border-radius:.4cqw}
+  .dka-top time{font-size:1.2cqw;color:#9DB5B1}
+  .dka-embed{margin:.6cqw 0 0 4.2cqw;max-width:46cqw;padding:1.3cqw 1.5cqw;border-radius:.6cqw;background:#184640;border-left:.45cqw solid #2E9C60}
+  .dka-title{color:#5AA9F0;font-weight:600;font-size:1.65cqw;line-height:1.3}
+  .dka-grid{margin-top:.9cqw;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8cqw 1.4cqw}
+  .dka-grid .w2{grid-column:span 2}
+  .dka-grid dt{font-weight:700;color:#fff;font-size:1.35cqw;white-space:nowrap}
+  .dka-grid dd{margin-top:.2cqw;font-size:1.35cqw}
+  .dka .ts,.dpa .ts{background:rgba(255,255,255,.09);padding:0 .4em;border-radius:.3em;white-space:nowrap}
+  .dka-ph{margin-top:1.1cqw;width:17cqw;height:20cqw;object-fit:cover;border-radius:.6cqw}
+  .dka-foot{margin-top:.9cqw;font-size:1.15cqw;color:#9DB5B1}
+  .dka-btns{margin:.9cqw 0 0 4.2cqw;display:flex;gap:.8cqw}
+  .dka-btns span{padding:.7cqw 1.5cqw;border-radius:.5cqw;font-size:1.35cqw;font-weight:600;color:#fff}
+
+  /* écran du téléphone */
+  .dph-screen{display:flex;flex-direction:column;color:#DBDEE1}
+  .dph-bar{padding:4cqw 8cqw 1cqw;font-size:5cqw;font-weight:600;color:#fff;font-variant-numeric:tabular-nums}
+  .dph-screen::after{content:"";position:absolute;top:3.4cqw;left:50%;width:26cqw;height:7cqw;border-radius:4cqw;background:#020B0E;transform:translateX(-50%)}
+  .dph-head{display:flex;gap:2cqw;align-items:center;padding:4cqw 6cqw 3.4cqw;font-size:5.6cqw;color:#fff;border-bottom:1px solid rgba(0,0,0,.4)}
+  .dph-head span{color:#7FA49E}
+  .dph-push{position:absolute;z-index:3;top:3cqw;left:3cqw;right:3cqw;display:flex;align-items:center;gap:3cqw;padding:3.4cqw;border-radius:6cqw;background:rgba(28,62,57,.97);
+    box-shadow:0 6cqw 10cqw -5cqw rgba(0,0,0,.8);transform:translateY(-150%);transition:transform .7s cubic-bezier(.16,1,.3,1)}
+  .dph-push.show{transform:none}
+  .dph-push img{width:10cqw;height:10cqw;border-radius:2.6cqw;flex:0 0 auto}
+  .dph-push div{min-width:0}
+  .dph-push b{display:block;font-size:4.2cqw;color:#fff;line-height:1.25}
+  .dph-push span{display:block;font-size:3.8cqw;color:#C7D6D2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .dph-push time{align-self:flex-start;font-size:3.2cqw;color:#93ACA6;white-space:nowrap}
+  .dpa{padding:3cqw 3.4cqw 5cqw;font-size:3.7cqw;line-height:1.35}
+  .dpa .dka-top img{width:8cqw;height:8cqw}
+  .dpa .dka-top b{font-size:4.2cqw}
+  .dpa .dka-top .bot{font-size:2.6cqw;padding:.3cqw 1.2cqw;border-radius:1cqw}
+  .dpa .dka-top time{font-size:3.2cqw}
+  .dpa .dka-embed{margin:1.6cqw 0 0;max-width:none;padding:3cqw 3.2cqw;border-radius:1.6cqw;border-left-width:1.1cqw}
+  .dpa .dka-title{font-size:4.2cqw;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .dpa .dka-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:1.8cqw 2.4cqw;margin-top:2cqw}
+  .dpa .dka-grid .w2{grid-column:auto}
+  .dpa .dka-grid dt,.dpa .dka-grid dd{font-size:3.5cqw}
+  .dpa .dka-ph{width:100%;height:44cqw;margin-top:2.4cqw;border-radius:1.6cqw}
+  .dpa .dka-btns{margin:2.2cqw 0 0;gap:2cqw}
+  .dpa .dka-btns span{font-size:3.5cqw;padding:1.8cqw 3.4cqw;border-radius:1.4cqw}
+  @media (prefers-reduced-motion: reduce){.lp-lid,.dph,.msg,.dev-rig{transition:none}.msg.fresh .dka-embed{animation:none}}
+
   /* ---------- vidéo réelle dans le téléphone ---------- */
   .phone{aspect-ratio:auto}
   .screen{height:auto;aspect-ratio:660/1434;background:#111214}
@@ -515,6 +612,9 @@
   <symbol id="i-x" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7 7 17"/></symbol>
   <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M19.5 11A7.5 7.5 0 0 0 6 6.6L4.5 8"/><path d="M4.5 4v4h4"/><path d="M4.5 13A7.5 7.5 0 0 0 18 17.4l1.5-1.4"/><path d="M19.5 20v-4h-4"/></symbol>
   <symbol id="i-image" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="2.5"/><circle cx="9.5" cy="10" r="1.6"/><path d="m5 17 4.5-4.5 3.5 3.5 2.5-2.5L19.5 17"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><rect x="6.5" y="2.5" width="11" height="19" rx="2.6"/><path d="M10.5 18.5h3"/></symbol>
+  <symbol id="i-laptop" viewBox="0 0 24 24"><rect x="4.5" y="5" width="15" height="10" rx="1.6"/><path d="M2.5 18.5h19"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3Z"/></symbol>
   <symbol id="i-hash" viewBox="0 0 24 24"><path d="M9.5 4 7.5 20M16.5 4l-2 16M4.5 9h16M3.5 15h16"/></symbol>
   <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.8l2.7 5.6 6.1.8-4.5 4.2 1.2 6L12 16.5l-5.5 2.9 1.2-6-4.5-4.2 6.1-.8L12 2.8Z"/></symbol>
   <symbol id="i-n" viewBox="-1.25 -0.66 2.5 1.32"><g transform="scale(1,-1)"><polygon points="-1.2,-0.59 -0.57,0.52 -0.51,0.6 -0.49,0.61 0.21,0.61 0.21,0.6 -0.5,-0.6 -0.54,-0.61 -1.2,-0.6"/><polygon points="0.3,0.25 0.5,0.61 1.18,0.61 1.2,0.59 1.2,0.56 0.52,-0.58 0.51,-0.58 0.5,-0.55"/><polygon points="-0.3,-0.29 0.19,0.53 0.21,0.54 0.49,-0.59 -0.18,-0.59 -0.23,-0.55" opacity=".78"/></g></symbol>
@@ -655,6 +755,55 @@
           <p>Tu appuies sur Acheter et le bot lance l'achat sur ton compte Vinted. En Elite, l'autocop peut même acheter à ta place.</p>
         </li>
       </ol>
+    </div>
+  </section>
+
+  <section class="sec devices" id="appareils" data-scene="devices" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head c">
+        <h2>Sur ton téléphone comme sur ton ordi.</h2>
+        <p>Les alertes arrivent dans Discord : tu les reçois au même moment sur ton téléphone, ton ordi ou ton navigateur. Rien d'autre à installer.</p>
+        <ul class="plat">
+          <li><svg class="i"><use href="#i-phone"/></svg>iPhone et Android</li>
+          <li><svg class="i"><use href="#i-laptop"/></svg>Windows et Mac</li>
+          <li><svg class="i"><use href="#i-globe"/></svg>Navigateur web</li>
+          <li><svg class="i"><use href="#i-bell"/></svg>Notifications instantanées</li>
+        </ul>
+      </div>
+      <div class="dev-stage" id="dev" role="img" aria-label="La même alerte du bot arrive au même moment sur un ordinateur portable et sur un téléphone">
+        <div class="dev-rig" id="dev-rig">
+          <div class="lp">
+            <div class="lp-lid">
+              <div class="lp-back"><img src="../logo.png" alt=""></div>
+              <div class="lp-front">
+                <div class="lp-screen">
+                  <div class="dk">
+                    <div class="dk-rail"><span class="on"><img src="../logo.png" alt=""></span><span></span><span></span><span></span><span></span></div>
+                    <div class="dk-side">
+                      <p class="dk-srv">Nanixss Hub <i>| Bot Vinted 0 délai</i></p>
+                      <p class="dk-cat">Alertes</p>
+                      <ul class="dk-ch" id="dk-ch"><li data-ch="ps5"><span>#</span>ps5</li><li data-ch="xbox-one"><span>#</span>xbox-one</li><li data-ch="mode-vintage"><span>#</span>mode-vintage</li><li data-ch="pokemon-tcg"><span>#</span>pokemon-tcg</li><li data-ch="sneakers" class="on"><span>#</span>sneakers</li><li data-ch="lego"><span>#</span>lego</li></ul>
+                    </div>
+                    <div class="dk-main">
+                      <div class="dk-head"><span>#</span><b id="dk-name">sneakers</b></div>
+                      <div class="dk-feed" id="dk-feed"><div class="msg"><article class="dka"><div class="dka-top"><img src="../logo.png" alt=""><b>Nanixss Hub V</b><span class="bot">BOT</span><time>Aujourd'hui à 23:00</time></div><div class="dka-embed"><p class="dka-title">LEGO Creator 3-in-1 31008 - Jet Supersonico / Robot (2013)</p><dl class="dka-grid"><div><dt>⏳ Publié</dt><dd><span class="ts">à l'instant</span></dd></div><div><dt>🔖 Marque</dt><dd>LEGO</dd></div><div><dt>📏 Taille</dt><dd>7 ans / 122 cm</dd></div><div><dt>💎 État</dt><dd>Neuf sans étiquette</dd></div><div class="w2"><dt>💰 Prix</dt><dd>40,00 € | ≈ 42,70 € (TTC)</dd></div></dl><img class="dka-ph" src="a-lego-31008.webp" alt=""><p class="dka-foot">Nanixss Hub V | Aujourd'hui à 23:00</p></div><div class="dka-btns"><span class="b-buy">⚡ Acheter</span><span class="b-det">📄 Détails ↗</span></div></article></div><div class="msg"><article class="dka"><div class="dka-top"><img src="../logo.png" alt=""><b>Nanixss Hub V</b><span class="bot">BOT</span><time>Aujourd'hui à 23:00</time></div><div class="dka-embed"><p class="dka-title">Scarpe New Balance n.38.5</p><dl class="dka-grid"><div><dt>⏳ Publié</dt><dd><span class="ts">à l'instant</span></dd></div><div><dt>🔖 Marque</dt><dd>New Balance</dd></div><div><dt>📏 Taille</dt><dd>38.5</dd></div><div><dt>💎 État</dt><dd>Très bon état</dd></div><div class="w2"><dt>💰 Prix</dt><dd>44,00 € | ≈ 46,90 € (TTC)</dd></div></dl><img class="dka-ph" src="a-nb-550.webp" alt=""><p class="dka-foot">Nanixss Hub V | Aujourd'hui à 23:00</p></div><div class="dka-btns"><span class="b-buy">⚡ Acheter</span><span class="b-det">📄 Détails ↗</span></div></article></div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="lp-base"><div class="lp-kb"></div><div class="lp-pad"></div></div>
+            <div class="dph">
+              <div class="dph-screen">
+                <div class="dph-bar"><span>23:00</span></div>
+                <div class="dph-push" id="dph-push"><img src="../logo.png" alt=""><div><b>Nanixss Hub V</b><span></span></div><time>à l'instant</time></div>
+                <div class="dph-head"><span>#</span><b id="dph-name">sneakers</b></div>
+                <div class="dph-feed" id="dph-feed"><div class="msg"><article class="dpa"><div class="dka-top"><img src="../logo.png" alt=""><b>Nanixss Hub V</b><span class="bot">BOT</span><time>23:00</time></div><div class="dka-embed"><p class="dka-title">LEGO Creator 3-in-1 31008 - Jet Supersonico / Robot (2013)</p><dl class="dka-grid"><div><dt>⏳ Publié</dt><dd><span class="ts">à l'instant</span></dd></div><div><dt>🔖 Marque</dt><dd>LEGO</dd></div><div><dt>📏 Taille</dt><dd>7 ans / 122 cm</dd></div><div><dt>💎 État</dt><dd>Neuf sans étiquette</dd></div><div class="w2"><dt>💰 Prix</dt><dd>40,00 € | ≈ 42,70 € (TTC)</dd></div></dl><img class="dka-ph" src="a-lego-31008.webp" alt=""></div><div class="dka-btns"><span class="b-buy">⚡ Acheter</span><span class="b-det">📄 Détails ↗</span></div></article></div><div class="msg"><article class="dpa"><div class="dka-top"><img src="../logo.png" alt=""><b>Nanixss Hub V</b><span class="bot">BOT</span><time>23:00</time></div><div class="dka-embed"><p class="dka-title">Scarpe New Balance n.38.5</p><dl class="dka-grid"><div><dt>⏳ Publié</dt><dd><span class="ts">à l'instant</span></dd></div><div><dt>🔖 Marque</dt><dd>New Balance</dd></div><div><dt>📏 Taille</dt><dd>38.5</dd></div><div><dt>💎 État</dt><dd>Très bon état</dd></div><div class="w2"><dt>💰 Prix</dt><dd>44,00 € | ≈ 46,90 € (TTC)</dd></div></dl><img class="dka-ph" src="a-nb-550.webp" alt=""></div><div class="dka-btns"><span class="b-buy">⚡ Acheter</span><span class="b-det">📄 Détails ↗</span></div></article></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -999,6 +1148,57 @@
   })();
 
 
+
+  // Ordi + téléphone : la même alerte arrive sur les deux au même moment
+  (() => {
+    const stage = document.getElementById('dev'); if (!stage) return;
+    const A = [{"ch": "sneakers", "t": "Scarpe New Balance n.38.5", "b": "New Balance", "sz": "38.5", "e": "Très bon état", "p": "44,00 € | ≈ 46,90 € (TTC)", "p2": "44,00 €", "img": "a-nb-550.webp", "h": "23:00"}, {"ch": "mode-vintage", "t": "The north Face fleece half zip", "b": "The North Face", "sz": "XS", "e": "Très bon état", "p": "22,00 € | ≈ 23,80 € (TTC)", "p2": "22,00 €", "img": "a-tnf-polaire.webp", "h": "22:59"}, {"ch": "pokemon-tcg", "t": "Carte Pokémon Jungko RARE 10/147 • Platine Vainqueurs Suprêmes (2009) VF", "b": "Pokémon", "sz": "Unique", "e": "Bon état", "p": "7,00 € | ≈ 8,05 € (TTC)", "p2": "7,00 €", "img": "a-pkm-jungko.webp", "h": "22:59"}, {"ch": "lego", "t": "LEGO Creator 3-in-1 31008 - Jet Supersonico / Robot (2013)", "b": "LEGO", "sz": "7 ans / 122 cm", "e": "Neuf sans étiquette", "p": "40,00 € | ≈ 42,70 € (TTC)", "p2": "40,00 €", "img": "a-lego-31008.webp", "h": "23:00"}];
+    const esc = (x) => String(x).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    const fields = (a) => `<div><dt>⏳ Publié</dt><dd><span class="ts">à l'instant</span></dd></div><div><dt>🔖 Marque</dt><dd>${esc(a.b)}</dd></div><div><dt>📏 Taille</dt><dd>${esc(a.sz)}</dd></div><div><dt>💎 État</dt><dd>${esc(a.e)}</dd></div><div class="w2"><dt>💰 Prix</dt><dd>${esc(a.p)}</dd></div>`;
+    const top = (h) => `<div class="dka-top"><img src="../logo.png" alt=""><b>Nanixss Hub V</b><span class="bot">BOT</span><time>${h}</time></div>`;
+    const btns = '<div class="dka-btns"><span class="b-buy">⚡ Acheter</span><span class="b-det">📄 Détails ↗</span></div>';
+    const dk = (a) => `<article class="dka">${top("Aujourd'hui à " + a.h)}<div class="dka-embed"><p class="dka-title">${esc(a.t)}</p><dl class="dka-grid">${fields(a)}</dl><img class="dka-ph" src="${a.img}" alt=""><p class="dka-foot">Nanixss Hub V | Aujourd'hui à ${a.h}</p></div>${btns}</article>`;
+    const ph = (a) => `<article class="dpa">${top(a.h)}<div class="dka-embed"><p class="dka-title">${esc(a.t)}</p><dl class="dka-grid">${fields(a)}</dl><img class="dka-ph" src="${a.img}" alt=""></div>${btns}</article>`;
+    const dkFeed = document.getElementById('dk-feed'), phFeed = document.getElementById('dph-feed'), push = document.getElementById('dph-push');
+    const chs = [...document.querySelectorAll('#dk-ch li')], bar = stage.querySelector('.dph-bar span');
+    A.forEach(a => { const im = new Image(); im.src = a.img; });
+    const show = (k) => {
+      const a = A[k];
+      chs.forEach(li => li.classList.toggle('on', li.dataset.ch === a.ch));
+      document.getElementById('dk-name').textContent = a.ch; document.getElementById('dph-name').textContent = a.ch; bar.textContent = a.h;
+      [[dkFeed, dk(a)], [phFeed, ph(a)]].forEach(([f, html]) => {
+        const olds = [...f.children], before = olds.map(o => o.offsetTop);
+        const n = document.createElement('div'); n.className = 'msg enter fresh'; n.innerHTML = html; f.append(n);
+        olds.forEach((o, i) => { o.classList.remove('fresh'); o.style.transition = 'none'; o.style.transform = `translateY(${before[i] - o.offsetTop}px)`; });
+        void f.offsetHeight;
+        olds.forEach(o => { o.style.transition = ''; o.style.transform = ''; });
+        requestAnimationFrame(() => requestAnimationFrame(() => n.classList.remove('enter')));
+        while (f.children.length > 3) f.firstElementChild.remove();
+      });
+      push.querySelector('span').textContent = `${a.t} · ${a.p2}`;
+      push.classList.add('show'); clearTimeout(show.t); show.t = setTimeout(() => push.classList.remove('show'), 2700);
+    };
+    if (RM || !('IntersectionObserver' in window)) return;
+    const r0 = stage.getBoundingClientRect();
+    if (r0.top > innerHeight * .8) stage.classList.add('shut');
+    let k = 0, timer = 0, started = false;
+    const loop = () => { k = (k + 1) % A.length; show(k); };
+    new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) {
+        clearInterval(timer);
+        if (!started) { started = true; stage.classList.remove('shut'); setTimeout(() => { loop(); timer = setInterval(loop, 5200); }, 1700); }
+        else timer = setInterval(loop, 5200);
+      } else clearInterval(timer);
+    }, { threshold: .35 }).observe(stage);
+    if (matchMedia('(hover: hover)').matches) {
+      const sec = stage.closest('section'), rig = document.getElementById('dev-rig');
+      sec.addEventListener('pointermove', e => { const r = stage.getBoundingClientRect();
+        rig.style.setProperty('--dry', (-14 + ((e.clientX - r.left) / r.width - .5) * 14).toFixed(2) + 'deg');
+        rig.style.setProperty('--drx', (-11 - ((e.clientY - r.top) / r.height - .5) * 6).toFixed(2) + 'deg'); });
+      sec.addEventListener('pointerleave', () => { rig.style.removeProperty('--dry'); rig.style.removeProperty('--drx'); });
+    }
+  })();
+
   // Vidéo réelle du bot dans le téléphone
   (() => { const v = document.getElementById('vid'); if (!v) return;
     if (RM) { v.removeAttribute('autoplay'); v.pause(); v.controls = true; return; }
@@ -1252,7 +1452,7 @@
     const ppu = () => (cvH() / 2) / (TAN * CAMZ);
     const toW = (cx, cy) => [(cx - cvW() / 2) / ppu(), -(cy - cvH() / 2) / ppu()];
     const el = (s) => document.querySelector(s);
-    const phoneEl = el('.phone'), txtEl = el('.hero-txt'), aboutEl = el('.about-photo'), eliteEl = el('#elite-card'), proofEl = el('.proof-cards'), slotEl = el('#logo-slot');
+    const phoneEl = el('.phone'), txtEl = el('.hero-txt'), devEl = el('#dev'), aboutEl = el('.about-photo'), eliteEl = el('#elite-card'), proofEl = el('.proof-cards'), slotEl = el('#logo-slot');
     const far = () => [6, 1.5, -20, 1.15, .35, .2, 1.4, 0, 0];
     const K = {
       hero: (m) => K.phone(m),
@@ -1262,6 +1462,8 @@
         const Rp = Math.max(r.width * .56, Math.min(r.width * .92, (cvW() - cx) * .86 / 1.32, cx * .86 / 1.32, cx - tr - 12));
         const [x, y] = toW(cx, r.top + r.height * .62); return [x, y, 0, 1.2, 0, -.2, Rp / ppu() / 3, 1, 0]; },
       versus: far, steps: far, features: far, reviews: far, faq: far, strip: far,
+      devices: (m) => { const r = devEl.getBoundingClientRect(); const [x, y] = toW(r.left + r.width / 2, r.top + r.height * .86);
+        const Rp = Math.min(r.width * .5, cvW() * .46); return [x, y, -1, 1.44, 0, 0, Rp / ppu() / 3, .85, 0]; },
       about: (m) => { const r = aboutEl.getBoundingClientRect(); const [x, y] = toW(r.left + r.width / 2, r.bottom - r.height * .05);
         const Rp = m ? cvW() * .42 : Math.min(r.width * .64, cvW() * .3); return [x, y, -.5, 1.42, 0, 0, Rp / ppu() / 3, .9, 0]; },
       proof: () => { const cards = proofEl.children; const a = cards[0].getBoundingClientRect(), b = cards[cards.length - 1].getBoundingClientRect();
