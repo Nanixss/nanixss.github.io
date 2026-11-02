@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Formation Lucas1up</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="La formation achat-revente de jeux vidéo de Lucas1up : la méthode pas à pas et les prix de revente de près de 800 jeux sur 16 consoles, mis à jour régulièrement.">
+<meta property="og:title" content="Formation achat-revente de jeux vidéo · Lucas1up">
+<meta property="og:description" content="La méthode et les cotes de près de 800 jeux sur 16 consoles. 13 avis d'élèves, tous 5/5.">
+<meta property="og:image" content="https://nanixsshub.fr/formation/partage.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://nanixsshub.fr/formation/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#04131A">
+<link rel="icon" href="../logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* Layout : un monde 3D fixe plein écran derrière la page (et devant, pour l'anneau du haut) ; contenu en colonne de 1180 px ;
+     hero en deux colonnes ; sections qui laissent l'anneau respirer sur les côtés ; logo 3D qui se recompose à la fin. */
+  :root{
+    --bg:#04131A; --surface:#062229; --surface-2:#0A2C33; --deep:#031017;
+    --line:rgba(3,210,182,.16); --line-2:rgba(3,210,182,.34);
+    --accent:#03D2B6; --accent-l:#03EBCA; --accent-d:#048A83;
+    --text:#EAF5F4; --text-2:#9CC4C4; --text-3:#76A3A4;
+    --star:#FFC233;
+    --font:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scrollbar-color:#0C3A40 var(--bg)}
+  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+  body{font-family:var(--font);font-size:16px;line-height:1.6;color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden;
+    background:radial-gradient(90% 60% at 75% 0%,rgba(3,210,182,.14),transparent 60%),radial-gradient(70% 50% at 10% 70%,rgba(3,138,131,.10),transparent 60%),var(--bg)}
+  ::selection{background:var(--accent);color:var(--bg)}
+  ::-webkit-scrollbar{width:12px}
+  ::-webkit-scrollbar-track{background:var(--bg)}
+  ::-webkit-scrollbar-thumb{background:#0C3A40;border-radius:8px;border:3px solid var(--bg)}
+  img{max-width:100%;display:block}
+  [hidden]{display:none!important}
+  a{color:inherit}
+  :focus-visible{outline:2px solid var(--accent-l);outline-offset:3px;border-radius:10px}
+  h1,h2,h3{text-wrap:balance;font-weight:800;line-height:1.05;letter-spacing:-.03em;color:var(--text)}
+  p{text-wrap:pretty}
+  .num{font-variant-numeric:tabular-nums}
+  .i{width:20px;height:20px;flex:0 0 auto;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .wrap{max-width:1180px;margin:0 auto;padding-left:max(clamp(16px,4vw,32px),env(safe-area-inset-left,0px));padding-right:max(clamp(16px,4vw,32px),env(safe-area-inset-right,0px))}
+
+  /* ---------- monde 3D ---------- */
+  .gl-layer{position:fixed;left:0;top:0;width:100%;height:100lvh;pointer-events:none;display:block}
+  #world{z-index:0}
+  .veil{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(120% 95% at 50% 45%,transparent 55%,rgba(3,16,23,.72) 100%)}
+  .grain{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.06;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+  main,footer{position:relative;z-index:1}
+  @media (max-width:900px),(pointer:coarse){.grain{display:none}.nav.scrolled{-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}}
+
+  /* ---------- navigation ---------- */
+  body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:21;background:var(--bg)}
+  .nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;border-bottom:1px solid transparent;transition:background-color .3s,border-color .3s}
+  .nav.scrolled{background:rgba(4,19,26,.8);-webkit-backdrop-filter:blur(16px) saturate(140%);backdrop-filter:blur(16px) saturate(140%);border-bottom-color:rgba(3,210,182,.10)}
+  .nav-in{display:flex;align-items:center;gap:22px;height:70px}
+  .brand{display:flex;align-items:center;gap:11px;text-decoration:none;font-weight:800;font-size:17px;letter-spacing:.02em}
+  .brand img{width:36px;height:36px;border-radius:50%}
+  .brand b{color:var(--accent)}
+  .nav-links{display:flex;gap:28px;margin-left:auto;font-size:14.5px;font-weight:500;color:var(--text-2)}
+  .nav-links a{text-decoration:none;padding:6px 0;transition:color .2s}
+  .nav-links a:hover{color:var(--text)}
+  @media (max-width:1100px){.nav-links{display:none}.nav .btn-s{margin-left:auto}}
+
+  /* ---------- boutons ---------- */
+  .btn{position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    font:700 16px/1.2 var(--font);text-decoration:none;border:0;border-radius:16px;padding:17px 26px;cursor:pointer;text-align:center;
+    transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .3s,border-color .2s,color .2s}
+  .btn:active{scale:.97}
+  .btn .i{width:19px;height:19px}
+  .btn-main{background:linear-gradient(135deg,#03EBCA 0%,#03D2B6 55%,#048A83 150%);color:var(--bg);
+    box-shadow:0 16px 36px -14px rgba(3,210,182,.75),inset 0 1px 0 rgba(255,255,255,.4)}
+  .btn-main .i{stroke-width:2.2}
+  .btn-main::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.5) 50%,transparent 65%);transform:translateX(-130%);transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+  .btn-main:hover{translate:0 -2px;box-shadow:0 22px 46px -16px rgba(3,210,182,.9),inset 0 1px 0 rgba(255,255,255,.4)}
+  .btn-main:hover::after{transform:translateX(130%)}
+  .btn-price{font-weight:600;font-size:13.5px;padding:4px 9px;border-radius:9px;background:rgba(4,19,26,.14)}
+  .btn-ghost{background:rgba(6,34,41,.7);color:var(--text);border:1.5px solid var(--line-2)}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent-l)}
+  .btn-s{padding:11px 18px;font-size:14.5px;border-radius:12px}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;padding-block:clamp(36px,6vw,84px) clamp(64px,8vw,120px)}
+  .hero-in{display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,.94fr);gap:clamp(32px,5vw,72px);align-items:center}
+  .hero-txt{position:relative;z-index:2}
+  .hero h1{font-size:clamp(42px,5.6vw,78px);line-height:.99;letter-spacing:-.04em;font-weight:900}
+  .hero h1 .hl{display:block;color:var(--accent)}
+  .lead{margin-top:26px;font-size:clamp(17px,1.45vw,19px);line-height:1.65;color:var(--text-2);max-width:33em}
+  .lead strong{color:var(--text);font-weight:600}
+  .ctas{margin-top:34px;display:flex;flex-wrap:wrap;gap:12px}
+  .assure{margin-top:28px;list-style:none;display:flex;flex-wrap:wrap;gap:10px 24px;font-size:14px;color:var(--text-2)}
+  .assure li{display:inline-flex;align-items:center;gap:8px}
+  .assure .i{width:17px;height:17px;color:var(--accent)}
+  .assure a{text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:color .2s}
+  .assure a:hover{color:var(--text)}
+  .stars{display:inline-flex;gap:2px;color:var(--star)}
+  .stars svg{width:15px;height:15px;fill:currentColor}
+  .rise{animation:rise .85s cubic-bezier(.16,1,.3,1) both}
+  .rise.d1{animation-delay:.08s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.24s}
+  @keyframes rise{from{transform:translateY(20px);filter:blur(4px)}}
+
+  .hero-vis{position:relative;display:flex;justify-content:center;perspective:1400px;touch-action:pan-y;padding-block:10px}
+  .rig{position:relative;z-index:1;transform-style:preserve-3d;transform:translateZ(var(--sz,0px)) rotateY(var(--ry,-14deg)) rotateX(var(--rx,6deg));transition:transform .9s cubic-bezier(.2,.7,.2,1);will-change:transform}
+  .phone{position:relative;transform-style:preserve-3d;width:min(340px,84vw);aspect-ratio:9/18.6;border-radius:50px;padding:11px;
+    background:linear-gradient(155deg,#14454D,#062126 45%,#03161B);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 0 0 1.5px rgba(3,210,182,.38),0 60px 100px -36px rgba(0,0,0,.9),0 40px 80px -50px rgba(3,210,182,.55)}
+  .phone::after{content:"";position:absolute;inset:0;border-radius:50px;pointer-events:none;z-index:6;
+    background:linear-gradient(118deg,rgba(255,255,255,.15),transparent 26%,transparent 74%,rgba(3,235,202,.08))}
+  .ph-edge{position:absolute;inset:0;transform-style:preserve-3d;pointer-events:none}
+  .ph-edge i{position:absolute;inset:0;border-radius:50px;background:linear-gradient(160deg,#145058,#06232A 55%,#031419);box-shadow:0 0 0 1px rgba(3,210,182,.22)}
+  .ph-edge i:nth-child(1){transform:translateZ(-1.25px)}.ph-edge i:nth-child(2){transform:translateZ(-2.50px)}.ph-edge i:nth-child(3){transform:translateZ(-3.75px)}.ph-edge i:nth-child(4){transform:translateZ(-5.00px)}.ph-edge i:nth-child(5){transform:translateZ(-6.25px)}.ph-edge i:nth-child(6){transform:translateZ(-7.50px)}.ph-edge i:nth-child(7){transform:translateZ(-8.75px)}.ph-edge i:nth-child(8){transform:translateZ(-10.00px)}.ph-edge i:nth-child(9){transform:translateZ(-11.25px)}.ph-edge i:nth-child(10){transform:translateZ(-12.50px)}.ph-edge i:nth-child(11){transform:translateZ(-13.75px)}.ph-edge i:nth-child(12){transform:translateZ(-15.00px)}
+  .notch{position:absolute;top:20px;left:50%;width:98px;height:27px;border-radius:20px;background:#020B0E;transform:translateX(-50%);z-index:7}
+  .screen{position:relative;height:100%;border-radius:40px;overflow:hidden;background:#152F2B}
+  .ch-head{position:absolute;top:0;left:0;right:0;z-index:3;display:flex;align-items:center;gap:7px;padding:56px 18px 34px;
+    background:linear-gradient(#11302A 56%,rgba(17,48,42,0));font-weight:600;font-size:14px;color:#F2F3F5}
+  .new-div{display:flex;align-items:center;gap:8px;padding:4px 12px 2px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+  .new-div::before{content:"";flex:1;height:1px;background:rgba(3,235,202,.75)}
+  .new-div span{padding:2px 6px;border-radius:4px;background:var(--accent);color:var(--bg)}
+  .alert.flash{animation:flash 2.2s cubic-bezier(.16,1,.3,1)}
+  @keyframes flash{0%,12%{background:#2C6358}100%{background:#1C3934}}
+  .ch-head .i{width:17px;height:17px;color:#93ACA6}
+  .ch-head span{margin-left:auto;font-size:11.5px;font-weight:500;color:#93ACA6}
+  .feed{position:absolute;left:0;right:0;bottom:0;display:flex;flex-direction:column;gap:6px;padding-bottom:16px;transition:transform 1.15s cubic-bezier(.16,1,.3,1)}
+  .ch-start{padding:0 16px 10px;color:#A9BDB8;font-size:12px;line-height:1.45}
+  .ch-start b{display:block;color:#F2F3F5;font-size:16px;margin-bottom:2px}
+  .push{position:absolute;z-index:5;top:12px;left:9px;right:9px;display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:20px;
+    background:rgba(24,54,50,.98);box-shadow:0 20px 34px -14px rgba(0,0,0,.75),0 0 0 1px rgba(255,255,255,.06);transform:translateY(-150%);transition:transform .75s cubic-bezier(.16,1,.3,1)}
+  .push.show{transform:none}
+  .push img{width:34px;height:34px;border-radius:9px;flex:0 0 auto}
+  .push > div{min-width:0}
+  .push b{display:block;font-size:12.5px;color:#fff;line-height:1.3}
+  .push span{display:block;font-size:12px;color:#C7D6D2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .push time{margin-left:auto;align-self:flex-start;font-size:10.5px;color:#93ACA6;white-space:nowrap}
+  @media (max-width:960px){.hero-in{grid-template-columns:minmax(0,1fr)}.hero-vis{margin-top:14px}}
+
+  /* ---------- alerte Discord reproduite ---------- */
+  .alert{background:#1C3934;padding:12px 12px 10px;font-size:13px;color:#DBDEE1;text-align:left;line-height:1.4}
+  .al-top{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+  .al-top img{width:22px;height:22px;border-radius:50%}
+  .al-top b{color:#fff;font-size:13.5px;font-weight:600}
+  .bot{font-size:9.5px;font-weight:700;padding:1px 5px;border-radius:4px;background:#5865F2;color:#fff;letter-spacing:.3px}
+  .al-top time{color:#94A8A3;font-size:11.5px}
+  .embed{margin-top:8px;padding:11px 12px 12px 13px;border-radius:6px;background:#163330;border-left:4px solid #2E9C60}
+  .al-title{color:#5AA9F0;font-weight:600;font-size:14.5px;line-height:1.3}
+  .al-grid{margin-top:9px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px 10px}
+  .al-grid .w2{grid-column:span 2}
+  .al-grid dt{font-weight:700;color:#fff;font-size:12.5px;white-space:nowrap}
+  .al-grid dd{margin-top:2px;font-size:12.5px;color:#DBDEE1;font-variant-numeric:tabular-nums}
+  .ts{background:rgba(255,255,255,.09);padding:1px 5px;border-radius:5px;white-space:nowrap}
+  .al-ph{margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:5px}
+  .al-ph img{width:100%;height:auto;aspect-ratio:349/437;object-fit:cover;border-radius:6px}
+  .al-btns{margin-top:8px;display:flex;gap:7px}
+  .al-btns span{display:inline-flex;align-items:center;gap:5px;padding:6px 12px;border-radius:5px;font-size:12.5px;font-weight:600;color:#fff}
+  .b-buy{background:#248046}
+  .b-det{background:#4E5058}
+  .alert.compact .al-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .alert.compact .al-grid .w2{grid-column:auto}
+
+  /* ---------- bandeaux ---------- */
+  .bands{position:relative;height:clamp(170px,19vw,250px);overflow:hidden;z-index:1;perspective:900px}
+  .band{position:absolute;left:-16%;width:132%;top:50%;padding-block:clamp(13px,1.5vw,20px)}
+  .b1{transform:translateY(-64%) rotateX(18deg) rotateY(-4deg) rotate(-3deg);background:var(--accent);color:var(--bg);z-index:2;box-shadow:0 26px 50px -26px rgba(0,0,0,.8)}
+  .b2{transform:translateY(-34%) rotateX(-16deg) rotateY(5deg) rotate(2.2deg);background:var(--deep);border-block:1px solid var(--line);z-index:1}
+  .band-track{display:flex;width:max-content;will-change:transform}
+  .band-set{display:flex;align-items:center;gap:clamp(22px,2.8vw,40px);padding-right:clamp(22px,2.8vw,40px);
+    font-weight:900;font-size:clamp(26px,3.4vw,46px);letter-spacing:-.02em;text-transform:uppercase;white-space:nowrap;line-height:1}
+  .b2 .band-set{color:transparent;-webkit-text-stroke:1.3px rgba(3,235,202,.75)}
+  .band-set svg{width:.95em;height:.5em;flex:0 0 auto}
+  .b1 .band-set svg{fill:var(--bg)}
+  .b2 .band-set svg{fill:var(--accent)}
+
+  /* ---------- sections ---------- */
+  .sec{position:relative;padding-block:clamp(88px,11vw,150px)}
+  .sec-head{max-width:740px}
+  .sec-head.c{margin-inline:auto;text-align:center}
+  .sec-head h2{font-size:clamp(34px,4.6vw,60px);letter-spacing:-.035em}
+  .sec-head h2 .hl,.final h2 .hl{color:var(--accent)}
+  .sec-head p{margin-top:18px;font-size:17.5px;color:var(--text-2);max-width:36em}
+  .sec-head.c p{margin-inline:auto}
+
+
+
+  /* ---------- relief 3D ---------- */
+  .tilt{transform:perspective(1100px) var(--base,translateZ(0)) rotateX(var(--tx,0deg)) rotateY(var(--ty,0deg));transform-style:preserve-3d;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+  .tilt.is-tilting{transition:transform .12s linear}
+  .tilt .ui,.tilt .vis,.tilt .vs-vis{transform:translateZ(14px)}
+  .tilt h3,.tilt .price,.tilt .rv-h{transform:translateZ(8px)}
+  .tilt .btn{transform:translateZ(10px)}
+  @media (hover:none){.tilt .ui,.tilt .vis,.tilt .vs-vis,.tilt h3,.tilt .price,.tilt .rv-h,.tilt .btn{transform:none}}
+  @media (min-width:821px){.plans{perspective:1600px}.plan:not(.elite){--base:rotateY(8deg) translateZ(-26px)}.plan.elite{--base:rotateY(-4deg) translateZ(34px)}}
+
+  /* ---------- espaces des objets 3D ---------- */
+  .obj-slot{pointer-events:none}
+  .o-hero-a,.o-hero-b{position:absolute;z-index:0;width:clamp(110px,11vw,160px);aspect-ratio:1}
+  .o-hero-a{left:-15%;bottom:11%}
+  .o-hero-b{right:-17%;top:5%}
+  .sec > .wrap{position:relative}
+  .o-side{position:absolute;top:-40px;right:max(clamp(16px,4vw,32px),env(safe-area-inset-right,0px));width:min(250px,max(0px,calc(100% - 820px)));aspect-ratio:1}
+  .o-price{--sw:min(180px,max(0px,calc((100vw - 960px) / 2 - 70px)));position:absolute;left:calc(50% - 510px - var(--sw));top:44%;width:var(--sw);aspect-ratio:1}
+  .o-faq{width:min(230px,70%);aspect-ratio:1;margin-top:34px}
+  @media (max-width:999px){
+    .o-hero-a,.o-hero-b,.o-price{display:none}
+    .o-side{position:relative;top:auto;right:auto;width:140px;margin:-10px 0 6px auto}
+    .o-faq{width:140px;margin:22px 0 0 auto}
+  }
+
+  /* sans / avec */
+  .vs{margin-top:58px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:stretch}
+  .vs-card{display:flex;flex-direction:column;gap:22px;padding:30px;border-radius:30px;border:1px solid var(--line);background:var(--surface)}
+  .vs-without{background:#071A1F;border-color:rgba(156,196,196,.12);box-shadow:0 40px 80px -50px rgba(0,0,0,.95)}
+  .vs-with{background:linear-gradient(170deg,#0C3D42,#072C32 50%,#06232A);border:1.5px solid var(--accent);box-shadow:0 60px 110px -56px rgba(0,0,0,1),0 40px 90px -70px rgba(3,210,182,.8)}
+  .vs-card h3{font-size:24px;letter-spacing:-.02em;display:flex;align-items:center;gap:12px}
+  .vs-without h3{color:var(--text-2)}
+  .vs-card h3 img{width:32px;height:32px;border-radius:50%}
+  .vs-card h3 .xk{flex-basis:32px;height:32px;border-radius:50%}
+  .vs-list{list-style:none;display:flex;flex-direction:column;gap:13px}
+  .vs-list li{display:flex;gap:12px;align-items:flex-start;font-size:15.5px;line-height:1.5}
+  .vs-without .vs-list li{color:var(--text-2)}
+  .xk{flex:0 0 24px;height:24px;border-radius:8px;display:grid;place-items:center;background:rgba(156,196,196,.08);color:#87A6A8}
+  .xk .i{width:14px;height:14px;stroke-width:2.6}
+  .vs-vis{margin-top:auto;border-radius:20px;background:var(--deep);border:1px solid rgba(3,210,182,.10);padding:14px;display:flex;flex-direction:column;gap:9px}
+  .vs-bar{display:flex;align-items:center;gap:9px;padding:2px 4px 6px;font-size:12.5px;font-weight:600;color:#87A6A8}
+  .vs-bar .i{width:17px;height:17px}
+  .vs-bar span{margin-left:auto;font-weight:500}
+  .sold{display:flex;align-items:center;gap:12px;padding:9px;border-radius:13px;background:rgba(255,255,255,.025);border:1px solid rgba(156,196,196,.08);color:#87A6A8;font-size:13.5px;font-weight:600}
+  .sold .th{flex:0 0 40px;height:48px;border-radius:8px;display:grid;place-items:center;background:#0F2428;color:#4E6B6E}
+  .sold .th .i{width:18px;height:18px}
+  .sold em{margin-left:auto;font-style:normal;font-size:11.5px;font-weight:700;padding:4px 9px;border-radius:7px;background:#1C3236;color:#9DB5B7}
+  .vs-with .vs-vis{background:radial-gradient(120% 90% at 50% 0%,rgba(3,210,182,.14),transparent 60%),var(--deep)}
+  .vs-with .notif{opacity:1;transform:none}
+  .vs-buy{display:flex;gap:8px}
+  .vs-buy span{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:7px;font-size:13.5px;font-weight:600;color:#fff}
+  @media (max-width:860px){.vs{grid-template-columns:minmax(0,1fr)}}
+
+  /* étapes */
+  .flow{list-style:none;margin-top:58px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+  .step{display:flex;flex-direction:column;gap:14px;padding:20px 20px 26px;border-radius:28px;background:var(--surface);border:1px solid var(--line);box-shadow:0 34px 70px -46px rgba(0,0,0,.9)}
+  .ui{position:relative;height:200px;border-radius:18px;background:var(--deep);border:1px solid rgba(3,210,182,.10);padding:16px;overflow:hidden}
+  .step h3{margin-top:6px;font-size:21px;letter-spacing:-.02em;display:flex;align-items:center;gap:12px}
+  .step h3 .n{flex:0 0 32px;height:32px;border-radius:10px;display:grid;place-items:center;font-size:15px;font-weight:800;letter-spacing:0;background:var(--accent);color:var(--bg)}
+  .step p{color:var(--text-2);font-size:15px;line-height:1.6}
+  .f-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 12px;border-radius:11px;background:rgba(255,255,255,.03);border:1px solid rgba(3,210,182,.12);font-size:13px}
+  .f-row + .f-row{margin-top:8px}
+  .f-row span{color:var(--text-3)}
+  .f-row b{font-weight:600;color:var(--text)}
+  .f-on{position:absolute;right:16px;bottom:14px;display:flex;align-items:center;gap:9px;font-size:12.5px;font-weight:600;color:var(--accent-l)}
+  .tg{position:relative;width:34px;height:20px;border-radius:999px;background:var(--accent);flex:0 0 auto}
+  .tg::after{content:"";position:absolute;top:3px;right:3px;width:14px;height:14px;border-radius:50%;background:var(--bg)}
+  .tg.off{background:#1B3A40}
+  .tg.off::after{right:auto;left:3px;background:#6F9496}
+  .radar{position:absolute;left:50%;top:44%;width:300px;height:300px;transform:translate(-50%,-50%);border-radius:50%;
+    background:conic-gradient(from 210deg,rgba(3,235,202,0),rgba(3,235,202,.22) 18%,transparent 19%),repeating-radial-gradient(circle,transparent 0 37px,rgba(3,210,182,.16) 37px 38px)}
+  .radar::after{content:"";position:absolute;left:50%;top:50%;width:9px;height:9px;border-radius:50%;background:var(--accent-l);transform:translate(-50%,-50%);box-shadow:0 0 0 6px rgba(3,235,202,.18)}
+  .hit{position:absolute;left:14px;right:14px;bottom:14px;display:flex;align-items:center;gap:11px;padding:9px;border-radius:13px;background:#163330;border:1px solid rgba(3,235,202,.35);box-shadow:0 18px 30px -16px rgba(0,0,0,.8)}
+  .hit img{width:38px;height:47px;object-fit:cover;border-radius:7px}
+  .hit div{min-width:0}
+  .hit b{display:block;font-size:13px;font-weight:600;color:#5AA9F0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .hit span{font-size:12px;color:#C7D6D2}
+  .buy{display:flex;flex-direction:column;justify-content:center;gap:18px;height:100%}
+  .buy-row{position:relative;display:flex;gap:8px}
+  .buy-row span{display:inline-flex;align-items:center;gap:6px;padding:10px 16px;border-radius:7px;font-size:14.5px;font-weight:600;color:#fff}
+  .cursor{position:absolute;left:62px;top:24px;width:26px;height:26px;fill:#fff;stroke:#04131A;stroke-width:1.4;filter:drop-shadow(0 4px 6px rgba(0,0,0,.5))}
+  .auto{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;background:rgba(3,210,182,.08);border:1px solid rgba(3,210,182,.22);font-size:13px;color:var(--text)}
+  .auto .i{width:18px;height:18px;color:var(--accent-l);stroke-width:2.4;margin-left:auto}
+  .pill{display:inline-flex;align-items:center;font-size:10.5px;font-weight:800;letter-spacing:.08em;padding:3px 8px;border-radius:999px;background:var(--accent);color:var(--bg)}
+  @media (max-width:900px){.flow{grid-template-columns:minmax(0,1fr)}}
+
+  /* fonctionnalités */
+  .bento{margin-top:58px;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:18px}
+  .tile{position:relative;display:flex;flex-direction:column;gap:12px;padding:28px;border-radius:28px;background:var(--surface);border:1px solid var(--line);
+    box-shadow:0 34px 70px -46px rgba(0,0,0,.9);transition:border-color .25s}
+  .tile:hover{border-color:var(--line-2)}
+  .tile h3{font-size:22px;letter-spacing:-.02em;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .tile h3 .i{width:22px;height:22px;color:var(--accent)}
+  .tile p{color:var(--text-2);font-size:15px;line-height:1.6;max-width:34em}
+  .vis{margin-top:auto;padding-top:14px}
+  .t-alerts{grid-column:span 3;grid-row:span 2}
+  .t-filters,.t-all{grid-column:span 3}
+  .t-auto,.t-multi,.t-help{grid-column:span 2}
+  .t-alerts .vis{margin-top:auto;padding:26px 18px 18px;border-radius:24px;background:radial-gradient(120% 80% at 50% 0%,rgba(3,210,182,.16),transparent 62%),var(--deep);border:1px solid rgba(3,210,182,.12)}
+  .lock{text-align:center;margin-bottom:22px}
+  .lock b{display:block;font-size:clamp(58px,6vw,84px);font-weight:300;letter-spacing:-.03em;line-height:1;color:var(--text)}
+  .lock span{display:block;margin-top:6px;font-size:13px;color:var(--text-3)}
+  .nstack{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .notif{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px;padding:12px;border-radius:20px;background:rgba(22,51,48,.92);border:1px solid rgba(255,255,255,.06);box-shadow:0 20px 40px -24px rgba(0,0,0,.9)}
+  .notif + .notif{transform:scale(.95);opacity:.78;transform-origin:top center}
+  .notif .app{width:38px;height:38px;border-radius:10px}
+  .notif b{display:flex;justify-content:space-between;gap:8px;font-size:13px;color:#fff}
+  .notif b time{font-weight:500;color:#93ACA6;font-size:11.5px}
+  .notif span{display:block;font-size:12.5px;color:#C7D6D2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .notif .th{width:44px;height:55px;object-fit:cover;border-radius:9px}
+  .slider{padding:14px 16px;border-radius:16px;background:var(--deep);border:1px solid rgba(3,210,182,.12)}
+  .sl-top{display:flex;justify-content:space-between;font-size:13px;color:var(--text-3)}
+  .sl-top b{color:var(--text);font-weight:700}
+  .sl-track{position:relative;margin-top:14px;height:6px;border-radius:999px;background:#163B41}
+  .sl-track i{position:absolute;left:0;top:0;bottom:0;width:30%;border-radius:inherit;background:var(--accent)}
+  .sl-track span{position:absolute;left:30%;top:50%;width:18px;height:18px;border-radius:50%;background:#fff;transform:translate(-50%,-50%);box-shadow:0 0 0 5px rgba(3,210,182,.25)}
+  .tgls{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px}
+  .tgl{display:inline-flex;align-items:center;gap:9px;padding:8px 12px 8px 8px;border-radius:12px;background:var(--deep);border:1px solid rgba(3,210,182,.12);font-size:13px;color:var(--text)}
+  .cats{display:flex;flex-wrap:wrap;gap:8px}
+  .cats span{padding:8px 13px;border-radius:999px;font-size:13.5px;font-weight:600;background:var(--deep);border:1px solid rgba(3,210,182,.14);color:var(--text)}
+  .cats span.more{background:rgba(3,210,182,.12);border-color:rgba(3,210,182,.4);color:var(--accent-l)}
+  .af{display:flex;align-items:center;gap:11px;padding:11px 12px;border-radius:13px;background:var(--deep);border:1px solid rgba(3,210,182,.12);font-size:13px}
+  .af + .af{margin-top:8px}
+  .af div{min-width:0}
+  .af b{display:block;color:var(--text);font-weight:600;line-height:1.3}
+  .af span{color:var(--text-3);font-size:12px}
+  .af .dot{flex:0 0 10px;height:10px;border-radius:50%;background:#5AA9F0;box-shadow:0 0 0 4px rgba(90,169,240,.18)}
+  .af.ok{border-color:rgba(3,235,202,.35)}
+  .af.ok .i{color:var(--accent-l);stroke-width:2.4}
+  .accs{list-style:none;display:flex;flex-direction:column;gap:8px}
+  .accs li{display:flex;align-items:center;gap:11px;padding:9px 12px;border-radius:13px;background:var(--deep);border:1px solid rgba(3,210,182,.12);font-size:13.5px;font-weight:600}
+  .accs .av{width:28px;height:28px;font-size:12px}
+  .accs em{margin-left:auto;font-style:normal;font-size:11.5px;font-weight:600;color:var(--accent-l);display:inline-flex;align-items:center;gap:6px}
+  .accs em::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent-l)}
+  .vids{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .vid{position:relative;aspect-ratio:16/10;border-radius:13px;overflow:hidden;background:linear-gradient(140deg,#0D3A40,#04161B);border:1px solid rgba(3,210,182,.14);display:flex;align-items:flex-end;padding:9px}
+  .vid .i{position:absolute;left:50%;top:42%;width:30px;height:30px;transform:translate(-50%,-50%);color:var(--accent-l)}
+  .vid span{position:relative;font-size:11.5px;font-weight:600;line-height:1.25;color:var(--text)}
+  @media (max-width:980px){.bento{grid-template-columns:repeat(2,minmax(0,1fr))}.t-alerts{grid-column:span 2;grid-row:auto}.t-filters,.t-all,.t-auto,.t-multi{grid-column:span 1}.t-help{grid-column:span 2}}
+  @media (max-width:640px){.bento{grid-template-columns:minmax(0,1fr)}.bento .tile{grid-column:auto;padding:22px}.t-alerts .vis{padding:20px 12px 12px}.notif{gap:10px;padding:10px}.notif .th{display:none}}
+
+  /* preuves */
+  .proof-cards{margin-top:64px;display:grid;grid-template-columns:repeat(2,minmax(0,420px));justify-content:center;gap:clamp(22px,4.5vw,64px);perspective:1800px}
+  .pcard{border-radius:24px;overflow:hidden;border:1px solid var(--line-2);background:#1C3934;
+    box-shadow:0 70px 110px -56px rgba(0,0,0,.95),0 36px 90px -60px rgba(3,210,182,.6);transition:transform .8s cubic-bezier(.16,1,.3,1)}
+  .pcard:first-child{transform:rotateY(calc(30deg - 18deg * var(--pp,1))) rotateX(4deg) translateZ(calc(-80px + 60px * var(--pp,1)))}
+  .pcard:last-child{transform:rotateY(calc(-30deg + 18deg * var(--pp,1))) rotateX(4deg) translateY(24px) translateZ(calc(-80px + 60px * var(--pp,1)))}
+  .pcard{transition:transform .25s linear}
+  .pcard:hover{transform:none;transition:transform .8s cubic-bezier(.16,1,.3,1)}
+  .pcard figcaption{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:15px 18px;background:#082A2F;border-top:1px solid var(--line);font-weight:600;font-size:14.5px}
+  .pcard figcaption span{color:var(--accent-l)}
+  .note{margin-top:30px;text-align:center;font-size:13.5px;color:var(--text-3)}
+  @media (max-width:760px){.proof-cards{grid-template-columns:minmax(0,420px)}.pcard:first-child,.pcard:last-child{transform:none}}
+
+  /* tarifs */
+  .plans{margin-top:60px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.12fr);gap:22px;max-width:960px;margin-inline:auto;align-items:center}
+  .plan{position:relative;display:flex;flex-direction:column;padding:34px 30px;border-radius:30px;background:var(--surface);border:1px solid var(--line);box-shadow:0 40px 80px -50px rgba(0,0,0,.95)}
+  .plan.elite{padding:44px 36px;background:linear-gradient(170deg,#0C3D42,#072C32 45%,#06232A);border:1.5px solid var(--accent);
+    box-shadow:0 70px 120px -56px rgba(0,0,0,1),0 46px 100px -70px rgba(3,210,182,.8)}
+  .plan-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .plan h3{font-size:28px;letter-spacing:-.03em}
+  .best{font-size:12px;font-weight:700;padding:5px 11px;border-radius:999px;background:var(--accent);color:var(--bg)}
+  .for{margin-top:6px;color:var(--text-2);font-size:15px}
+  .price{margin-top:26px;display:flex;align-items:baseline;gap:8px}
+  .price b{font-size:clamp(46px,5vw,60px);font-weight:900;letter-spacing:-.04em;line-height:1}
+  .price span{color:var(--text-2)}
+  .per-day{margin-top:8px;font-size:14px;font-weight:600;color:var(--accent-l)}
+  .plan:not(.elite) .per-day{color:var(--text-2)}
+  .plan ul{list-style:none;margin-top:28px;display:flex;flex-direction:column;gap:14px;flex:1}
+  .plan li{display:flex;gap:12px;align-items:flex-start;font-size:15.5px;line-height:1.5}
+  .ck{flex:0 0 24px;height:24px;border-radius:8px;display:grid;place-items:center;background:rgba(3,210,182,.12);color:var(--accent)}
+  .ck .i{width:15px;height:15px;stroke-width:2.6}
+  .plan li.plus .ck{background:var(--accent);color:var(--bg)}
+  .plan li strong{font-weight:700}
+  .plan .btn{margin-top:32px;width:100%}
+  .fine{margin-top:30px;text-align:center;font-size:14px;color:var(--text-2);line-height:1.75}
+  .fine a{color:var(--accent-l)}
+  @media (max-width:820px){.plans{grid-template-columns:minmax(0,1fr)}.plan.elite{order:-1}}
+
+  /* avis */
+  .rv-wrap{margin-top:58px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:20px;align-items:start}
+  .rv-feat{padding:clamp(28px,4vw,46px);border-radius:30px;background:var(--surface);border:1px solid var(--line-2);box-shadow:0 40px 80px -50px rgba(0,0,0,.95)}
+  .rv-feat blockquote{margin-top:22px;font-size:clamp(20px,2.1vw,26px);font-weight:600;line-height:1.5;letter-spacing:-.01em}
+  .rv-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+  .rv{padding:22px;border-radius:24px;background:var(--surface);border:1px solid var(--line)}
+  .rv blockquote{margin-top:12px;font-size:14.5px;line-height:1.65}
+  .rv-h{display:flex;align-items:center;gap:11px;font-weight:700;font-size:15px}
+  .av{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:14px;background:rgba(3,210,182,.14);color:var(--accent);flex:0 0 auto}
+  .rv-h .stars{margin-left:auto}
+  .rv-f{margin-top:14px;font-size:12.5px;font-weight:600;color:var(--accent);display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+  .rv-f .i{width:15px;height:15px;stroke-width:2.4}
+  .rv-f time{color:var(--text-3);font-weight:500}
+  @media (max-width:980px){.rv-wrap{grid-template-columns:minmax(0,1fr)}}
+  @media (max-width:560px){.rv-grid{grid-template-columns:minmax(0,1fr)}}
+
+  /* FAQ */
+  .faq-wrap{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(32px,6vw,90px);align-items:start}
+  .faq-list{display:flex;flex-direction:column;gap:10px}
+  .faq-list details{border-radius:20px;background:var(--surface);border:1px solid var(--line);transition:border-color .2s}
+  .faq-list details[open]{border-color:var(--line-2)}
+  .faq-list summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:16px;padding:21px 22px;font-weight:600;font-size:16.5px;line-height:1.4}
+  .faq-list summary::-webkit-details-marker{display:none}
+  .pm{margin-left:auto;flex:0 0 30px;height:30px;border-radius:10px;display:grid;place-items:center;background:rgba(3,210,182,.10);color:var(--accent);transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+  .pm .i{width:16px;height:16px;stroke-width:2.2}
+  .faq-list details[open] .pm{transform:rotate(45deg)}
+  .ans{padding:0 22px 22px;color:var(--text-2);font-size:15.5px;line-height:1.7}
+  @media (max-width:900px){.faq-wrap{grid-template-columns:minmax(0,1fr)}}
+
+  /* final */
+  .final{position:relative;text-align:center;padding-block:24px 8vh}
+  .logo-slot{width:min(28vh,320px);aspect-ratio:1;margin:0 auto}
+  .logo-slot img{width:100%;height:100%;border-radius:50%}
+  html.gl .logo-slot img{visibility:hidden}
+  .final h2{margin-top:2.5vh;font-size:clamp(40px,min(6.6vw,8.5vh),80px);letter-spacing:-.04em;line-height:.98;font-weight:900}
+  .final p{margin:2vh auto 0;max-width:32em;color:var(--text-2);font-size:18px}
+  .final .ctas{justify-content:center;margin-top:3.5vh}
+
+  footer{padding-block:26px 30px;border-top:1px solid rgba(3,210,182,.10);font-size:13.5px;color:var(--text-3)}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between}
+  footer nav{display:flex;flex-wrap:wrap;gap:8px 22px}
+  footer a{text-decoration:none;color:var(--text-2);transition:color .2s}
+  footer a:hover{color:var(--text)}
+
+  /* barre d'achat mobile */
+  .bar{display:none}
+  @media (max-width:760px){
+    .bar{display:flex;align-items:center;gap:12px;position:fixed;left:0;right:0;bottom:0;z-index:30;
+      padding:12px max(16px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));
+      background:rgba(4,19,26,.94);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid var(--line);transform:translateY(110%);transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+    .bar.on{transform:none}
+    .bar .p{font-size:12.5px;color:var(--text-2);line-height:1.3}
+    .bar .p b{display:block;color:var(--text);font-size:15.5px}
+    .bar .btn{margin-left:auto;padding:13px 18px;font-size:15px}
+    .logo-slot{width:min(28vh,240px)}
+    .final{padding-bottom:48px}
+  }
+  /* ---------- flux réel du bot ---------- */
+  .strip{position:relative;z-index:1;padding-block:clamp(8px,2vw,28px) 0}
+  .strip-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px 30px}
+  .strip-head h2{font-size:clamp(24px,2.6vw,34px);letter-spacing:-.02em;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .strip-head p{color:var(--text-2);font-size:15.5px;max-width:34em}
+  .live{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:rgba(3,210,182,.12);border:1px solid rgba(3,210,182,.4);color:var(--accent-l);font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+  .live i,.pulse{width:8px;height:8px;border-radius:50%;background:var(--accent-l);animation:pulse 1.6s ease-out infinite;flex:0 0 auto}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(3,235,202,.6)}100%{box-shadow:0 0 0 10px rgba(3,235,202,0)}}
+  .rail{margin-top:26px;overflow:hidden;padding-block:26px 40px;perspective:1100px;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+  .rail-track{display:flex;gap:22px;width:max-content;padding-inline:11px;animation:rail 75s linear infinite;transform-style:preserve-3d}
+  .rail:hover .rail-track{animation-play-state:paused}
+  @keyframes rail{to{transform:translateX(-50%)}}
+  .lc{flex:0 0 clamp(178px,16vw,224px);border-radius:20px;overflow:hidden;background:var(--surface);border:1px solid var(--line);
+    box-shadow:0 44px 64px -40px rgba(0,0,0,.95),0 30px 70px -60px rgba(3,210,182,.6);will-change:transform}
+  .lc-ph{aspect-ratio:4/5;background:#0d2227;overflow:hidden}
+  .lc-ph img{width:100%;height:100%;object-fit:cover}
+  .lc-b{padding:12px 14px 15px}
+  .lc-n{font-weight:700;font-size:14.5px;line-height:1.3;min-height:2.6em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .lc-m{margin-top:6px;display:flex;gap:8px;align-items:center;font-size:12px;color:var(--text-3)}
+  .lc-c{padding:2px 8px;border-radius:999px;background:rgba(3,210,182,.12);color:var(--accent-l);font-weight:700;white-space:nowrap}
+  .lc-p{margin-top:8px;font-size:24px;font-weight:800;letter-spacing:-.02em;color:var(--text)}
+  .lc-live{display:inline-flex;align-items:center;gap:6px;color:var(--accent-l);font-weight:600}
+  .lc-live::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent-l);animation:pulse 1.6s ease-out infinite}
+  @media (prefers-reduced-motion: reduce){.rail{overflow-x:auto}.rail-track{animation:none}.lc[aria-hidden]{display:none}}
+
+  /* ---------- qui est derrière ---------- */
+  .about-in{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:clamp(36px,6vw,96px);align-items:center}
+  .about-photo{position:relative;justify-self:center;width:min(100%,430px);border-radius:32px;overflow:hidden;border:1px solid var(--line-2);
+    box-shadow:0 70px 110px -56px rgba(0,0,0,1),0 40px 100px -70px rgba(3,210,182,.8)}
+  .about-photo img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover}
+  .about-photo figcaption{position:absolute;left:14px;bottom:14px;display:inline-flex;align-items:center;gap:9px;padding:9px 14px;border-radius:999px;
+    background:rgba(4,19,26,.8);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);font-size:13px;font-weight:600;border:1px solid rgba(3,210,182,.25)}
+  .about-txt h2{font-size:clamp(34px,4.6vw,58px);letter-spacing:-.035em}
+  .about-txt h2 .hl{color:var(--accent)}
+  .about-id{margin-top:14px;font-weight:600;color:var(--accent-l);font-size:15.5px}
+  .about-body{max-width:36em}
+  .about-body p{margin-top:16px;font-size:17px;line-height:1.7;color:var(--text-2)}
+  .about-stats{list-style:none;margin-top:26px;display:flex;flex-wrap:wrap;gap:10px}
+  .about-stats li{padding:10px 16px;border-radius:14px;background:var(--surface);border:1px solid var(--line);font-size:14px;color:var(--text-2)}
+  .about-stats b{color:var(--text);font-weight:800}
+  .about .ctas{margin-top:28px}
+  @media (max-width:900px){.about-in{grid-template-columns:minmax(0,1fr)}.about-photo{width:min(100%,360px)}}
+
+  /* ---------- avis : cartes Discord ---------- */
+  .dgrid{margin-top:58px;columns:2 340px;column-gap:20px}
+  .dcard{display:block;break-inside:avoid;margin:0 0 20px;position:relative;padding:18px 20px 16px 24px;border-radius:12px;
+    background:linear-gradient(165deg,#1E4741,#17362F 70%);border:1px solid rgba(255,255,255,.06);box-shadow:0 40px 70px -46px rgba(0,0,0,.95)}
+  .dcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:12px 0 0 12px;background:#1DE9C0}
+  .dc-h{display:flex;align-items:center;gap:10px;font-size:15.5px}
+  .dc-av{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:#0B2A2E;color:var(--accent-l);font-weight:800;font-size:13px}
+  .dc-st{margin-top:10px;display:flex;align-items:center;gap:8px;font-weight:700;font-size:16px}
+  .dc-st span{font-size:17px;letter-spacing:1px}
+  .dcard blockquote{margin-top:10px;font-size:15px;line-height:1.62;color:#E4EEEC}
+  .dcard figcaption{margin-top:12px;font-size:12.5px;font-weight:600;color:#B5CAC6}
+
+  /* ---------- étapes : vraies images ---------- */
+  .ui{height:230px}
+  .ui.shot{padding:0;background:#151619}
+  .shot-img{width:100%;height:100%;object-fit:cover;object-position:center top}
+
+  @media (prefers-reduced-motion: reduce){
+    .rise{animation:none}
+    .tilt{transition:none}
+    .rig,.feed,.push,.pcard,.btn,.btn-main::after{transition:none}
+  }
+
+  /* ================= page formation ================= */
+  .lead b{color:var(--text);font-weight:700}
+
+  /* ---------- livre 3D ---------- */
+  .hero-vis{min-height:clamp(420px,46vw,600px);align-items:center}
+  .book-rig{position:relative;z-index:1;transform-style:preserve-3d;
+    transform:translateX(var(--bx,0%)) translateZ(var(--sz,0px)) rotateY(var(--ry,-18deg)) rotateX(var(--rx,7deg));
+    transition:transform 1.4s cubic-bezier(.16,1,.3,1);will-change:transform}
+  .book{--T:22px;position:relative;width:min(310px,72vw);aspect-ratio:1122/1588;transform-style:preserve-3d}
+  .bk-page,.bk-back,.bk-edge i{position:absolute;inset:0;border-radius:4px 10px 10px 4px}
+  .bk-page{z-index:1;overflow:hidden;background:#FBFCFC;container-type:inline-size;box-shadow:inset 3px 0 6px -2px rgba(0,0,0,.25);transform:translateZ(.5px)}
+  .bk-edge{position:absolute;inset:0;transform-style:preserve-3d;pointer-events:none}
+  .bk-edge i{background:#E3EAEA;box-shadow:0 0 0 1px rgba(4,19,26,.18)}
+  .bk-back{transform:translateZ(calc(var(--T) * -1 - 2px));background:linear-gradient(160deg,#0B2F35,#04161B);box-shadow:0 0 0 1.5px rgba(3,210,182,.35),0 70px 110px -40px rgba(0,0,0,.95),0 40px 90px -50px rgba(3,210,182,.6)}
+  .bk-spine{position:absolute;left:0;top:0;bottom:0;width:calc(var(--T) + 3px);transform-origin:0 50%;transform:translateZ(calc(var(--T) * -1 - 2px)) rotateY(-90deg);background:linear-gradient(90deg,#062127,#0D3A41 50%,#062127);border-radius:3px}
+  .bk-cover{position:absolute;inset:-1.5% -2% -1.5% 0;z-index:3;transform-origin:0 50%;transform-style:preserve-3d;transform:translateZ(3px) rotateY(var(--open,0deg));transition:transform 2.2s cubic-bezier(.65,0,.25,1)}
+  .book.open .bk-cover{--open:-120deg}
+  .bk-f,.bk-in{position:absolute;inset:0;border-radius:4px 12px 12px 4px;-webkit-backface-visibility:hidden;backface-visibility:hidden;overflow:hidden;container-type:inline-size}
+  .bk-in{transform:rotateY(180deg);background:radial-gradient(90% 60% at 30% 20%,rgba(3,210,182,.18),transparent 60%),linear-gradient(160deg,#0B2F35,#04161B);display:grid;place-items:center;box-shadow:inset 0 0 0 1.5px rgba(3,210,182,.3)}
+  .bk-in svg{width:34cqw;height:18cqw;fill:var(--accent);opacity:.9}
+  .bk-f{background:#061820;box-shadow:inset 0 0 0 1.5px rgba(3,210,182,.4),inset 6px 0 10px -6px rgba(255,255,255,.25);padding:11cqw 9cqw;display:flex;flex-direction:column}
+  .bk-f::before,.bk-f::after{content:"";position:absolute;border-radius:50%;pointer-events:none}
+  .bk-f::before{width:120cqw;height:120cqw;right:-62cqw;top:-48cqw;background:radial-gradient(circle,#0B4A4C 0 30%,#093C3F 30% 52%,#072B30 52% 72%,transparent 72%)}
+  .bk-f::after{inset:auto 0 0 0;height:2.4cqw;border-radius:0;background:var(--accent)}
+  .bk-f > *{position:relative}
+  .bk-f .k{font-size:4.2cqw;font-weight:700;letter-spacing:.08em;color:var(--accent-l)}
+  .bk-f h2{margin-top:3cqw;font-size:15cqw;line-height:.95;letter-spacing:-.04em;font-weight:900;color:#fff}
+  .bk-f h2 span{display:block;color:var(--accent)}
+  .bk-f .dots{margin-top:auto;display:grid;grid-template-columns:repeat(9,1fr);gap:3.6cqw;width:55%;opacity:.55}
+  .bk-f .dots i{width:1.3cqw;height:1.3cqw;border-radius:50%;background:var(--accent)}
+  .bk-f .sig{margin-top:9cqw;display:flex;justify-content:space-between;align-items:flex-end;font-size:4cqw;color:#9CC4C4}
+  .bk-f .sig b{font-size:7.4cqw;font-weight:900;letter-spacing:-.02em;color:#fff}
+  /* la page de sommaire, reprise de la formation */
+  .sm{height:100%;display:flex;flex-direction:column;color:#16323A;font-family:var(--font)}
+  .sm-top{flex:0 0 auto;position:relative;overflow:hidden;background:#061820;padding:7cqw 7cqw 5.4cqw;color:#fff;border-bottom:1.1cqw solid #19E0CB}
+  .sm-top::before{content:"";position:absolute;width:90cqw;height:90cqw;right:-38cqw;top:-46cqw;border-radius:50%;background:radial-gradient(circle,#0B4A4C 0 32%,#093C3F 32% 55%,#072B30 55% 74%,transparent 74%)}
+  .sm-top > *{position:relative}
+  .sm-k{font-size:2.9cqw;font-weight:700;letter-spacing:.06em;color:#19E0CB}
+  .sm-h{margin-top:1.4cqw;font-size:9.6cqw;font-weight:800;letter-spacing:-.02em;line-height:1}
+  .sm-st{margin-top:3cqw;display:flex;gap:6cqw}
+  .sm-st div{font-size:2.7cqw;color:#9CC4C4;line-height:1.2}
+  .sm-st b{display:block;font-size:7.4cqw;font-weight:800;color:#19E0CB;line-height:1.1}
+  .sm-b{padding:3.6cqw 7cqw 0;min-height:0;flex:1;display:flex;flex-direction:column}
+  .sm-t{font-size:2.6cqw;font-weight:700;letter-spacing:.05em;color:#0E8F86}
+  .sm-l{list-style:none;margin-top:2cqw}
+  .sm-l li{display:flex;gap:3cqw;padding:.85cqw 0;border-bottom:1px solid #E1E9EA;font-size:2.55cqw;line-height:1.25}
+  .sm-l li b{flex:0 0 3.4cqw;color:#0E8F86;font-weight:800}
+  .sm-l li span{flex:1;min-width:0}
+  .sm-l li em{font-style:normal;color:#7D9399}
+  .sm-g{margin-top:2.6cqw;display:grid;grid-template-columns:repeat(4,1fr);gap:1.3cqw}
+  .sm-g span{padding:.8cqw 1.4cqw;border-radius:1cqw;background:#F0F5F6;border:1px solid #DCE7E8;font-size:1.75cqw;font-weight:700;color:#16323A;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .sm-f{margin-top:auto;padding:2cqw 0 3cqw;display:flex;justify-content:space-between;align-items:center;font-size:1.9cqw;color:#7D9399}
+  .sm-f b{font-size:4cqw;font-weight:900;color:#0C2B32;letter-spacing:-.02em}
+  @media (max-width:960px){.hero-vis{min-height:0;padding-block:24px 34px}.book{width:min(290px,56vw)}}
+
+  /* ---------- annonce + cote ---------- */
+  .ann{display:flex;align-items:center;gap:12px;padding:10px;border-radius:14px;background:#163330;border:1px solid rgba(255,255,255,.06)}
+  .ann .ph{flex:0 0 46px;height:56px;border-radius:9px;display:grid;place-items:center;background:#0F2E2C;color:#5D8F89}
+  .ann .ph .i{width:20px;height:20px}
+  .ann b{display:block;font-size:13.5px;color:#5AA9F0;font-weight:600}
+  .ann span{font-size:12.5px;color:#C7D6D2}
+  .ann em{margin-left:auto;font-style:normal;font-weight:800;font-size:16px;color:#fff}
+  .cote{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  .cote div{padding:10px 12px;border-radius:12px;background:rgba(3,210,182,.07);border:1px solid rgba(3,210,182,.2)}
+  .cote dt{font-size:11.5px;font-weight:600;color:var(--text-3)}
+  .cote dd{margin-top:4px;height:18px;width:70%;border-radius:6px;background:linear-gradient(90deg,#4FE3CF,#1E9C92);filter:blur(5px);opacity:.85}
+  .cote-k{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:var(--accent-l)}
+  .cote-k .i{width:15px;height:15px}
+  .doubt{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:12px;background:rgba(255,255,255,.025);border:1px dashed rgba(156,196,196,.22);color:#87A6A8;font-size:13px;font-weight:600}
+  .doubt em{margin-left:auto;font-style:normal;font-size:20px;font-weight:800;color:#4E6B6E}
+
+  /* ---------- programme ---------- */
+  .chaps{list-style:none;margin-top:56px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+  .chap{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 18px;padding:22px 24px;border-radius:24px;background:var(--surface);border:1px solid var(--line);box-shadow:0 34px 70px -46px rgba(0,0,0,.9);transition:border-color .25s}
+  .chap:hover{border-color:var(--line-2)}
+  .chap .n{grid-row:span 2;width:52px;height:52px;border-radius:16px;display:grid;place-items:center;font-size:19px;font-weight:800;letter-spacing:-.02em;color:var(--accent);background:rgba(3,210,182,.10);border:1px solid rgba(3,210,182,.25)}
+  .chap h3{font-size:18.5px;letter-spacing:-.015em;line-height:1.3;display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
+  .chap p{font-size:14.5px;line-height:1.55;color:var(--text-2)}
+  .chap .pg{font-size:12.5px;font-weight:600;color:var(--text-3);white-space:nowrap}
+  .chap.only{border-color:rgba(3,210,182,.32);background:linear-gradient(170deg,#0A3237,#062229 60%)}
+  .chap.only .n{background:var(--accent);color:var(--bg);border-color:transparent}
+  .chap.wide{grid-column:1 / -1}
+  @media (max-width:820px){.chaps{grid-template-columns:minmax(0,1fr)}.chap{padding:18px;gap:4px 14px}.chap .n{width:44px;height:44px;font-size:16px;border-radius:13px}}
+
+  /* ---------- aperçu des cotes ---------- */
+  .cotes-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(36px,6vw,90px);align-items:center}
+  .ck-stats{list-style:none;margin-top:28px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+  .ck-stats li{padding:14px 16px;border-radius:18px;background:var(--surface);border:1px solid var(--line);font-size:13px;color:var(--text-2);line-height:1.35}
+  .ck-stats b{display:block;font-size:clamp(24px,2.6vw,32px);font-weight:800;letter-spacing:-.03em;color:var(--text)}
+  .consoles{margin-top:22px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+  .consoles li{list-style:none;padding:10px 12px;border-radius:14px;background:rgba(6,34,41,.72);border:1px solid var(--line);font-size:12.5px;font-weight:700;line-height:1.25;letter-spacing:.01em}
+  .consoles li span{display:block;margin-top:2px;font-weight:500;font-size:11.5px;color:var(--accent-l)}
+  .pages{position:relative;container-type:inline-size;perspective:1800px;padding-block:20px 60px;touch-action:pan-y}
+  .pages-rig{position:relative;transform-style:preserve-3d;transform:rotateX(var(--prx,14deg)) rotateY(var(--pry,-16deg));transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+  .pg-sheet{position:relative;width:78cqw;margin-left:4cqw;aspect-ratio:1122/1300;border-radius:2cqw;overflow:hidden;background:#FBFCFC;color:#16323A;
+    box-shadow:0 70px 100px -50px rgba(0,0,0,.95),0 0 0 1px rgba(3,210,182,.3);transform:translateZ(calc(60px * var(--pp,1)))}
+  .pg-sheet.behind{position:absolute;top:0;left:0;margin-left:18cqw;transform:translateZ(calc(-90px * var(--pp,1))) translateY(-6cqw) rotateZ(3deg);opacity:.92}
+  .pg-h{display:flex;justify-content:space-between;align-items:flex-end;padding:5.2cqw 5.5cqw 3.4cqw;background:#061820;color:#fff;border-bottom:.9cqw solid #19E0CB}
+  .pg-h b{font-size:6cqw;font-weight:800;letter-spacing:-.02em;line-height:1}
+  .pg-h span{font-size:2.3cqw;color:#9CC4C4;font-weight:600}
+  .pg-t{width:100%;border-collapse:collapse;font-size:2.35cqw}
+  .pg-t th{padding:2.4cqw 2.2cqw 1.6cqw;text-align:left;font-size:1.95cqw;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#0E8F86}
+  .pg-t td{padding:1.65cqw 2.2cqw;border-top:1px solid #E3EAEB;font-weight:600;white-space:nowrap}
+  .pg-t td:first-child{padding-left:5.5cqw;width:52%;overflow:hidden;text-overflow:ellipsis;max-width:0}
+  .pg-t th:first-child{padding-left:5.5cqw}
+  .pg-t tr:nth-child(even) td{background:#F4F8F8}
+  .bl{display:inline-block;height:2.3cqw;border-radius:.8cqw;background:#2C5C62;filter:blur(1.1cqw);opacity:.75;vertical-align:middle}
+  .bl.n{width:58%;background:#3C5D63}
+  .bl.r{background:#1FB7A6}
+  .lockp{position:absolute;left:50%;bottom:9%;z-index:2;transform:translateX(-50%);display:inline-flex;align-items:center;gap:2cqw;white-space:nowrap;padding:2.2cqw 4cqw;border-radius:999px;
+    background:rgba(4,19,26,.92);color:#fff;font-size:3cqw;font-weight:700;box-shadow:0 20px 40px -14px rgba(0,0,0,.8),0 0 0 1px rgba(3,210,182,.45)}
+  .lockp .i{width:3.6cqw;height:3.6cqw;color:var(--accent-l)}
+  @media (max-width:960px){.cotes-in{grid-template-columns:minmax(0,1fr)}.pages{max-width:520px;margin-inline:auto;width:100%}}
+  @media (max-width:560px){.consoles{grid-template-columns:repeat(2,minmax(0,1fr))}.ck-stats li{padding:12px}}
+
+  /* ---------- offres ---------- */
+  .plan.elite .per-day{font-size:15px}
+  .klarna{display:inline-flex;align-items:center;gap:7px;margin-top:10px;padding:6px 11px;border-radius:10px;background:#FFB3C7;color:#17120F;font-size:13px;font-weight:800;letter-spacing:-.01em;width:max-content}
+  .klarna span{font-weight:600}
+  .once{margin-top:6px;font-size:13.5px;color:var(--text-3)}
+  .gift{margin-top:18px;display:flex;gap:12px;align-items:center;padding:12px 14px;border-radius:16px;background:rgba(3,210,182,.10);border:1px solid rgba(3,210,182,.35);font-size:14px;line-height:1.45}
+  .gift img{width:34px;height:34px;border-radius:50%;flex:0 0 auto}
+  .gift b{color:var(--accent-l)}
+  .cmp-wrap{margin:44px auto 0;max-width:960px;border-radius:26px;border:1px solid var(--line);background:rgba(6,34,41,.8);overflow:hidden}
+  .cmp{width:100%;border-collapse:collapse;font-size:15px}
+  .cmp th,.cmp td{padding:15px 20px;text-align:left;border-top:1px solid rgba(3,210,182,.10)}
+  .cmp thead th{border-top:0;font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--text-3)}
+  .cmp thead th:last-child{color:var(--accent-l)}
+  .cmp td:not(:first-child),.cmp th:not(:first-child){width:24%;text-align:center}
+  .cmp td:first-child{color:var(--text-2)}
+  .cmp td:last-child{background:rgba(3,210,182,.06);color:var(--text);font-weight:600}
+  .cmp .ck{display:inline-grid;vertical-align:middle}
+  .cmp .no{color:#5B7F82;font-weight:700}
+  @media (max-width:640px){.cmp{font-size:13.5px}.cmp th,.cmp td{padding:12px 10px}.cmp td:not(:first-child),.cmp th:not(:first-child){width:26%}}
+
+  /* ---------- avis ---------- */
+  .dgrid{columns:3 300px}
+  .dcard.feat{background:linear-gradient(165deg,#22524B,#17362F 75%)}
+  .dcard.feat blockquote{font-size:16.5px}
+  .dcard figcaption{display:flex;flex-wrap:wrap;gap:4px 10px}
+  .dc-h b{font-weight:700}
+
+  /* ---------- bandeaux consoles ---------- */
+  .bands{margin-top:clamp(10px,2vw,30px)}
+  .book-rig.is-open{--bx:24%}
+  @media (max-width:960px){.book-rig.is-open{--bx:30%}}
+
+  .bk-edge i:nth-child(1){transform:translateZ(-2px)}.bk-edge i:nth-child(2){transform:translateZ(-4px)}.bk-edge i:nth-child(3){transform:translateZ(-6px)}.bk-edge i:nth-child(4){transform:translateZ(-8px)}.bk-edge i:nth-child(5){transform:translateZ(-10px)}.bk-edge i:nth-child(6){transform:translateZ(-12px)}.bk-edge i:nth-child(7){transform:translateZ(-14px)}.bk-edge i:nth-child(8){transform:translateZ(-16px)}.bk-edge i:nth-child(9){transform:translateZ(-18px)}.bk-edge i:nth-child(10){transform:translateZ(-20px)}.bk-edge i:nth-child(11){transform:translateZ(-22px)}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2.5 4.8 13.4h6.4L10.4 21.5l8.3-11h-6.5L13 2.5Z"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M20.5 12a8.5 8.5 0 0 1-12.4 7.6L3.5 20.8l1.3-4.4A8.5 8.5 0 1 1 20.5 12Z"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 5 6v5.2c0 4.3 2.9 8.2 7 9.3 4.1-1.1 7-5 7-9.3V6l-7-3Z"/><path d="m9 12 2.1 2.1L15.2 10"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="9.5" rx="2.4"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 9a6 6 0 1 1 12 0c0 6.3 2.5 7.5 2.5 7.5h-17S6 15.3 6 9Z"/><path d="M10.2 19.8a2 2 0 0 0 3.6 0"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2.2"/><circle cx="9" cy="17" r="2.2"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1.8"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.8"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.8"/><path d="M17 13.5v7M13.5 17h7"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8.2" r="3.2"/><path d="M3.5 19.5c.8-3 3-4.7 5.5-4.7s4.7 1.7 5.5 4.7"/><circle cx="17.2" cy="9.2" r="2.5"/><path d="M16.4 14.7c2.2.1 3.7 1.4 4.3 3.8"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.2"/><path d="M10 8.6 15.4 12 10 15.4V8.6Z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.3 4.3L19 7.2"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7 7 17"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M19.5 11A7.5 7.5 0 0 0 6 6.6L4.5 8"/><path d="M4.5 4v4h4"/><path d="M4.5 13A7.5 7.5 0 0 0 18 17.4l1.5-1.4"/><path d="M19.5 20v-4h-4"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="2.5"/><circle cx="9.5" cy="10" r="1.6"/><path d="m5 17 4.5-4.5 3.5 3.5 2.5-2.5L19.5 17"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><rect x="6.5" y="2.5" width="11" height="19" rx="2.6"/><path d="M10.5 18.5h3"/></symbol>
+  <symbol id="i-laptop" viewBox="0 0 24 24"><rect x="4.5" y="5" width="15" height="10" rx="1.6"/><path d="M2.5 18.5h19"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3Z"/></symbol>
+  <symbol id="i-hash" viewBox="0 0 24 24"><path d="M9.5 4 7.5 20M16.5 4l-2 16M4.5 9h16M3.5 15h16"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.8l2.7 5.6 6.1.8-4.5 4.2 1.2 6L12 16.5l-5.5 2.9 1.2-6-4.5-4.2 6.1-.8L12 2.8Z"/></symbol>
+  <symbol id="i-n" viewBox="-1.25 -0.66 2.5 1.32"><g transform="scale(1,-1)"><polygon points="-1.2,-0.59 -0.57,0.52 -0.51,0.6 -0.49,0.61 0.21,0.61 0.21,0.6 -0.5,-0.6 -0.54,-0.61 -1.2,-0.6"/><polygon points="0.3,0.25 0.5,0.61 1.18,0.61 1.2,0.59 1.2,0.56 0.52,-0.58 0.51,-0.58 0.5,-0.55"/><polygon points="-0.3,-0.29 0.19,0.53 0.21,0.54 0.49,-0.59 -0.18,-0.59 -0.23,-0.55" opacity=".78"/></g></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H19v15H6.5A1.5 1.5 0 0 0 5 19.5v-15Z"/><path d="M5 19.5A1.5 1.5 0 0 0 6.5 21H19v-3"/><path d="M9 7.5h6"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2.4"/><path d="M3 10h18M7 14.5h4"/></symbol>
+</svg>
+
+<canvas id="world" class="gl-layer" aria-hidden="true"></canvas>
+<div class="veil" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top" data-k="formation-logo"><img src="../logo.png" alt="" width="36" height="36"><span>NANIXSS<b>.</b>HUB</span></a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#programme">Programme</a>
+      <a href="#cotes">Les cotes</a>
+      <a href="#offres">Offres</a>
+      <a href="#avis">Avis</a>
+      <a href="#lucas">Qui est derrière</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-main btn-s" href="#offres" data-k="formation-nav">Les offres</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-in">
+      <div class="hero-txt" data-scene="hero">
+        <h1 class="rise">Sache ce que vaut un jeu <span class="hl">avant de l'acheter.</span></h1>
+        <p class="lead rise d1">La formation de Lucas1up pour se lancer dans l'achat-revente de jeux vidéo : la méthode pas à pas, et <b>les prix de revente de près de 800 jeux sur 16 consoles</b>, mis à jour régulièrement.</p>
+        <div class="ctas rise d2">
+          <a class="btn btn-main" href="#offres" data-k="formation-hero"><svg class="i"><use href="#i-book"/></svg>Voir les formations</a>
+          <a class="btn btn-ghost" href="#programme" data-k="formation-hero-programme">Ce qu'il y a dedans</a>
+        </div>
+        <ul class="assure rise d3">
+          <li><a href="#avis"><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span>13 avis d'élèves, tous 5/5</a></li>
+          <li><b class="num">134</b>pages</li>
+          <li><svg class="i"><use href="#i-card"/></svg>En 3 fois avec Klarna</li>
+        </ul>
+      </div>
+
+      <div class="hero-vis" id="stage" data-scene="phone">
+        <div class="obj-slot o-hero-a" data-obj="tag" aria-hidden="true"></div>
+        <div class="obj-slot o-hero-b" data-obj="pad" aria-hidden="true"></div>
+        <div class="book-rig" id="rig">
+          <div class="book" id="book" role="img" aria-label="La formation avancée : un livre qui s'ouvre sur son sommaire, 7 chapitres, 16 consoles, 134 pages">
+            <div class="bk-back"></div>
+            <div class="bk-spine"></div>
+            <div class="bk-edge" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="bk-page" aria-hidden="true">
+              <div class="sm">
+                <div class="sm-top">
+                  <p class="sm-k">GUIDE AVANCÉ</p>
+                  <p class="sm-h">Sommaire</p>
+                  <div class="sm-st"><div><b>7</b>chapitres</div><div><b>16</b>consoles</div><div><b>134</b>pages</div></div>
+                </div>
+                <div class="sm-b">
+                  <p class="sm-t">LES CHAPITRES</p>
+                  <ol class="sm-l">
+                    <li><b>00</b><span>Introduction : l'achat-revente de jeux vidéo</span><em>p. 3–6</em></li>
+                    <li><b>01</b><span>Pourquoi prendre un bot Vinted ?</span><em>p. 7–15</em></li>
+                    <li><b>02</b><span>Les différentes niches</span><em>p. 16–18</em></li>
+                    <li><b>03</b><span>Évaluer la cote d'un jeu / console</span><em>p. 19–21</em></li>
+                    <li><b>04</b><span>Reconnaître les contrefaçons</span><em>p. 22–24</em></li>
+                    <li><b>05</b><span>Liste matériel</span><em>p. 25–27</em></li>
+                    <li><b>06</b><span>Comment vendre, astuces et conseils</span><em>p. 28–33</em></li>
+                    <li><b>07</b><span>Multicompte</span><em>p. 34–38</em></li>
+                    <li><b>✓</b><span>Ta checklist d'achat-revente</span><em>p. 39</em></li>
+                    <li><b>G</b><span>Glossaire</span><em>p. 40</em></li>
+                    <li><b>A</b><span>Annexe : prix des jeux, filtres, liens</span><em>p. 41–133</em></li>
+                  </ol>
+                  <div class="sm-g"><span>GAME BOY</span><span>GBA</span><span>SUPER NINTENDO</span><span>NES</span><span>NINTENDO 64</span><span>GAMECUBE</span><span>DS</span><span>3DS</span><span>WII</span><span>WII U</span><span>SWITCH</span><span>SWITCH 2</span><span>PS1</span><span>PS2</span><span>PS5</span><span>PSP/PSVITA</span></div>
+                  <div class="sm-f"><span>L'Achat-Revente de Jeux Vidéo · Guide avancé</span><b>Lucas1up</b></div>
+                </div>
+              </div>
+            </div>
+            <div class="bk-cover" aria-hidden="true">
+              <div class="bk-f">
+                <p class="k">L'ACHAT-REVENTE DE JEUX VIDÉO</p>
+                <h2>Guide <span>avancé</span></h2>
+                <div class="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                <p class="sig"><b>Lucas1up</b><span>Édition 2026</span></p>
+              </div>
+              <div class="bk-in"><svg><use href="#i-n"/></svg></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="bands" aria-hidden="true">
+    <div class="band b1"><div class="band-track"><div class="band-set">GAME BOY <svg><use href="#i-n"/></svg> NES <svg><use href="#i-n"/></svg> SUPER NINTENDO <svg><use href="#i-n"/></svg> NINTENDO 64 <svg><use href="#i-n"/></svg> GAMECUBE <svg><use href="#i-n"/></svg> WII <svg><use href="#i-n"/></svg> WII U <svg><use href="#i-n"/></svg> SWITCH <svg><use href="#i-n"/></svg></div><div class="band-set">GAME BOY <svg><use href="#i-n"/></svg> NES <svg><use href="#i-n"/></svg> SUPER NINTENDO <svg><use href="#i-n"/></svg> NINTENDO 64 <svg><use href="#i-n"/></svg> GAMECUBE <svg><use href="#i-n"/></svg> WII <svg><use href="#i-n"/></svg> WII U <svg><use href="#i-n"/></svg> SWITCH <svg><use href="#i-n"/></svg></div><div class="band-set">GAME BOY <svg><use href="#i-n"/></svg> NES <svg><use href="#i-n"/></svg> SUPER NINTENDO <svg><use href="#i-n"/></svg> NINTENDO 64 <svg><use href="#i-n"/></svg> GAMECUBE <svg><use href="#i-n"/></svg> WII <svg><use href="#i-n"/></svg> WII U <svg><use href="#i-n"/></svg> SWITCH <svg><use href="#i-n"/></svg></div></div></div>
+    <div class="band b2"><div class="band-track"><div class="band-set">SWITCH 2 <svg><use href="#i-n"/></svg> DS <svg><use href="#i-n"/></svg> 3DS <svg><use href="#i-n"/></svg> GAME BOY ADVANCE <svg><use href="#i-n"/></svg> PS1 <svg><use href="#i-n"/></svg> PS2 <svg><use href="#i-n"/></svg> PS5 <svg><use href="#i-n"/></svg> PSP / PS VITA <svg><use href="#i-n"/></svg></div><div class="band-set">SWITCH 2 <svg><use href="#i-n"/></svg> DS <svg><use href="#i-n"/></svg> 3DS <svg><use href="#i-n"/></svg> GAME BOY ADVANCE <svg><use href="#i-n"/></svg> PS1 <svg><use href="#i-n"/></svg> PS2 <svg><use href="#i-n"/></svg> PS5 <svg><use href="#i-n"/></svg> PSP / PS VITA <svg><use href="#i-n"/></svg></div><div class="band-set">SWITCH 2 <svg><use href="#i-n"/></svg> DS <svg><use href="#i-n"/></svg> 3DS <svg><use href="#i-n"/></svg> GAME BOY ADVANCE <svg><use href="#i-n"/></svg> PS1 <svg><use href="#i-n"/></svg> PS2 <svg><use href="#i-n"/></svg> PS5 <svg><use href="#i-n"/></svg> PSP / PS VITA <svg><use href="#i-n"/></svg></div></div></div>
+  </div>
+
+  <section class="sec" id="avec" data-scene="versus">
+    <div class="wrap">
+      <div class="obj-slot o-side" data-obj="colis" aria-hidden="true"></div>
+      <div class="sec-head">
+        <h2>En achat-revente, tout se joue sur le prix.</h2>
+        <p>Un jeu acheté trop cher ne se revend pas. La formation te donne les repères pour savoir tout de suite si une annonce vaut le coup.</p>
+      </div>
+      <div class="vs">
+        <div class="vs-card vs-without tilt">
+          <h3><span class="xk"><svg class="i"><use href="#i-x"/></svg></span>Sans méthode</h3>
+          <ul class="vs-list">
+            <li><span class="xk"><svg class="i"><use href="#i-x"/></svg></span>Tu ne sais pas si le prix d'une annonce est bon</li>
+            <li><span class="xk"><svg class="i"><use href="#i-x"/></svg></span>Tu passes des heures à comparer les ventes</li>
+            <li><span class="xk"><svg class="i"><use href="#i-x"/></svg></span>Tu te fais avoir par une contrefaçon</li>
+            <li><span class="xk"><svg class="i"><use href="#i-x"/></svg></span>Tu revends trop bas, ou ton stock ne part pas</li>
+          </ul>
+          <div class="vs-vis" aria-hidden="true">
+            <div class="ann"><span class="ph"><svg class="i"><use href="#i-image"/></svg></span><div><b>Jeu Game Boy Advance</b><span>Bon état</span></div><em>25 €</em></div>
+            <div class="doubt">C'est une bonne affaire ?<em>?</em></div>
+            <div class="doubt">C'est un vrai ?<em>?</em></div>
+          </div>
+        </div>
+        <div class="vs-card vs-with tilt">
+          <h3><img src="../logo.png" alt="" width="32" height="32">Avec la formation</h3>
+          <ul class="vs-list">
+            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Tu as la cote de près de 800 jeux sous la main</li>
+            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Tu sais repérer une contrefaçon avant d'acheter</li>
+            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Tu sais sur quelles niches te placer</li>
+            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Tu sais comment vendre, et à quel prix</li>
+          </ul>
+          <div class="vs-vis" aria-hidden="true">
+            <div class="ann"><span class="ph"><svg class="i"><use href="#i-image"/></svg></span><div><b>Jeu Game Boy Advance</b><span>Bon état</span></div><em>25 €</em></div>
+            <p class="cote-k"><svg class="i"><use href="#i-book"/></svg>Sa cote dans la formation</p>
+            <dl class="cote"><div><dt>Loose</dt><dd></dd></div><div><dt>Complet</dt><dd></dd></div><div><dt>Note</dt><dd></dd></div></dl>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="programme" data-scene="steps" style="padding-top:0">
+    <div class="wrap">
+      <div class="obj-slot o-side" data-obj="cart" aria-hidden="true"></div>
+      <div class="sec-head">
+        <h2>Ce que tu vas <span class="hl">apprendre.</span></h2>
+        <p>La formation avancée, c'est 134 pages : 7 chapitres pour comprendre et appliquer la méthode, puis les prix de revente console par console.</p>
+      </div>
+      <ol class="chaps">
+        <li class="chap tilt"><span class="n">00</span><h3>Introduction : l'achat-revente de jeux vidéo <span class="pg">p. 3–6</span></h3><p>Comment ça marche, et ce qu'il te faut pour te lancer.</p></li>
+        <li class="chap tilt"><span class="n">01</span><h3>Pourquoi prendre un bot Vinted ? <span class="pg">p. 7–15</span></h3><p>Pourquoi la vitesse compte sur Vinted, et comment passer avant les autres.</p></li>
+        <li class="chap tilt"><span class="n">02</span><h3>Les différentes niches <span class="pg">p. 16–18</span></h3><p>Les jeux et les consoles sur lesquels se placer.</p></li>
+        <li class="chap tilt"><span class="n">03</span><h3>Évaluer la cote d'un jeu ou d'une console <span class="pg">p. 19–21</span></h3><p>La méthode pour savoir ce que vaut un jeu avant de l'acheter.</p></li>
+        <li class="chap tilt"><span class="n">04</span><h3>Reconnaître les contrefaçons <span class="pg">p. 22–24</span></h3><p>Les détails qui trahissent une fausse cartouche.</p></li>
+        <li class="chap tilt"><span class="n">05</span><h3>Liste matériel <span class="pg">p. 25–27</span></h3><p>Le matériel à avoir pour bien démarrer.</p></li>
+        <li class="chap tilt"><span class="n">06</span><h3>Comment vendre, astuces et conseils <span class="pg">p. 28–33</span></h3><p>Annonces, photos, prix : vendre vite et au bon prix.</p></li>
+        <li class="chap tilt only"><span class="n">07</span><h3>Multicompte <span class="pill">AVANCÉE</span> <span class="pg">p. 34–38</span></h3><p>Gérer plusieurs comptes Vinted pour vendre plus.</p></li>
+        <li class="chap tilt only"><span class="n">✓</span><h3>Ta checklist d'achat-revente <span class="pill">AVANCÉE</span> <span class="pg">p. 39</span></h3><p>Tout ce qu'il faut vérifier avant chaque achat.</p></li>
+        <li class="chap tilt only"><span class="n">G</span><h3>Glossaire <span class="pill">AVANCÉE</span> <span class="pg">p. 40</span></h3><p>Les termes du milieu, expliqués simplement.</p></li>
+        <li class="chap tilt only wide"><span class="n">A</span><h3>Annexe : prix des jeux, filtres, liens utiles <span class="pill">AVANCÉE</span> <span class="pg">p. 41–133</span></h3><p>Les prix de revente de près de 800 jeux sur 16 consoles, des filtres prêts à l'emploi et les liens utiles.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="cotes" data-scene="devices" style="padding-top:0">
+    <div class="wrap cotes-in">
+      <div>
+        <div class="sec-head">
+          <h2>Les cotes, console par <span class="hl">console.</span></h2>
+          <p>Pour chaque jeu, l'annexe donne son prix de revente en loose et en complet, avec une note. Les prix bougent, alors la formation est mise à jour régulièrement.</p>
+        </div>
+        <ul class="ck-stats">
+          <li><b class="num">790</b>jeux cotés</li>
+          <li><b class="num">16</b>consoles</li>
+          <li><b>À jour</b>dernière mise à jour en novembre 2026</li>
+        </ul>
+        <ul class="consoles">
+          <li>Game Boy<span>69 jeux</span></li><li>Game Boy Advance<span>62 jeux</span></li><li>Super Nintendo<span>24 jeux</span></li><li>NES<span>24 jeux</span></li>
+          <li>Nintendo 64<span>36 jeux</span></li><li>GameCube<span>60 jeux</span></li><li>DS<span>81 jeux</span></li><li>3DS<span>96 jeux</span></li>
+          <li>Wii<span>44 jeux</span></li><li>Wii U<span>32 jeux</span></li><li>Switch<span>159 jeux</span></li><li>Switch 2<span>40 jeux</span></li>
+          <li>PS1<span>21 jeux</span></li><li>PS2<span>24 jeux</span></li><li>PS5<span>12 jeux</span></li><li>PSP / PS Vita<span>6 jeux</span></li>
+        </ul>
+      </div>
+      <div class="pages" id="pages" role="img" aria-label="Aperçu flouté de deux pages de cotes de la formation, Switch et GameCube">
+        <div class="pages-rig" id="pages-rig">
+          <div class="pg-sheet behind" aria-hidden="true">
+            <div class="pg-h"><b>GAMECUBE</b><span>p. 67–72</span></div>
+            <table class="pg-t"><thead><tr><th>Jeu</th><th>Loose</th><th>Complet</th><th>Note</th></tr></thead><tbody>
+              <tr><td><span class="bl n"></span></td><td><span class="bl" style="width:70%"></span></td><td><span class="bl" style="width:80%"></span></td><td><span class="bl r" style="width:90%"></span></td></tr>
+              <tr><td><span class="bl n" style="width:44%"></span></td><td><span class="bl" style="width:60%"></span></td><td><span class="bl" style="width:75%"></span></td><td><span class="bl r" style="width:70%"></span></td></tr>
+              <tr><td><span class="bl n" style="width:66%"></span></td><td><span class="bl" style="width:72%"></span></td><td><span class="bl" style="width:84%"></span></td><td><span class="bl r" style="width:90%"></span></td></tr>
+              <tr><td><span class="bl n" style="width:38%"></span></td><td><span class="bl" style="width:64%"></span></td><td><span class="bl" style="width:78%"></span></td><td><span class="bl r" style="width:70%"></span></td></tr>
+              <tr><td><span class="bl n" style="width:52%"></span></td><td><span class="bl" style="width:70%"></span></td><td><span class="bl" style="width:82%"></span></td><td><span class="bl r" style="width:90%"></span></td></tr>
+              <tr><td><span class="bl n" style="width:60%"></span></td><td><span class="bl" style="width:58%"></span></td><td><span class="bl" style="width:76%"></span></td><td><span class="bl r" style="width:70%"></span></td></tr>
+              <tr><td><span class="bl n" style="width:47%"></span></td><td><span class="bl" style="width:66%"></span></td><td><span class="bl" style="width:80%"></span></td><td><span class="bl r" style="width:90%"></span></td></tr>
+              <tr><td><span class="bl n" style="width:70%"></span></td><td><span class="bl" style="width:62%"></span></td><td><span class="bl" style="width:72%"></span></td><td><span class="bl r" style="width:70%"></span></td></tr>
+            </tbody></table>
+          </div>
+          <div class="pg-sheet" aria-hidden="true">
+            <div class="pg-h"><b>SWITCH</b><span>p. 99–113</span></div>
+            <table class="pg-t"><thead><tr><th>Jeu</th><th>Loose</th><th>Complet</th><th>Note</th></tr></thead><tbody>
+              <tr><td>1-2-Switch</td><td><span class="bl" style="width:70%"></span></td><td><span class="bl" style="width:80%"></span></td><td><span class="bl r" style="width:90%"></span></td></tr>
+              <tr><td>Animal Crossing New Horizons</td><td><span class="bl" style="width:60%"></span></td><td><span class="bl" style="width:75%"></span></td><td><span class="bl r" style="width:70%"></span></td></tr>
+              <tr><td>Arms</td><td><span class="bl" style="width:72%"></span></td><td><span class="bl" style="width:84%"></span></td><td><span class="bl r" style="width:90%"></span></td></tr>
+              <tr><td>Bayonetta 2</td><td><span class="bl" style="width:64%"></span></td><td><span class="bl" style="width:78%"></span></td><td><span class="bl r" style="width:70%"></span></td></tr>
+              <tr><td>Bluey</td><td><span class="bl" style="width:70%"></span></td><td><span class="bl" style="width:82%"></span></td><td><span class="bl r" style="width:90%"></span></td></tr>
+              <tr><td>Captain Toad Treasure Tracker</td><td><span class="bl" style="width:58%"></span></td><td><span class="bl" style="width:76%"></span></td><td><span class="bl r" style="width:70%"></span></td></tr>
+              <tr><td><span class="bl n" style="width:60%"></span></td><td><span class="bl" style="width:66%"></span></td><td><span class="bl" style="width:80%"></span></td><td><span class="bl r" style="width:90%"></span></td></tr>
+              <tr><td><span class="bl n" style="width:44%"></span></td><td><span class="bl" style="width:62%"></span></td><td><span class="bl" style="width:72%"></span></td><td><span class="bl r" style="width:70%"></span></td></tr>
+              <tr><td><span class="bl n" style="width:70%"></span></td><td><span class="bl" style="width:68%"></span></td><td><span class="bl" style="width:78%"></span></td><td><span class="bl r" style="width:90%"></span></td></tr>
+              <tr><td><span class="bl n" style="width:52%"></span></td><td><span class="bl" style="width:60%"></span></td><td><span class="bl" style="width:74%"></span></td><td><span class="bl r" style="width:70%"></span></td></tr>
+            </tbody></table>
+            <p class="lockp"><svg class="i"><use href="#i-lock"/></svg>Les prix sont dans la formation</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="offres" data-scene="pricing">
+    <div class="wrap">
+      <div class="obj-slot o-price" data-obj="coin" aria-hidden="true"></div>
+      <div class="sec-head c">
+        <h2>Choisis ta <span class="hl">formation.</span></h2>
+        <p>Paiement unique, sécurisé par Stripe. Au paiement, tu indiques ton pseudo Discord et ton e-mail Canva : ton accès s'active tout seul.</p>
+      </div>
+      <div class="plans">
+        <div class="plan tilt">
+          <div class="plan-head"><h3>Starter</h3></div>
+          <p class="for">Pour découvrir les bases avant de te lancer.</p>
+          <div class="price"><b class="num">49,99 €</b></div>
+          <p class="once">Paiement unique</p>
+          <ul>
+            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>L'introduction et les chapitres 1 à 6</li>
+            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Niches, cotes, contrefaçons, matériel, vente</li>
+            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Rôle Intellectuel sur le Discord</li>
+            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Accès sur Canva</li>
+          </ul>
+          <a class="btn btn-ghost" href="https://buy.stripe.com/dRm14o4Mj81OcT88hB8g006" data-k="formation-starter" rel="noopener">Prendre la Starter</a>
+        </div>
+        <div class="plan elite tilt" id="elite-card">
+          <div class="plan-head"><h3>Avancée</h3><span class="best">La plus complète</span></div>
+          <p class="for">Pour te lancer sérieusement, avec toutes les cotes.</p>
+          <div class="price"><b class="num">399,90 €</b></div>
+          <p class="klarna">Klarna. <span>ou 3 × 133,30 €</span></p>
+          <ul>
+            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Les 7 chapitres, la checklist et le glossaire</li>
+            <li class="plus"><span class="ck"><svg class="i"><use href="#i-check"/></svg></span><span><strong>Les prix de près de 800 jeux</strong> sur 16 consoles</span></li>
+            <li class="plus"><span class="ck"><svg class="i"><use href="#i-check"/></svg></span><span><strong>Mises à jour des cotes</strong> incluses</span></li>
+            <li class="plus"><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Rôle Mastermind sur le Discord</li>
+          </ul>
+          <div class="gift"><img src="../logo.png" alt="" width="34" height="34"><span><b>2 mois de bot Elite offerts</b>, puis 19,99 €/mois au lieu de 24,99 € si tu continues.</span></div>
+          <a class="btn btn-main" href="https://buy.stripe.com/dRmeVe92z0zmcT80P98g005" data-k="formation-avancee" rel="noopener"><svg class="i"><use href="#i-book"/></svg>Prendre l'Avancée</a>
+        </div>
+      </div>
+      <div class="cmp-wrap">
+        <table class="cmp">
+          <thead><tr><th scope="col">Ce que tu reçois</th><th scope="col">Starter</th><th scope="col">Avancée</th></tr></thead>
+          <tbody>
+            <tr><td>Nombre de pages</td><td class="num">26</td><td class="num">134</td></tr>
+            <tr><td>Introduction et chapitres 1 à 6</td><td><span class="ck"><svg class="i"><use href="#i-check"/></svg></span></td><td><span class="ck"><svg class="i"><use href="#i-check"/></svg></span></td></tr>
+            <tr><td>Chapitre 7 : multicompte</td><td class="no">—</td><td><span class="ck"><svg class="i"><use href="#i-check"/></svg></span></td></tr>
+            <tr><td>Checklist et glossaire</td><td class="no">—</td><td><span class="ck"><svg class="i"><use href="#i-check"/></svg></span></td></tr>
+            <tr><td>Prix des jeux par console</td><td class="no">—</td><td>790 jeux</td></tr>
+            <tr><td>Bot Elite offert</td><td class="no">—</td><td>2 mois</td></tr>
+            <tr><td>Paiement en 3 fois</td><td class="no">—</td><td>Klarna</td></tr>
+            <tr><td>Rôle sur le Discord</td><td>Intellectuel</td><td>Mastermind</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="fine">Déjà abonné Elite ? Tu as -50 € sur la formation avancée, à la place des 2 mois offerts.<br>En achetant, tu acceptes les <a href="https://nanixsshub.fr/legal/" data-k="formation-cgv-offres">CGV</a>.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="avis" data-scene="reviews" style="padding-top:0">
+    <div class="wrap">
+      <div class="obj-slot o-side" data-obj="star" aria-hidden="true"></div>
+      <div class="sec-head">
+        <h2>13 avis d'élèves. 13 fois 5 étoiles.</h2>
+        <p>Tels qu'ils apparaissent dans le salon avis-formation du Discord.</p>
+      </div>
+      <div class="dgrid">
+        <figure class="dcard feat"><div class="dc-h"><span class="dc-av">C</span><b>Celiaa</b></div><p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p><blockquote>« En vrai au début j'ai cru que c'était un peu un truc de scam quand on voit sur Insta, TikTok… mais quand j'ai vu que plein de personnes la prenaient, je me suis dit pourquoi pas la tester. Au final, la formation est bien complète et mise à jour assez souvent, je la conseille. Rien à dire de plus, sincèrement merci beaucoup 😘 »</blockquote><figcaption>13/05/2026</figcaption></figure>
+        <figure class="dcard"><div class="dc-h"><span class="dc-av">N</span><b>Nono</b></div><p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p><blockquote>« Je connaissais déjà certaines cotes de jeux vidéo et quelques niches, mais la formation m'a permis de gagner pas mal de temps dans mes recherches et de mieux structurer mon activité. […] Un bon gain de temps quand on fait déjà de l'achat-revente ! Merci ❤️ »</blockquote><figcaption>✅ Élève Formation Avancée · avis vérifié · 18/10/2026</figcaption></figure>
+        <figure class="dcard"><div class="dc-h"><span class="dc-av">P</span><b>Papapoker44</b></div><p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p><blockquote>« Formation au top !!! Une vraie masterclass. Le vrai plus : pas de blabla inutile. Simple et efficace comme j'aime. Tout ce que vous voulez savoir pour commencer et accélérer est dans la formation. À noter en plus que celle-ci évolue avec le temps qui passe et la mise à jour des cotes. Juste un mot : MERCI pour le travail et le partage de ton expérience. »</blockquote><figcaption>31/01/2026</figcaption></figure>
+        <figure class="dcard"><div class="dc-h"><span class="dc-av">A</span><b>AgoraAx</b></div><p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p><blockquote>« Formation très complète et très claire. Elle m'a permis de me placer sur le marché des jeux vidéo rapidement en me permettant de faire mes premiers achats. La méthode fonctionne si on l'applique bien et avec rigueur. […] Cette formation nous fait gagner un temps considérable plutôt que de se lancer seul de notre côté ! De plus, elle nous ouvre les portes à une communauté active où l'on peut s'entraider. C'est un très bon investissement pour ma part ! »</blockquote><figcaption>28/05/2025</figcaption></figure>
+        <figure class="dcard"><div class="dc-h"><span class="dc-av">S</span><b>StyloRapide</b></div><p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p><blockquote>« Formation incroyable ! Claire, nette, complète, concise, donne tout ce qu'il faut savoir. Un gain de temps considérable pour l'achat-revente. Si vous aviez un doute, vous pouvez sauter le pas ! Foncez ! »</blockquote><figcaption>21/12/2025</figcaption></figure>
+        <figure class="dcard"><div class="dc-h"><span class="dc-av">P</span><b>PINGOUIN_N</b></div><p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p><blockquote>« Formation complète, qui t'explique de A à Z comment te lancer dans l'achat-revente, donne les meilleures astuces, et plein d'autres choses. Pour quelqu'un qui souhaite se lancer dans les JV sans rien connaître, la formation te fera gagner du temps, et beaucoup d'argent. »</blockquote><figcaption>08/06/2025</figcaption></figure>
+        <figure class="dcard"><div class="dc-h"><span class="dc-av">T</span><b>tarekk</b></div><p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p><blockquote>« Formation très complète et détaillée, parfaite pour ceux qui veulent se lancer avec pas ou peu d'expérience. On gagne un temps non négligeable en évitant beaucoup d'erreurs qu'on peut faire si on débute seul. En plus de ça, la formation est mise à jour régulièrement, c'est un vrai plus !! »</blockquote><figcaption>19/06/2025</figcaption></figure>
+        <figure class="dcard"><div class="dc-h"><span class="dc-av">J</span><b>jaketoutsimplement</b></div><p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p><blockquote>« Très bon ebook, tout est bien détaillé et c'est abusé le contenu qui est fourni, je pensais pas que ce serait aussi poussé ! Donc je recommande énormément. Si avec la formation vous n'y arrivez pas, c'est vraiment un manque de volonté… »</blockquote><figcaption>20/05/2025</figcaption></figure>
+        <figure class="dcard"><div class="dc-h"><span class="dc-av">S</span><b>snayzz</b></div><p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p><blockquote>« Formation absolument incroyable ! […] Une tonne d'astuces et de stratégies concrètes. On sent que tout a été pensé dans le détail. Franchement, elle vaut au moins deux à trois fois son prix ! Si vous hésitez encore, foncez les yeux fermés. C'est une mine d'or. »</blockquote><figcaption>27/05/2025</figcaption></figure>
+        <figure class="dcard"><div class="dc-h"><span class="dc-av">A</span><b>Aurélien.D</b></div><p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p><blockquote>« Formation claire, précise, rien à redire. Côté jeux, super appréciable quand on commence. Je recommande vivement sa formation à toutes celles et ceux qui veulent se lancer dans l'aventure. »</blockquote><figcaption>16/05/2025</figcaption></figure>
+        <figure class="dcard"><div class="dc-h"><span class="dc-av">S</span><b>Seb</b></div><p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p><blockquote>« Formation claire, nette et précise, avec un suivi régulier. On sent l'investissement et les heures de travail qu'il y a eu dessus. »</blockquote><figcaption>29/05/2025</figcaption></figure>
+        <figure class="dcard"><div class="dc-h"><span class="dc-av">J</span><b>Jessy</b></div><p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p><blockquote>« Formation complète et détaillée. Compliqué de faire mieux. Celui qui n'y arrive pas après avoir lu ça, c'est un manque de volonté… »</blockquote><figcaption>18/05/2025</figcaption></figure>
+        <figure class="dcard"><div class="dc-h"><span class="dc-av">S</span><b>Solinn Kinneas</b></div><p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p><blockquote>« Super formation, rien à redire. Tout ce qu'il vous faut pour bien démarrer l'achat-revente de jeux vidéo. »</blockquote><figcaption>20/05/2025</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec about" id="lucas" data-scene="about">
+    <div class="wrap about-in">
+      <figure class="about-photo tilt">
+        <img src="../elite/lucas.webp" alt="Lucas, alias Nanixss" width="760" height="950" loading="lazy">
+        <figcaption><span class="pulse"></span>En live sur TikTok · @nanixss.off</figcaption>
+      </figure>
+      <div class="about-txt">
+        <h2>Une méthode tirée de <span class="hl">mon activité.</span></h2>
+        <p class="about-id">Lucas, alias Nanixss · 24 ans · revendeur spécialisé jeux vidéo et consoles depuis début 2025</p>
+        <div class="about-body">
+          <p>Je me suis lancé seul dans l'achat-revente quand j'étais encore aide-soignant. Aujourd'hui, c'est mon métier à temps plein.</p>
+          <p>Dans la formation, je mets ce que j'utilise moi-même tous les jours : la méthode, les niches et les cotes, que je mets à jour régulièrement.</p>
+          <p>Et si tu bloques, tu me trouves sur le Discord et en live.</p>
+        </div>
+        <ul class="about-stats">
+          <li><b class="num">23 000+</b> abonnés sur TikTok</li>
+          <li><b class="num" data-stat="members">700+</b> membres sur Discord</li>
+          <li><b>Temps plein</b> dans l'achat-revente</li>
+        </ul>
+        <div class="ctas">
+          <a class="btn btn-ghost" href="https://www.tiktok.com/@nanixss.off" data-k="formation-tiktok-lucas" target="_blank" rel="noopener"><svg class="i"><use href="#i-play"/></svg>Me suivre sur TikTok</a>
+          <a class="btn btn-ghost" href="https://discord.gg/cyReW8sVJm" data-k="formation-discord-lucas" target="_blank" rel="noopener"><svg class="i"><use href="#i-chat"/></svg>Rejoindre le Discord</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="faq" data-scene="faq" style="padding-top:0">
+    <div class="wrap faq-wrap">
+      <div class="sec-head">
+        <h2>Avant de te lancer.</h2>
+        <p>Une autre question ? Ouvre un ticket sur le Discord, je te réponds.</p>
+        <div class="obj-slot o-faq" data-obj="bubble" aria-hidden="true"></div>
+      </div>
+      <div class="faq-list">
+        <details><summary>Je débute complètement, c'est pour moi ?<span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></summary><div class="ans">Oui. La formation part de zéro : comment marche l'achat-revente, sur quelles niches te placer, comment évaluer un prix, reconnaître une contrefaçon et vendre.</div></details>
+        <details><summary>Starter ou Avancée, laquelle choisir ?<span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></summary><div class="ans">La Starter te donne les bases en 26 pages. L'Avancée est la version complète en 134 pages : en plus, le multicompte, la checklist, le glossaire, les prix de près de 800 jeux sur 16 consoles et 2 mois de bot Elite offerts.</div></details>
+        <details><summary>Comment j'accède à la formation ?<span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></summary><div class="ans">Au paiement, tu indiques ton pseudo Discord et l'e-mail de ton compte Canva. Ton rôle d'élève s'active sur le Discord, et tu reçois l'invitation Canva à la formation sous 24 h maximum.</div></details>
+        <details><summary>Pourquoi sur Canva et pas en PDF ?<span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></summary><div class="ans">Parce que les cotes bougent souvent. Sur Canva, tu as toujours la dernière version, sans rien retélécharger.</div></details>
+        <details><summary>Je peux payer en plusieurs fois ?<span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></summary><div class="ans">Oui pour la formation avancée : choisis Klarna au moment du paiement pour régler en 3 fois. La Starter se paie en une fois.</div></details>
+        <details><summary>Comment marchent les 2 mois de bot offerts ?<span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></summary><div class="ans">Avec la formation avancée, tu reçois un code personnel à activer quand tu veux : 2 mois d'accès au bot Elite sans rien payer, puis 19,99 €/mois au lieu de 24,99 € si tu continues. Résiliable à tout moment.</div></details>
+        <details><summary>Je suis déjà abonné Elite, j'ai un avantage ?<span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></summary><div class="ans">Oui : -50 € sur la formation avancée. Dans ce cas, la réduction remplace les 2 mois de bot offerts.</div></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="final" data-scene="final">
+    <div class="wrap">
+      <div class="logo-slot" id="logo-slot"><img src="../logo.png" alt="Logo Nanixss" width="384" height="384" loading="lazy"></div>
+      <h2>Arrête d'acheter <span class="hl">au hasard.</span></h2>
+      <p>Rejoins les élèves de la formation et achète en sachant ce que vaut chaque jeu.</p>
+      <div class="ctas">
+        <a class="btn btn-main" href="https://buy.stripe.com/dRmeVe92z0zmcT80P98g005" data-k="formation-final-avancee" rel="noopener"><svg class="i"><use href="#i-book"/></svg>Prendre l'Avancée <span class="btn-price num">399,90 €</span></a>
+        <a class="btn btn-ghost" href="https://buy.stripe.com/dRm14o4Mj81OcT88hB8g006" data-k="formation-final-starter" rel="noopener">Prendre la Starter · 49,99 €</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© Lucas1up · Nanixss Hub</span>
+    <nav aria-label="Liens">
+      <a href="../" data-k="formation-liens">Tous mes liens</a>
+      <a href="../elite/" data-k="formation-elite">Le bot Vinted</a>
+      <a href="https://www.tiktok.com/@nanixss.off" target="_blank" rel="noopener" data-k="formation-tiktok">TikTok</a>
+      <a href="https://nanixsshub.fr/legal/" data-k="formation-cgv">CGV &amp; confidentialité</a>
+    </nav>
+  </div>
+</footer>
+
+<div class="bar" id="bar">
+  <div class="p"><b>Dès <span class="num">49,99 €</span></b>Avancée en 3 fois avec Klarna</div>
+  <a class="btn btn-main" href="#offres" data-k="formation-bar">Les offres</a>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>window.THREE || document.write('<script src="../elite/three.min.js"><\/script>')</script>
+<script>
+(() => {
+  const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const mobile = () => innerWidth <= 900;
+  const LOW = innerWidth <= 900 || matchMedia('(pointer: coarse)').matches;
+
+  // Navigation : fond une fois la page scrollée
+  const nav = document.getElementById('nav');
+  const navUpd = () => nav.classList.toggle('scrolled', scrollY > 8);
+  navUpd(); addEventListener('scroll', navUpd, { passive: true });
+
+  // Le livre s'ouvre sur le sommaire
+  (() => {
+    const book = document.getElementById('book'), rig = document.getElementById('rig');
+    if (!book) return;
+    const open = () => { book.classList.add('open'); rig.classList.add('is-open'); };
+    if (RM) { book.querySelector('.bk-cover').style.transition = 'none'; open(); return; }
+    setTimeout(open, 750);
+  })();
+
+  // Livre 3D : suit la souris ou le doigt, se balance au repos et pivote pendant le scroll
+  (() => {
+    const stage = document.getElementById('stage'), rig = document.getElementById('rig');
+    if (!stage || !rig || RM) return;
+    let active = false, ax = 0, ay = 0, on = true; const t0 = performance.now();
+    if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => { const was = on; on = e.isIntersecting; if (on && !was) requestAnimationFrame(loop); }).observe(stage);
+    const loop = (now) => {
+      if (!on) return;
+      const t = (now - t0) / 1000, sp = Math.min(Math.max(scrollY / (innerHeight * .9), 0), 1) * (innerWidth <= 900 ? .35 : 1);
+      const by = active ? ay : -18 + Math.sin(t * .55) * 6, bx = active ? ax : 7 + Math.cos(t * .42) * 2.5;
+      rig.style.setProperty('--ry', (by - sp * 22).toFixed(2) + 'deg');
+      rig.style.setProperty('--rx', (bx + sp * 12).toFixed(2) + 'deg');
+      rig.style.setProperty('--sz', (-sp * 150).toFixed(1) + 'px');
+      requestAnimationFrame(loop);
+    };
+    requestAnimationFrame(loop);
+    const move = (x, y) => { const r = stage.getBoundingClientRect(); const px = (x - r.left) / r.width - .5, py = (y - r.top) / r.height - .5;
+      active = true; ay = px * 28 - 12; ax = -py * 18 + 5; clearTimeout(move.t); move.t = setTimeout(() => active = false, 1800); };
+    addEventListener('pointermove', e => { if (e.pointerType === 'mouse') move(e.clientX, e.clientY); }, { passive: true });
+    stage.addEventListener('touchmove', e => { const t = e.touches[0]; if (t) move(t.clientX, t.clientY); }, { passive: true });
+  })();
+
+  // Cartes qui s'inclinent sous la souris, avec du relief
+  (() => {
+    if (RM || !matchMedia('(hover: hover)').matches) return;
+    document.querySelectorAll('.tilt').forEach(el => {
+      el.addEventListener('pointerenter', () => el.classList.add('is-tilting'));
+      el.addEventListener('pointermove', e => { const r = el.getBoundingClientRect();
+        el.style.setProperty('--ty', (((e.clientX - r.left) / r.width) - .5) * 7 + 'deg');
+        el.style.setProperty('--tx', (.5 - ((e.clientY - r.top) / r.height)) * 6 + 'deg'); });
+      el.addEventListener('pointerleave', () => { el.classList.remove('is-tilting'); el.style.setProperty('--tx', '0deg'); el.style.setProperty('--ty', '0deg'); });
+    });
+  })();
+
+  // Pages de cotes : elles se séparent en 3D au centre de l'écran et suivent la souris
+  (() => {
+    const pg = document.getElementById('pages'); if (!pg || RM) return;
+    let tk = false;
+    const upd = () => { tk = false; const r = pg.getBoundingClientRect(); const c = (r.top + r.height / 2 - innerHeight / 2) / innerHeight;
+      pg.style.setProperty('--pp', Math.min(Math.max(1 - Math.abs(c) * 1.4, 0), 1).toFixed(3)); };
+    addEventListener('scroll', () => { if (!tk) { tk = true; requestAnimationFrame(upd); } }, { passive: true }); upd();
+    if (matchMedia('(hover: hover)').matches) {
+      const sec = pg.closest('section'), rig = document.getElementById('pages-rig');
+      sec.addEventListener('pointermove', e => { const r = pg.getBoundingClientRect();
+        rig.style.setProperty('--pry', (-16 + ((e.clientX - r.left) / r.width - .5) * 16).toFixed(2) + 'deg');
+        rig.style.setProperty('--prx', (14 - ((e.clientY - r.top) / r.height - .5) * 8).toFixed(2) + 'deg'); });
+      sec.addEventListener('pointerleave', () => { rig.style.removeProperty('--pry'); rig.style.removeProperty('--prx'); });
+    }
+  })();
+
+  // Bandeaux des consoles qui défilent avec le scroll, en sens opposés
+  (() => {
+    if (RM) return;
+    const tracks = [...document.querySelectorAll('.band-track')];
+    let widths = [];
+    const measure = () => { widths = tracks.map(t => t.firstElementChild.getBoundingClientRect().width); };
+    measure(); addEventListener('resize', measure); document.fonts && document.fonts.ready.then(measure);
+    let ticking = false;
+    const upd = () => { ticking = false; const y = scrollY * .45;
+      tracks.forEach((t, i) => { const w = widths[i] || 1; const o = y % w; t.style.transform = i % 2 ? `translate3d(${o - w}px,0,0)` : `translate3d(${-o}px,0,0)`; }); };
+    addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(upd); } }, { passive: true });
+    upd();
+  })();
+
+  // Nombre de membres du Discord, en direct depuis le bot (en cas d'échec, la page garde 700+)
+  (() => {
+    fetch('https://nanixss-pay-production.up.railway.app/stats', { cache: 'no-store' }).then(r => r.ok ? r.json() : null).catch(() => null).then(d => {
+      if (d && d.members > 0) document.querySelectorAll('[data-stat="members"]').forEach(el => { el.textContent = Number(d.members).toLocaleString('fr-FR'); });
+    });
+  })();
+
+  // Barre d'achat mobile : visible une fois le haut passé, cachée sur les offres
+  (() => {
+    const bar = document.getElementById('bar'), hero = document.querySelector('.hero'), offres = document.getElementById('offres');
+    if (!('IntersectionObserver' in window)) { bar.classList.add('on'); return; }
+    let heroVis = true, offresVis = false, finalVis = false;
+    const upd = () => bar.classList.toggle('on', !heroVis && !offresVis && !finalVis);
+    new IntersectionObserver(([e]) => { heroVis = e.isIntersecting; upd(); }).observe(hero);
+    new IntersectionObserver(([e]) => { offresVis = e.isIntersecting; upd(); }, { threshold: .1 }).observe(offres);
+    new IntersectionObserver(([e]) => { finalVis = e.isIntersecting; upd(); }, { threshold: .1 }).observe(document.querySelector('.final'));
+  })();
+
+  // Statistiques anonymes (vue de la page et clics), envoyées au bot Nanixss Hub. Aucun cookie.
+  (() => {
+    const T = 'https://nanixss-pay-production.up.railway.app/t';
+    const send = (o) => { try { const b = JSON.stringify(o); if (!(navigator.sendBeacon && navigator.sendBeacon(T, b))) fetch(T, { method: 'POST', body: b, keepalive: true, mode: 'no-cors' }); } catch (e) {} };
+    send({ e: 'c', k: 'formation-vue' });
+    document.addEventListener('click', (ev) => { const el = ev.target.closest('[data-k]'); if (el) send({ e: 'c', k: el.dataset.k }); }, true);
+  })();
+
+    // ---------- Monde 3D : l'anneau du logo, les objets de chaque section, le logo qui se recompose à la fin ----------
+  (() => {
+    const back = document.getElementById('world');
+    if (!back || !window.THREE) { back && back.remove(); return; }
+    let R;
+    try { R = new THREE.WebGLRenderer({ canvas: back, alpha: true, antialias: true, powerPreference: 'high-performance' }); }
+    catch (e) { back.remove(); return; }
+    document.documentElement.classList.add('gl');
+    const PR = Math.min(devicePixelRatio || 1, LOW ? 1.5 : 1.75);
+    R.setPixelRatio(PR);
+
+    const scene = new THREE.Scene();
+    const CAMZ = 16; const cam = new THREE.PerspectiveCamera(32, 1, .1, 200); cam.position.set(0, 0, CAMZ);
+    const TAN = Math.tan(cam.fov * Math.PI / 360);
+    const CA = new THREE.Color('#03EBCA'), CB = new THREE.Color('#048A83'), CC = new THREE.Color('#03D2B6');
+    const VS = 'varying vec3 vN;varying vec3 vV;varying vec2 vUv;void main(){vUv=uv;vec4 mv=modelViewMatrix*vec4(position,1.);vN=normalize(normalMatrix*normal);vV=normalize(-mv.xyz);gl_Position=projectionMatrix*mv;}';
+    const neon = (k) => new THREE.ShaderMaterial({
+      uniforms: { uT: { value: 0 }, uO: { value: 1 }, uK: { value: k }, uA: { value: CA }, uB: { value: CB }, uC: { value: CC } },
+      vertexShader: VS,
+      fragmentShader: 'uniform float uT,uO,uK;uniform vec3 uA,uB,uC;varying vec3 vN;varying vec3 vV;varying vec2 vUv;' +
+        'void main(){vec3 n=normalize(vN);vec3 v=normalize(vV);vec3 L=normalize(vec3(.45,.75,.6));' +
+        'float f=1.-abs(dot(n,v));float l=clamp(dot(n,L),0.,1.);vec3 c=mix(uB,uC,l);c=mix(c,uA,pow(f,1.5)*.8);' +
+        'float s=pow(max(dot(reflect(-L,n),v),0.),28.);float band=pow(.5+.5*sin((vUv.x-uT*.06)*6.2831853),22.);' +
+        'c+=vec3(.8,1.,.97)*(s*.6+band*.5);gl_FragColor=vec4(c*uK,uO);}',
+      transparent: true
+    });
+    // Matière des objets : laquée, éclairée, reflet turquoise sur les bords
+    const glossy = (base, rim, spec = .7, emit = 0) => new THREE.ShaderMaterial({
+      uniforms: { uB: { value: new THREE.Color(base) }, uR: { value: new THREE.Color(rim) }, uS: { value: spec }, uE: { value: emit } },
+      vertexShader: VS, side: THREE.DoubleSide,
+      fragmentShader: 'uniform vec3 uB,uR;uniform float uS,uE;varying vec3 vN;varying vec3 vV;varying vec2 vUv;void main(){vec3 n=normalize(vN);if(!gl_FrontFacing)n=-n;vec3 v=normalize(vV);' +
+        'vec3 L=normalize(vec3(.4,.8,.55));vec3 L2=normalize(vec3(-.7,-.25,.45));float d=clamp(dot(n,L),0.,1.);float d2=clamp(dot(n,L2),0.,1.);float f=pow(1.-abs(dot(n,v)),2.2);' +
+        'vec3 c=uB*(.28+.85*d)+uR*(d2*.35+f*.95)+uB*uE;c+=vec3(1.)*pow(max(dot(reflect(-L,n),v),0.),36.)*uS;gl_FragColor=vec4(c,1.);}'
+    });
+
+    const world = new THREE.Group(); scene.add(world);
+    const ringMat = neon(1);
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(3, .15, 48, 320), ringMat); world.add(ring);
+    const haloMat = new THREE.ShaderMaterial({
+      uniforms: { uO: { value: 1 }, uC: { value: CA } }, vertexShader: VS,
+      fragmentShader: 'uniform float uO;uniform vec3 uC;varying vec3 vN;varying vec3 vV;varying vec2 vUv;void main(){float d=abs(dot(normalize(vN),normalize(vV)));float a=pow(d,2.6)*.42*uO;gl_FragColor=vec4(uC,a);}',
+      transparent: true, depthWrite: false, blending: THREE.AdditiveBlending
+    });
+    world.add(new THREE.Mesh(new THREE.TorusGeometry(3, .8, 32, 220), haloMat));
+    const orbMat = (o) => new THREE.ShaderMaterial({
+      uniforms: { uO: { value: o }, uC: { value: CA } },
+      vertexShader: 'void main(){gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
+      fragmentShader: 'uniform float uO;uniform vec3 uC;void main(){gl_FragColor=vec4(uC,uO);}',
+      transparent: true, depthWrite: false, blending: THREE.AdditiveBlending
+    });
+    const o1m = orbMat(.5), o2m = orbMat(.28);
+    const orb1 = new THREE.Mesh(new THREE.TorusGeometry(3.5, .016, 8, 320), o1m); orb1.rotation.set(.1, .06, 0); world.add(orb1);
+    const orb2 = new THREE.Mesh(new THREE.TorusGeometry(3.95, .011, 8, 320), o2m); orb2.rotation.set(-.08, .12, 0); world.add(orb2);
+
+    // Le N du logo, tracé depuis n.png et extrudé
+    const NS = [[[-1.2,-0.59],[-0.57,0.52],[-0.51,0.6],[-0.49,0.61],[0.21,0.61],[0.21,0.6],[-0.5,-0.6],[-0.54,-0.61],[-1.2,-0.6]],
+                [[0.3,0.25],[0.5,0.61],[1.18,0.61],[1.2,0.59],[1.2,0.56],[0.52,-0.58],[0.51,-0.58],[0.5,-0.55]],
+                [[-0.3,-0.29],[0.19,0.53],[0.21,0.54],[0.49,-0.59],[-0.18,-0.59],[-0.23,-0.55]]];
+    const nGroup = new THREE.Group(), nMats = [];
+    NS.forEach((p, i) => {
+      const g = new THREE.ExtrudeGeometry(new THREE.Shape(p.map(q => new THREE.Vector2(q[0], q[1]))), { depth: .26, bevelEnabled: true, bevelThickness: .05, bevelSize: .035, bevelSegments: 4, curveSegments: 2 });
+      g.translate(0, 0, -.13);
+      const m = neon(i === 2 ? .78 : 1); nMats.push(m); nGroup.add(new THREE.Mesh(g, m));
+    });
+    nGroup.visible = false; world.add(nGroup);
+
+    // Particules : un nuage autour de l'anneau et un champ d'étoiles qui remplit l'écran
+    const makePts = (n, gen, wrap) => {
+      const P = new Float32Array(n * 3), S = new Float32Array(n), Ph = new Float32Array(n);
+      for (let i = 0; i < n; i++) { const q = gen(); P[i*3] = q[0]; P[i*3+1] = q[1]; P[i*3+2] = q[2]; S[i] = .6 + Math.random() * 1.8; Ph[i] = Math.random() * 6.283; }
+      const g = new THREE.BufferGeometry();
+      g.setAttribute('position', new THREE.BufferAttribute(P, 3)); g.setAttribute('aS', new THREE.BufferAttribute(S, 1)); g.setAttribute('aP', new THREE.BufferAttribute(Ph, 1));
+      const m = new THREE.ShaderMaterial({
+        uniforms: { uT: { value: 0 }, uS: { value: 0 }, uO: { value: 1 }, uPR: { value: PR }, uC: { value: CA } },
+        vertexShader: 'attribute float aS;attribute float aP;uniform float uT,uS,uPR;varying float vA;void main(){vec3 p=position;' +
+          (wrap ? 'p.y=mod(p.y+uS+14.,28.)-14.;' : '') +
+          'p.x+=sin(uT*.25+aP)*.12;p.y+=cos(uT*.2+aP)*.1;vec4 mv=modelViewMatrix*vec4(p,1.);gl_PointSize=aS*uPR*(42./-mv.z);vA=.35+.65*(.5+.5*sin(uT*1.1+aP*3.));gl_Position=projectionMatrix*mv;}',
+        fragmentShader: 'uniform float uO;uniform vec3 uC;varying float vA;void main(){float d=length(gl_PointCoord-.5);float a=smoothstep(.5,0.,d);a*=a*vA*uO;gl_FragColor=vec4(uC,a);}',
+        transparent: true, depthWrite: false, blending: THREE.AdditiveBlending
+      });
+      return { obj: new THREE.Points(g, m), mat: m };
+    };
+    const shell = makePts(LOW ? 140 : 520, () => { const a = Math.random() * 6.283, r = 3.25 + Math.random() * 2.2; return [Math.cos(a) * r, (Math.random() - .5) * 1.8, Math.sin(a) * r]; }, false);
+    world.add(shell.obj);
+    const field = makePts(LOW ? 260 : 1100, () => [(Math.random() - .5) * 36, (Math.random() - .5) * 28, -17 + Math.random() * 16], true);
+    scene.add(field.obj);
+
+    // ---------- Objets 3D modélisés dans la DA ----------
+    const FONT = "'Poppins', system-ui, sans-serif";
+    const tex = (w, h, draw) => { const c = document.createElement('canvas'); c.width = w; c.height = h; const g = c.getContext('2d'); draw(g, w, h); const t = new THREE.CanvasTexture(c); t.anisotropy = 4; return t; };
+    const rr = (g, x, y, w, h, r) => { g.beginPath(); g.moveTo(x + r, y); g.arcTo(x + w, y, x + w, y + h, r); g.arcTo(x + w, y + h, x, y + h, r); g.arcTo(x, y + h, x, y, r); g.arcTo(x, y, x + w, y, r); g.closePath(); };
+    const drawN = (g, cx, cy, s, col) => { g.fillStyle = col; NS.forEach((p, i) => { g.globalAlpha = i === 2 ? .78 : 1; g.beginPath(); p.forEach((q, j) => { const x = cx + q[0] * s, y = cy - q[1] * s; if (j) g.lineTo(x, y); else g.moveTo(x, y); }); g.closePath(); g.fill(); }); g.globalAlpha = 1; };
+    const decal = (t, w, h) => new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ map: t, transparent: true }));
+    const ext = (shape, depth, bevel = .05, seg = 3) => { const g = new THREE.ExtrudeGeometry(shape, { depth, bevelEnabled: true, bevelThickness: bevel, bevelSize: bevel * .8, bevelSegments: seg, curveSegments: 18 }); g.translate(0, 0, -depth / 2); return g; };
+    const rrShape = (w, h, r) => { const s = new THREE.Shape(); s.moveTo(-w/2 + r, -h/2); s.lineTo(w/2 - r, -h/2); s.quadraticCurveTo(w/2, -h/2, w/2, -h/2 + r); s.lineTo(w/2, h/2 - r); s.quadraticCurveTo(w/2, h/2, w/2 - r, h/2); s.lineTo(-w/2 + r, h/2); s.quadraticCurveTo(-w/2, h/2, -w/2, h/2 - r); s.lineTo(-w/2, -h/2 + r); s.quadraticCurveTo(-w/2, -h/2, -w/2 + r, -h/2); return s; };
+    const NAVY = '#0D3138', TQ = '#03D2B6', TQL = '#03EBCA';
+
+    const mkTag = () => { const G = new THREE.Group(), w = 2.1, h = 1.1, r = .16, tip = .55, s = new THREE.Shape();
+      s.moveTo(-w/2 + tip, h/2); s.lineTo(w/2 - r, h/2); s.quadraticCurveTo(w/2, h/2, w/2, h/2 - r); s.lineTo(w/2, -h/2 + r); s.quadraticCurveTo(w/2, -h/2, w/2 - r, -h/2); s.lineTo(-w/2 + tip, -h/2); s.lineTo(-w/2, 0); s.closePath();
+      const hole = new THREE.Path(); hole.absarc(-w/2 + tip * .7, 0, .12, 0, Math.PI * 2, true); s.holes.push(hole);
+      G.add(new THREE.Mesh(ext(s, .12, .05), glossy(TQ, TQL, .9, .12)));
+      const d = decal(tex(512, 256, (g, W, H) => { g.fillStyle = '#04131A'; g.font = `900 150px ${FONT}`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText('10 €', W * .5, H * .56); }), 1.5, .75);
+      d.position.set(.22, 0, .126); G.add(d);
+      const c = new THREE.CatmullRomCurve3([new THREE.Vector3(-w/2 + tip * .7, 0, 0), new THREE.Vector3(-1.28, .45, .08), new THREE.Vector3(-1.15, 1.12, 0)]);
+      G.add(new THREE.Mesh(new THREE.TubeGeometry(c, 30, .028, 8, false), glossy('#DDEDEC', '#9CC4C4', .3)));
+      return G; };
+    const mkCart = () => { const G = new THREE.Group(), w = 1.5, h = 1.72, r = .12, s = new THREE.Shape();
+      s.moveTo(-w/2 + r, -h/2); s.lineTo(w/2 - r, -h/2); s.quadraticCurveTo(w/2, -h/2, w/2, -h/2 + r); s.lineTo(w/2, h/2 - .3); s.lineTo(w/2 - .3, h/2); s.lineTo(-w/2 + r, h/2); s.quadraticCurveTo(-w/2, h/2, -w/2, h/2 - r); s.lineTo(-w/2, -h/2 + r); s.quadraticCurveTo(-w/2, -h/2, -w/2 + r, -h/2);
+      G.add(new THREE.Mesh(ext(s, .28, .05), glossy(NAVY, TQ, .6)));
+      const L = decal(tex(512, 512, (g, W, H) => { const gr = g.createLinearGradient(0, 0, W, H); gr.addColorStop(0, TQL); gr.addColorStop(1, '#048A83'); g.fillStyle = gr; rr(g, 0, 0, W, H, 46); g.fill(); drawN(g, W / 2, H * .43, 150, '#04131A'); g.fillStyle = '#04131A'; g.font = `800 58px ${FONT}`; g.textAlign = 'center'; g.fillText('NANIXSS', W / 2, H * .84); }), 1.12, 1.12);
+      L.position.set(0, -.14, .196); G.add(L);
+      const gm = glossy('#0E3B43', TQ, .2);
+      for (let i = 0; i < 4; i++) { const m = new THREE.Mesh(new THREE.BoxGeometry(.86, .035, .03), gm); m.position.set(-.1, .55 + i * .075, .19); G.add(m); }
+      return G; };
+    const mkBell = () => { const G = new THREE.Group();
+      const prof = [[0,-.02],[.98,-.02],[1.04,.05],[.95,.16],[.8,.36],[.7,.72],[.64,1.08],[.52,1.36],[.3,1.5],[0,1.54]].map(p => new THREE.Vector2(p[0], p[1]));
+      const g = new THREE.LatheGeometry(prof, 72); g.translate(0, -.72, 0);
+      G.add(new THREE.Mesh(g, glossy(TQ, TQL, .9, .08)));
+      const cl = new THREE.Mesh(new THREE.SphereGeometry(.2, 24, 16), glossy('#EAF5F4', TQL, .8)); cl.position.y = -.82; G.add(cl);
+      const tp = new THREE.Mesh(new THREE.TorusGeometry(.17, .065, 14, 36), glossy(TQ, TQL, .8)); tp.position.y = .9; G.add(tp);
+      return G; };
+    const mkColis = () => { const G = new THREE.Group(), W = 1.9, H = 1.32, D = 1.32, b = .07;
+      G.add(new THREE.Mesh(ext(rrShape(W - 2 * b, H - 2 * b, .05), D - 2 * b, b, 3), glossy(NAVY, TQ, .35)));
+      const tape = glossy(TQ, TQL, .7, .1);
+      const t1 = new THREE.Mesh(new THREE.BoxGeometry(.34, .025, D + .01), tape); t1.position.set(0, H / 2 + .005, 0); G.add(t1);
+      const t2 = new THREE.Mesh(new THREE.BoxGeometry(.34, H * .5, .025), tape); t2.position.set(0, H / 4, D / 2 + .005); G.add(t2);
+      const st = decal(tex(256, 256, (g, W2, H2) => { g.fillStyle = '#EAF5F4'; rr(g, 8, 8, W2 - 16, H2 - 16, 34); g.fill(); drawN(g, W2 / 2, H2 / 2, 78, '#048A83'); }), .5, .5);
+      st.position.set(W * .27, -H * .18, D / 2 + .012); G.add(st);
+      return G; };
+    const mkPad = () => { const G = new THREE.Group(), s = new THREE.Shape();
+      s.moveTo(0, .52); s.bezierCurveTo(.5, .52, .75, .58, .95, .5); s.bezierCurveTo(1.25, .38, 1.32, 0, 1.25, -.35); s.bezierCurveTo(1.18, -.7, .92, -.78, .78, -.55); s.bezierCurveTo(.68, -.38, .5, -.28, 0, -.28);
+      s.bezierCurveTo(-.5, -.28, -.68, -.38, -.78, -.55); s.bezierCurveTo(-.92, -.78, -1.18, -.7, -1.25, -.35); s.bezierCurveTo(-1.32, 0, -1.25, .38, -.95, .5); s.bezierCurveTo(-.75, .58, -.5, .52, 0, .52);
+      G.add(new THREE.Mesh(ext(s, .32, .09, 4), glossy(NAVY, TQ, .55)));
+      const acc = glossy(TQ, TQL, .9, .1), z = .25;
+      const dp1 = new THREE.Mesh(new THREE.BoxGeometry(.34, .11, .07), acc), dp2 = dp1.clone(); dp2.rotation.z = Math.PI / 2;
+      [dp1, dp2].forEach(m => { m.position.set(-.66, .13, z + .02); G.add(m); });
+      const bt = new THREE.CylinderGeometry(.068, .068, .07, 20); bt.rotateX(Math.PI / 2);
+      [[.66, .28], [.66, -.02], [.51, .13], [.81, .13]].forEach(p => { const m = new THREE.Mesh(bt, acc); m.position.set(p[0], p[1], z + .02); G.add(m); });
+      const stG = new THREE.CylinderGeometry(.14, .16, .12, 28); stG.rotateX(Math.PI / 2); const stM = glossy('#07222A', TQL, .7);
+      [[-.3, -.1], [.3, -.1]].forEach(p => { const m = new THREE.Mesh(stG, stM); m.position.set(p[0], p[1], z + .04); G.add(m); });
+      const nl = decal(tex(256, 128, (g, W, H) => drawN(g, W / 2, H / 2, 78, TQL)), .36, .18); nl.position.set(0, .3, z + .005); G.add(nl);
+      return G; };
+    const mkStar = () => { const s = new THREE.Shape();
+      for (let i = 0; i < 10; i++) { const a = Math.PI / 2 + i * Math.PI / 5, r = i % 2 ? .44 : 1, x = Math.cos(a) * r, y = Math.sin(a) * r; if (i) s.lineTo(x, y); else s.moveTo(x, y); } s.closePath();
+      const G = new THREE.Group(); G.add(new THREE.Mesh(ext(s, .3, .12, 4), glossy('#FFC233', '#FFE7A3', .9, .1))); return G; };
+    const mkBubble = () => { const w = 2, h = 1.4, r = .42, s = new THREE.Shape();
+      s.moveTo(-w/2 + r, -h/2); s.lineTo(-.5, -h/2); s.lineTo(-.78, -h/2 - .42); s.lineTo(-.15, -h/2); s.lineTo(w/2 - r, -h/2); s.quadraticCurveTo(w/2, -h/2, w/2, -h/2 + r); s.lineTo(w/2, h/2 - r); s.quadraticCurveTo(w/2, h/2, w/2 - r, h/2); s.lineTo(-w/2 + r, h/2); s.quadraticCurveTo(-w/2, h/2, -w/2, h/2 - r); s.lineTo(-w/2, -h/2 + r); s.quadraticCurveTo(-w/2, -h/2, -w/2 + r, -h/2);
+      const G = new THREE.Group(); G.add(new THREE.Mesh(ext(s, .28, .08, 4), glossy(TQ, TQL, .85, .1)));
+      const q = decal(tex(256, 256, (g, W, H) => { g.fillStyle = '#04131A'; g.font = `900 200px ${FONT}`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText('?', W / 2, H * .56); }), .95, .95);
+      q.position.set(0, .02, .232); G.add(q);
+      return G; };
+    const mkCoin = () => { const G = new THREE.Group();
+      const prof = [[0,-.13],[.9,-.13],[1,-.06],[1,.06],[.9,.13],[0,.13]].map(p => new THREE.Vector2(p[0], p[1]));
+      const g = new THREE.LatheGeometry(prof, 64); g.rotateX(Math.PI / 2);
+      G.add(new THREE.Mesh(g, glossy(TQ, TQL, 1, .12)));
+      const t = tex(256, 256, (c, W, H) => { c.strokeStyle = 'rgba(4,19,26,.55)'; c.lineWidth = 10; c.beginPath(); c.arc(W / 2, H / 2, W * .4, 0, Math.PI * 2); c.stroke(); c.fillStyle = '#04131A'; c.font = `900 150px ${FONT}`; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText('€', W / 2, H * .55); });
+      const f = decal(t, 1.6, 1.6); f.position.z = .136; G.add(f);
+      const bk = decal(t, 1.6, 1.6); bk.rotation.y = Math.PI; bk.position.z = -.136; G.add(bk);
+      return G; };
+    // rx/ry : pose de base, spin >= .8 : rotation complète, sinon balancement ; ring : la cloche sonne
+    const OBJ = {
+      tag:    { make: mkTag,    base: 1,   rx: .12, ry: .25, spin: .3, sway: 1 },
+      cart:   { make: mkCart,   base: 1,   rx: .2,  ry: -.3, spin: .3 },
+      bell:   { make: mkBell,   base: 1,   rx: .18, ry: 0,   spin: 1, ring: 1 },
+      colis:  { make: mkColis,  base: .92, rx: .4,  ry: -.62, spin: .3 },
+      pad:    { make: mkPad,    base: 1,   rx: .5,  ry: 0,   spin: .3 },
+      coin:   { make: mkCoin,   base: .9,  rx: .12, ry: 0,   spin: 1.2 },
+      star:   { make: mkStar,   base: 1,   rx: .18, ry: 0,   spin: 1 },
+      bubble: { make: mkBubble, base: .95, rx: .18, ry: -.25, spin: .3 }
+    };
+    const objs = [];
+    const build = () => { document.querySelectorAll('.obj-slot[data-obj]').forEach(slot => { const c = OBJ[slot.dataset.obj]; if (!c) return;
+      const g = c.make(); g.visible = false; scene.add(g); objs.push({ g, c, slot, w: 0, ph: Math.random() * 6.28 }); }); };
+    (document.fonts ? Promise.race([document.fonts.ready, new Promise(r => setTimeout(r, 1500))]) : Promise.resolve()).then(build);
+
+    // ---------- Où se place l'anneau : [x, y, z, rotX, rotY, rotZ, échelle, opacité, logo] ----------
+    const cvW = () => back.clientWidth, cvH = () => back.clientHeight;
+    const ppu = () => (cvH() / 2) / (TAN * CAMZ);
+    const toW = (cx, cy) => [(cx - cvW() / 2) / ppu(), -(cy - cvH() / 2) / ppu()];
+    const el = (s) => document.querySelector(s);
+    const phoneEl = el('.book'), txtEl = el('.hero-txt'), devEl = el('#pages'), aboutEl = el('.about-photo'), eliteEl = el('#elite-card'), proofEl = el('.proof-cards'), slotEl = el('#logo-slot');
+    const far = () => [6, 1.5, -20, 1.15, .35, .2, 1.4, 0, 0];
+    const K = {
+      hero: (m) => K.phone(m),
+      phone: (m) => { const r = phoneEl.getBoundingClientRect(); const cx = r.left + r.width / 2;
+        if (m) { const [x, y] = toW(cx, r.bottom - r.height * .03); return [x, y, 0, -1.42, 0, 0, (cvW() * .42) / ppu() / 3, .95, 0]; }
+        const tr = txtEl.getBoundingClientRect().right;
+        const Rp = Math.max(r.width * .56, Math.min(r.width * .92, (cvW() - cx) * .86 / 1.32, cx * .86 / 1.32, cx - tr - 12));
+        const [x, y] = toW(cx, r.top + r.height * .62); return [x, y, 0, 1.2, 0, -.2, Rp / ppu() / 3, 1, 0]; },
+      versus: far, steps: far, features: far, reviews: far, faq: far, strip: far,
+      devices: (m) => { const r = devEl.getBoundingClientRect(); const [x, y] = toW(r.left + r.width / 2, r.top + r.height * .86);
+        const Rp = Math.min(r.width * .5, cvW() * .46); return [x, y, -1, 1.44, 0, 0, Rp / ppu() / 3, .85, 0]; },
+      about: (m) => { const r = aboutEl.getBoundingClientRect(); const [x, y] = toW(r.left + r.width / 2, r.bottom - r.height * .05);
+        const Rp = m ? cvW() * .42 : Math.min(r.width * .64, cvW() * .3); return [x, y, -.5, 1.42, 0, 0, Rp / ppu() / 3, .9, 0]; },
+      proof: () => { const cards = proofEl.children; const a = cards[0].getBoundingClientRect(), b = cards[cards.length - 1].getBoundingClientRect();
+        const l = Math.min(a.left, b.left), rr2 = Math.max(a.right, b.right), bot = Math.max(a.bottom, b.bottom), top = Math.min(a.top, b.top);
+        const [x, y] = toW((l + rr2) / 2, top + (bot - top) * .6); const Rp = Math.min((rr2 - l) * .5, cvW() * .34);
+        return [x, y, -.4, 1.45, 0, 0, Rp / ppu() / 3, .75, 0]; },
+      pricing: (m) => { const r = eliteEl.getBoundingClientRect(); const [x, y] = toW(r.left + r.width / 2, r.top + r.height / 2);
+        if (m) return [x, y, -1, 1.2, -.25, .12, (cvW() * .44) / ppu() / 3, .6, 0];
+        const Rp = Math.min(r.width * .62, r.height * .5 / .62, cvW() * .3) * .78; return [x, y, -1, .9, -.15, 0, Rp / ppu() / 3, .75, 0]; },
+      final: () => { const r = slotEl.getBoundingClientRect(); const [x, y] = toW(r.left + r.width / 2, r.top + r.height / 2);
+        return [x, y, -.6, 0, 0, 0, (r.width / 2) / ppu() / 1.12 / 3, 1, 1]; }
+    };
+    const scenes = [...document.querySelectorAll('[data-scene]')];
+    let centers = [];
+    const measure = () => { centers = scenes.map(s => { const r = s.getBoundingClientRect(); return r.top + scrollY + r.height / 2; }); };
+    const target = () => {
+      const m = mobile(), vc = scrollY + innerHeight / 2, lastI = scenes.length - 1;
+      const atEnd = scrollY + innerHeight >= document.documentElement.scrollHeight - 4;
+      if (vc <= centers[0]) return K[scenes[0].dataset.scene](m);
+      if (atEnd || vc >= centers[lastI]) return K[scenes[lastI].dataset.scene](m);
+      let i = 0; while (i < lastI - 1 && vc > centers[i + 1]) i++;
+      const d = centers[i + 1] - centers[i]; let t = d < 1 ? 1 : (vc - centers[i]) / d; t = t * t * (3 - 2 * t);
+      const A = K[scenes[i].dataset.scene](m), B = K[scenes[i + 1].dataset.scene](m);
+      return A.map((v, j) => v + (B[j] - v) * t);
+    };
+
+    let lastW = 0, lastH = 0;
+    const size = () => {
+      const w = cvW(), h = cvH(); if (!w || !h) return;
+      if (w === lastW && h === lastH) return; lastW = w; lastH = h;
+      R.setSize(w, h, false); cam.aspect = w / h; cam.updateProjectionMatrix(); measure();
+    };
+    size(); addEventListener('resize', size);
+    if ('ResizeObserver' in window) new ResizeObserver(measure).observe(document.body);
+    addEventListener('load', measure);
+
+    let mx = 0, my = 0;
+    addEventListener('pointermove', e => { if (e.pointerType !== 'mouse') return; mx = e.clientX / innerWidth - .5; my = e.clientY / innerHeight - .5; }, { passive: true });
+    const sm = (a, b, x) => { const t = Math.min(Math.max((x - a) / (b - a), 0), 1); return t * t * (3 - 2 * t); };
+    const backOut = (w) => { const c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(w - 1, 3) + c1 * Math.pow(w - 1, 2); };
+
+    const apply = (p, t, dim) => {
+      world.position.set(p[0], p[1], p[2]); world.rotation.set(p[3], p[4], p[5]); world.scale.setScalar(Math.max(p[6], .01));
+      const o = p[7] * dim, n = Math.min(Math.max(p[8], 0), 1);
+      ring.rotation.z = t * .12; orb1.rotation.z = t * .05; orb2.rotation.z = -t * .035; shell.obj.rotation.y = t * .03;
+      ringMat.uniforms.uO.value = o; haloMat.uniforms.uO.value = o * (1 - .3 * n);
+      o1m.uniforms.uO.value = .5 * o * (1 - n); o2m.uniforms.uO.value = .28 * o * (1 - n); shell.mat.uniforms.uO.value = o * (1 - .55 * n);
+      if (n > .01) { nGroup.visible = true; nMats.forEach(mm => { mm.uniforms.uO.value = n; }); nGroup.rotation.set(0, (1 - n) * 1.4, 0); nGroup.scale.setScalar(1.12 * (.7 + .3 * n)); }
+      else nGroup.visible = false;
+      [ringMat, ...nMats].forEach(mm => { mm.uniforms.uT.value = t; });
+      field.mat.uniforms.uT.value = t; shell.mat.uniforms.uT.value = t; field.mat.uniforms.uS.value = scrollY * .0022;
+    };
+    const placeObjs = (t, k) => {
+      objs.forEach(o => {
+        const r = o.slot.getBoundingClientRect();
+        let vis = 0;
+        if (r.width > 4 && r.bottom > -60 && r.top < innerHeight + 60) { const c = Math.abs(r.top + r.height / 2 - innerHeight / 2) / innerHeight; vis = 1 - sm(.4, .72, c); }
+        o.w += (vis - o.w) * k;
+        if (o.w < .01) { o.g.visible = false; return; }
+        o.g.visible = true;
+        const [x, y] = toW(r.left + r.width / 2, r.top + r.height / 2);
+        const size = (Math.min(r.width, r.height) / 2) / ppu() / 1.15;
+        o.g.position.set(x, y + Math.sin(t * 1.1 + o.ph) * size * .06, 0);
+        o.g.scale.setScalar(Math.max(size * o.c.base * backOut(Math.min(o.w, 1)), .0001));
+        const ry = o.c.ry + (o.c.spin >= .8 ? t * o.c.spin * .6 + o.ph : Math.sin(t * .8 + o.ph) * .55) + mx * .5;
+        let rz = o.c.sway ? Math.sin(t * 1.6 + o.ph) * .12 : Math.sin(t * .6 + o.ph) * .05;
+        if (o.c.ring) { const ph = t % 4.2; rz = ph < 1.5 ? Math.sin(t * 15) * .26 * Math.sin(ph / 1.5 * Math.PI) : 0; }
+        o.g.rotation.set(o.c.rx + my * .3, ry, rz);
+      });
+    };
+
+    measure();
+    if (RM) { const draw = () => { size(); const p = target(); apply(p, 0, 1); placeObjs(0, 1); R.render(scene, cam); };
+      draw(); addEventListener('scroll', () => requestAnimationFrame(draw), { passive: true }); addEventListener('resize', draw);
+      (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => setTimeout(draw, 1600)); return; }
+
+    let cur = null, prev = null, speed = 0, last = performance.now(), visible = !document.hidden, skip = false; const t0 = last;
+    const loop = (now) => {
+      if (!visible) return;
+      if (LOW) { skip = !skip; if (skip) { requestAnimationFrame(loop); return; } }
+      const dt = Math.min((now - last) / 1000, .05); last = now; const t = (now - t0) / 1000;
+      const tg = target();
+      if (!cur) cur = tg.slice(); else { const k = 1 - Math.exp(-dt * 3.2); for (let j = 0; j < cur.length; j++) cur[j] += (tg[j] - cur[j]) * k; }
+      // l'anneau s'efface quand il voyage, pour ne jamais gêner la lecture
+      if (prev) { const v = Math.hypot(cur[0] - prev[0], cur[1] - prev[1], cur[2] - prev[2]) / Math.max(dt, .001); speed += (v - speed) * .25; }
+      prev = cur.slice(0, 3);
+      cam.position.x += (mx * .8 - cam.position.x) * .04; cam.position.y += (-my * .55 - cam.position.y) * .04; cam.lookAt(0, 0, 0);
+      apply(cur, t, 1 - .75 * sm(.5, 3.5, speed));
+      placeObjs(t, 1 - Math.exp(-dt * 5));
+      R.render(scene, cam);
+      requestAnimationFrame(loop);
+    };
+    document.addEventListener('visibilitychange', () => { visible = !document.hidden; if (visible) { last = performance.now(); requestAnimationFrame(loop); } });
+    requestAnimationFrame(loop);
+  })();
+})();
+
+</script>
+</body>
+</html>
