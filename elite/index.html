@@ -5,528 +5,735 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Nanixss Hub Elite</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Le bot Vinted de Nanixss Hub : alertes en direct sur Discord, filtres sur mesure, autocop et multicompte. Sans engagement.">
+<meta name="description" content="Le bot Vinted de Nanixss Hub : chaque pépite dans ton Discord à l'instant où elle sort. Filtres sur mesure, autocop, multicompte. Sans engagement.">
 <meta property="og:title" content="Nanixss Hub · Bot Vinted Elite">
-<meta property="og:description" content="Chaque bonne affaire Vinted, dès sa mise en ligne, dans ton Discord.">
+<meta property="og:description" content="Chaque pépite Vinted, à l'instant où elle sort, dans ton Discord.">
 <meta property="og:image" content="https://nanixss.github.io/logo.png">
 <meta name="theme-color" content="#04131A">
 <link rel="icon" href="../logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-  /* Layout : une colonne mobile d'abord, hero en deux colonnes sur ordi, barre d'achat collée en bas sur téléphone */
+  /* Layout : un monde 3D fixe plein écran derrière la page (et devant, pour l'anneau du haut) ; contenu en colonne de 1180 px ;
+     hero en deux colonnes ; sections qui laissent l'anneau respirer sur les côtés ; logo 3D qui se recompose à la fin. */
   :root{
-    --navy:#04131A; --surface:#062229; --surface-2:#0A2E36;
-    --turq:#03D2B6; --turq-l:#03EBCA; --turq-d:#048A83;
-    --line:rgba(3,210,182,.22); --dim:rgba(3,210,182,.12);
-    --white:#FFFFFF; --text:#D6E3E8; --muted:#9FB4BE; --star:#FFC233;
-    --font:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif;
+    --bg:#04131A; --surface:#062229; --surface-2:#0A2C33; --deep:#031017;
+    --line:rgba(3,210,182,.16); --line-2:rgba(3,210,182,.34);
+    --accent:#03D2B6; --accent-l:#03EBCA; --accent-d:#048A83;
+    --text:#EAF5F4; --text-2:#9CC4C4; --text-3:#76A3A4;
+    --star:#FFC233;
+    --font:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
     color-scheme:dark;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scrollbar-color:#0C3A40 var(--bg)}
   @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
-  body{font-family:var(--font);background:var(--navy);color:var(--white);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body{font-family:var(--font);font-size:16px;line-height:1.6;color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden;
+    background:radial-gradient(90% 60% at 75% 0%,rgba(3,210,182,.14),transparent 60%),radial-gradient(70% 50% at 10% 70%,rgba(3,138,131,.10),transparent 60%),var(--bg)}
+  ::selection{background:var(--accent);color:var(--bg)}
+  ::-webkit-scrollbar{width:12px}
+  ::-webkit-scrollbar-track{background:var(--bg)}
+  ::-webkit-scrollbar-thumb{background:#0C3A40;border-radius:8px;border:3px solid var(--bg)}
   img{max-width:100%;display:block}
   a{color:inherit}
-  :focus-visible{outline:2px solid var(--turq-l);outline-offset:3px;border-radius:8px}
-  .in{max-width:1080px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
-  h1,h2,h3{text-wrap:balance}
+  :focus-visible{outline:2px solid var(--accent-l);outline-offset:3px;border-radius:10px}
+  h1,h2,h3{text-wrap:balance;font-weight:800;line-height:1.05;letter-spacing:-.03em;color:var(--text)}
+  p{text-wrap:pretty}
+  .num{font-variant-numeric:tabular-nums}
+  .i{width:20px;height:20px;flex:0 0 auto;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .wrap{max-width:1180px;margin:0 auto;padding-left:max(clamp(16px,4vw,32px),env(safe-area-inset-left,0px));padding-right:max(clamp(16px,4vw,32px),env(safe-area-inset-right,0px))}
 
-  /* fond */
-  .glow{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
-  .glow::before{content:"";position:absolute;left:50%;top:-260px;width:1100px;height:700px;transform:translateX(-50%);
-    background:radial-gradient(closest-side,rgba(3,210,182,.22),transparent 70%)}
-  .grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(3,210,182,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(3,210,182,.05) 1px,transparent 1px);
-    background-size:44px 44px;-webkit-mask-image:radial-gradient(70% 60% at 50% 20%,#000,transparent);mask-image:radial-gradient(70% 60% at 50% 20%,#000,transparent)}
+  /* ---------- monde 3D ---------- */
+  .gl-layer{position:fixed;left:0;top:0;width:100%;height:100lvh;pointer-events:none;display:block}
+  #world{z-index:0}
+  #world-front{z-index:15}
+  .veil{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(120% 95% at 50% 45%,transparent 55%,rgba(3,16,23,.72) 100%)}
+  .grain{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.06;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+  main,footer{position:relative;z-index:1}
 
-  /* nav */
-  .nav{position:sticky;top:env(safe-area-inset-top, 0px);z-index:20;background:rgba(4,19,26,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(3,210,182,.10)}
-  body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top, 0px);z-index:21;background:var(--navy)}
-  .nav .in{display:flex;align-items:center;gap:14px;height:62px}
-  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;letter-spacing:.4px;font-size:17px}
-  .brand img{width:34px;height:34px;border-radius:50%;box-shadow:0 0 0 2px rgba(3,210,182,.25)}
-  .brand b{font-weight:800}
-  .brand span{color:var(--turq)}
-  .nav-links{display:flex;gap:22px;margin-left:auto;font-size:14px;font-weight:500;color:var(--muted)}
-  .nav-links a{text-decoration:none;transition:color .2s}
-  .nav-links a:hover{color:var(--white)}
-  .nav .cta-s{margin-left:6px}
-  @media (max-width:820px){.nav-links{display:none}.nav .cta-s{margin-left:auto}}
+  /* ---------- navigation ---------- */
+  body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:21;background:var(--bg)}
+  .nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;border-bottom:1px solid transparent;transition:background-color .3s,border-color .3s}
+  .nav.scrolled{background:rgba(4,19,26,.8);-webkit-backdrop-filter:blur(16px) saturate(140%);backdrop-filter:blur(16px) saturate(140%);border-bottom-color:rgba(3,210,182,.10)}
+  .nav-in{display:flex;align-items:center;gap:22px;height:70px}
+  .brand{display:flex;align-items:center;gap:11px;text-decoration:none;font-weight:800;font-size:17px;letter-spacing:.02em}
+  .brand img{width:36px;height:36px;border-radius:50%}
+  .brand b{color:var(--accent)}
+  .nav-links{display:flex;gap:28px;margin-left:auto;font-size:14.5px;font-weight:500;color:var(--text-2)}
+  .nav-links a{text-decoration:none;padding:6px 0;transition:color .2s}
+  .nav-links a:hover{color:var(--text)}
+  @media (max-width:900px){.nav-links{display:none}.nav .btn-s{margin-left:auto}}
 
-  /* boutons */
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:inherit;font-weight:700;font-size:16px;text-decoration:none;border-radius:16px;padding:16px 24px;transition:transform .15s ease, box-shadow .2s ease, border-color .2s, background .2s;cursor:pointer;border:none;text-align:center}
+  /* ---------- boutons ---------- */
+  .btn{position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    font:700 16px/1.2 var(--font);text-decoration:none;border:0;border-radius:16px;padding:17px 26px;cursor:pointer;text-align:center;
+    transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .3s,border-color .2s,color .2s}
   .btn:active{transform:scale(.97)}
-  .btn-main{background:linear-gradient(135deg,var(--turq-l),var(--turq) 55%,var(--turq-d));color:var(--navy);box-shadow:0 12px 36px rgba(3,210,182,.35)}
-  .btn-main:hover{transform:translateY(-2px);box-shadow:0 16px 44px rgba(3,210,182,.45)}
-  .btn-ghost{background:rgba(255,255,255,.03);color:var(--white);border:1.5px solid var(--line)}
-  .btn-ghost:hover{border-color:var(--turq);color:var(--turq-l)}
-  .cta-s{padding:10px 16px;font-size:14px;border-radius:12px}
+  .btn .i{width:19px;height:19px}
+  .btn-main{background:linear-gradient(135deg,#03EBCA 0%,#03D2B6 55%,#048A83 150%);color:var(--bg);
+    box-shadow:0 16px 36px -14px rgba(3,210,182,.75),inset 0 1px 0 rgba(255,255,255,.4)}
+  .btn-main .i{stroke-width:2.2}
+  .btn-main::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.5) 50%,transparent 65%);transform:translateX(-130%);transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+  .btn-main:hover{transform:translateY(-2px);box-shadow:0 22px 46px -16px rgba(3,210,182,.9),inset 0 1px 0 rgba(255,255,255,.4)}
+  .btn-main:hover::after{transform:translateX(130%)}
+  .btn-price{font-weight:600;font-size:13.5px;padding:4px 9px;border-radius:9px;background:rgba(4,19,26,.14)}
+  .btn-ghost{background:rgba(6,34,41,.7);color:var(--text);border:1.5px solid var(--line-2)}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent-l)}
+  .btn-s{padding:11px 18px;font-size:14.5px;border-radius:12px}
 
-  /* hero */
-  .hero{position:relative;padding-block:64px 40px;overflow-x:clip}
-  .hero .in{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
-  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;letter-spacing:2px;color:var(--turq);text-transform:uppercase;
-    padding:7px 14px;border-radius:999px;background:var(--dim);border:1px solid var(--line)}
-  .dot{width:8px;height:8px;border-radius:50%;background:var(--turq-l);box-shadow:0 0 0 0 rgba(3,235,202,.6);animation:ping 2s infinite}
-  @keyframes ping{70%{box-shadow:0 0 0 9px rgba(3,235,202,0)}100%{box-shadow:0 0 0 0 rgba(3,235,202,0)}}
-  .hero h1{margin-top:20px;font-size:clamp(36px,6vw,62px);line-height:1.04;font-weight:900;letter-spacing:-1.5px}
-  .hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--turq-l),var(--turq-d));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .lead{margin-top:20px;font-size:17px;line-height:1.65;color:var(--text);max-width:520px}
-  .hero-cta{margin-top:30px;display:flex;flex-wrap:wrap;gap:12px}
-  .trust{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13.5px;color:var(--muted)}
-  .trust b{color:var(--star);letter-spacing:1px;font-weight:700}
-  .trust span{display:inline-flex;align-items:center;gap:6px}
+  /* ---------- hero ---------- */
+  .hero{position:relative;padding-block:clamp(36px,6vw,84px) clamp(64px,8vw,120px)}
+  .hero-in{display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,.94fr);gap:clamp(32px,5vw,72px);align-items:center}
+  .hero-txt{position:relative;z-index:2}
+  .hero h1{font-size:clamp(42px,5.6vw,78px);line-height:.99;letter-spacing:-.04em;font-weight:900}
+  .hero h1 .hl{display:block;color:var(--accent)}
+  .lead{margin-top:26px;font-size:clamp(17px,1.45vw,19px);line-height:1.65;color:var(--text-2);max-width:33em}
+  .lead strong{color:var(--text);font-weight:600}
+  .ctas{margin-top:34px;display:flex;flex-wrap:wrap;gap:12px}
+  .assure{margin-top:28px;list-style:none;display:flex;flex-wrap:wrap;gap:10px 24px;font-size:14px;color:var(--text-2)}
+  .assure li{display:inline-flex;align-items:center;gap:8px}
+  .assure .i{width:17px;height:17px;color:var(--accent)}
+  .assure a{text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:color .2s}
+  .assure a:hover{color:var(--text)}
+  .stars{display:inline-flex;gap:2px;color:var(--star)}
+  .stars svg{width:15px;height:15px;fill:currentColor}
+  .rise{animation:rise .85s cubic-bezier(.16,1,.3,1) both}
+  .rise.d1{animation-delay:.08s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.24s}
+  @keyframes rise{from{transform:translateY(20px);filter:blur(4px)}}
 
-  /* téléphone */
-  .stage{position:relative;display:flex;justify-content:center;padding-block:34px;perspective:1300px;touch-action:pan-y}
-  #ring{position:absolute;left:50%;top:50%;width:150%;height:130%;transform:translate(-50%,-50%);z-index:0;pointer-events:none;max-width:none}
-  .rig{position:relative;z-index:1;transform-style:preserve-3d;transform:rotateY(var(--ry,-16deg)) rotateX(var(--rx,7deg));transition:transform .6s cubic-bezier(.2,.7,.2,1);will-change:transform}
-  .phone{position:relative;width:min(330px,80vw);border-radius:42px;padding:12px;background:linear-gradient(160deg,#0E3A43,#051a20);
-    box-shadow:0 0 0 1.5px rgba(3,210,182,.35),0 40px 90px rgba(0,0,0,.55),0 0 90px rgba(3,210,182,.22);transform:translateZ(30px);transform-style:preserve-3d}
-  .phone::after{content:"";position:absolute;inset:0;border-radius:42px;pointer-events:none;
-    background:linear-gradient(115deg,rgba(255,255,255,.14),transparent 32%,transparent 70%,rgba(3,235,202,.10));mix-blend-mode:screen}
-  .ghost{position:absolute;top:9%;left:-46%;width:min(290px,70vw);border-radius:16px;overflow:hidden;
-    transform:translateZ(-150px) rotateY(22deg);opacity:.62;box-shadow:0 30px 70px rgba(0,0,0,.5),0 0 0 1px var(--line);filter:saturate(.9) brightness(.85)}
-  .rig .chip{transform:translateZ(110px)}
-  .rig .chip.c2{transform:translateZ(150px)}
-  @media (max-width:600px){.ghost{left:-30%;top:4%;width:62vw}}
-  .screen{border-radius:32px;overflow:hidden;background:#313338}
-  .screen-top{display:flex;align-items:center;gap:8px;padding:14px 16px 10px;background:#2B2D31;font-size:13px;font-weight:600;color:#F2F3F5}
-  .screen-top i{font-style:normal;color:#949BA4;font-weight:500}
-  .screen .alert{border-radius:0}
-  .chip{position:absolute;display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:14px;background:rgba(6,34,41,.92);border:1px solid var(--line);
-    font-size:13px;font-weight:700;box-shadow:0 14px 34px rgba(0,0,0,.4);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);animation:float 6s ease-in-out infinite}
-  .chip small{display:block;font-size:11px;font-weight:500;color:var(--muted)}
-  .chip .ico{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:var(--dim);font-size:15px}
-  .c1{top:-2%;left:-12%}
-  .c2{bottom:22%;right:-14%;animation-delay:-3s}
-  .c3{bottom:-4%;left:-8%;animation-delay:-1.5s}
+  .hero-vis{position:relative;display:flex;justify-content:center;perspective:1400px;touch-action:pan-y;padding-block:10px}
+  .rig{position:relative;transform-style:preserve-3d;transform:rotateY(var(--ry,-14deg)) rotateX(var(--rx,6deg));transition:transform .9s cubic-bezier(.2,.7,.2,1);will-change:transform}
+  .phone{position:relative;width:min(340px,84vw);aspect-ratio:9/18.6;border-radius:50px;padding:11px;
+    background:linear-gradient(155deg,#14454D,#062126 45%,#03161B);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 0 0 1.5px rgba(3,210,182,.38),0 60px 100px -36px rgba(0,0,0,.9),0 40px 80px -50px rgba(3,210,182,.55)}
+  .phone::after{content:"";position:absolute;inset:0;border-radius:50px;pointer-events:none;z-index:6;
+    background:linear-gradient(118deg,rgba(255,255,255,.15),transparent 26%,transparent 74%,rgba(3,235,202,.08))}
+  .notch{position:absolute;top:20px;left:50%;width:98px;height:27px;border-radius:20px;background:#020B0E;transform:translateX(-50%);z-index:7}
+  .screen{position:relative;height:100%;border-radius:40px;overflow:hidden;background:#152F2B}
+  .ch-head{position:absolute;top:0;left:0;right:0;z-index:3;display:flex;align-items:center;gap:7px;padding:56px 18px 14px;
+    background:linear-gradient(#11302A 72%,rgba(17,48,42,0));font-weight:600;font-size:14px;color:#F2F3F5}
+  .ch-head .i{width:17px;height:17px;color:#93ACA6}
+  .ch-head span{margin-left:auto;font-size:11.5px;font-weight:500;color:#93ACA6}
+  .feed{position:absolute;left:0;right:0;bottom:0;display:flex;flex-direction:column;gap:6px;padding-bottom:16px;transition:transform 1.15s cubic-bezier(.16,1,.3,1)}
+  .ch-start{padding:0 16px 10px;color:#A9BDB8;font-size:12px;line-height:1.45}
+  .ch-start b{display:block;color:#F2F3F5;font-size:16px;margin-bottom:2px}
+  .push{position:absolute;z-index:5;top:12px;left:9px;right:9px;display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:20px;
+    background:rgba(24,54,50,.98);box-shadow:0 20px 34px -14px rgba(0,0,0,.75),0 0 0 1px rgba(255,255,255,.06);transform:translateY(-150%);transition:transform .75s cubic-bezier(.16,1,.3,1)}
+  .push.show{transform:none}
+  .push img{width:34px;height:34px;border-radius:9px;flex:0 0 auto}
+  .push > div{min-width:0}
+  .push b{display:block;font-size:12.5px;color:#fff;line-height:1.3}
+  .push span{display:block;font-size:12px;color:#C7D6D2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .push time{margin-left:auto;align-self:flex-start;font-size:10.5px;color:#93ACA6;white-space:nowrap}
+  @media (max-width:960px){.hero-in{grid-template-columns:minmax(0,1fr)}.hero-vis{margin-top:14px}}
 
-  /* alerte Discord reproduite */
-  .alert{background:#1F3B36;padding:14px 14px 12px;font-size:13px;color:#DBDEE1;text-align:left}
+  /* ---------- alerte Discord reproduite ---------- */
+  .alert{background:#1C3934;padding:12px 12px 10px;font-size:13px;color:#DBDEE1;text-align:left;line-height:1.4}
   .al-top{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
   .al-top img{width:22px;height:22px;border-radius:50%}
   .al-top b{color:#fff;font-size:13.5px;font-weight:600}
   .bot{font-size:9.5px;font-weight:700;padding:1px 5px;border-radius:4px;background:#5865F2;color:#fff;letter-spacing:.3px}
-  .al-top time{color:#949BA4;font-size:11.5px}
-  .embed{margin-top:9px;padding:12px 12px 12px 14px;border-radius:6px;background:#173530;border-left:4px solid var(--turq)}
-  .al-title{color:#00A8FC;font-weight:600;font-size:14.5px;line-height:1.3}
-  .al-grid{margin-top:10px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px 10px}
+  .al-top time{color:#94A8A3;font-size:11.5px}
+  .embed{margin-top:8px;padding:11px 12px 12px 13px;border-radius:6px;background:#163330;border-left:4px solid #2E9C60}
+  .al-title{color:#5AA9F0;font-weight:600;font-size:14.5px;line-height:1.3}
+  .al-grid{margin-top:9px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px 10px}
   .al-grid .w2{grid-column:span 2}
   .al-grid dt{font-weight:700;color:#fff;font-size:12.5px;white-space:nowrap}
   .al-grid dd{margin-top:2px;font-size:12.5px;color:#DBDEE1;font-variant-numeric:tabular-nums}
-  .hl{background:rgba(3,235,202,.16);color:var(--turq-l);padding:1px 5px;border-radius:5px;font-weight:600;white-space:nowrap}
-  .al-ph{margin-top:11px;display:grid;grid-template-columns:1fr 1fr;gap:5px}
+  .ts{background:rgba(255,255,255,.09);padding:1px 5px;border-radius:5px;white-space:nowrap}
+  .al-ph{margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:5px}
   .al-ph img{width:100%;height:auto;aspect-ratio:349/437;object-fit:cover;border-radius:6px}
-  .al-btns{margin-top:9px;display:flex;gap:7px}
-  .al-btns span{display:inline-flex;align-items:center;gap:5px;padding:6px 12px;border-radius:5px;font-size:12.5px;font-weight:600}
-  .buy{background:#248046;color:#fff}
-  .det{background:#4E5058;color:#fff}
-  .in-phone{padding:12px 11px 12px}
-  .in-phone .al-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .in-phone .al-grid .w2{grid-column:auto}
-  @keyframes float{50%{translate:0 -10px}}
-  .floaty{position:absolute;opacity:.16;pointer-events:none;animation:float 8s ease-in-out infinite}
-  @media (prefers-reduced-motion: reduce){.chip,.floaty,.dot,.plan.elite::before{animation:none}.rig{transition:none}}
+  .al-btns{margin-top:8px;display:flex;gap:7px}
+  .al-btns span{display:inline-flex;align-items:center;gap:5px;padding:6px 12px;border-radius:5px;font-size:12.5px;font-weight:600;color:#fff}
+  .b-buy{background:#248046}
+  .b-det{background:#4E5058}
+  .alert.compact .al-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .alert.compact .al-grid .w2{grid-column:auto}
 
-  @media (max-width:900px){
-    .hero{padding-block:40px 24px}
-    .hero .in{grid-template-columns:1fr;gap:44px}
-    .c1{left:-2%}.c2{right:-2%}
-  }
+  /* ---------- bandeaux ---------- */
+  .bands{position:relative;height:clamp(150px,17vw,230px);overflow:hidden;z-index:1}
+  .band{position:absolute;left:-10%;width:120%;top:50%;padding-block:clamp(13px,1.5vw,20px)}
+  .b1{transform:translateY(-64%) rotate(-3deg);background:var(--accent);color:var(--bg);z-index:2;box-shadow:0 26px 50px -26px rgba(0,0,0,.8)}
+  .b2{transform:translateY(-36%) rotate(2.2deg);background:var(--deep);border-block:1px solid var(--line);z-index:1}
+  .band-track{display:flex;width:max-content;will-change:transform}
+  .band-set{display:flex;align-items:center;gap:clamp(22px,2.8vw,40px);padding-right:clamp(22px,2.8vw,40px);
+    font-weight:900;font-size:clamp(26px,3.4vw,46px);letter-spacing:-.02em;text-transform:uppercase;white-space:nowrap;line-height:1}
+  .b2 .band-set{color:transparent;-webkit-text-stroke:1.3px rgba(3,235,202,.75)}
+  .band-set svg{width:.95em;height:.5em;flex:0 0 auto}
+  .b1 .band-set svg{fill:var(--bg)}
+  .b2 .band-set svg{fill:var(--accent)}
 
-  /* bandeau catégories */
-  .cats{border-block:1px solid rgba(3,210,182,.10);background:rgba(6,34,41,.5);overflow:hidden;
-    -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
-  .cats-track{display:flex;gap:44px;width:max-content;padding-block:18px;animation:defile 36s linear infinite;font-weight:700;font-size:15px;color:var(--muted);white-space:nowrap}
-  .cats-track span{display:inline-flex;align-items:center;gap:10px}
-  .cats-track span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--turq)}
-  @keyframes defile{to{transform:translateX(-50%)}}
-  @media (prefers-reduced-motion: reduce){.cats-track{animation:none;flex-wrap:wrap;width:auto;justify-content:center;gap:14px 28px;padding-inline:16px}}
-
-  /* sections */
-  section.blk{padding-block:84px}
-  .head{max-width:640px}
-  .head.c{margin:0 auto;text-align:center}
-  .tag{font-size:12.5px;font-weight:700;letter-spacing:2px;color:var(--turq);text-transform:uppercase}
-  .head h2{margin-top:10px;font-size:clamp(28px,4.2vw,42px);line-height:1.12;font-weight:800;letter-spacing:-.8px}
-  .head p{margin-top:14px;color:var(--text);font-size:16px;line-height:1.65}
-  @media (max-width:600px){section.blk{padding-block:60px}}
+  /* ---------- sections ---------- */
+  .sec{position:relative;padding-block:clamp(88px,11vw,150px)}
+  .sec-head{max-width:740px}
+  .sec-head.c{margin-inline:auto;text-align:center}
+  .sec-head h2{font-size:clamp(34px,4.6vw,60px);letter-spacing:-.035em}
+  .sec-head p{margin-top:18px;font-size:17.5px;color:var(--text-2);max-width:36em}
+  .sec-head.c p{margin-inline:auto}
 
   /* étapes */
-  .steps{margin-top:44px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;counter-reset:st}
-  .step{position:relative;padding:26px 22px;border-radius:22px;background:var(--surface);border:1px solid var(--line)}
-  .step::before{counter-increment:st;content:counter(st);display:grid;place-items:center;width:40px;height:40px;border-radius:12px;font-weight:800;font-size:17px;
-    background:linear-gradient(135deg,var(--turq-l),var(--turq-d));color:var(--navy)}
-  .step h3{margin-top:18px;font-size:18px;font-weight:700}
-  .step p{margin-top:8px;font-size:14.5px;line-height:1.6;color:var(--muted)}
-  @media (max-width:820px){.steps{grid-template-columns:1fr}}
+  .flow{list-style:none;margin-top:58px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+  .step{display:flex;flex-direction:column;gap:14px;padding:20px 20px 26px;border-radius:28px;background:var(--surface);border:1px solid var(--line);box-shadow:0 34px 70px -46px rgba(0,0,0,.9)}
+  .ui{position:relative;height:200px;border-radius:18px;background:var(--deep);border:1px solid rgba(3,210,182,.10);padding:16px;overflow:hidden}
+  .step h3{margin-top:6px;font-size:21px;letter-spacing:-.02em;display:flex;align-items:center;gap:12px}
+  .step h3 .n{flex:0 0 32px;height:32px;border-radius:10px;display:grid;place-items:center;font-size:15px;font-weight:800;letter-spacing:0;background:var(--accent);color:var(--bg)}
+  .step p{color:var(--text-2);font-size:15px;line-height:1.6}
+  .f-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 12px;border-radius:11px;background:rgba(255,255,255,.03);border:1px solid rgba(3,210,182,.12);font-size:13px}
+  .f-row + .f-row{margin-top:8px}
+  .f-row span{color:var(--text-3)}
+  .f-row b{font-weight:600;color:var(--text)}
+  .f-on{position:absolute;right:16px;bottom:14px;display:flex;align-items:center;gap:9px;font-size:12.5px;font-weight:600;color:var(--accent-l)}
+  .tg{position:relative;width:34px;height:20px;border-radius:999px;background:var(--accent);flex:0 0 auto}
+  .tg::after{content:"";position:absolute;top:3px;right:3px;width:14px;height:14px;border-radius:50%;background:var(--bg)}
+  .tg.off{background:#1B3A40}
+  .tg.off::after{right:auto;left:3px;background:#6F9496}
+  .radar{position:absolute;left:50%;top:44%;width:300px;height:300px;transform:translate(-50%,-50%);border-radius:50%;
+    background:conic-gradient(from 210deg,rgba(3,235,202,0),rgba(3,235,202,.22) 18%,transparent 19%),repeating-radial-gradient(circle,transparent 0 37px,rgba(3,210,182,.16) 37px 38px)}
+  .radar::after{content:"";position:absolute;left:50%;top:50%;width:9px;height:9px;border-radius:50%;background:var(--accent-l);transform:translate(-50%,-50%);box-shadow:0 0 0 6px rgba(3,235,202,.18)}
+  .hit{position:absolute;left:14px;right:14px;bottom:14px;display:flex;align-items:center;gap:11px;padding:9px;border-radius:13px;background:#163330;border:1px solid rgba(3,235,202,.35);box-shadow:0 18px 30px -16px rgba(0,0,0,.8)}
+  .hit img{width:38px;height:47px;object-fit:cover;border-radius:7px}
+  .hit div{min-width:0}
+  .hit b{display:block;font-size:13px;font-weight:600;color:#5AA9F0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .hit span{font-size:12px;color:#C7D6D2}
+  .buy{display:flex;flex-direction:column;justify-content:center;gap:18px;height:100%}
+  .buy-row{position:relative;display:flex;gap:8px}
+  .buy-row span{display:inline-flex;align-items:center;gap:6px;padding:10px 16px;border-radius:7px;font-size:14.5px;font-weight:600;color:#fff}
+  .cursor{position:absolute;left:62px;top:24px;width:26px;height:26px;fill:#fff;stroke:#04131A;stroke-width:1.4;filter:drop-shadow(0 4px 6px rgba(0,0,0,.5))}
+  .auto{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;background:rgba(3,210,182,.08);border:1px solid rgba(3,210,182,.22);font-size:13px;color:var(--text)}
+  .auto .i{width:18px;height:18px;color:var(--accent-l);stroke-width:2.4;margin-left:auto}
+  .pill{display:inline-flex;align-items:center;font-size:10.5px;font-weight:800;letter-spacing:.08em;padding:3px 8px;border-radius:999px;background:var(--accent);color:var(--bg)}
+  @media (max-width:900px){.flow{grid-template-columns:minmax(0,1fr)}}
 
   /* fonctionnalités */
-  .feats{margin-top:44px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-  .feat{padding:24px 22px;border-radius:22px;background:linear-gradient(180deg,rgba(3,210,182,.06),transparent 60%),var(--surface);border:1px solid rgba(3,210,182,.14);transition:border-color .2s, transform .2s}
-  .feat{transform:perspective(900px) rotateX(var(--tx,0)) rotateY(var(--ty,0));transition:transform .25s ease, border-color .2s}
-  .feat:hover{border-color:var(--line)}
-  .feat .ico{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-size:22px;background:var(--dim)}
-  .feat h3{margin-top:16px;font-size:17px;font-weight:700;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-  .feat p{margin-top:8px;font-size:14.5px;line-height:1.6;color:var(--muted)}
-  .pill{font-size:10.5px;font-weight:800;letter-spacing:1px;padding:3px 8px;border-radius:999px;background:var(--turq);color:var(--navy)}
-  @media (max-width:900px){.feats{grid-template-columns:1fr 1fr}}
-  @media (max-width:600px){.feats{grid-template-columns:1fr}}
+  .bento{margin-top:58px;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:18px}
+  .tile{position:relative;display:flex;flex-direction:column;gap:12px;padding:28px;border-radius:28px;background:var(--surface);border:1px solid var(--line);overflow:hidden;
+    box-shadow:0 34px 70px -46px rgba(0,0,0,.9);transition:border-color .25s}
+  .tile:hover{border-color:var(--line-2)}
+  .tile h3{font-size:22px;letter-spacing:-.02em;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .tile h3 .i{width:22px;height:22px;color:var(--accent)}
+  .tile p{color:var(--text-2);font-size:15px;line-height:1.6;max-width:34em}
+  .vis{margin-top:auto;padding-top:14px}
+  .t-alerts{grid-column:span 3;grid-row:span 2}
+  .t-filters,.t-all{grid-column:span 3}
+  .t-auto,.t-multi,.t-help{grid-column:span 2}
+  .t-alerts .vis{margin-top:auto;padding:26px 18px 18px;border-radius:24px;background:radial-gradient(120% 80% at 50% 0%,rgba(3,210,182,.16),transparent 62%),var(--deep);border:1px solid rgba(3,210,182,.12)}
+  .lock{text-align:center;margin-bottom:22px}
+  .lock b{display:block;font-size:clamp(58px,6vw,84px);font-weight:300;letter-spacing:-.03em;line-height:1;color:var(--text)}
+  .lock span{display:block;margin-top:6px;font-size:13px;color:var(--text-3)}
+  .nstack{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .notif{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px;padding:12px;border-radius:20px;background:rgba(22,51,48,.92);border:1px solid rgba(255,255,255,.06);box-shadow:0 20px 40px -24px rgba(0,0,0,.9)}
+  .notif + .notif{transform:scale(.95);opacity:.78;transform-origin:top center}
+  .notif .app{width:38px;height:38px;border-radius:10px}
+  .notif b{display:flex;justify-content:space-between;gap:8px;font-size:13px;color:#fff}
+  .notif b time{font-weight:500;color:#93ACA6;font-size:11.5px}
+  .notif span{display:block;font-size:12.5px;color:#C7D6D2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .notif .th{width:44px;height:55px;object-fit:cover;border-radius:9px}
+  .slider{padding:14px 16px;border-radius:16px;background:var(--deep);border:1px solid rgba(3,210,182,.12)}
+  .sl-top{display:flex;justify-content:space-between;font-size:13px;color:var(--text-3)}
+  .sl-top b{color:var(--text);font-weight:700}
+  .sl-track{position:relative;margin-top:14px;height:6px;border-radius:999px;background:#163B41}
+  .sl-track i{position:absolute;left:0;top:0;bottom:0;width:30%;border-radius:inherit;background:var(--accent)}
+  .sl-track span{position:absolute;left:30%;top:50%;width:18px;height:18px;border-radius:50%;background:#fff;transform:translate(-50%,-50%);box-shadow:0 0 0 5px rgba(3,210,182,.25)}
+  .tgls{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px}
+  .tgl{display:inline-flex;align-items:center;gap:9px;padding:8px 12px 8px 8px;border-radius:12px;background:var(--deep);border:1px solid rgba(3,210,182,.12);font-size:13px;color:var(--text)}
+  .cats{display:flex;flex-wrap:wrap;gap:8px}
+  .cats span{padding:8px 13px;border-radius:999px;font-size:13.5px;font-weight:600;background:var(--deep);border:1px solid rgba(3,210,182,.14);color:var(--text)}
+  .cats span.more{background:rgba(3,210,182,.12);border-color:rgba(3,210,182,.4);color:var(--accent-l)}
+  .af{display:flex;align-items:center;gap:11px;padding:11px 12px;border-radius:13px;background:var(--deep);border:1px solid rgba(3,210,182,.12);font-size:13px}
+  .af + .af{margin-top:8px}
+  .af div{min-width:0}
+  .af b{display:block;color:var(--text);font-weight:600;line-height:1.3}
+  .af span{color:var(--text-3);font-size:12px}
+  .af .dot{flex:0 0 10px;height:10px;border-radius:50%;background:#5AA9F0;box-shadow:0 0 0 4px rgba(90,169,240,.18)}
+  .af.ok{border-color:rgba(3,235,202,.35)}
+  .af.ok .i{color:var(--accent-l);stroke-width:2.4}
+  .accs{list-style:none;display:flex;flex-direction:column;gap:8px}
+  .accs li{display:flex;align-items:center;gap:11px;padding:9px 12px;border-radius:13px;background:var(--deep);border:1px solid rgba(3,210,182,.12);font-size:13.5px;font-weight:600}
+  .accs .av{width:28px;height:28px;font-size:12px}
+  .accs em{margin-left:auto;font-style:normal;font-size:11.5px;font-weight:600;color:var(--accent-l);display:inline-flex;align-items:center;gap:6px}
+  .accs em::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent-l)}
+  .vids{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .vid{position:relative;aspect-ratio:16/10;border-radius:13px;overflow:hidden;background:linear-gradient(140deg,#0D3A40,#04161B);border:1px solid rgba(3,210,182,.14);display:flex;align-items:flex-end;padding:9px}
+  .vid .i{position:absolute;left:50%;top:42%;width:30px;height:30px;transform:translate(-50%,-50%);color:var(--accent-l)}
+  .vid span{position:relative;font-size:11.5px;font-weight:600;line-height:1.25;color:var(--text)}
+  @media (max-width:980px){.bento{grid-template-columns:repeat(2,minmax(0,1fr))}.t-alerts{grid-column:span 2;grid-row:auto}.t-filters,.t-all,.t-auto,.t-multi{grid-column:span 1}.t-help{grid-column:span 2}}
+  @media (max-width:640px){.bento{grid-template-columns:minmax(0,1fr)}.bento .tile{grid-column:auto}}
 
   /* preuves */
-  .proof{background:linear-gradient(180deg,transparent,rgba(6,34,41,.7) 20%,rgba(6,34,41,.7) 80%,transparent)}
-  .shots{margin-top:44px;display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:860px;margin-inline:auto;perspective:1600px}
-  .shot{border-radius:22px;overflow:hidden;background:var(--surface);border:1px solid var(--line);box-shadow:0 30px 70px rgba(0,0,0,.45);
-    transition:transform .5s cubic-bezier(.2,.7,.2,1), box-shadow .4s}
-  .shot:first-child{transform:rotateY(14deg) rotateX(4deg) translateZ(-20px)}
-  .shot:last-child{transform:rotateY(-14deg) rotateX(4deg) translateZ(-20px)}
-  .shot:hover{transform:rotateY(0) rotateX(0) translateZ(40px);box-shadow:0 40px 90px rgba(0,0,0,.5),0 0 60px rgba(3,210,182,.25)}
-  .shot .alert{border-radius:0;border:none}
-  .shot figcaption{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:14px 18px;font-size:14px;font-weight:600;border-top:1px solid var(--line)}
-  .shot figcaption span{color:var(--turq-l)}
-  .note{margin-top:18px;text-align:center;font-size:13px;color:var(--muted)}
-  @media (max-width:700px){.shots{grid-template-columns:1fr}.shot:first-child,.shot:last-child{transform:none}}
+  .proof-cards{margin-top:64px;display:grid;grid-template-columns:repeat(2,minmax(0,420px));justify-content:center;gap:clamp(22px,4.5vw,64px);perspective:1800px}
+  .pcard{border-radius:24px;overflow:hidden;border:1px solid var(--line-2);background:#1C3934;
+    box-shadow:0 70px 110px -56px rgba(0,0,0,.95),0 36px 90px -60px rgba(3,210,182,.6);transition:transform .8s cubic-bezier(.16,1,.3,1)}
+  .pcard:first-child{transform:rotateY(12deg) rotateX(3deg)}
+  .pcard:last-child{transform:rotateY(-12deg) rotateX(3deg) translateY(40px)}
+  .pcard:hover{transform:none}
+  .pcard figcaption{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:15px 18px;background:#082A2F;border-top:1px solid var(--line);font-weight:600;font-size:14.5px}
+  .pcard figcaption span{color:var(--accent-l)}
+  .note{margin-top:30px;text-align:center;font-size:13.5px;color:var(--text-3)}
+  @media (max-width:760px){.proof-cards{grid-template-columns:minmax(0,420px)}.pcard:first-child,.pcard:last-child{transform:none}}
 
   /* tarifs */
-  .plans{margin-top:44px;display:grid;grid-template-columns:1fr 1.08fr;gap:18px;max-width:860px;margin-inline:auto;align-items:stretch}
-  .plan{display:flex;flex-direction:column;padding:30px 26px;border-radius:26px;background:var(--surface);border:1px solid var(--line)}
-  .plan.elite{position:relative;background:linear-gradient(160deg,rgba(3,235,202,.16),rgba(3,138,131,.06) 55%),var(--surface-2);border:1.5px solid var(--turq);box-shadow:0 30px 80px rgba(3,210,182,.16)}
-  @property --ang{syntax:'<angle>';initial-value:0deg;inherits:false}
-  .plan.elite::before{content:"";position:absolute;inset:-1.5px;border-radius:27px;padding:1.5px;pointer-events:none;
-    background:conic-gradient(from var(--ang),transparent 0 70%,var(--turq-l) 85%,#fff 90%,var(--turq-l) 95%,transparent);
-    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:spin 4.5s linear infinite}
-  @keyframes spin{to{--ang:360deg}}
-  .plan{transform:perspective(1000px) rotateX(var(--tx,0)) rotateY(var(--ty,0));transition:transform .25s ease}
-  .plan .badge{position:absolute;top:-13px;left:26px;font-size:11.5px;font-weight:800;letter-spacing:1px;padding:5px 12px;border-radius:999px;background:var(--turq-l);color:var(--navy)}
-  .plan h3{font-size:22px;font-weight:800}
-  .plan .for{margin-top:4px;font-size:14px;color:var(--muted)}
-  .price{margin-top:20px;display:flex;align-items:baseline;gap:6px;font-variant-numeric:tabular-nums}
-  .price b{font-size:44px;font-weight:900;letter-spacing:-1px}
-  .price span{color:var(--muted);font-size:15px}
-  .plan ul{list-style:none;margin-top:22px;display:flex;flex-direction:column;gap:12px;flex:1}
-  .plan li{display:flex;gap:10px;font-size:15px;line-height:1.5;color:var(--text)}
-  .plan li::before{content:"✓";flex:0 0 22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:800;background:var(--dim);color:var(--turq-l)}
-  .plan li.plus::before{background:var(--turq);color:var(--navy)}
-  .plan li strong{color:var(--white)}
-  .plan .btn{margin-top:26px;width:100%}
-  .fine{margin-top:20px;text-align:center;font-size:13.5px;color:var(--muted);line-height:1.7}
-  @media (max-width:760px){.plans{grid-template-columns:1fr}.plan.elite{order:-1}}
+  .plans{margin-top:60px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.12fr);gap:22px;max-width:960px;margin-inline:auto;align-items:center}
+  .plan{position:relative;display:flex;flex-direction:column;padding:34px 30px;border-radius:30px;background:var(--surface);border:1px solid var(--line);box-shadow:0 40px 80px -50px rgba(0,0,0,.95)}
+  .plan.elite{padding:44px 36px;background:linear-gradient(170deg,#0C3D42,#072C32 45%,#06232A);border:1.5px solid var(--accent);
+    box-shadow:0 70px 120px -56px rgba(0,0,0,1),0 46px 100px -70px rgba(3,210,182,.8)}
+  .plan-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .plan h3{font-size:28px;letter-spacing:-.03em}
+  .best{font-size:12px;font-weight:700;padding:5px 11px;border-radius:999px;background:var(--accent);color:var(--bg)}
+  .for{margin-top:6px;color:var(--text-2);font-size:15px}
+  .price{margin-top:26px;display:flex;align-items:baseline;gap:8px}
+  .price b{font-size:clamp(46px,5vw,60px);font-weight:900;letter-spacing:-.04em;line-height:1}
+  .price span{color:var(--text-2)}
+  .plan ul{list-style:none;margin-top:28px;display:flex;flex-direction:column;gap:14px;flex:1}
+  .plan li{display:flex;gap:12px;align-items:flex-start;font-size:15.5px;line-height:1.5}
+  .ck{flex:0 0 24px;height:24px;border-radius:8px;display:grid;place-items:center;background:rgba(3,210,182,.12);color:var(--accent)}
+  .ck .i{width:15px;height:15px;stroke-width:2.6}
+  .plan li.plus .ck{background:var(--accent);color:var(--bg)}
+  .plan li strong{font-weight:700}
+  .plan .btn{margin-top:32px;width:100%}
+  .fine{margin-top:30px;text-align:center;font-size:14px;color:var(--text-2);line-height:1.75}
+  .fine a{color:var(--accent-l)}
+  @media (max-width:820px){.plans{grid-template-columns:minmax(0,1fr)}.plan.elite{order:-1}}
 
   /* avis */
-  .reviews{margin-top:44px;columns:3 300px;column-gap:16px}
-  .rv{break-inside:avoid;margin-bottom:16px;padding:22px;border-radius:20px;background:var(--surface);border:1px solid var(--line)}
-  .rv-h{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px}
-  .rv-a{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:14px;font-weight:800;background:var(--dim);color:var(--turq)}
-  .rv-s{margin-left:auto;color:var(--star);letter-spacing:1px;font-size:14px}
-  .rv p{margin-top:12px;font-size:14.5px;line-height:1.65;color:var(--text)}
-  .rv-f{margin-top:12px;font-size:12px;font-weight:600;color:var(--turq)}
-  .rv-f time{color:var(--muted);font-weight:500}
+  .rv-wrap{margin-top:58px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:20px;align-items:start}
+  .rv-feat{padding:clamp(28px,4vw,46px);border-radius:30px;background:var(--surface);border:1px solid var(--line-2);box-shadow:0 40px 80px -50px rgba(0,0,0,.95)}
+  .rv-feat blockquote{margin-top:22px;font-size:clamp(20px,2.1vw,26px);font-weight:600;line-height:1.5;letter-spacing:-.01em}
+  .rv-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+  .rv{padding:22px;border-radius:24px;background:var(--surface);border:1px solid var(--line)}
+  .rv blockquote{margin-top:12px;font-size:14.5px;line-height:1.65}
+  .rv-h{display:flex;align-items:center;gap:11px;font-weight:700;font-size:15px}
+  .av{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:14px;background:rgba(3,210,182,.14);color:var(--accent);flex:0 0 auto}
+  .rv-h .stars{margin-left:auto}
+  .rv-f{margin-top:14px;font-size:12.5px;font-weight:600;color:var(--accent);display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+  .rv-f .i{width:15px;height:15px;stroke-width:2.4}
+  .rv-f time{color:var(--text-3);font-weight:500}
+  @media (max-width:980px){.rv-wrap{grid-template-columns:minmax(0,1fr)}}
+  @media (max-width:560px){.rv-grid{grid-template-columns:minmax(0,1fr)}}
 
   /* FAQ */
-  .faq{margin-top:40px;max-width:760px;margin-inline:auto;display:flex;flex-direction:column;gap:10px}
-  .faq details{border-radius:18px;background:var(--surface);border:1px solid rgba(3,210,182,.14);transition:border-color .2s}
-  .faq details[open]{border-color:var(--line)}
-  .faq summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:14px;padding:20px 22px;font-weight:600;font-size:16px}
-  .faq summary::-webkit-details-marker{display:none}
-  .faq summary::after{content:"+";margin-left:auto;flex:0 0 28px;height:28px;border-radius:9px;display:grid;place-items:center;background:var(--dim);color:var(--turq-l);font-size:18px;font-weight:600;transition:transform .2s}
-  .faq details[open] summary::after{transform:rotate(45deg)}
-  .faq .a{padding:0 22px 20px;font-size:15px;line-height:1.7;color:var(--text)}
+  .faq-wrap{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(32px,6vw,90px);align-items:start}
+  .faq-list{display:flex;flex-direction:column;gap:10px}
+  .faq-list details{border-radius:20px;background:var(--surface);border:1px solid var(--line);transition:border-color .2s}
+  .faq-list details[open]{border-color:var(--line-2)}
+  .faq-list summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:16px;padding:21px 22px;font-weight:600;font-size:16.5px;line-height:1.4}
+  .faq-list summary::-webkit-details-marker{display:none}
+  .pm{margin-left:auto;flex:0 0 30px;height:30px;border-radius:10px;display:grid;place-items:center;background:rgba(3,210,182,.10);color:var(--accent);transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+  .pm .i{width:16px;height:16px;stroke-width:2.2}
+  .faq-list details[open] .pm{transform:rotate(45deg)}
+  .ans{padding:0 22px 22px;color:var(--text-2);font-size:15.5px;line-height:1.7}
+  @media (max-width:900px){.faq-wrap{grid-template-columns:minmax(0,1fr)}}
 
   /* final */
-  .final{padding-block:20px 100px}
-  .final-card{position:relative;overflow:hidden;text-align:center;padding:56px 24px;border-radius:32px;
-    background:radial-gradient(90% 120% at 50% 0%,rgba(3,235,202,.22),transparent 60%),var(--surface-2);border:1.5px solid var(--line)}
-  .final-card img{width:76px;height:76px;border-radius:50%;margin:0 auto;box-shadow:0 0 0 4px rgba(3,210,182,.15),0 10px 40px rgba(3,210,182,.35)}
-  .final-card h2{margin-top:22px;font-size:clamp(28px,4.4vw,44px);font-weight:900;letter-spacing:-1px;line-height:1.1}
-  .final-card p{margin:14px auto 0;max-width:520px;color:var(--text);font-size:16px;line-height:1.6}
-  .final-card .hero-cta{justify-content:center}
+  .final{position:relative;text-align:center;padding-block:24px 8vh}
+  .logo-slot{width:min(28vh,320px);aspect-ratio:1;margin:0 auto}
+  .logo-slot img{width:100%;height:100%;border-radius:50%}
+  html.gl .logo-slot img{visibility:hidden}
+  .final h2{margin-top:2.5vh;font-size:clamp(40px,min(6.6vw,8.5vh),80px);letter-spacing:-.04em;line-height:.98;font-weight:900}
+  .final p{margin:2vh auto 0;max-width:32em;color:var(--text-2);font-size:18px}
+  .final .ctas{justify-content:center;margin-top:3.5vh}
 
-  footer{padding-block:30px 40px;border-top:1px solid rgba(3,210,182,.10);font-size:13px;color:var(--muted)}
-  footer .in{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;justify-content:space-between}
-  footer nav{display:flex;flex-wrap:wrap;gap:8px 18px}
-  footer a{text-decoration:none}
-  footer a:hover{color:var(--white)}
+  footer{padding-block:26px 30px;border-top:1px solid rgba(3,210,182,.10);font-size:13.5px;color:var(--text-3)}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between}
+  footer nav{display:flex;flex-wrap:wrap;gap:8px 22px}
+  footer a{text-decoration:none;color:var(--text-2);transition:color .2s}
+  footer a:hover{color:var(--text)}
 
   /* barre d'achat mobile */
   .bar{display:none}
   @media (max-width:760px){
     .bar{display:flex;align-items:center;gap:12px;position:fixed;left:0;right:0;bottom:0;z-index:30;
-      padding:12px max(16px, env(safe-area-inset-right, 0px)) calc(12px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
-      background:rgba(4,19,26,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line);
-      transform:translateY(110%);transition:transform .3s ease}
+      padding:12px max(16px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));
+      background:rgba(4,19,26,.94);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid var(--line);transform:translateY(110%);transition:transform .35s cubic-bezier(.2,.7,.2,1)}
     .bar.on{transform:none}
-    .bar .p{font-size:13px;color:var(--muted);line-height:1.3}
-    .bar .p b{display:block;color:var(--white);font-size:16px}
+    .bar .p{font-size:12.5px;color:var(--text-2);line-height:1.3}
+    .bar .p b{display:block;color:var(--text);font-size:15.5px}
     .bar .btn{margin-left:auto;padding:13px 18px;font-size:15px}
-    footer{padding-bottom:110px}
+    .logo-slot{width:min(28vh,240px)}
+    .final{padding-bottom:48px}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .rise{animation:none}
+    .rig,.feed,.push,.pcard,.btn,.btn-main::after{transition:none}
   }
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2.5 4.8 13.4h6.4L10.4 21.5l8.3-11h-6.5L13 2.5Z"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M20.5 12a8.5 8.5 0 0 1-12.4 7.6L3.5 20.8l1.3-4.4A8.5 8.5 0 1 1 20.5 12Z"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 5 6v5.2c0 4.3 2.9 8.2 7 9.3 4.1-1.1 7-5 7-9.3V6l-7-3Z"/><path d="m9 12 2.1 2.1L15.2 10"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="9.5" rx="2.4"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 9a6 6 0 1 1 12 0c0 6.3 2.5 7.5 2.5 7.5h-17S6 15.3 6 9Z"/><path d="M10.2 19.8a2 2 0 0 0 3.6 0"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2.2"/><circle cx="9" cy="17" r="2.2"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1.8"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.8"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.8"/><path d="M17 13.5v7M13.5 17h7"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8.2" r="3.2"/><path d="M3.5 19.5c.8-3 3-4.7 5.5-4.7s4.7 1.7 5.5 4.7"/><circle cx="17.2" cy="9.2" r="2.5"/><path d="M16.4 14.7c2.2.1 3.7 1.4 4.3 3.8"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.2"/><path d="M10 8.6 15.4 12 10 15.4V8.6Z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.3 4.3L19 7.2"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-hash" viewBox="0 0 24 24"><path d="M9.5 4 7.5 20M16.5 4l-2 16M4.5 9h16M3.5 15h16"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.8l2.7 5.6 6.1.8-4.5 4.2 1.2 6L12 16.5l-5.5 2.9 1.2-6-4.5-4.2 6.1-.8L12 2.8Z"/></symbol>
+  <symbol id="i-n" viewBox="-1.25 -0.66 2.5 1.32"><g transform="scale(1,-1)"><polygon points="-1.2,-0.59 -0.57,0.52 -0.51,0.6 -0.49,0.61 0.21,0.61 0.21,0.6 -0.5,-0.6 -0.54,-0.61 -1.2,-0.6"/><polygon points="0.3,0.25 0.5,0.61 1.18,0.61 1.2,0.59 1.2,0.56 0.52,-0.58 0.51,-0.58 0.5,-0.55"/><polygon points="-0.3,-0.29 0.19,0.53 0.21,0.54 0.49,-0.59 -0.18,-0.59 -0.23,-0.55" opacity=".78"/></g></symbol>
+</svg>
 
-<header class="nav">
-  <div class="in">
-    <a class="brand" href="#haut" data-k="elite-logo"><img src="../logo.png" alt=""><b>NANIXSS<span>.</span>HUB</b></a>
+<canvas id="world" class="gl-layer" aria-hidden="true"></canvas>
+<canvas id="world-front" class="gl-layer" aria-hidden="true"></canvas>
+<div class="veil" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top" data-k="elite-logo"><img src="../logo.png" alt="" width="36" height="36"><span>NANIXSS<b>.</b>HUB</span></a>
     <nav class="nav-links" aria-label="Sections">
-      <a href="#fonctionnement">Comment ça marche</a>
+      <a href="#comment">Comment ça marche</a>
+      <a href="#fonctions">Fonctionnalités</a>
       <a href="#tarifs">Tarifs</a>
       <a href="#avis">Avis</a>
       <a href="#faq">FAQ</a>
     </nav>
-    <a class="btn btn-main cta-s" href="#tarifs" data-k="elite-nav">Rejoindre</a>
+    <a class="btn btn-main btn-s" href="#tarifs" data-k="elite-nav">Voir les offres</a>
   </div>
 </header>
 
-<main id="haut">
+<main id="top">
   <section class="hero">
-    <div class="glow" aria-hidden="true"><div class="grid-bg"></div></div>
-    <img class="floaty" src="../n.png" alt="" aria-hidden="true" style="width:120px;top:14%;right:4%">
-    <img class="floaty" src="../n.png" alt="" aria-hidden="true" style="width:70px;bottom:8%;left:3%;animation-delay:-4s">
-    <div class="in">
-      <div>
-        <span class="eyebrow"><span class="dot"></span>Bot Vinted · alertes en direct</span>
-        <h1>Chaque bonne affaire Vinted, <em>dès sa mise en ligne.</em></h1>
-        <p class="lead">Le bot Nanixss Hub surveille Vinted pour toi, trie selon tes filtres et t'envoie l'annonce sur Discord avec un bouton Acheter. Tu n'as plus qu'à cliquer.</p>
-        <div class="hero-cta">
-          <a class="btn btn-main" href="https://buy.stripe.com/28EfZigv15TG06mbtN8g001" data-k="elite-hero" rel="noopener">⚡ Prendre l'Elite · 24,99 €/mois</a>
-          <a class="btn btn-ghost" href="https://discord.gg/cyReW8sVJm" data-k="elite-discord-hero" target="_blank" rel="noopener">Voir le Discord gratuitement</a>
+    <div class="wrap hero-in">
+      <div class="hero-txt" data-scene="hero">
+        <h1 class="rise">Chaque pépite Vinted, <span class="hl">à l'instant où elle sort.</span></h1>
+        <p class="lead rise d1">Le bot Nanixss Hub surveille Vinted selon tes filtres et t'envoie chaque annonce sur Discord, avec un bouton pour l'acheter en un clic. <strong>En Elite, l'autocop achète même à ta place.</strong></p>
+        <div class="ctas rise d2">
+          <a class="btn btn-main" href="https://buy.stripe.com/28EfZigv15TG06mbtN8g001" data-k="elite-hero" rel="noopener"><svg class="i"><use href="#i-bolt"/></svg>Prendre l'Elite <span class="btn-price num">24,99 €/mois</span></a>
+          <a class="btn btn-ghost" href="https://discord.gg/cyReW8sVJm" data-k="elite-discord-hero" target="_blank" rel="noopener"><svg class="i"><use href="#i-chat"/></svg>Voir le Discord gratuit</a>
         </div>
-        <div class="trust">
-          <span><b>★★★★★</b> Avis vérifiés d'abonnés</span>
-          <span>✓ Sans engagement</span>
-          <span>✓ Tutos vidéo inclus</span>
-        </div>
+        <ul class="assure rise d3">
+          <li><a href="#avis"><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span>Lire les avis des abonnés</a></li>
+          <li><svg class="i"><use href="#i-shield"/></svg>Sans engagement</li>
+          <li><svg class="i"><use href="#i-lock"/></svg>Paiement sécurisé par Stripe</li>
+        </ul>
       </div>
 
-      <div class="stage" id="stage">
-        <canvas id="ring" aria-hidden="true"></canvas>
+      <div class="hero-vis" id="stage" data-scene="phone">
         <div class="rig" id="rig">
-        <div class="ghost" aria-hidden="true"><div class="alert in-phone">
-              <div class="al-top"><img src="../logo.png" alt=""><b>Nanixss Hub V</b><span class="bot">BOT</span><time>Aujourd'hui à 12:02</time></div>
-              <div class="embed">
-                <div class="al-title">Switch spiel</div>
-                <dl class="al-grid">
-                  <div><dt>⏳ Publié</dt><dd><span class="hl">à l'instant</span></dd></div>
-                  <div><dt>🔖 Marque</dt><dd>Inconnue</dd></div>
-                  <div><dt>📏 Taille</dt><dd>Unique</dd></div>
-                  <div><dt>💎 État</dt><dd>Très bon état</dd></div>
-                  <div class="w2"><dt>💰 Prix</dt><dd>7,00 € · ≈ 7,97 € TTC</dd></div>
-                </dl>
-                <div class="al-ph"><img src="mario-1.webp" alt="New Super Mario Bros. U Deluxe, recto" width="349" height="437"><img src="mario-2.webp" alt="New Super Mario Bros. U Deluxe, intérieur de la boîte" width="349" height="437"></div>
+          <div class="phone">
+            <div class="notch"></div>
+            <div class="screen">
+              <div class="push" id="push" aria-hidden="true">
+                <img src="../logo.png" alt="" width="34" height="34">
+                <div><b>Nanixss Hub V</b><span>Jeu nintendo switch Pokémon · 10,00 €</span></div>
+                <time>à l'instant</time>
               </div>
-              <div class="al-btns"><span class="buy">⚡ Acheter</span><span class="det">📄 Détails ↗</span></div>
-            </div></div>
-        <div class="phone">
-          <div class="screen">
-            <div class="screen-top"># alertes-switch <i>· Nanixss Hub V</i></div>
-<div class="alert in-phone">
-              <div class="al-top"><img src="../logo.png" alt=""><b>Nanixss Hub V</b><span class="bot">BOT</span><time>Aujourd'hui à 12:02</time></div>
-              <div class="embed">
-                <div class="al-title">Jeu nintendo switch Pokémon</div>
-                <dl class="al-grid">
-                  <div><dt>⏳ Publié</dt><dd><span class="hl">à l'instant</span></dd></div>
-                  <div><dt>🔖 Marque</dt><dd>Inconnue</dd></div>
-                  <div><dt>📏 Taille</dt><dd>Unique</dd></div>
-                  <div><dt>💎 État</dt><dd>Très bon état</dd></div>
-                  <div class="w2"><dt>💰 Prix</dt><dd>10,00 € · ≈ 11,12 € TTC</dd></div>
-                </dl>
-                <div class="al-ph"><img src="arceus-1.webp" alt="Pokémon Légendes Arceus, recto" width="349" height="437"><img src="arceus-2.webp" alt="Pokémon Légendes Arceus, intérieur de la boîte" width="349" height="437"></div>
+              <div class="ch-head"><svg class="i"><use href="#i-hash"/></svg>alertes<span>Nanixss Hub</span></div>
+              <div class="feed" id="feed">
+                <p class="ch-start"><b>Bienvenue dans #alertes</b>Chaque annonce qui passe tes filtres arrive ici.</p>
+                <article class="alert compact" aria-label="Alerte : Switch spiel, 7 euros">
+                  <header class="al-top"><img src="../logo.png" alt="" width="22" height="22"><b>Nanixss Hub V</b><span class="bot">BOT</span><time>Aujourd'hui à 12:02</time></header>
+                  <div class="embed">
+                    <p class="al-title">Switch spiel</p>
+                    <dl class="al-grid">
+                      <div><dt>⏳ Publié</dt><dd><span class="ts">à l'instant</span></dd></div>
+                      <div><dt>🔖 Marque</dt><dd>Inconnue</dd></div>
+                      <div><dt>📏 Taille</dt><dd>Unique</dd></div>
+                      <div><dt>💎 État</dt><dd>Très bon état</dd></div>
+                      <div class="w2"><dt>💰 Prix</dt><dd>7,00 € | ≈ 7,97 € (TTC)</dd></div>
+                    </dl>
+                    <div class="al-ph"><img src="mario-1.webp" alt="New Super Mario Bros. U Deluxe, boîte" width="349" height="437"><img src="mario-2.webp" alt="New Super Mario Bros. U Deluxe, intérieur de la boîte" width="349" height="437"></div>
+                  </div>
+                  <div class="al-btns"><span class="b-buy">⚡ Acheter</span><span class="b-det">📄 Détails ↗</span></div>
+                </article>
+                <article class="alert compact" aria-label="Alerte : Jeu nintendo switch Pokémon, 10 euros">
+                  <header class="al-top"><img src="../logo.png" alt="" width="22" height="22"><b>Nanixss Hub V</b><span class="bot">BOT</span><time>Aujourd'hui à 12:02</time></header>
+                  <div class="embed">
+                    <p class="al-title">Jeu nintendo switch Pokémon</p>
+                    <dl class="al-grid">
+                      <div><dt>⏳ Publié</dt><dd><span class="ts">à l'instant</span></dd></div>
+                      <div><dt>🔖 Marque</dt><dd>Inconnue</dd></div>
+                      <div><dt>📏 Taille</dt><dd>Unique</dd></div>
+                      <div><dt>💎 État</dt><dd>Très bon état</dd></div>
+                      <div class="w2"><dt>💰 Prix</dt><dd>10,00 € | ≈ 11,12 € (TTC)</dd></div>
+                    </dl>
+                    <div class="al-ph"><img src="arceus-1.webp" alt="Pokémon Légendes Arceus, boîte" width="349" height="437"><img src="arceus-2.webp" alt="Pokémon Légendes Arceus, intérieur de la boîte" width="349" height="437"></div>
+                  </div>
+                  <div class="al-btns"><span class="b-buy">⚡ Acheter</span><span class="b-det">📄 Détails ↗</span></div>
+                </article>
               </div>
-              <div class="al-btns"><span class="buy">⚡ Acheter</span><span class="det">📄 Détails ↗</span></div>
             </div>
           </div>
         </div>
-        <div class="chip c1"><span class="ico">⏱️</span><span>Publié à l'instant<small>reçu sur Discord</small></span></div>
-        <div class="chip c2"><span class="ico">💰</span><span>10,00 €<small>Légendes Pokémon Arceus</small></span></div>
-        <div class="chip c3"><span class="ico">⚡</span><span>Bouton Acheter<small>un clic depuis l'alerte</small></span></div>
-        </div>
       </div>
     </div>
   </section>
 
-  <div class="cats" aria-label="Ce que le bot peut trouver">
-    <div class="cats-track">
-      <span>Jeux vidéo</span><span>Consoles</span><span>Vêtements</span><span>Sneakers</span><span>Rétro</span><span>Accessoires</span><span>Lots</span><span>Tout ce qui est sur Vinted</span>
-      <span aria-hidden="true">Jeux vidéo</span><span aria-hidden="true">Consoles</span><span aria-hidden="true">Vêtements</span><span aria-hidden="true">Sneakers</span><span aria-hidden="true">Rétro</span><span aria-hidden="true">Accessoires</span><span aria-hidden="true">Lots</span><span aria-hidden="true">Tout ce qui est sur Vinted</span>
-    </div>
+  <div class="bands" aria-label="Le bot trouve tout ce qui est sur Vinted : jeux vidéo, consoles, vêtements, sneakers, rétro, accessoires">
+    <div class="band b1" aria-hidden="true"><div class="band-track">
+      <div class="band-set"><span>Jeux vidéo</span><svg><use href="#i-n"/></svg><span>Consoles</span><svg><use href="#i-n"/></svg><span>Vêtements</span><svg><use href="#i-n"/></svg><span>Sneakers</span><svg><use href="#i-n"/></svg><span>Rétro</span><svg><use href="#i-n"/></svg><span>Accessoires</span><svg><use href="#i-n"/></svg><span>Tout Vinted</span><svg><use href="#i-n"/></svg></div>
+      <div class="band-set"><span>Jeux vidéo</span><svg><use href="#i-n"/></svg><span>Consoles</span><svg><use href="#i-n"/></svg><span>Vêtements</span><svg><use href="#i-n"/></svg><span>Sneakers</span><svg><use href="#i-n"/></svg><span>Rétro</span><svg><use href="#i-n"/></svg><span>Accessoires</span><svg><use href="#i-n"/></svg><span>Tout Vinted</span><svg><use href="#i-n"/></svg></div>
+      <div class="band-set"><span>Jeux vidéo</span><svg><use href="#i-n"/></svg><span>Consoles</span><svg><use href="#i-n"/></svg><span>Vêtements</span><svg><use href="#i-n"/></svg><span>Sneakers</span><svg><use href="#i-n"/></svg><span>Rétro</span><svg><use href="#i-n"/></svg><span>Accessoires</span><svg><use href="#i-n"/></svg><span>Tout Vinted</span><svg><use href="#i-n"/></svg></div>
+      <div class="band-set"><span>Jeux vidéo</span><svg><use href="#i-n"/></svg><span>Consoles</span><svg><use href="#i-n"/></svg><span>Vêtements</span><svg><use href="#i-n"/></svg><span>Sneakers</span><svg><use href="#i-n"/></svg><span>Rétro</span><svg><use href="#i-n"/></svg><span>Accessoires</span><svg><use href="#i-n"/></svg><span>Tout Vinted</span><svg><use href="#i-n"/></svg></div>
+    </div></div>
+    <div class="band b2" aria-hidden="true"><div class="band-track">
+      <div class="band-set"><span>Alertes à l'instant</span><svg><use href="#i-n"/></svg><span>Filtres sur mesure</span><svg><use href="#i-n"/></svg><span>Autocop</span><svg><use href="#i-n"/></svg><span>Multicompte</span><svg><use href="#i-n"/></svg><span>Sans engagement</span><svg><use href="#i-n"/></svg></div>
+      <div class="band-set"><span>Alertes à l'instant</span><svg><use href="#i-n"/></svg><span>Filtres sur mesure</span><svg><use href="#i-n"/></svg><span>Autocop</span><svg><use href="#i-n"/></svg><span>Multicompte</span><svg><use href="#i-n"/></svg><span>Sans engagement</span><svg><use href="#i-n"/></svg></div>
+      <div class="band-set"><span>Alertes à l'instant</span><svg><use href="#i-n"/></svg><span>Filtres sur mesure</span><svg><use href="#i-n"/></svg><span>Autocop</span><svg><use href="#i-n"/></svg><span>Multicompte</span><svg><use href="#i-n"/></svg><span>Sans engagement</span><svg><use href="#i-n"/></svg></div>
+      <div class="band-set"><span>Alertes à l'instant</span><svg><use href="#i-n"/></svg><span>Filtres sur mesure</span><svg><use href="#i-n"/></svg><span>Autocop</span><svg><use href="#i-n"/></svg><span>Multicompte</span><svg><use href="#i-n"/></svg><span>Sans engagement</span><svg><use href="#i-n"/></svg></div>
+    </div></div>
   </div>
 
-  <section class="blk" id="fonctionnement">
-    <div class="in">
-      <div class="head c">
-        <div class="tag">Comment ça marche</div>
-        <h2>Trois étapes, et le bot travaille pour toi</h2>
+  <section class="sec" id="comment" data-scene="steps">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Tu règles une fois. Le bot bosse pour toi.</h2>
+        <p>Plus besoin de rafraîchir Vinted toute la journée. Tu choisis ce que tu cherches, et chaque annonce qui correspond arrive sur ton téléphone.</p>
       </div>
-      <div class="steps">
-        <div class="step"><h3>Tu crées tes filtres</h3><p>Mots-clés, prix max, état, catégorie : tu choisis exactement ce que tu cherches. Un tuto vidéo te guide pas à pas.</p></div>
-        <div class="step"><h3>Le bot repère l'annonce</h3><p>Dès qu'une annonce correspond, elle arrive dans ton salon Discord avec les photos, le prix et l'heure de publication.</p></div>
-        <div class="step"><h3>Tu achètes en un clic</h3><p>Le bouton Acheter t'envoie direct sur l'annonce. Avec l'Elite, l'autocop peut même acheter à ta place.</p></div>
+      <ol class="flow">
+        <li class="step">
+          <div class="ui" aria-hidden="true">
+            <div class="f-row"><span>Recherche</span><b>pokémon switch</b></div>
+            <div class="f-row"><span>Prix max</span><b class="num">15 €</b></div>
+            <div class="f-row"><span>État</span><b>Très bon état</b></div>
+            <div class="f-on"><span class="tg"></span>Filtre actif</div>
+          </div>
+          <h3><span class="n">1</span>Tu règles tes filtres</h3>
+          <p>Ce que tu cherches, ton prix max, l'état. Un tuto vidéo te guide pas à pas.</p>
+        </li>
+        <li class="step">
+          <div class="ui" aria-hidden="true">
+            <div class="radar"></div>
+            <div class="hit"><img src="arceus-1.webp" alt="" width="349" height="437"><div><b>Jeu nintendo switch Pokémon</b><span class="num">10,00 € · à l'instant</span></div></div>
+          </div>
+          <h3><span class="n">2</span>Le bot repère l'annonce</h3>
+          <p>Dès qu'une annonce colle à ton filtre, elle arrive dans ton salon Discord avec les photos et le prix.</p>
+        </li>
+        <li class="step">
+          <div class="ui" aria-hidden="true">
+            <div class="buy">
+              <div class="buy-row"><span class="b-buy">⚡ Acheter</span><span class="b-det">📄 Détails ↗</span>
+                <svg class="cursor" viewBox="0 0 24 24"><path d="M5 2.8 19.2 12l-6.3 1.4L9.6 19.5 5 2.8Z"/></svg></div>
+              <div class="auto"><span class="pill">ELITE</span>Autocop : achat lancé tout seul<svg class="i"><use href="#i-check"/></svg></div>
+            </div>
+          </div>
+          <h3><span class="n">3</span>Tu achètes en un clic</h3>
+          <p>Le bouton Acheter t'envoie direct sur l'annonce. En Elite, l'autocop peut acheter à ta place.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="fonctions" data-scene="features" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Tout pour ne plus rater une pépite.</h2>
+        <p>Un seul abonnement, et tout se passe dans ton Discord.</p>
+      </div>
+      <div class="bento">
+        <article class="tile t-alerts">
+          <h3><svg class="i"><use href="#i-bell"/></svg>Alertes instantanées</h3>
+          <p>0 délai entre la mise en ligne sur Vinted et la notification dans ton Discord, sur ordi comme sur téléphone.</p>
+          <div class="vis">
+            <div class="lock" aria-hidden="true"><b class="num">12:02</b><span>Aujourd'hui</span></div>
+            <ul class="nstack" aria-hidden="true">
+              <li class="notif"><img class="app" src="../logo.png" alt="" width="38" height="38"><div><b>Nanixss Hub V <time>à l'instant</time></b><span>Jeu nintendo switch Pokémon</span><span class="num">10,00 € · Très bon état</span></div><img class="th" src="arceus-1.webp" alt="" width="349" height="437"></li>
+              <li class="notif"><img class="app" src="../logo.png" alt="" width="38" height="38"><div><b>Nanixss Hub V <time>à l'instant</time></b><span>Switch spiel</span><span class="num">7,00 € · Très bon état</span></div><img class="th" src="mario-1.webp" alt="" width="349" height="437"></li>
+            </ul>
+          </div>
+        </article>
+        <article class="tile t-filters">
+          <h3><svg class="i"><use href="#i-sliders"/></svg>Filtres sur mesure</h3>
+          <p>Tu ne reçois que ce que tu cherches, pas un flux noyé sous les annonces inutiles.</p>
+          <div class="vis" aria-hidden="true">
+            <div class="slider"><div class="sl-top"><span>Prix max</span><b class="num">15 €</b></div><div class="sl-track"><i></i><span></span></div></div>
+            <div class="tgls"><span class="tgl"><span class="tg"></span>Très bon état</span><span class="tgl"><span class="tg"></span>Neuf</span><span class="tgl"><span class="tg off"></span>Lots</span></div>
+          </div>
+        </article>
+        <article class="tile t-all">
+          <h3><svg class="i"><use href="#i-grid"/></svg>Tout Vinted</h3>
+          <p>Jeux, consoles, vêtements, sneakers ou n'importe quel autre article. Si c'est sur Vinted, le bot peut le trouver.</p>
+          <div class="vis cats" aria-hidden="true"><span>Jeux vidéo</span><span>Consoles</span><span>Vêtements</span><span>Sneakers</span><span>Rétro</span><span>Accessoires</span><span>Lots</span><span class="more">Et tout le reste</span></div>
+        </article>
+        <article class="tile t-auto">
+          <h3><svg class="i"><use href="#i-bolt"/></svg>Autocop <span class="pill">ELITE</span></h3>
+          <p>Le bot achète tout seul les annonces qui passent tes filtres, même quand tu n'es pas devant ton écran.</p>
+          <div class="vis" aria-hidden="true">
+            <div class="af"><span class="dot"></span><div><b>Annonce repérée</b><span>Jeu nintendo switch Pokémon · 10,00 €</span></div></div>
+            <div class="af ok"><svg class="i"><use href="#i-check"/></svg><div><b>Achat lancé tout seul</b><span>par l'autocop</span></div></div>
+          </div>
+        </article>
+        <article class="tile t-multi">
+          <h3><svg class="i"><use href="#i-users"/></svg>Multicompte <span class="pill">ELITE</span></h3>
+          <p>Connecte jusqu'à 3 comptes Vinted et gère-les depuis le même Discord.</p>
+          <ul class="vis accs" aria-hidden="true">
+            <li><span class="av">1</span>Compte Vinted 1<em>connecté</em></li>
+            <li><span class="av">2</span>Compte Vinted 2<em>connecté</em></li>
+            <li><span class="av">3</span>Compte Vinted 3<em>connecté</em></li>
+          </ul>
+        </article>
+        <article class="tile t-help">
+          <h3><svg class="i"><use href="#i-play"/></svg>Tutos et support</h3>
+          <p>Des vidéos pour créer un filtre et connecter tes comptes, des guides, des presets prêts à l'emploi et un support par ticket.</p>
+          <div class="vis vids" aria-hidden="true">
+            <div class="vid"><svg class="i"><use href="#i-play"/></svg><span>Créer un filtre</span></div>
+            <div class="vid"><svg class="i"><use href="#i-play"/></svg><span>Connecter tes comptes Vinted</span></div>
+          </div>
+        </article>
       </div>
     </div>
   </section>
 
-  <section class="blk" style="padding-top:0">
-    <div class="in">
-      <div class="head">
-        <div class="tag">Fonctionnalités</div>
-        <h2>Tout ce qu'il faut pour cop avant que l'annonce parte</h2>
+  <section class="sec" id="preuves" data-scene="proof">
+    <div class="wrap">
+      <div class="sec-head c">
+        <h2>Voilà ce que reçoivent les abonnés.</h2>
+        <p>Deux jeux Switch à 7 et 10 €, signalés à l'instant de leur mise en ligne. Les deux alertes sont arrivées le même jour, à 12 h 02.</p>
       </div>
-      <div class="feats">
-        <div class="feat"><div class="ico">🔔</div><h3>Alertes instantanées</h3><p>0 délai entre la mise en ligne et la notification dans ton Discord, sur ordi comme sur téléphone.</p></div>
-        <div class="feat"><div class="ico">🎯</div><h3>Filtres sur mesure</h3><p>Tu reçois seulement ce qui t'intéresse. Pas de flux noyé sous les annonces inutiles.</p></div>
-        <div class="feat"><div class="ico">🌍</div><h3>Tout Vinted</h3><p>Jeux, consoles, vêtements ou n'importe quel autre article : si c'est sur Vinted, le bot peut le trouver.</p></div>
-        <div class="feat"><div class="ico">🤖</div><h3>Autocop <span class="pill">ELITE</span></h3><p>Le bot achète automatiquement les annonces qui passent tes filtres, même quand tu n'es pas devant ton écran.</p></div>
-        <div class="feat"><div class="ico">👥</div><h3>Multicompte <span class="pill">ELITE</span></h3><p>Connecte jusqu'à 3 comptes Vinted au bot et gère-les depuis le même Discord.</p></div>
-        <div class="feat"><div class="ico">🎥</div><h3>Tutos et support</h3><p>Vidéos pour créer un filtre et connecter tes comptes, guides, presets prêts à l'emploi et support par ticket.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="blk proof">
-    <div class="in">
-      <div class="head c">
-        <div class="tag">En vrai</div>
-        <h2>Voilà ce qui arrive dans ton Discord</h2>
-        <p>Deux alertes reçues le même jour, à la même minute. Des jeux Switch à 7 et 10 €, signalés à l'instant de leur mise en ligne.</p>
-      </div>
-      <div class="shots">
-        <figure class="shot"><div class="alert">
-              <div class="al-top"><img src="../logo.png" alt=""><b>Nanixss Hub V</b><span class="bot">BOT</span><time>Aujourd'hui à 12:02</time></div>
-              <div class="embed">
-                <div class="al-title">Jeu nintendo switch Pokémon</div>
-                <dl class="al-grid">
-                  <div><dt>⏳ Publié</dt><dd><span class="hl">à l'instant</span></dd></div>
-                  <div><dt>🔖 Marque</dt><dd>Inconnue</dd></div>
-                  <div><dt>📏 Taille</dt><dd>Unique</dd></div>
-                  <div><dt>💎 État</dt><dd>Très bon état</dd></div>
-                  <div class="w2"><dt>💰 Prix</dt><dd>10,00 € · ≈ 11,12 € TTC</dd></div>
-                </dl>
-                <div class="al-ph"><img src="arceus-1.webp" alt="Pokémon Légendes Arceus, recto" width="349" height="437" loading="lazy"><img src="arceus-2.webp" alt="Pokémon Légendes Arceus, intérieur de la boîte" width="349" height="437" loading="lazy"></div>
-              </div>
-              <div class="al-btns"><span class="buy">⚡ Acheter</span><span class="det">📄 Détails ↗</span></div>
-            </div><figcaption>Légendes Pokémon Arceus <span>10 € · à l'instant</span></figcaption></figure>
-        <figure class="shot"><div class="alert">
-              <div class="al-top"><img src="../logo.png" alt=""><b>Nanixss Hub V</b><span class="bot">BOT</span><time>Aujourd'hui à 12:02</time></div>
-              <div class="embed">
-                <div class="al-title">Switch spiel</div>
-                <dl class="al-grid">
-                  <div><dt>⏳ Publié</dt><dd><span class="hl">à l'instant</span></dd></div>
-                  <div><dt>🔖 Marque</dt><dd>Inconnue</dd></div>
-                  <div><dt>📏 Taille</dt><dd>Unique</dd></div>
-                  <div><dt>💎 État</dt><dd>Très bon état</dd></div>
-                  <div class="w2"><dt>💰 Prix</dt><dd>7,00 € · ≈ 7,97 € TTC</dd></div>
-                </dl>
-                <div class="al-ph"><img src="mario-1.webp" alt="New Super Mario Bros. U Deluxe, recto" width="349" height="437" loading="lazy"><img src="mario-2.webp" alt="New Super Mario Bros. U Deluxe, intérieur de la boîte" width="349" height="437" loading="lazy"></div>
-              </div>
-              <div class="al-btns"><span class="buy">⚡ Acheter</span><span class="det">📄 Détails ↗</span></div>
-            </div><figcaption>New Super Mario Bros. U Deluxe <span>7 € · à l'instant</span></figcaption></figure>
+      <div class="proof-cards">
+        <figure class="pcard">
+          <div class="alert">
+            <header class="al-top"><img src="../logo.png" alt="" width="22" height="22"><b>Nanixss Hub V</b><span class="bot">BOT</span><time>Aujourd'hui à 12:02</time></header>
+            <div class="embed">
+              <p class="al-title">Jeu nintendo switch Pokémon</p>
+              <dl class="al-grid">
+                <div><dt>⏳ Publié</dt><dd><span class="ts">à l'instant</span></dd></div>
+                <div><dt>🔖 Marque</dt><dd>Inconnue</dd></div>
+                <div><dt>📏 Taille</dt><dd>Unique</dd></div>
+                <div><dt>💎 État</dt><dd>Très bon état</dd></div>
+                <div class="w2"><dt>💰 Prix</dt><dd>10,00 € | ≈ 11,12 € (TTC)</dd></div>
+              </dl>
+              <div class="al-ph"><img src="arceus-1.webp" alt="Pokémon Légendes Arceus, boîte" width="349" height="437" loading="lazy"><img src="arceus-2.webp" alt="Pokémon Légendes Arceus, intérieur de la boîte" width="349" height="437" loading="lazy"></div>
+            </div>
+            <div class="al-btns"><span class="b-buy">⚡ Acheter</span><span class="b-det">📄 Détails ↗</span></div>
+          </div>
+          <figcaption>Légendes Pokémon Arceus <span class="num">10 € · à l'instant</span></figcaption>
+        </figure>
+        <figure class="pcard">
+          <div class="alert">
+            <header class="al-top"><img src="../logo.png" alt="" width="22" height="22"><b>Nanixss Hub V</b><span class="bot">BOT</span><time>Aujourd'hui à 12:02</time></header>
+            <div class="embed">
+              <p class="al-title">Switch spiel</p>
+              <dl class="al-grid">
+                <div><dt>⏳ Publié</dt><dd><span class="ts">à l'instant</span></dd></div>
+                <div><dt>🔖 Marque</dt><dd>Inconnue</dd></div>
+                <div><dt>📏 Taille</dt><dd>Unique</dd></div>
+                <div><dt>💎 État</dt><dd>Très bon état</dd></div>
+                <div class="w2"><dt>💰 Prix</dt><dd>7,00 € | ≈ 7,97 € (TTC)</dd></div>
+              </dl>
+              <div class="al-ph"><img src="mario-1.webp" alt="New Super Mario Bros. U Deluxe, boîte" width="349" height="437" loading="lazy"><img src="mario-2.webp" alt="New Super Mario Bros. U Deluxe, intérieur de la boîte" width="349" height="437" loading="lazy"></div>
+            </div>
+            <div class="al-btns"><span class="b-buy">⚡ Acheter</span><span class="b-det">📄 Détails ↗</span></div>
+          </div>
+          <figcaption>New Super Mario Bros. U Deluxe <span class="num">7 € · à l'instant</span></figcaption>
+        </figure>
       </div>
       <p class="note">Alertes réelles du bot, reproduites à l'identique. Les pseudos des vendeurs ont été retirés.</p>
     </div>
   </section>
 
-  <section class="blk" id="tarifs">
-    <div class="in">
-      <div class="head c">
-        <div class="tag">Tarifs</div>
-        <h2>Choisis ton accès</h2>
-        <p>Paiement sécurisé par Stripe. Ton accès s'active sur le Discord Nanixss Hub.</p>
+  <section class="sec" id="tarifs" data-scene="pricing">
+    <div class="wrap">
+      <div class="sec-head c">
+        <h2>Choisis ton accès.</h2>
+        <p>Sans engagement, paiement sécurisé par Stripe. Ton accès s'active sur le Discord Nanixss Hub.</p>
       </div>
       <div class="plans">
         <div class="plan">
-          <h3>Starter</h3>
-          <div class="for">Pour commencer à recevoir les alertes</div>
-          <div class="price"><b>14,99 €</b><span>/ mois</span></div>
+          <div class="plan-head"><h3>Starter</h3></div>
+          <p class="for">Pour recevoir les alertes et cop toi-même.</p>
+          <div class="price"><b class="num">14,99 €</b><span>/ mois</span></div>
           <ul>
-            <li>Alertes Vinted instantanées sur Discord</li>
-            <li>Filtres sur mesure</li>
-            <li>Tutos vidéo, guides et presets</li>
-            <li>Support par ticket</li>
+            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Alertes Vinted instantanées sur Discord</li>
+            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Filtres sur mesure</li>
+            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Tutos vidéo, guides et presets</li>
+            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Support par ticket</li>
           </ul>
           <a class="btn btn-ghost" href="https://buy.stripe.com/bJecN6gv15TG2eubtN8g002" data-k="elite-starter" rel="noopener">Prendre le Starter</a>
         </div>
-        <div class="plan elite">
-          <span class="badge">LE PLUS COMPLET</span>
-          <h3>Elite</h3>
-          <div class="for">Pour cop sans être collé à l'écran</div>
-          <div class="price"><b>24,99 €</b><span>/ mois</span></div>
+        <div class="plan elite" id="elite-card">
+          <div class="plan-head"><h3>Elite</h3><span class="best">Le plus complet</span></div>
+          <p class="for">Pour cop sans être collé à ton écran.</p>
+          <div class="price"><b class="num">24,99 €</b><span>/ mois</span></div>
           <ul>
-            <li>Tout le Starter</li>
-            <li class="plus"><strong>Autocop</strong> : le bot achète pour toi</li>
-            <li class="plus"><strong>Multicompte</strong> : jusqu'à 3 comptes Vinted</li>
-            <li class="plus">-50 € sur la formation avancée</li>
+            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Tout le Starter</li>
+            <li class="plus"><span class="ck"><svg class="i"><use href="#i-check"/></svg></span><span><strong>Autocop</strong> : le bot achète pour toi</span></li>
+            <li class="plus"><span class="ck"><svg class="i"><use href="#i-check"/></svg></span><span><strong>Multicompte</strong> : jusqu'à 3 comptes Vinted</span></li>
+            <li class="plus"><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>-50 € sur la formation avancée</li>
           </ul>
-          <a class="btn btn-main" href="https://buy.stripe.com/28EfZigv15TG06mbtN8g001" data-k="elite-plan" rel="noopener">⚡ Prendre l'Elite</a>
+          <a class="btn btn-main" href="https://buy.stripe.com/28EfZigv15TG06mbtN8g001" data-k="elite-plan" rel="noopener"><svg class="i"><use href="#i-bolt"/></svg>Prendre l'Elite</a>
         </div>
       </div>
-      <p class="fine">Sans engagement : tu gères ou mets en pause ton abonnement toi-même depuis le Discord.<br>En t'abonnant, tu acceptes les <a href="https://nanixss.github.io/legal/" data-k="elite-cgv-tarifs">CGV</a>.</p>
+      <p class="fine">Sans engagement : tu gères, mets en pause ou arrêtes ton abonnement toi-même depuis le Discord.<br>En t'abonnant, tu acceptes les <a href="https://nanixss.github.io/legal/" data-k="elite-cgv-tarifs">CGV</a>.</p>
     </div>
   </section>
 
-  <section class="blk" id="avis" style="padding-top:0">
-    <div class="in">
-      <div class="head c">
-        <div class="tag">Avis</div>
-        <h2>Ce qu'en disent les abonnés</h2>
-        <p>Avis publiés par des abonnés Elite dans le salon avis-client du Discord.</p>
+  <section class="sec" id="avis" data-scene="reviews" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Ce qu'en disent les abonnés Elite.</h2>
+        <p>Avis publiés dans le salon avis-client du Discord.</p>
       </div>
-      <div class="reviews">
-        <article class="rv"><div class="rv-h"><span class="rv-a">B</span>Bita<span class="rv-s" aria-label="5 sur 5">★★★★★</span></div>
-          <p>« Excellent bot, très facile à utiliser et très efficace. Les automatisations fonctionnent parfaitement et permettent de gagner énormément de temps. Le bot est rapide, fiable et très pratique au quotidien. Le support est également au top. Je suis entièrement satisfait de mon expérience avec Nanixss Hub. Je recommande à 100&nbsp;%&nbsp;! »</p>
-          <div class="rv-f">✓ Abonné Elite · avis vérifié · <time datetime="2026-10-30">30/10/2026</time></div></article>
-        <article class="rv"><div class="rv-h"><span class="rv-a">T</span>Terry<span class="rv-s" aria-label="5 sur 5">★★★★★</span></div>
-          <p>« Le bot est simple d'utilisation, facile à configurer. Le prix reste très attractif par rapport aux fonctionnalités proposées. La modération est également efficace, dans l'ensemble c'est un bot fiable, pratique et accessible. »</p>
-          <div class="rv-f">✓ Abonné Elite · avis vérifié · <time datetime="2026-10-20">20/10/2026</time></div></article>
-        <article class="rv"><div class="rv-h"><span class="rv-a">N</span>Nono<span class="rv-s" aria-label="5 sur 5">★★★★★</span></div>
-          <p>« Ayant déjà utilisé V-Tools, je trouve que Nanixss Hub est une alternative intéressante pour la recherche d'opportunités en achat-revente. J'apprécie notamment les alertes Discord, les filtres personnalisables et le gain de temps. Son prix, plus abordable que celui de V-Tools, est également un avantage. »</p>
-          <div class="rv-f">✓ Abonné Elite · avis vérifié · <time datetime="2026-10-18">18/10/2026</time></div></article>
-        <article class="rv"><div class="rv-h"><span class="rv-a">O</span>Ogax<span class="rv-s" aria-label="5 sur 5">★★★★★</span></div>
-          <p>« J'ai rejoint ce bot Discord très récemment et franchement tout est bien clair et très simple d'utilisation, avec des vidéos explicatives ! Et si jamais vous avez des questions, vous aurez des réponses ! Donc je recommande fort 💪 »</p>
-          <div class="rv-f">✓ Abonné Elite · avis vérifié · <time datetime="2026-10-17">17/10/2026</time></div></article>
-        <article class="rv"><div class="rv-h"><span class="rv-a">V</span>vava<span class="rv-s" aria-label="5 sur 5">★★★★★</span></div>
-          <p>« Très bon bot, c'est simple et clair […] le prix justifie largement (3,5 mois ici = 1 mois V-Tools), alors n'hésitez pas ! »</p>
-          <div class="rv-f">✓ Abonné Elite · avis vérifié · <time datetime="2026-10-20">20/10/2026</time></div></article>
-      </div>
-    </div>
-  </section>
-
-  <section class="blk" id="faq" style="padding-top:0">
-    <div class="in">
-      <div class="head c">
-        <div class="tag">FAQ</div>
-        <h2>Tes questions</h2>
-      </div>
-      <div class="faq">
-        <details><summary>Le bot, c'est seulement pour les jeux vidéo ?</summary><div class="a">Non. Le bot peut trouver tout ce qui est sur Vinted : jeux, consoles, vêtements, sneakers, accessoires… Tu crées les filtres qui correspondent à ce que tu revends.</div></details>
-        <details><summary>Quelle différence entre Starter et Elite ?</summary><div class="a">Les deux te donnent les alertes instantanées et les filtres sur mesure. L'Elite ajoute l'autocop (le bot achète à ta place les annonces qui passent tes filtres) et le multicompte, jusqu'à 3 comptes Vinted.</div></details>
-        <details><summary>Comment j'accède au bot après le paiement ?</summary><div class="a">Tu rejoins le Discord Nanixss Hub : ton rôle d'abonné te donne accès aux salons du bot. Les tutos vidéo t'expliquent comment créer ton premier filtre et connecter ton compte Vinted, et le support répond par ticket si tu bloques.</div></details>
-        <details><summary>Je dois être devant mon ordi ?</summary><div class="a">Non. Les alertes arrivent dans Discord, donc sur ton téléphone aussi. Et avec l'autocop de l'Elite, le bot peut acheter sans toi.</div></details>
-        <details><summary>Je peux arrêter quand je veux ?</summary><div class="a">Oui, l'abonnement est sans engagement. Depuis le Discord, la commande /abonnement t'ouvre ton espace client pour gérer, mettre en pause un mois ou arrêter ton abonnement toi-même.</div></details>
-        <details><summary>Je débute dans l'achat-revente, c'est pour moi ?</summary><div class="a">Oui. Les guides et presets te donnent des filtres de départ, et la formation du Hub t'apprend les cotes et la méthode. Comme pour tout achat, vérifie toujours le prix et la rentabilité avant d'acheter.</div></details>
-      </div>
-    </div>
-  </section>
-
-  <section class="final">
-    <div class="in">
-      <div class="final-card">
-        <img src="../logo.png" alt="Logo Nanixss">
-        <h2>La prochaine bonne affaire, elle est pour toi.</h2>
-        <p>Rejoins les abonnés Elite et reçois les annonces Vinted dès leur mise en ligne.</p>
-        <div class="hero-cta">
-          <a class="btn btn-main" href="https://buy.stripe.com/28EfZigv15TG06mbtN8g001" data-k="elite-final" rel="noopener">⚡ Prendre l'Elite · 24,99 €/mois</a>
-          <a class="btn btn-ghost" href="https://discord.gg/cyReW8sVJm" data-k="elite-discord-final" target="_blank" rel="noopener">Rejoindre le Discord gratuit</a>
+      <div class="rv-wrap">
+        <figure class="rv-feat">
+          <div class="rv-h"><span class="av">B</span>Bita<span class="stars" aria-label="5 sur 5"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
+          <blockquote>« Excellent bot, très facile à utiliser et très efficace. Les automatisations fonctionnent parfaitement et permettent de gagner énormément de temps. Le bot est rapide, fiable et très pratique au quotidien. Le support est également au top. Je suis entièrement satisfait de mon expérience avec Nanixss Hub. Je recommande à 100&nbsp;%&nbsp;! »</blockquote>
+          <figcaption class="rv-f"><svg class="i"><use href="#i-check"/></svg>Abonné Elite · avis vérifié · <time datetime="2026-10-30">30/10/2026</time></figcaption>
+        </figure>
+        <div class="rv-grid">
+          <figure class="rv">
+            <div class="rv-h"><span class="av">T</span>Terry<span class="stars" aria-label="5 sur 5"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
+            <blockquote>« Le bot est simple d'utilisation, facile à configurer. Le prix reste très attractif par rapport aux fonctionnalités proposées. La modération est également efficace, dans l'ensemble c'est un bot fiable, pratique et accessible. »</blockquote>
+            <figcaption class="rv-f"><svg class="i"><use href="#i-check"/></svg>Abonné Elite · <time datetime="2026-10-20">20/10/2026</time></figcaption>
+          </figure>
+          <figure class="rv">
+            <div class="rv-h"><span class="av">O</span>Ogax<span class="stars" aria-label="5 sur 5"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
+            <blockquote>« J'ai rejoint ce bot Discord très récemment et franchement tout est bien clair et très simple d'utilisation, avec des vidéos explicatives ! Et si jamais vous avez des questions, vous aurez des réponses ! Donc je recommande fort 💪 »</blockquote>
+            <figcaption class="rv-f"><svg class="i"><use href="#i-check"/></svg>Abonné Elite · <time datetime="2026-10-17">17/10/2026</time></figcaption>
+          </figure>
+          <figure class="rv">
+            <div class="rv-h"><span class="av">N</span>Nono<span class="stars" aria-label="5 sur 5"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
+            <blockquote>« […] J'apprécie notamment les alertes Discord, les filtres personnalisables et le gain de temps. […] C'est un bon outil pour débuter dans l'achat-revente et repérer plus facilement les opportunités […] »</blockquote>
+            <figcaption class="rv-f"><svg class="i"><use href="#i-check"/></svg>Abonné Elite · <time datetime="2026-10-18">18/10/2026</time></figcaption>
+          </figure>
+          <figure class="rv">
+            <div class="rv-h"><span class="av">V</span>vava<span class="stars" aria-label="5 sur 5"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
+            <blockquote>« Très bon bot, c'est simple et clair […] alors n'hésitez pas ! »</blockquote>
+            <figcaption class="rv-f"><svg class="i"><use href="#i-check"/></svg>Abonné Elite · <time datetime="2026-10-20">20/10/2026</time></figcaption>
+          </figure>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="faq" data-scene="faq" style="padding-top:0">
+    <div class="wrap faq-wrap">
+      <div class="sec-head">
+        <h2>Avant de te lancer.</h2>
+        <p>Une autre question ? Ouvre un ticket sur le Discord, le support te répond.</p>
+      </div>
+      <div class="faq-list">
+        <details><summary>Le bot, c'est seulement pour les jeux vidéo ?<span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></summary><div class="ans">Non. Le bot peut trouver tout ce qui est sur Vinted : jeux, consoles, vêtements, sneakers, accessoires… Tu crées les filtres qui correspondent à ce que tu revends.</div></details>
+        <details><summary>Quelle différence entre Starter et Elite ?<span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></summary><div class="ans">Les deux te donnent les alertes instantanées et les filtres sur mesure. L'Elite ajoute l'autocop, qui achète à ta place les annonces qui passent tes filtres, et le multicompte, jusqu'à 3 comptes Vinted.</div></details>
+        <details><summary>Comment j'accède au bot après le paiement ?<span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></summary><div class="ans">Tu rejoins le Discord Nanixss Hub et ton accès d'abonné s'active sur ton compte. Les tutos vidéo t'expliquent comment créer ton premier filtre et connecter ton compte Vinted, et le support répond par ticket si tu bloques.</div></details>
+        <details><summary>Je dois rester devant mon ordi ?<span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></summary><div class="ans">Non. Les alertes arrivent dans Discord, donc sur ton téléphone aussi. Et avec l'autocop de l'Elite, le bot peut acheter sans toi.</div></details>
+        <details><summary>Je peux arrêter quand je veux ?<span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></summary><div class="ans">Oui, l'abonnement est sans engagement. Sur le Discord, la commande /abonnement ouvre ton espace client pour gérer, mettre en pause un mois ou arrêter ton abonnement toi-même.</div></details>
+        <details><summary>Je débute dans l'achat-revente, c'est pour moi ?<span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></summary><div class="ans">Oui. Les guides et presets te donnent des filtres de départ, et la formation du Hub t'apprend les cotes et la méthode. Comme pour tout achat, vérifie toujours le prix et la rentabilité avant d'acheter.</div></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="final" data-scene="final">
+    <div class="wrap">
+      <div class="logo-slot" id="logo-slot"><img src="../logo.png" alt="Logo Nanixss" width="384" height="384" loading="lazy"></div>
+      <h2>La prochaine pépite est pour toi.</h2>
+      <p>Rejoins les abonnés Elite et reçois chaque annonce Vinted à l'instant où elle sort.</p>
+      <div class="ctas">
+        <a class="btn btn-main" href="https://buy.stripe.com/28EfZigv15TG06mbtN8g001" data-k="elite-final" rel="noopener"><svg class="i"><use href="#i-bolt"/></svg>Prendre l'Elite <span class="btn-price num">24,99 €/mois</span></a>
+        <a class="btn btn-ghost" href="https://discord.gg/cyReW8sVJm" data-k="elite-discord-final" target="_blank" rel="noopener"><svg class="i"><use href="#i-chat"/></svg>Rejoindre le Discord gratuit</a>
       </div>
     </div>
   </section>
 </main>
 
 <footer>
-  <div class="in">
+  <div class="wrap">
     <span>© Lucas1up · Nanixss Hub</span>
     <nav aria-label="Liens">
       <a href="../" data-k="elite-liens">Tous mes liens</a>
@@ -537,91 +744,268 @@
 </footer>
 
 <div class="bar" id="bar">
-  <div class="p"><b>Elite · 24,99 €/mois</b>Sans engagement</div>
-  <a class="btn btn-main" href="https://buy.stripe.com/28EfZigv15TG06mbtN8g001" data-k="elite-bar" rel="noopener">⚡ Prendre l'Elite</a>
+  <div class="p"><b>Elite · <span class="num">24,99 €/mois</span></b>Sans engagement</div>
+  <a class="btn btn-main" href="https://buy.stripe.com/28EfZigv15TG06mbtN8g001" data-k="elite-bar" rel="noopener"><svg class="i"><use href="#i-bolt"/></svg>Prendre l'Elite</a>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  // Téléphone 3D qui suit la souris / le doigt, balancement doux au repos
+(() => {
+  const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const mobile = () => innerWidth <= 900;
+
+  // Navigation : fond une fois la page scrollée
+  const nav = document.getElementById('nav');
+  const navUpd = () => nav.classList.toggle('scrolled', scrollY > 8);
+  navUpd(); addEventListener('scroll', navUpd, { passive: true });
+
+  // Ouverture : la notification tombe, puis la nouvelle alerte arrive dans le salon
+  (() => {
+    const feed = document.getElementById('feed'), push = document.getElementById('push');
+    const last = feed && feed.lastElementChild;
+    if (!feed || !last || RM) return;
+    const shift = last.getBoundingClientRect().height + 6;
+    feed.style.transition = 'none';
+    feed.style.transform = `translateY(${shift}px)`;
+    feed.getBoundingClientRect();
+    feed.style.transition = '';
+    setTimeout(() => push.classList.add('show'), 900);
+    setTimeout(() => { feed.style.transform = 'translateY(0)'; }, 1500);
+    setTimeout(() => push.classList.remove('show'), 4400);
+  })();
+
+  // Téléphone qui suit la souris ou le doigt, balancement doux au repos
   (() => {
     const stage = document.getElementById('stage'), rig = document.getElementById('rig');
-    if (!stage || !rig || reduce) return;
-    let active = false, t0 = performance.now(), idleRaf;
+    if (!stage || !rig || RM) return;
+    let active = false; const t0 = performance.now();
     const set = (ry, rx) => { rig.style.setProperty('--ry', ry + 'deg'); rig.style.setProperty('--rx', rx + 'deg'); };
-    const idle = (now) => { if (!active) { const t = (now - t0) / 1000; set(-16 + Math.sin(t * .6) * 7, 7 + Math.cos(t * .45) * 3); } idleRaf = requestAnimationFrame(idle); };
-    rig.style.transition = 'transform .9s cubic-bezier(.2,.7,.2,1)';
-    idleRaf = requestAnimationFrame(idle);
+    const idle = (now) => { if (!active) { const t = (now - t0) / 1000; set(-14 + Math.sin(t * .55) * 6, 6 + Math.cos(t * .42) * 2.5); } requestAnimationFrame(idle); };
+    requestAnimationFrame(idle);
     const move = (x, y) => { const r = stage.getBoundingClientRect(); const px = (x - r.left) / r.width - .5, py = (y - r.top) / r.height - .5;
-      active = true; set(px * 34 - 6, -py * 22 + 4); clearTimeout(move.t); move.t = setTimeout(() => active = false, 1800); };
-    window.addEventListener('pointermove', e => { if (e.pointerType === 'mouse') move(e.clientX, e.clientY); }, { passive: true });
+      active = true; set(px * 30 - 6, -py * 20 + 4); clearTimeout(move.t); move.t = setTimeout(() => active = false, 1800); };
+    addEventListener('pointermove', e => { if (e.pointerType === 'mouse') move(e.clientX, e.clientY); }, { passive: true });
     stage.addEventListener('touchmove', e => { const t = e.touches[0]; if (t) move(t.clientX, t.clientY); }, { passive: true });
   })();
-  // Cartes qui s'inclinent sous la souris
+
+  // Bandeaux qui défilent avec le scroll, en sens opposés
   (() => {
-    if (reduce || !matchMedia('(hover: hover)').matches) return;
-    document.querySelectorAll('.feat, .plan').forEach(el => {
-      el.addEventListener('pointermove', e => { const r = el.getBoundingClientRect();
-        el.style.setProperty('--ty', (((e.clientX - r.left) / r.width) - .5) * 10 + 'deg');
-        el.style.setProperty('--tx', (.5 - ((e.clientY - r.top) / r.height)) * 10 + 'deg'); });
-      el.addEventListener('pointerleave', () => { el.style.setProperty('--tx', '0deg'); el.style.setProperty('--ty', '0deg'); });
-    });
+    if (RM) return;
+    const tracks = [...document.querySelectorAll('.band-track')];
+    let widths = [];
+    const measure = () => { widths = tracks.map(t => t.firstElementChild.getBoundingClientRect().width); };
+    measure(); addEventListener('resize', measure); document.fonts && document.fonts.ready.then(measure);
+    let ticking = false;
+    const upd = () => { ticking = false; const y = scrollY * .45;
+      tracks.forEach((t, i) => { const w = widths[i] || 1; const o = y % w; t.style.transform = i % 2 ? `translate3d(${o - w}px,0,0)` : `translate3d(${-o}px,0,0)`; }); };
+    addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(upd); } }, { passive: true });
+    upd();
   })();
-  // Anneau turquoise 3D derrière le téléphone (comme le logo N)
+
+  // Barre d'achat mobile : visible une fois le haut passé, cachée sur les tarifs
   (() => {
-    const cv = document.getElementById('ring');
-    if (!cv || !window.THREE) return;
-    let renderer;
-    try { renderer = new THREE.WebGLRenderer({ canvas: cv, alpha: true, antialias: true }); } catch (e) { cv.remove(); return; }
-    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-    const scene = new THREE.Scene(), cam = new THREE.PerspectiveCamera(40, 1, .1, 100); cam.position.z = 9;
-    const turq = new THREE.Color('#03D2B6'), light = new THREE.Color('#03EBCA');
-    const mat = new THREE.MeshStandardMaterial({ color: turq, emissive: turq, emissiveIntensity: .55, metalness: .6, roughness: .25 });
-    const ring = new THREE.Mesh(new THREE.TorusGeometry(2.6, .16, 40, 200), mat);
-    const ring2 = new THREE.Mesh(new THREE.TorusGeometry(3.25, .035, 16, 200), new THREE.MeshBasicMaterial({ color: light, transparent: true, opacity: .55 }));
-    ring.rotation.set(1.15, .35, 0); ring2.rotation.set(1.3, -.4, .2);
-    scene.add(ring, ring2);
-    const n = 260, pos = new Float32Array(n * 3);
-    for (let i = 0; i < n; i++) { const a = Math.random() * Math.PI * 2, r = 2.2 + Math.random() * 2.6;
-      pos[i*3] = Math.cos(a) * r; pos[i*3+1] = (Math.random() - .5) * 4.5; pos[i*3+2] = Math.sin(a) * r - 1; }
-    const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-    const dust = new THREE.Points(g, new THREE.PointsMaterial({ color: light, size: .045, transparent: true, opacity: .7 }));
-    scene.add(dust);
-    scene.add(new THREE.AmbientLight(0xffffff, .35));
-    const p1 = new THREE.PointLight(0xffffff, 1.4); p1.position.set(4, 4, 6); scene.add(p1);
-    const p2 = new THREE.PointLight(0x03EBCA, 2); p2.position.set(-5, -2, 3); scene.add(p2);
-    const size = () => { const w = cv.clientWidth, h = cv.clientHeight; if (!w || !h) return; renderer.setSize(w, h, false); cam.aspect = w / h; cam.updateProjectionMatrix(); };
-    size(); addEventListener('resize', size);
-    let vis = true; new IntersectionObserver(([e]) => vis = e.isIntersecting).observe(cv);
-    const draw = (t) => { ring.rotation.z = t * .00025; ring.rotation.x = 1.15 + Math.sin(t * .0004) * .12;
-      ring2.rotation.z = -t * .00018; dust.rotation.y = t * .00006; renderer.render(scene, cam); };
-    if (reduce) { draw(0); return; }
-    const loop = (t) => { if (vis) draw(t); requestAnimationFrame(loop); }; requestAnimationFrame(loop);
-  })();
-</script>
-<script>
-  // Barre d'achat mobile : apparaît une fois le hero passé, se cache sur les tarifs
-  (() => {
-    const bar = document.getElementById('bar');
-    const hero = document.querySelector('.hero');
-    const tarifs = document.getElementById('tarifs');
+    const bar = document.getElementById('bar'), hero = document.querySelector('.hero'), tarifs = document.getElementById('tarifs');
     if (!('IntersectionObserver' in window)) { bar.classList.add('on'); return; }
-    let heroVis = true, tarifsVis = false;
-    const upd = () => bar.classList.toggle('on', !heroVis && !tarifsVis);
+    let heroVis = true, tarifsVis = false, finalVis = false;
+    const upd = () => bar.classList.toggle('on', !heroVis && !tarifsVis && !finalVis);
     new IntersectionObserver(([e]) => { heroVis = e.isIntersecting; upd(); }).observe(hero);
-    new IntersectionObserver(([e]) => { tarifsVis = e.isIntersecting; upd(); }, { threshold: .25 }).observe(tarifs);
+    new IntersectionObserver(([e]) => { tarifsVis = e.isIntersecting; upd(); }, { threshold: .2 }).observe(tarifs);
+    new IntersectionObserver(([e]) => { finalVis = e.isIntersecting; upd(); }, { threshold: .1 }).observe(document.querySelector('.final'));
   })();
+
   // Statistiques anonymes (vue de la page et clics), envoyées au bot Nanixss Hub. Aucun cookie.
   (() => {
     const T = 'https://nanixss-pay-production.up.railway.app/t';
     const send = (o) => { try { const b = JSON.stringify(o); if (!(navigator.sendBeacon && navigator.sendBeacon(T, b))) fetch(T, { method: 'POST', body: b, keepalive: true, mode: 'no-cors' }); } catch (e) {} };
     send({ e: 'c', k: 'elite-vue' });
-    document.addEventListener('click', (ev) => {
-      const el = ev.target.closest('[data-k]');
-      if (el) send({ e: 'c', k: el.dataset.k });
-    }, true);
+    document.addEventListener('click', (ev) => { const el = ev.target.closest('[data-k]'); if (el) send({ e: 'c', k: el.dataset.k }); }, true);
   })();
+
+  // ---------- Monde 3D : l'anneau du logo, qui suit la page et se recompose en logo à la fin ----------
+  (() => {
+    const back = document.getElementById('world'), front = document.getElementById('world-front');
+    if (!back || !window.THREE) { back && back.remove(); front && front.remove(); return; }
+    let R, F = null;
+    try { R = new THREE.WebGLRenderer({ canvas: back, alpha: true, antialias: true, powerPreference: 'high-performance' }); }
+    catch (e) { back.remove(); front.remove(); return; }
+    if (!mobile()) { try { F = new THREE.WebGLRenderer({ canvas: front, alpha: true, antialias: true }); } catch (e) { F = null; } }
+    if (!F) front.remove();
+    document.documentElement.classList.add('gl');
+    const PR = Math.min(devicePixelRatio || 1, mobile() ? 1.5 : 1.75);
+    R.setPixelRatio(PR); if (F) F.setPixelRatio(PR);
+    // Arrière : ce qui est derrière le plan de la page. Avant : ce qui passe devant (seulement autour du téléphone).
+    const backClip = [new THREE.Plane(new THREE.Vector3(0, 0, -1), 0)], noClip = [];
+    R.clippingPlanes = noClip;
+    if (F) F.clippingPlanes = [new THREE.Plane(new THREE.Vector3(0, 0, 1), 0)];
+
+    const scene = new THREE.Scene();
+    const CAMZ = 16; const cam = new THREE.PerspectiveCamera(32, 1, .1, 200); cam.position.set(0, 0, CAMZ);
+    const TAN = Math.tan(cam.fov * Math.PI / 360);
+    const CA = new THREE.Color('#03EBCA'), CB = new THREE.Color('#048A83'), CC = new THREE.Color('#03D2B6');
+    const layer = { value: 1 }, layerHalo = { value: 1 }, layerOrb = { value: 1 };
+    const VS = 'varying vec3 vN;varying vec3 vV;varying vec2 vUv;\n#include <clipping_planes_pars_vertex>\nvoid main(){vUv=uv;vec4 mvPosition=modelViewMatrix*vec4(position,1.);vN=normalize(normalMatrix*normal);vV=normalize(-mvPosition.xyz);gl_Position=projectionMatrix*mvPosition;\n#include <clipping_planes_vertex>\n}';
+    const FS_HEAD = '#include <clipping_planes_pars_fragment>\n';
+    const neon = (k) => new THREE.ShaderMaterial({
+      uniforms: { uT: { value: 0 }, uO: { value: 1 }, uK: { value: k }, uL: layer, uA: { value: CA }, uB: { value: CB }, uC: { value: CC } },
+      vertexShader: VS,
+      fragmentShader: FS_HEAD + 'uniform float uT,uO,uK,uL;uniform vec3 uA,uB,uC;varying vec3 vN;varying vec3 vV;varying vec2 vUv;' +
+        'void main(){\n#include <clipping_planes_fragment>\nvec3 n=normalize(vN);vec3 v=normalize(vV);vec3 L=normalize(vec3(.45,.75,.6));' +
+        'float f=1.-abs(dot(n,v));float l=clamp(dot(n,L),0.,1.);vec3 c=mix(uB,uC,l);c=mix(c,uA,pow(f,1.5)*.8);' +
+        'float s=pow(max(dot(reflect(-L,n),v),0.),28.);float band=pow(.5+.5*sin((vUv.x-uT*.06)*6.2831853),22.);' +
+        'c+=vec3(.8,1.,.97)*(s*.6+band*.5);gl_FragColor=vec4(c*uK,uO*uL);}',
+      transparent: true, clipping: true
+    });
+    const world = new THREE.Group(); scene.add(world);
+    const ringMat = neon(1);
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(3, .15, 48, 320), ringMat); world.add(ring);
+    const haloMat = new THREE.ShaderMaterial({
+      uniforms: { uO: { value: 1 }, uL: layerHalo, uC: { value: CA } }, vertexShader: VS,
+      fragmentShader: FS_HEAD + 'uniform float uO,uL;uniform vec3 uC;varying vec3 vN;varying vec3 vV;varying vec2 vUv;void main(){\n#include <clipping_planes_fragment>\nfloat d=abs(dot(normalize(vN),normalize(vV)));float a=pow(d,2.6)*.42*uO*uL;gl_FragColor=vec4(uC,a);}',
+      transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, clipping: true
+    });
+    world.add(new THREE.Mesh(new THREE.TorusGeometry(3, .8, 32, 220), haloMat));
+    const orbMat = (o) => new THREE.ShaderMaterial({
+      uniforms: { uO: { value: o }, uL: layerOrb, uC: { value: CA } },
+      vertexShader: '#include <clipping_planes_pars_vertex>\nvoid main(){vec4 mvPosition=modelViewMatrix*vec4(position,1.);gl_Position=projectionMatrix*mvPosition;\n#include <clipping_planes_vertex>\n}',
+      fragmentShader: FS_HEAD + 'uniform float uO,uL;uniform vec3 uC;void main(){\n#include <clipping_planes_fragment>\ngl_FragColor=vec4(uC,uO*uL);}',
+      transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, clipping: true
+    });
+    const o1m = orbMat(.5), o2m = orbMat(.28);
+    const orb1 = new THREE.Mesh(new THREE.TorusGeometry(3.5, .016, 8, 320), o1m); orb1.rotation.set(.1, .06, 0); world.add(orb1);
+    const orb2 = new THREE.Mesh(new THREE.TorusGeometry(3.95, .011, 8, 320), o2m); orb2.rotation.set(-.08, .12, 0); world.add(orb2);
+
+    // Le N du logo, tracé depuis n.png et extrudé
+    const NS = [[[-1.2,-0.59],[-0.57,0.52],[-0.51,0.6],[-0.49,0.61],[0.21,0.61],[0.21,0.6],[-0.5,-0.6],[-0.54,-0.61],[-1.2,-0.6]],
+                [[0.3,0.25],[0.5,0.61],[1.18,0.61],[1.2,0.59],[1.2,0.56],[0.52,-0.58],[0.51,-0.58],[0.5,-0.55]],
+                [[-0.3,-0.29],[0.19,0.53],[0.21,0.54],[0.49,-0.59],[-0.18,-0.59],[-0.23,-0.55]]];
+    const nGroup = new THREE.Group(), nMats = [];
+    NS.forEach((p, i) => {
+      const g = new THREE.ExtrudeGeometry(new THREE.Shape(p.map(q => new THREE.Vector2(q[0], q[1]))), { depth: .26, bevelEnabled: true, bevelThickness: .05, bevelSize: .035, bevelSegments: 4, curveSegments: 2 });
+      g.translate(0, 0, -.13);
+      const m = neon(i === 2 ? .78 : 1); nMats.push(m); nGroup.add(new THREE.Mesh(g, m));
+    });
+    nGroup.visible = false; world.add(nGroup);
+
+    // Particules : un nuage autour de l'anneau et un champ d'étoiles qui remplit l'écran
+    const makePts = (n, gen, wrap) => {
+      const P = new Float32Array(n * 3), S = new Float32Array(n), Ph = new Float32Array(n);
+      for (let i = 0; i < n; i++) { const q = gen(); P[i*3] = q[0]; P[i*3+1] = q[1]; P[i*3+2] = q[2]; S[i] = .6 + Math.random() * 1.8; Ph[i] = Math.random() * 6.283; }
+      const g = new THREE.BufferGeometry();
+      g.setAttribute('position', new THREE.BufferAttribute(P, 3)); g.setAttribute('aS', new THREE.BufferAttribute(S, 1)); g.setAttribute('aP', new THREE.BufferAttribute(Ph, 1));
+      const m = new THREE.ShaderMaterial({
+        uniforms: { uT: { value: 0 }, uS: { value: 0 }, uO: { value: 1 }, uL: layer, uPR: { value: PR }, uC: { value: CA } },
+        vertexShader: 'attribute float aS;attribute float aP;uniform float uT,uS,uPR;varying float vA;\n#include <clipping_planes_pars_vertex>\nvoid main(){vec3 p=position;' +
+          (wrap ? 'p.y=mod(p.y+uS+14.,28.)-14.;' : '') +
+          'p.x+=sin(uT*.25+aP)*.12;p.y+=cos(uT*.2+aP)*.1;vec4 mvPosition=modelViewMatrix*vec4(p,1.);gl_PointSize=aS*uPR*(42./-mvPosition.z);vA=.35+.65*(.5+.5*sin(uT*1.1+aP*3.));gl_Position=projectionMatrix*mvPosition;\n#include <clipping_planes_vertex>\n}',
+        fragmentShader: FS_HEAD + 'uniform float uO,uL;uniform vec3 uC;varying float vA;void main(){\n#include <clipping_planes_fragment>\nfloat d=length(gl_PointCoord-.5);float a=smoothstep(.5,0.,d);a*=a*vA*uO*uL;gl_FragColor=vec4(uC,a);}',
+        transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, clipping: true
+      });
+      return { obj: new THREE.Points(g, m), mat: m };
+    };
+    const shell = makePts(mobile() ? 260 : 520, () => { const a = Math.random() * 6.283, r = 3.25 + Math.random() * 2.2; return [Math.cos(a) * r, (Math.random() - .5) * 1.8, Math.sin(a) * r]; }, false);
+    world.add(shell.obj);
+    const field = makePts(mobile() ? 520 : 1100, () => [(Math.random() - .5) * 36, (Math.random() - .5) * 28, -17 + Math.random() * 16], true);
+    scene.add(field.obj);
+
+    // Où se place l'anneau pour chaque section : [x, y, z, rotX, rotY, rotZ, échelle, opacité, logo, devant]
+    const cvW = () => back.clientWidth, cvH = () => back.clientHeight;
+    const ppu = () => (cvH() / 2) / (TAN * CAMZ);
+    const toW = (cx, cy) => [(cx - cvW() / 2) / ppu(), -(cy - cvH() / 2) / ppu()];
+    const el = (s) => document.querySelector(s);
+    const phoneEl = el('.phone'), txtEl = el('.hero-txt'), eliteEl = el('#elite-card'), proofEl = el('.proof-cards'), slotEl = el('#logo-slot');
+    const side = (sx, y, z, rx, ry, rz, s, o) => { const hw = (CAMZ - z) * TAN * cam.aspect; const x = sx * Math.max(0, hw - 3 * s * 1.08); return [x, y, z, rx, ry, rz, s, o, 0, 0]; };
+    const K = {
+      hero: (m) => m ? [0, 2.3, -3, 1.15, -.4, .3, .62, .45, 0, 0] : K.phone(false),
+      phone: (m) => { const r = phoneEl.getBoundingClientRect(); const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+        if (m) { const [x, y] = toW(cx, r.bottom - r.height * .03); return [x, y, 0, -1.42, 0, 0, (cvW() * .42) / ppu() / 3, .95, 0, 0]; }
+        const tr = txtEl.getBoundingClientRect().right;
+        const Rp = Math.max(r.width * .56, Math.min(r.width * .92, (cvW() - cx) * .86 / 1.32, cx * .86 / 1.32, cx - tr - 12));
+        const [x, y] = toW(cx, cy + r.height * .27); return [x, y, 0, 1.2, 0, -.2, Rp / ppu() / 3, 1, 0, 1]; },
+      steps: (m) => m ? side(1, 2.1, -4, .6, 1, 0, .5, .3) : side(-1, .6, -2.5, .55, 1, .1, .9, .5),
+      features: (m) => m ? side(-1, -2.1, -4, 1.2, -.3, .8, .5, .28) : side(1, -.5, -2.5, 1.25, -.3, .8, .9, .45),
+      proof: () => { const cards = proofEl.children; const a = cards[0].getBoundingClientRect(), b = cards[cards.length - 1].getBoundingClientRect();
+        const l = Math.min(a.left, b.left), rr = Math.max(a.right, b.right), bot = Math.max(a.bottom, b.bottom), top = Math.min(a.top, b.top);
+        const [x, y] = toW((l + rr) / 2, top + (bot - top) * .8); const Rp = Math.min((rr - l) * .5, cvW() * .34);
+        return [x, y, -.4, 1.45, 0, 0, Rp / ppu() / 3, .9, 0, 0]; },
+      pricing: (m) => { const r = eliteEl.getBoundingClientRect(); const [x, y] = toW(r.left + r.width / 2, r.top + r.height / 2);
+        if (m) return [x, y, -1, 1.2, -.25, .12, (cvW() * .47) / ppu() / 3, .7, 0, 0];
+        const Rp = Math.min(Math.max(r.width, r.height) * .56, cvH() * .47); return [x, y, -1, .1, -.18, 0, Rp / ppu() / 3, .9, 0, 0]; },
+      reviews: (m) => m ? side(1, 1.9, -4, 1, .7, 0, .5, .28) : side(-1, .3, -2.5, 1, .7, 0, .85, .4),
+      faq: (m) => m ? side(-1, -1.9, -4, .6, -1, .3, .48, .24) : side(1, -.2, -3, .6, -1, .3, .8, .35),
+      final: () => { const r = slotEl.getBoundingClientRect(); const [x, y] = toW(r.left + r.width / 2, r.top + r.height / 2);
+        return [x, y, -.6, 0, 0, 0, (r.width / 2) / ppu() / 1.12 / 3, 1, 1, 0]; }
+    };
+    const scenes = [...document.querySelectorAll('[data-scene]')];
+    let centers = [];
+    const measure = () => { centers = scenes.map(s => { const r = s.getBoundingClientRect(); return r.top + scrollY + r.height / 2; }); };
+    const target = () => {
+      const m = mobile(), vc = scrollY + innerHeight / 2, lastI = scenes.length - 1;
+      const atEnd = scrollY + innerHeight >= document.documentElement.scrollHeight - 4;
+      if (vc <= centers[0]) return K[scenes[0].dataset.scene](m);
+      if (atEnd || vc >= centers[lastI]) return K[scenes[lastI].dataset.scene](m);
+      let i = 0; while (i < lastI - 1 && vc > centers[i + 1]) i++;
+      const d = centers[i + 1] - centers[i]; let t = d < 1 ? 1 : (vc - centers[i]) / d; t = t * t * (3 - 2 * t);
+      const A = K[scenes[i].dataset.scene](m), B = K[scenes[i + 1].dataset.scene](m);
+      return A.map((v, j) => v + (B[j] - v) * t);
+    };
+
+    let lastW = 0, lastH = 0;
+    const size = () => {
+      const w = cvW(), h = cvH(); if (!w || !h) return;
+      if (w === lastW && h === lastH) return; lastW = w; lastH = h;
+      R.setSize(w, h, false); if (F) F.setSize(w, h, false); cam.aspect = w / h; cam.updateProjectionMatrix(); measure();
+    };
+    size(); addEventListener('resize', size);
+    if ('ResizeObserver' in window) new ResizeObserver(measure).observe(document.body);
+    addEventListener('load', measure);
+
+    let mx = 0, my = 0;
+    addEventListener('pointermove', e => { if (e.pointerType !== 'mouse') return; mx = e.clientX / innerWidth - .5; my = e.clientY / innerHeight - .5; }, { passive: true });
+
+    const apply = (p, t) => {
+      world.position.set(p[0], p[1], p[2]); world.rotation.set(p[3], p[4], p[5]); world.scale.setScalar(Math.max(p[6], .01));
+      const o = p[7], n = Math.min(Math.max(p[8], 0), 1);
+      ring.rotation.z = t * .12; orb1.rotation.z = t * .05; orb2.rotation.z = -t * .035; shell.obj.rotation.y = t * .03;
+      ringMat.uniforms.uO.value = o; haloMat.uniforms.uO.value = o * (1 - .3 * n);
+      o1m.uniforms.uO.value = .5 * o * (1 - n); o2m.uniforms.uO.value = .28 * o * (1 - n); shell.mat.uniforms.uO.value = o * (1 - .55 * n);
+      if (n > .01) { nGroup.visible = true; nMats.forEach(mm => { mm.uniforms.uO.value = n; }); nGroup.rotation.set(0, (1 - n) * 1.4, 0); nGroup.scale.setScalar(1.12 * (.7 + .3 * n)); }
+      else nGroup.visible = false;
+      [ringMat, ...nMats].forEach(mm => { mm.uniforms.uT.value = t; });
+      field.mat.uniforms.uT.value = t; shell.mat.uniforms.uT.value = t; field.mat.uniforms.uS.value = scrollY * .0022;
+    };
+    let frontOn = false;
+    const frontAmt = (flag) => {
+      if (!F) return 0;
+      const r = phoneEl.getBoundingClientRect(); const c = Math.abs(r.top + r.height / 2 - innerHeight / 2) / innerHeight;
+      let x = Math.min(Math.max((c - .2) / .3, 0), 1); x = x * x * (3 - 2 * x); return (1 - x) * Math.min(Math.max(flag, 0), 1);
+    };
+    const render = (fa) => {
+      R.clippingPlanes = fa > .985 ? backClip : noClip;
+      layer.value = 1; layerHalo.value = 1; layerOrb.value = 1; R.render(scene, cam);
+      if (F) {
+        if (fa > .01) { layer.value = fa; layerHalo.value = fa * .55; layerOrb.value = 0; F.render(scene, cam); frontOn = true; }
+        else if (frontOn) { F.clear(); frontOn = false; }
+      }
+    };
+
+    measure();
+    if (RM) { const draw = () => { size(); const p = target(); apply(p, 0); render(frontAmt(p[9])); };
+      draw(); addEventListener('scroll', () => requestAnimationFrame(draw), { passive: true }); addEventListener('resize', draw); return; }
+
+    let cur = null, last = performance.now(), visible = !document.hidden; const t0 = last;
+    const loop = (now) => {
+      if (!visible) return;
+      const dt = Math.min((now - last) / 1000, .05); last = now; const t = (now - t0) / 1000;
+      const tg = target();
+      if (!cur) cur = tg.slice(); else { const k = 1 - Math.exp(-dt * 3.2); for (let j = 0; j < cur.length; j++) cur[j] += (tg[j] - cur[j]) * k; }
+      cam.position.x += (mx * .8 - cam.position.x) * .04; cam.position.y += (-my * .55 - cam.position.y) * .04; cam.lookAt(0, 0, 0);
+      apply(cur, t); render(frontAmt(cur[9]));
+      requestAnimationFrame(loop);
+    };
+    document.addEventListener('visibilitychange', () => { visible = !document.hidden; if (visible) { last = performance.now(); requestAnimationFrame(loop); } });
+    requestAnimationFrame(loop);
+  })();
+})();
 </script>
 </body>
 </html>
