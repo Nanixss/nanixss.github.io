@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nanixss Hub Elite</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Le bot Vinted de Nanixss Hub : alertes en direct sur Discord, filtres sur mesure, autocop et multicompte. Sans engagement.">
+<meta property="og:title" content="Nanixss Hub · Bot Vinted Elite">
+<meta property="og:description" content="Chaque bonne affaire Vinted, dès sa mise en ligne, dans ton Discord.">
+<meta property="og:image" content="https://nanixss.github.io/logo.png">
+<meta name="theme-color" content="#04131A">
+<link rel="icon" href="../logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* Layout : une colonne mobile d'abord, hero en deux colonnes sur ordi, barre d'achat collée en bas sur téléphone */
+  :root{
+    --navy:#04131A; --surface:#062229; --surface-2:#0A2E36;
+    --turq:#03D2B6; --turq-l:#03EBCA; --turq-d:#048A83;
+    --line:rgba(3,210,182,.22); --dim:rgba(3,210,182,.12);
+    --white:#FFFFFF; --text:#D6E3E8; --muted:#9FB4BE; --star:#FFC233;
+    --font:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif;
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+  body{font-family:var(--font);background:var(--navy);color:var(--white);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  :focus-visible{outline:2px solid var(--turq-l);outline-offset:3px;border-radius:8px}
+  .in{max-width:1080px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+  h1,h2,h3{text-wrap:balance}
+
+  /* fond */
+  .glow{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+  .glow::before{content:"";position:absolute;left:50%;top:-260px;width:1100px;height:700px;transform:translateX(-50%);
+    background:radial-gradient(closest-side,rgba(3,210,182,.22),transparent 70%)}
+  .grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(3,210,182,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(3,210,182,.05) 1px,transparent 1px);
+    background-size:44px 44px;-webkit-mask-image:radial-gradient(70% 60% at 50% 20%,#000,transparent);mask-image:radial-gradient(70% 60% at 50% 20%,#000,transparent)}
+
+  /* nav */
+  .nav{position:sticky;top:env(safe-area-inset-top, 0px);z-index:20;background:rgba(4,19,26,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(3,210,182,.10)}
+  body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top, 0px);z-index:21;background:var(--navy)}
+  .nav .in{display:flex;align-items:center;gap:14px;height:62px}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;letter-spacing:.4px;font-size:17px}
+  .brand img{width:34px;height:34px;border-radius:50%;box-shadow:0 0 0 2px rgba(3,210,182,.25)}
+  .brand span{color:var(--turq)}
+  .nav-links{display:flex;gap:22px;margin-left:auto;font-size:14px;font-weight:500;color:var(--muted)}
+  .nav-links a{text-decoration:none;transition:color .2s}
+  .nav-links a:hover{color:var(--white)}
+  .nav .cta-s{margin-left:6px}
+  @media (max-width:820px){.nav-links{display:none}.nav .cta-s{margin-left:auto}}
+
+  /* boutons */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:inherit;font-weight:700;font-size:16px;text-decoration:none;border-radius:16px;padding:16px 24px;transition:transform .15s ease, box-shadow .2s ease, border-color .2s, background .2s;cursor:pointer;border:none;text-align:center}
+  .btn:active{transform:scale(.97)}
+  .btn-main{background:linear-gradient(135deg,var(--turq-l),var(--turq) 55%,var(--turq-d));color:var(--navy);box-shadow:0 12px 36px rgba(3,210,182,.35)}
+  .btn-main:hover{transform:translateY(-2px);box-shadow:0 16px 44px rgba(3,210,182,.45)}
+  .btn-ghost{background:rgba(255,255,255,.03);color:var(--white);border:1.5px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--turq);color:var(--turq-l)}
+  .cta-s{padding:10px 16px;font-size:14px;border-radius:12px}
+
+  /* hero */
+  .hero{position:relative;padding-block:64px 40px}
+  .hero .in{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;letter-spacing:2px;color:var(--turq);text-transform:uppercase;
+    padding:7px 14px;border-radius:999px;background:var(--dim);border:1px solid var(--line)}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--turq-l);box-shadow:0 0 0 0 rgba(3,235,202,.6);animation:ping 2s infinite}
+  @keyframes ping{70%{box-shadow:0 0 0 9px rgba(3,235,202,0)}100%{box-shadow:0 0 0 0 rgba(3,235,202,0)}}
+  .hero h1{margin-top:20px;font-size:clamp(36px,6vw,62px);line-height:1.04;font-weight:900;letter-spacing:-1.5px}
+  .hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--turq-l),var(--turq-d));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lead{margin-top:20px;font-size:17px;line-height:1.65;color:var(--text);max-width:520px}
+  .hero-cta{margin-top:30px;display:flex;flex-wrap:wrap;gap:12px}
+  .trust{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13.5px;color:var(--muted)}
+  .trust b{color:var(--star);letter-spacing:1px;font-weight:700}
+  .trust span{display:inline-flex;align-items:center;gap:6px}
+
+  /* téléphone */
+  .stage{position:relative;display:flex;justify-content:center;padding-block:10px}
+  .phone{position:relative;width:min(330px,82vw);border-radius:42px;padding:12px;background:linear-gradient(160deg,#0E3A43,#051a20);
+    box-shadow:0 0 0 1.5px rgba(3,210,182,.35),0 40px 90px rgba(0,0,0,.55),0 0 80px rgba(3,210,182,.18);transform:rotate(-3deg)}
+  .screen{border-radius:32px;overflow:hidden;background:#313338}
+  .screen-top{display:flex;align-items:center;gap:8px;padding:14px 16px 10px;background:#2B2D31;font-size:13px;font-weight:600;color:#F2F3F5}
+  .screen-top i{font-style:normal;color:#949BA4;font-weight:500}
+  .screen img{width:100%}
+  .chip{position:absolute;display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:14px;background:rgba(6,34,41,.92);border:1px solid var(--line);
+    font-size:13px;font-weight:700;box-shadow:0 14px 34px rgba(0,0,0,.4);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);animation:float 6s ease-in-out infinite}
+  .chip small{display:block;font-size:11px;font-weight:500;color:var(--muted)}
+  .chip .ico{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:var(--dim);font-size:15px}
+  .c1{top:8%;left:-4%}
+  .c2{bottom:14%;right:-6%;animation-delay:-3s}
+  .c3{bottom:-2%;left:4%;animation-delay:-1.5s}
+  @keyframes float{50%{transform:translateY(-10px)}}
+  .floaty{position:absolute;opacity:.16;pointer-events:none;animation:float 8s ease-in-out infinite}
+  @media (prefers-reduced-motion: reduce){.chip,.floaty,.dot{animation:none}}
+
+  @media (max-width:900px){
+    .hero{padding-block:40px 24px}
+    .hero .in{grid-template-columns:1fr;gap:44px}
+    .c1{left:-2%}.c2{right:-2%}
+  }
+
+  /* bandeau catégories */
+  .cats{border-block:1px solid rgba(3,210,182,.10);background:rgba(6,34,41,.5);overflow:hidden;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+  .cats-track{display:flex;gap:44px;width:max-content;padding-block:18px;animation:defile 36s linear infinite;font-weight:700;font-size:15px;color:var(--muted);white-space:nowrap}
+  .cats-track span{display:inline-flex;align-items:center;gap:10px}
+  .cats-track span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--turq)}
+  @keyframes defile{to{transform:translateX(-50%)}}
+  @media (prefers-reduced-motion: reduce){.cats-track{animation:none;flex-wrap:wrap;width:auto;justify-content:center;gap:14px 28px;padding-inline:16px}}
+
+  /* sections */
+  section.blk{padding-block:84px}
+  .head{max-width:640px}
+  .head.c{margin:0 auto;text-align:center}
+  .tag{font-size:12.5px;font-weight:700;letter-spacing:2px;color:var(--turq);text-transform:uppercase}
+  .head h2{margin-top:10px;font-size:clamp(28px,4.2vw,42px);line-height:1.12;font-weight:800;letter-spacing:-.8px}
+  .head p{margin-top:14px;color:var(--text);font-size:16px;line-height:1.65}
+  @media (max-width:600px){section.blk{padding-block:60px}}
+
+  /* étapes */
+  .steps{margin-top:44px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;counter-reset:st}
+  .step{position:relative;padding:26px 22px;border-radius:22px;background:var(--surface);border:1px solid var(--line)}
+  .step::before{counter-increment:st;content:counter(st);display:grid;place-items:center;width:40px;height:40px;border-radius:12px;font-weight:800;font-size:17px;
+    background:linear-gradient(135deg,var(--turq-l),var(--turq-d));color:var(--navy)}
+  .step h3{margin-top:18px;font-size:18px;font-weight:700}
+  .step p{margin-top:8px;font-size:14.5px;line-height:1.6;color:var(--muted)}
+  @media (max-width:820px){.steps{grid-template-columns:1fr}}
+
+  /* fonctionnalités */
+  .feats{margin-top:44px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .feat{padding:24px 22px;border-radius:22px;background:linear-gradient(180deg,rgba(3,210,182,.06),transparent 60%),var(--surface);border:1px solid rgba(3,210,182,.14);transition:border-color .2s, transform .2s}
+  .feat:hover{border-color:var(--line);transform:translateY(-3px)}
+  .feat .ico{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-size:22px;background:var(--dim)}
+  .feat h3{margin-top:16px;font-size:17px;font-weight:700;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .feat p{margin-top:8px;font-size:14.5px;line-height:1.6;color:var(--muted)}
+  .pill{font-size:10.5px;font-weight:800;letter-spacing:1px;padding:3px 8px;border-radius:999px;background:var(--turq);color:var(--navy)}
+  @media (max-width:900px){.feats{grid-template-columns:1fr 1fr}}
+  @media (max-width:600px){.feats{grid-template-columns:1fr}}
+
+  /* preuves */
+  .proof{background:linear-gradient(180deg,transparent,rgba(6,34,41,.7) 20%,rgba(6,34,41,.7) 80%,transparent)}
+  .shots{margin-top:44px;display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:860px;margin-inline:auto}
+  .shot{border-radius:22px;overflow:hidden;background:var(--surface);border:1px solid var(--line);box-shadow:0 24px 60px rgba(0,0,0,.35)}
+  .shot img{width:100%}
+  .shot figcaption{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:14px 18px;font-size:14px;font-weight:600;border-top:1px solid var(--line)}
+  .shot figcaption span{color:var(--turq-l)}
+  .note{margin-top:18px;text-align:center;font-size:13px;color:var(--muted)}
+  @media (max-width:700px){.shots{grid-template-columns:1fr}}
+
+  /* tarifs */
+  .plans{margin-top:44px;display:grid;grid-template-columns:1fr 1.08fr;gap:18px;max-width:860px;margin-inline:auto;align-items:stretch}
+  .plan{display:flex;flex-direction:column;padding:30px 26px;border-radius:26px;background:var(--surface);border:1px solid var(--line)}
+  .plan.elite{position:relative;background:linear-gradient(160deg,rgba(3,235,202,.16),rgba(3,138,131,.06) 55%),var(--surface-2);border:1.5px solid var(--turq);box-shadow:0 30px 80px rgba(3,210,182,.16)}
+  .plan .badge{position:absolute;top:-13px;left:26px;font-size:11.5px;font-weight:800;letter-spacing:1px;padding:5px 12px;border-radius:999px;background:var(--turq-l);color:var(--navy)}
+  .plan h3{font-size:22px;font-weight:800}
+  .plan .for{margin-top:4px;font-size:14px;color:var(--muted)}
+  .price{margin-top:20px;display:flex;align-items:baseline;gap:6px;font-variant-numeric:tabular-nums}
+  .price b{font-size:44px;font-weight:900;letter-spacing:-1px}
+  .price span{color:var(--muted);font-size:15px}
+  .plan ul{list-style:none;margin-top:22px;display:flex;flex-direction:column;gap:12px;flex:1}
+  .plan li{display:flex;gap:10px;font-size:15px;line-height:1.5;color:var(--text)}
+  .plan li::before{content:"✓";flex:0 0 22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:800;background:var(--dim);color:var(--turq-l)}
+  .plan li.plus::before{background:var(--turq);color:var(--navy)}
+  .plan li strong{color:var(--white)}
+  .plan .btn{margin-top:26px;width:100%}
+  .fine{margin-top:20px;text-align:center;font-size:13.5px;color:var(--muted);line-height:1.7}
+  @media (max-width:760px){.plans{grid-template-columns:1fr}.plan.elite{order:-1}}
+
+  /* avis */
+  .reviews{margin-top:44px;columns:3 300px;column-gap:16px}
+  .rv{break-inside:avoid;margin-bottom:16px;padding:22px;border-radius:20px;background:var(--surface);border:1px solid var(--line)}
+  .rv-h{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px}
+  .rv-a{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:14px;font-weight:800;background:var(--dim);color:var(--turq)}
+  .rv-s{margin-left:auto;color:var(--star);letter-spacing:1px;font-size:14px}
+  .rv p{margin-top:12px;font-size:14.5px;line-height:1.65;color:var(--text)}
+  .rv-f{margin-top:12px;font-size:12px;font-weight:600;color:var(--turq)}
+  .rv-f time{color:var(--muted);font-weight:500}
+
+  /* FAQ */
+  .faq{margin-top:40px;max-width:760px;margin-inline:auto;display:flex;flex-direction:column;gap:10px}
+  .faq details{border-radius:18px;background:var(--surface);border:1px solid rgba(3,210,182,.14);transition:border-color .2s}
+  .faq details[open]{border-color:var(--line)}
+  .faq summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:14px;padding:20px 22px;font-weight:600;font-size:16px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";margin-left:auto;flex:0 0 28px;height:28px;border-radius:9px;display:grid;place-items:center;background:var(--dim);color:var(--turq-l);font-size:18px;font-weight:600;transition:transform .2s}
+  .faq details[open] summary::after{transform:rotate(45deg)}
+  .faq .a{padding:0 22px 20px;font-size:15px;line-height:1.7;color:var(--text)}
+
+  /* final */
+  .final{padding-block:20px 100px}
+  .final-card{position:relative;overflow:hidden;text-align:center;padding:56px 24px;border-radius:32px;
+    background:radial-gradient(90% 120% at 50% 0%,rgba(3,235,202,.22),transparent 60%),var(--surface-2);border:1.5px solid var(--line)}
+  .final-card img{width:76px;height:76px;border-radius:50%;margin:0 auto;box-shadow:0 0 0 4px rgba(3,210,182,.15),0 10px 40px rgba(3,210,182,.35)}
+  .final-card h2{margin-top:22px;font-size:clamp(28px,4.4vw,44px);font-weight:900;letter-spacing:-1px;line-height:1.1}
+  .final-card p{margin:14px auto 0;max-width:520px;color:var(--text);font-size:16px;line-height:1.6}
+  .final-card .hero-cta{justify-content:center}
+
+  footer{padding-block:30px 40px;border-top:1px solid rgba(3,210,182,.10);font-size:13px;color:var(--muted)}
+  footer .in{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;justify-content:space-between}
+  footer nav{display:flex;flex-wrap:wrap;gap:8px 18px}
+  footer a{text-decoration:none}
+  footer a:hover{color:var(--white)}
+
+  /* barre d'achat mobile */
+  .bar{display:none}
+  @media (max-width:760px){
+    .bar{display:flex;align-items:center;gap:12px;position:fixed;left:0;right:0;bottom:0;z-index:30;
+      padding:12px max(16px, env(safe-area-inset-right, 0px)) calc(12px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+      background:rgba(4,19,26,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line);
+      transform:translateY(110%);transition:transform .3s ease}
+    .bar.on{transform:none}
+    .bar .p{font-size:13px;color:var(--muted);line-height:1.3}
+    .bar .p b{display:block;color:var(--white);font-size:16px}
+    .bar .btn{margin-left:auto;padding:13px 18px;font-size:15px}
+    footer{padding-bottom:110px}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="in">
+    <a class="brand" href="#haut" data-k="elite-logo"><img src="../logo.png" alt="">NANIXSS<span>.</span>HUB</a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#fonctionnement">Comment ça marche</a>
+      <a href="#tarifs">Tarifs</a>
+      <a href="#avis">Avis</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-main cta-s" href="#tarifs" data-k="elite-nav">Rejoindre</a>
+  </div>
+</header>
+
+<main id="haut">
+  <section class="hero">
+    <div class="glow" aria-hidden="true"><div class="grid-bg"></div></div>
+    <img class="floaty" src="../n.png" alt="" aria-hidden="true" style="width:120px;top:14%;right:4%">
+    <img class="floaty" src="../n.png" alt="" aria-hidden="true" style="width:70px;bottom:8%;left:3%;animation-delay:-4s">
+    <div class="in">
+      <div>
+        <span class="eyebrow"><span class="dot"></span>Bot Vinted · alertes en direct</span>
+        <h1>Chaque bonne affaire Vinted, <em>dès sa mise en ligne.</em></h1>
+        <p class="lead">Le bot Nanixss Hub surveille Vinted pour toi, trie selon tes filtres et t'envoie l'annonce sur Discord avec un bouton Acheter. Tu n'as plus qu'à cliquer.</p>
+        <div class="hero-cta">
+          <a class="btn btn-main" href="https://buy.stripe.com/28EfZigv15TG06mbtN8g001" data-k="elite-hero" rel="noopener">⚡ Prendre l'Elite · 24,99 €/mois</a>
+          <a class="btn btn-ghost" href="https://discord.gg/cyReW8sVJm" data-k="elite-discord-hero" target="_blank" rel="noopener">Voir le Discord gratuitement</a>
+        </div>
+        <div class="trust">
+          <span><b>★★★★★</b> Avis vérifiés d'abonnés</span>
+          <span>✓ Sans engagement</span>
+          <span>✓ Tutos vidéo inclus</span>
+        </div>
+      </div>
+
+      <div class="stage">
+        <div class="phone">
+          <div class="screen">
+            <div class="screen-top"># alertes-switch <i>· Nanixss Hub V</i></div>
+            <img src="alerte-arceus.webp" alt="Alerte du bot : jeu Switch Pokémon Légendes Arceus à 10 €, publié il y a 39 secondes" width="795" height="776">
+          </div>
+        </div>
+        <div class="chip c1"><span class="ico">⏱️</span><span>Publié il y a 39 s<small>reçu sur Discord</small></span></div>
+        <div class="chip c2"><span class="ico">💰</span><span>10,00 €<small>Légendes Pokémon Arceus</small></span></div>
+        <div class="chip c3"><span class="ico">⚡</span><span>Bouton Acheter<small>un clic depuis l'alerte</small></span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cats" aria-label="Ce que le bot peut trouver">
+    <div class="cats-track">
+      <span>Jeux vidéo</span><span>Consoles</span><span>Vêtements</span><span>Sneakers</span><span>Rétro</span><span>Accessoires</span><span>Lots</span><span>Tout ce qui est sur Vinted</span>
+      <span aria-hidden="true">Jeux vidéo</span><span aria-hidden="true">Consoles</span><span aria-hidden="true">Vêtements</span><span aria-hidden="true">Sneakers</span><span aria-hidden="true">Rétro</span><span aria-hidden="true">Accessoires</span><span aria-hidden="true">Lots</span><span aria-hidden="true">Tout ce qui est sur Vinted</span>
+    </div>
+  </div>
+
+  <section class="blk" id="fonctionnement">
+    <div class="in">
+      <div class="head c">
+        <div class="tag">Comment ça marche</div>
+        <h2>Trois étapes, et le bot travaille pour toi</h2>
+      </div>
+      <div class="steps">
+        <div class="step"><h3>Tu crées tes filtres</h3><p>Mots-clés, prix max, état, catégorie : tu choisis exactement ce que tu cherches. Un tuto vidéo te guide pas à pas.</p></div>
+        <div class="step"><h3>Le bot repère l'annonce</h3><p>Dès qu'une annonce correspond, elle arrive dans ton salon Discord avec les photos, le prix et l'heure de publication.</p></div>
+        <div class="step"><h3>Tu achètes en un clic</h3><p>Le bouton Acheter t'envoie direct sur l'annonce. Avec l'Elite, l'autocop peut même acheter à ta place.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk" style="padding-top:0">
+    <div class="in">
+      <div class="head">
+        <div class="tag">Fonctionnalités</div>
+        <h2>Tout ce qu'il faut pour cop avant que l'annonce parte</h2>
+      </div>
+      <div class="feats">
+        <div class="feat"><div class="ico">🔔</div><h3>Alertes instantanées</h3><p>0 délai entre la mise en ligne et la notification dans ton Discord, sur ordi comme sur téléphone.</p></div>
+        <div class="feat"><div class="ico">🎯</div><h3>Filtres sur mesure</h3><p>Tu reçois seulement ce qui t'intéresse. Pas de flux noyé sous les annonces inutiles.</p></div>
+        <div class="feat"><div class="ico">🌍</div><h3>Tout Vinted</h3><p>Jeux, consoles, vêtements ou n'importe quel autre article : si c'est sur Vinted, le bot peut le trouver.</p></div>
+        <div class="feat"><div class="ico">🤖</div><h3>Autocop <span class="pill">ELITE</span></h3><p>Le bot achète automatiquement les annonces qui passent tes filtres, même quand tu n'es pas devant ton écran.</p></div>
+        <div class="feat"><div class="ico">👥</div><h3>Multicompte <span class="pill">ELITE</span></h3><p>Connecte jusqu'à 3 comptes Vinted au bot et gère-les depuis le même Discord.</p></div>
+        <div class="feat"><div class="ico">🎥</div><h3>Tutos et support</h3><p>Vidéos pour créer un filtre et connecter tes comptes, guides, presets prêts à l'emploi et support par ticket.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk proof">
+    <div class="in">
+      <div class="head c">
+        <div class="tag">En vrai</div>
+        <h2>Voilà ce qui arrive dans ton Discord</h2>
+        <p>Deux alertes reçues le même jour, à la même minute. Des jeux Switch à 7 et 10 €, publiés il y a moins d'une minute.</p>
+      </div>
+      <div class="shots">
+        <figure class="shot"><img src="alerte-arceus.webp" alt="Alerte : jeu Nintendo Switch Pokémon Légendes Arceus, 10 €, publié il y a 39 secondes" width="795" height="776" loading="lazy"><figcaption>Légendes Pokémon Arceus <span>10 € · il y a 39 s</span></figcaption></figure>
+        <figure class="shot"><img src="alerte-mario.webp" alt="Alerte : jeu Switch New Super Mario Bros. U Deluxe, 7 €, publié il y a une minute" width="795" height="766" loading="lazy"><figcaption>New Super Mario Bros. U Deluxe <span>7 € · il y a 1 min</span></figcaption></figure>
+      </div>
+      <p class="note">Captures réelles d'alertes du bot. Les pseudos des vendeurs ont été retirés.</p>
+    </div>
+  </section>
+
+  <section class="blk" id="tarifs">
+    <div class="in">
+      <div class="head c">
+        <div class="tag">Tarifs</div>
+        <h2>Choisis ton accès</h2>
+        <p>Paiement sécurisé par Stripe. Ton accès s'active sur le Discord Nanixss Hub.</p>
+      </div>
+      <div class="plans">
+        <div class="plan">
+          <h3>Starter</h3>
+          <div class="for">Pour commencer à recevoir les alertes</div>
+          <div class="price"><b>14,99 €</b><span>/ mois</span></div>
+          <ul>
+            <li>Alertes Vinted instantanées sur Discord</li>
+            <li>Filtres sur mesure</li>
+            <li>Tutos vidéo, guides et presets</li>
+            <li>Support par ticket</li>
+          </ul>
+          <a class="btn btn-ghost" href="https://buy.stripe.com/bJecN6gv15TG2eubtN8g002" data-k="elite-starter" rel="noopener">Prendre le Starter</a>
+        </div>
+        <div class="plan elite">
+          <span class="badge">LE PLUS COMPLET</span>
+          <h3>Elite</h3>
+          <div class="for">Pour cop sans être collé à l'écran</div>
+          <div class="price"><b>24,99 €</b><span>/ mois</span></div>
+          <ul>
+            <li>Tout le Starter</li>
+            <li class="plus"><strong>Autocop</strong> : le bot achète pour toi</li>
+            <li class="plus"><strong>Multicompte</strong> : jusqu'à 3 comptes Vinted</li>
+            <li class="plus">-50 € sur la formation avancée</li>
+          </ul>
+          <a class="btn btn-main" href="https://buy.stripe.com/28EfZigv15TG06mbtN8g001" data-k="elite-plan" rel="noopener">⚡ Prendre l'Elite</a>
+        </div>
+      </div>
+      <p class="fine">Sans engagement : tu gères ou mets en pause ton abonnement toi-même depuis le Discord.<br>En t'abonnant, tu acceptes les <a href="https://nanixss.github.io/legal/" data-k="elite-cgv-tarifs">CGV</a>.</p>
+    </div>
+  </section>
+
+  <section class="blk" id="avis" style="padding-top:0">
+    <div class="in">
+      <div class="head c">
+        <div class="tag">Avis</div>
+        <h2>Ce qu'en disent les abonnés</h2>
+        <p>Avis publiés par des abonnés Elite dans le salon avis-client du Discord.</p>
+      </div>
+      <div class="reviews">
+        <article class="rv"><div class="rv-h"><span class="rv-a">B</span>Bita<span class="rv-s" aria-label="5 sur 5">★★★★★</span></div>
+          <p>« Excellent bot, très facile à utiliser et très efficace. Les automatisations fonctionnent parfaitement et permettent de gagner énormément de temps. Le bot est rapide, fiable et très pratique au quotidien. Le support est également au top. Je suis entièrement satisfait de mon expérience avec Nanixss Hub. Je recommande à 100&nbsp;%&nbsp;! »</p>
+          <div class="rv-f">✓ Abonné Elite · avis vérifié · <time datetime="2026-10-30">30/10/2026</time></div></article>
+        <article class="rv"><div class="rv-h"><span class="rv-a">T</span>Terry<span class="rv-s" aria-label="5 sur 5">★★★★★</span></div>
+          <p>« Le bot est simple d'utilisation, facile à configurer. Le prix reste très attractif par rapport aux fonctionnalités proposées. La modération est également efficace, dans l'ensemble c'est un bot fiable, pratique et accessible. »</p>
+          <div class="rv-f">✓ Abonné Elite · avis vérifié · <time datetime="2026-10-20">20/10/2026</time></div></article>
+        <article class="rv"><div class="rv-h"><span class="rv-a">N</span>Nono<span class="rv-s" aria-label="5 sur 5">★★★★★</span></div>
+          <p>« Ayant déjà utilisé V-Tools, je trouve que Nanixss Hub est une alternative intéressante pour la recherche d'opportunités en achat-revente. J'apprécie notamment les alertes Discord, les filtres personnalisables et le gain de temps. Son prix, plus abordable que celui de V-Tools, est également un avantage. »</p>
+          <div class="rv-f">✓ Abonné Elite · avis vérifié · <time datetime="2026-10-18">18/10/2026</time></div></article>
+        <article class="rv"><div class="rv-h"><span class="rv-a">O</span>Ogax<span class="rv-s" aria-label="5 sur 5">★★★★★</span></div>
+          <p>« J'ai rejoint ce bot Discord très récemment et franchement tout est bien clair et très simple d'utilisation, avec des vidéos explicatives ! Et si jamais vous avez des questions, vous aurez des réponses ! Donc je recommande fort 💪 »</p>
+          <div class="rv-f">✓ Abonné Elite · avis vérifié · <time datetime="2026-10-17">17/10/2026</time></div></article>
+        <article class="rv"><div class="rv-h"><span class="rv-a">V</span>vava<span class="rv-s" aria-label="5 sur 5">★★★★★</span></div>
+          <p>« Très bon bot, c'est simple et clair […] le prix justifie largement (3,5 mois ici = 1 mois V-Tools), alors n'hésitez pas ! »</p>
+          <div class="rv-f">✓ Abonné Elite · avis vérifié · <time datetime="2026-10-20">20/10/2026</time></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk" id="faq" style="padding-top:0">
+    <div class="in">
+      <div class="head c">
+        <div class="tag">FAQ</div>
+        <h2>Tes questions</h2>
+      </div>
+      <div class="faq">
+        <details><summary>Le bot, c'est seulement pour les jeux vidéo ?</summary><div class="a">Non. Le bot peut trouver tout ce qui est sur Vinted : jeux, consoles, vêtements, sneakers, accessoires… Tu crées les filtres qui correspondent à ce que tu revends.</div></details>
+        <details><summary>Quelle différence entre Starter et Elite ?</summary><div class="a">Les deux te donnent les alertes instantanées et les filtres sur mesure. L'Elite ajoute l'autocop (le bot achète à ta place les annonces qui passent tes filtres) et le multicompte, jusqu'à 3 comptes Vinted.</div></details>
+        <details><summary>Comment j'accède au bot après le paiement ?</summary><div class="a">Tu rejoins le Discord Nanixss Hub : ton rôle d'abonné te donne accès aux salons du bot. Les tutos vidéo t'expliquent comment créer ton premier filtre et connecter ton compte Vinted, et le support répond par ticket si tu bloques.</div></details>
+        <details><summary>Je dois être devant mon ordi ?</summary><div class="a">Non. Les alertes arrivent dans Discord, donc sur ton téléphone aussi. Et avec l'autocop de l'Elite, le bot peut acheter sans toi.</div></details>
+        <details><summary>Je peux arrêter quand je veux ?</summary><div class="a">Oui, l'abonnement est sans engagement. Depuis le Discord, la commande /abonnement t'ouvre ton espace client pour gérer, mettre en pause un mois ou arrêter ton abonnement toi-même.</div></details>
+        <details><summary>Je débute dans l'achat-revente, c'est pour moi ?</summary><div class="a">Oui. Les guides et presets te donnent des filtres de départ, et la formation du Hub t'apprend les cotes et la méthode. Comme pour tout achat, vérifie toujours le prix et la rentabilité avant d'acheter.</div></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="in">
+      <div class="final-card">
+        <img src="../logo.png" alt="Logo Nanixss">
+        <h2>La prochaine bonne affaire, elle est pour toi.</h2>
+        <p>Rejoins les abonnés Elite et reçois les annonces Vinted dès leur mise en ligne.</p>
+        <div class="hero-cta">
+          <a class="btn btn-main" href="https://buy.stripe.com/28EfZigv15TG06mbtN8g001" data-k="elite-final" rel="noopener">⚡ Prendre l'Elite · 24,99 €/mois</a>
+          <a class="btn btn-ghost" href="https://discord.gg/cyReW8sVJm" data-k="elite-discord-final" target="_blank" rel="noopener">Rejoindre le Discord gratuit</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="in">
+    <span>© Lucas1up · Nanixss Hub</span>
+    <nav aria-label="Liens">
+      <a href="../" data-k="elite-liens">Tous mes liens</a>
+      <a href="https://www.tiktok.com/@nanixss.off" target="_blank" rel="noopener" data-k="elite-tiktok">TikTok</a>
+      <a href="https://nanixss.github.io/legal/" data-k="elite-cgv">CGV &amp; confidentialité</a>
+    </nav>
+  </div>
+</footer>
+
+<div class="bar" id="bar">
+  <div class="p"><b>Elite · 24,99 €/mois</b>Sans engagement</div>
+  <a class="btn btn-main" href="https://buy.stripe.com/28EfZigv15TG06mbtN8g001" data-k="elite-bar" rel="noopener">⚡ Prendre l'Elite</a>
+</div>
+
+<script>
+  // Barre d'achat mobile : apparaît une fois le hero passé, se cache sur les tarifs
+  (() => {
+    const bar = document.getElementById('bar');
+    const hero = document.querySelector('.hero');
+    const tarifs = document.getElementById('tarifs');
+    if (!('IntersectionObserver' in window)) { bar.classList.add('on'); return; }
+    let heroVis = true, tarifsVis = false;
+    const upd = () => bar.classList.toggle('on', !heroVis && !tarifsVis);
+    new IntersectionObserver(([e]) => { heroVis = e.isIntersecting; upd(); }).observe(hero);
+    new IntersectionObserver(([e]) => { tarifsVis = e.isIntersecting; upd(); }, { threshold: .25 }).observe(tarifs);
+  })();
+  // Statistiques anonymes (vue de la page et clics), envoyées au bot Nanixss Hub. Aucun cookie.
+  (() => {
+    const T = 'https://nanixss-pay-production.up.railway.app/t';
+    const send = (o) => { try { const b = JSON.stringify(o); if (!(navigator.sendBeacon && navigator.sendBeacon(T, b))) fetch(T, { method: 'POST', body: b, keepalive: true, mode: 'no-cors' }); } catch (e) {} };
+    send({ e: 'c', k: 'elite-vue' });
+    document.addEventListener('click', (ev) => {
+      const el = ev.target.closest('[data-k]');
+      if (el) send({ e: 'c', k: el.dataset.k });
+    }, true);
+  })();
+</script>
+</body>
+</html>
