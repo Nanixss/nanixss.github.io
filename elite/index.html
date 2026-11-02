@@ -85,7 +85,7 @@
   .screen{border-radius:32px;overflow:hidden;background:#313338}
   .screen-top{display:flex;align-items:center;gap:8px;padding:14px 16px 10px;background:#2B2D31;font-size:13px;font-weight:600;color:#F2F3F5}
   .screen-top i{font-style:normal;color:#949BA4;font-weight:500}
-  .screen img{width:100%}
+  .screen .alert{border-radius:0}
   .chip{position:absolute;display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:14px;background:rgba(6,34,41,.92);border:1px solid var(--line);
     font-size:13px;font-weight:700;box-shadow:0 14px 34px rgba(0,0,0,.4);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);animation:float 6s ease-in-out infinite}
   .chip small{display:block;font-size:11px;font-weight:500;color:var(--muted)}
@@ -93,6 +93,30 @@
   .c1{top:8%;left:-4%}
   .c2{bottom:14%;right:-6%;animation-delay:-3s}
   .c3{bottom:-2%;left:4%;animation-delay:-1.5s}
+
+  /* alerte Discord reproduite */
+  .alert{background:#1F3B36;padding:14px 14px 12px;font-size:13px;color:#DBDEE1;text-align:left}
+  .al-top{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+  .al-top img{width:22px;height:22px;border-radius:50%}
+  .al-top b{color:#fff;font-size:13.5px;font-weight:600}
+  .bot{font-size:9.5px;font-weight:700;padding:1px 5px;border-radius:4px;background:#5865F2;color:#fff;letter-spacing:.3px}
+  .al-top time{color:#949BA4;font-size:11.5px}
+  .embed{margin-top:9px;padding:12px 12px 12px 14px;border-radius:6px;background:#173530;border-left:4px solid var(--turq)}
+  .al-title{color:#00A8FC;font-weight:600;font-size:14.5px;line-height:1.3}
+  .al-grid{margin-top:10px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px 10px}
+  .al-grid .w2{grid-column:span 2}
+  .al-grid dt{font-weight:700;color:#fff;font-size:12.5px;white-space:nowrap}
+  .al-grid dd{margin-top:2px;font-size:12.5px;color:#DBDEE1;font-variant-numeric:tabular-nums}
+  .hl{background:rgba(3,235,202,.16);color:var(--turq-l);padding:1px 5px;border-radius:5px;font-weight:600;white-space:nowrap}
+  .al-ph{margin-top:11px;display:grid;grid-template-columns:1fr 1fr;gap:5px}
+  .al-ph img{width:100%;height:auto;aspect-ratio:349/437;object-fit:cover;border-radius:6px}
+  .al-btns{margin-top:9px;display:flex;gap:7px}
+  .al-btns span{display:inline-flex;align-items:center;gap:5px;padding:6px 12px;border-radius:5px;font-size:12.5px;font-weight:600}
+  .buy{background:#248046;color:#fff}
+  .det{background:#4E5058;color:#fff}
+  .in-phone{padding:12px 11px 12px}
+  .in-phone .al-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .in-phone .al-grid .w2{grid-column:auto}
   @keyframes float{50%{transform:translateY(-10px)}}
   .floaty{position:absolute;opacity:.16;pointer-events:none;animation:float 8s ease-in-out infinite}
   @media (prefers-reduced-motion: reduce){.chip,.floaty,.dot{animation:none}}
@@ -145,7 +169,7 @@
   .proof{background:linear-gradient(180deg,transparent,rgba(6,34,41,.7) 20%,rgba(6,34,41,.7) 80%,transparent)}
   .shots{margin-top:44px;display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:860px;margin-inline:auto}
   .shot{border-radius:22px;overflow:hidden;background:var(--surface);border:1px solid var(--line);box-shadow:0 24px 60px rgba(0,0,0,.35)}
-  .shot img{width:100%}
+  .shot .alert{border-radius:0;border:none}
   .shot figcaption{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:14px 18px;font-size:14px;font-weight:600;border-top:1px solid var(--line)}
   .shot figcaption span{color:var(--turq-l)}
   .note{margin-top:18px;text-align:center;font-size:13px;color:var(--muted)}
@@ -260,10 +284,24 @@
         <div class="phone">
           <div class="screen">
             <div class="screen-top"># alertes-switch <i>· Nanixss Hub V</i></div>
-            <img src="alerte-arceus.webp" alt="Alerte du bot : jeu Switch Pokémon Légendes Arceus à 10 €, publié il y a 39 secondes" width="795" height="776">
+<div class="alert in-phone">
+              <div class="al-top"><img src="../logo.png" alt=""><b>Nanixss Hub V</b><span class="bot">BOT</span><time>Aujourd'hui à 12:02</time></div>
+              <div class="embed">
+                <div class="al-title">Jeu nintendo switch Pokémon</div>
+                <dl class="al-grid">
+                  <div><dt>⏳ Publié</dt><dd><span class="hl">à l'instant</span></dd></div>
+                  <div><dt>🔖 Marque</dt><dd>Inconnue</dd></div>
+                  <div><dt>📏 Taille</dt><dd>Unique</dd></div>
+                  <div><dt>💎 État</dt><dd>Très bon état</dd></div>
+                  <div class="w2"><dt>💰 Prix</dt><dd>10,00 € · ≈ 11,12 € TTC</dd></div>
+                </dl>
+                <div class="al-ph"><img src="arceus-1.webp" alt="Pokémon Légendes Arceus, recto" width="349" height="437"><img src="arceus-2.webp" alt="Pokémon Légendes Arceus, intérieur de la boîte" width="349" height="437"></div>
+              </div>
+              <div class="al-btns"><span class="buy">⚡ Acheter</span><span class="det">📄 Détails ↗</span></div>
+            </div>
           </div>
         </div>
-        <div class="chip c1"><span class="ico">⏱️</span><span>Publié il y a 39 s<small>reçu sur Discord</small></span></div>
+        <div class="chip c1"><span class="ico">⏱️</span><span>Publié à l'instant<small>reçu sur Discord</small></span></div>
         <div class="chip c2"><span class="ico">💰</span><span>10,00 €<small>Légendes Pokémon Arceus</small></span></div>
         <div class="chip c3"><span class="ico">⚡</span><span>Bouton Acheter<small>un clic depuis l'alerte</small></span></div>
       </div>
@@ -313,13 +351,41 @@
       <div class="head c">
         <div class="tag">En vrai</div>
         <h2>Voilà ce qui arrive dans ton Discord</h2>
-        <p>Deux alertes reçues le même jour, à la même minute. Des jeux Switch à 7 et 10 €, publiés il y a moins d'une minute.</p>
+        <p>Deux alertes reçues le même jour, à la même minute. Des jeux Switch à 7 et 10 €, signalés à l'instant de leur mise en ligne.</p>
       </div>
       <div class="shots">
-        <figure class="shot"><img src="alerte-arceus.webp" alt="Alerte : jeu Nintendo Switch Pokémon Légendes Arceus, 10 €, publié il y a 39 secondes" width="795" height="776" loading="lazy"><figcaption>Légendes Pokémon Arceus <span>10 € · il y a 39 s</span></figcaption></figure>
-        <figure class="shot"><img src="alerte-mario.webp" alt="Alerte : jeu Switch New Super Mario Bros. U Deluxe, 7 €, publié il y a une minute" width="795" height="766" loading="lazy"><figcaption>New Super Mario Bros. U Deluxe <span>7 € · il y a 1 min</span></figcaption></figure>
+        <figure class="shot"><div class="alert">
+              <div class="al-top"><img src="../logo.png" alt=""><b>Nanixss Hub V</b><span class="bot">BOT</span><time>Aujourd'hui à 12:02</time></div>
+              <div class="embed">
+                <div class="al-title">Jeu nintendo switch Pokémon</div>
+                <dl class="al-grid">
+                  <div><dt>⏳ Publié</dt><dd><span class="hl">à l'instant</span></dd></div>
+                  <div><dt>🔖 Marque</dt><dd>Inconnue</dd></div>
+                  <div><dt>📏 Taille</dt><dd>Unique</dd></div>
+                  <div><dt>💎 État</dt><dd>Très bon état</dd></div>
+                  <div class="w2"><dt>💰 Prix</dt><dd>10,00 € · ≈ 11,12 € TTC</dd></div>
+                </dl>
+                <div class="al-ph"><img src="arceus-1.webp" alt="Pokémon Légendes Arceus, recto" width="349" height="437" loading="lazy"><img src="arceus-2.webp" alt="Pokémon Légendes Arceus, intérieur de la boîte" width="349" height="437" loading="lazy"></div>
+              </div>
+              <div class="al-btns"><span class="buy">⚡ Acheter</span><span class="det">📄 Détails ↗</span></div>
+            </div><figcaption>Légendes Pokémon Arceus <span>10 € · à l'instant</span></figcaption></figure>
+        <figure class="shot"><div class="alert">
+              <div class="al-top"><img src="../logo.png" alt=""><b>Nanixss Hub V</b><span class="bot">BOT</span><time>Aujourd'hui à 12:02</time></div>
+              <div class="embed">
+                <div class="al-title">Switch spiel</div>
+                <dl class="al-grid">
+                  <div><dt>⏳ Publié</dt><dd><span class="hl">à l'instant</span></dd></div>
+                  <div><dt>🔖 Marque</dt><dd>Inconnue</dd></div>
+                  <div><dt>📏 Taille</dt><dd>Unique</dd></div>
+                  <div><dt>💎 État</dt><dd>Très bon état</dd></div>
+                  <div class="w2"><dt>💰 Prix</dt><dd>7,00 € · ≈ 7,97 € TTC</dd></div>
+                </dl>
+                <div class="al-ph"><img src="mario-1.webp" alt="New Super Mario Bros. U Deluxe, recto" width="349" height="437" loading="lazy"><img src="mario-2.webp" alt="New Super Mario Bros. U Deluxe, intérieur de la boîte" width="349" height="437" loading="lazy"></div>
+              </div>
+              <div class="al-btns"><span class="buy">⚡ Acheter</span><span class="det">📄 Détails ↗</span></div>
+            </div><figcaption>New Super Mario Bros. U Deluxe <span>7 € · à l'instant</span></figcaption></figure>
       </div>
-      <p class="note">Captures réelles d'alertes du bot. Les pseudos des vendeurs ont été retirés.</p>
+      <p class="note">Alertes réelles du bot, reproduites à l'identique. Les pseudos des vendeurs ont été retirés.</p>
     </div>
   </section>
 
