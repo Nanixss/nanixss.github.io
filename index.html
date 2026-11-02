@@ -108,10 +108,9 @@
       <span class="txt"><span class="t1 d">Rejoindre Nanixss Hub</span><span class="t2" style="display:block">Le Discord · bot Vinted, alertes, entraide</span></span>
       <span class="arrow">→</span>
     </a>
-    <a data-k="founders" class="btn hot" href="https://buy.stripe.com/eVq14odiP95Sg5kdBV8g000" target="_blank" rel="noopener">
-      <span class="badge" id="places">PLACES LIMITÉES</span>
+    <a data-k="founders" class="btn hot" href="elite/">
       <span class="ic">★</span>
-      <span class="txt"><span class="t1" style="display:block">Offre Founders</span><span class="t2" style="display:block">Accès Elite · 19,99 €/mois, prix bloqué à vie</span></span>
+      <span class="txt"><span class="t1" style="display:block">Bot Vinted Elite</span><span class="t2" style="display:block">Alertes à l'instant, autocop · 24,99&nbsp;€/mois</span></span>
       <span class="arrow">→</span>
     </a>
     <a data-k="formation" class="btn" href="https://discord.gg/cyReW8sVJm" target="_blank" rel="noopener">
@@ -173,23 +172,6 @@
     const done = () => { b.textContent = 'Copié ✓'; b.classList.add('ok'); setTimeout(() => { b.textContent = c; b.classList.remove('ok'); }, 1400); };
     if (navigator.clipboard) navigator.clipboard.writeText(c).then(done, done); else done();
   }));
-  // Places Founders restantes, lues en direct sur le bot Nanixss Hub (Stripe)
-  (async () => {
-    const badge = document.getElementById('places');
-    try {
-      const r = await fetch('https://nanixss-pay-production.up.railway.app/founders', { cache: 'no-store' });
-      const d = await r.json();
-      if (d.open === false) {
-        const btn = badge.closest('a');
-        btn.href = 'https://buy.stripe.com/28EfZigv15TG06mbtN8g001';
-        btn.querySelector('.t1').textContent = 'Offre Elite';
-        btn.querySelector('.t2').textContent = 'Bot Vinted complet · 24,99 €/mois';
-        badge.remove(); // plus aucune mention de Founders une fois complet
-      } else if (typeof d.remaining === 'number') {
-        badge.textContent = `PLUS QUE ${d.remaining} PLACE${d.remaining > 1 ? 'S' : ''}`;
-      }
-    } catch (e) { /* on garde « PLACES LIMITÉES » */ }
-  })();
   // N qui rebondissent façon écran DVD
   (() => {
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
