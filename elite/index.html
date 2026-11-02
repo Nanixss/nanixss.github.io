@@ -8,7 +8,11 @@
 <meta name="description" content="Le bot Vinted de Nanixss Hub : chaque pépite dans ton Discord à l'instant où elle sort. Filtres sur mesure, autocop, multicompte. Sans engagement.">
 <meta property="og:title" content="Nanixss Hub · Bot Vinted Elite">
 <meta property="og:description" content="Chaque pépite Vinted, à l'instant où elle sort, dans ton Discord.">
-<meta property="og:image" content="https://nanixss.github.io/logo.png">
+<meta property="og:image" content="https://nanixss.github.io/elite/partage.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://nanixss.github.io/elite/">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#04131A">
 <link rel="icon" href="../logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,7 +51,6 @@
   /* ---------- monde 3D ---------- */
   .gl-layer{position:fixed;left:0;top:0;width:100%;height:100lvh;pointer-events:none;display:block}
   #world{z-index:0}
-  #world-front{z-index:15}
   .veil{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(120% 95% at 50% 45%,transparent 55%,rgba(3,16,23,.72) 100%)}
   .grain{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.06;mix-blend-mode:overlay;
     background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
@@ -64,19 +67,19 @@
   .nav-links{display:flex;gap:28px;margin-left:auto;font-size:14.5px;font-weight:500;color:var(--text-2)}
   .nav-links a{text-decoration:none;padding:6px 0;transition:color .2s}
   .nav-links a:hover{color:var(--text)}
-  @media (max-width:900px){.nav-links{display:none}.nav .btn-s{margin-left:auto}}
+  @media (max-width:1100px){.nav-links{display:none}.nav .btn-s{margin-left:auto}}
 
   /* ---------- boutons ---------- */
   .btn{position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:10px;
     font:700 16px/1.2 var(--font);text-decoration:none;border:0;border-radius:16px;padding:17px 26px;cursor:pointer;text-align:center;
     transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .3s,border-color .2s,color .2s}
-  .btn:active{transform:scale(.97)}
+  .btn:active{scale:.97}
   .btn .i{width:19px;height:19px}
   .btn-main{background:linear-gradient(135deg,#03EBCA 0%,#03D2B6 55%,#048A83 150%);color:var(--bg);
     box-shadow:0 16px 36px -14px rgba(3,210,182,.75),inset 0 1px 0 rgba(255,255,255,.4)}
   .btn-main .i{stroke-width:2.2}
   .btn-main::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.5) 50%,transparent 65%);transform:translateX(-130%);transition:transform .8s cubic-bezier(.2,.7,.2,1)}
-  .btn-main:hover{transform:translateY(-2px);box-shadow:0 22px 46px -16px rgba(3,210,182,.9),inset 0 1px 0 rgba(255,255,255,.4)}
+  .btn-main:hover{translate:0 -2px;box-shadow:0 22px 46px -16px rgba(3,210,182,.9),inset 0 1px 0 rgba(255,255,255,.4)}
   .btn-main:hover::after{transform:translateX(130%)}
   .btn-price{font-weight:600;font-size:13.5px;padding:4px 9px;border-radius:9px;background:rgba(4,19,26,.14)}
   .btn-ghost{background:rgba(6,34,41,.7);color:var(--text);border:1.5px solid var(--line-2)}
@@ -104,16 +107,24 @@
   @keyframes rise{from{transform:translateY(20px);filter:blur(4px)}}
 
   .hero-vis{position:relative;display:flex;justify-content:center;perspective:1400px;touch-action:pan-y;padding-block:10px}
-  .rig{position:relative;transform-style:preserve-3d;transform:rotateY(var(--ry,-14deg)) rotateX(var(--rx,6deg));transition:transform .9s cubic-bezier(.2,.7,.2,1);will-change:transform}
-  .phone{position:relative;width:min(340px,84vw);aspect-ratio:9/18.6;border-radius:50px;padding:11px;
+  .rig{position:relative;z-index:1;transform-style:preserve-3d;transform:translateZ(var(--sz,0px)) rotateY(var(--ry,-14deg)) rotateX(var(--rx,6deg));transition:transform .9s cubic-bezier(.2,.7,.2,1);will-change:transform}
+  .phone{position:relative;transform-style:preserve-3d;width:min(340px,84vw);aspect-ratio:9/18.6;border-radius:50px;padding:11px;
     background:linear-gradient(155deg,#14454D,#062126 45%,#03161B);
     box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 0 0 1.5px rgba(3,210,182,.38),0 60px 100px -36px rgba(0,0,0,.9),0 40px 80px -50px rgba(3,210,182,.55)}
   .phone::after{content:"";position:absolute;inset:0;border-radius:50px;pointer-events:none;z-index:6;
     background:linear-gradient(118deg,rgba(255,255,255,.15),transparent 26%,transparent 74%,rgba(3,235,202,.08))}
+  .ph-edge{position:absolute;inset:0;transform-style:preserve-3d;pointer-events:none}
+  .ph-edge i{position:absolute;inset:0;border-radius:50px;background:linear-gradient(160deg,#145058,#06232A 55%,#031419);box-shadow:0 0 0 1px rgba(3,210,182,.22)}
+  .ph-edge i:nth-child(1){transform:translateZ(-1.25px)}.ph-edge i:nth-child(2){transform:translateZ(-2.50px)}.ph-edge i:nth-child(3){transform:translateZ(-3.75px)}.ph-edge i:nth-child(4){transform:translateZ(-5.00px)}.ph-edge i:nth-child(5){transform:translateZ(-6.25px)}.ph-edge i:nth-child(6){transform:translateZ(-7.50px)}.ph-edge i:nth-child(7){transform:translateZ(-8.75px)}.ph-edge i:nth-child(8){transform:translateZ(-10.00px)}.ph-edge i:nth-child(9){transform:translateZ(-11.25px)}.ph-edge i:nth-child(10){transform:translateZ(-12.50px)}.ph-edge i:nth-child(11){transform:translateZ(-13.75px)}.ph-edge i:nth-child(12){transform:translateZ(-15.00px)}
   .notch{position:absolute;top:20px;left:50%;width:98px;height:27px;border-radius:20px;background:#020B0E;transform:translateX(-50%);z-index:7}
   .screen{position:relative;height:100%;border-radius:40px;overflow:hidden;background:#152F2B}
-  .ch-head{position:absolute;top:0;left:0;right:0;z-index:3;display:flex;align-items:center;gap:7px;padding:56px 18px 14px;
-    background:linear-gradient(#11302A 72%,rgba(17,48,42,0));font-weight:600;font-size:14px;color:#F2F3F5}
+  .ch-head{position:absolute;top:0;left:0;right:0;z-index:3;display:flex;align-items:center;gap:7px;padding:56px 18px 34px;
+    background:linear-gradient(#11302A 56%,rgba(17,48,42,0));font-weight:600;font-size:14px;color:#F2F3F5}
+  .new-div{display:flex;align-items:center;gap:8px;padding:4px 12px 2px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+  .new-div::before{content:"";flex:1;height:1px;background:rgba(3,235,202,.75)}
+  .new-div span{padding:2px 6px;border-radius:4px;background:var(--accent);color:var(--bg)}
+  .alert.flash{animation:flash 2.2s cubic-bezier(.16,1,.3,1)}
+  @keyframes flash{0%,12%{background:#2C6358}100%{background:#1C3934}}
   .ch-head .i{width:17px;height:17px;color:#93ACA6}
   .ch-head span{margin-left:auto;font-size:11.5px;font-weight:500;color:#93ACA6}
   .feed{position:absolute;left:0;right:0;bottom:0;display:flex;flex-direction:column;gap:6px;padding-bottom:16px;transition:transform 1.15s cubic-bezier(.16,1,.3,1)}
@@ -153,10 +164,10 @@
   .alert.compact .al-grid .w2{grid-column:auto}
 
   /* ---------- bandeaux ---------- */
-  .bands{position:relative;height:clamp(150px,17vw,230px);overflow:hidden;z-index:1}
-  .band{position:absolute;left:-10%;width:120%;top:50%;padding-block:clamp(13px,1.5vw,20px)}
-  .b1{transform:translateY(-64%) rotate(-3deg);background:var(--accent);color:var(--bg);z-index:2;box-shadow:0 26px 50px -26px rgba(0,0,0,.8)}
-  .b2{transform:translateY(-36%) rotate(2.2deg);background:var(--deep);border-block:1px solid var(--line);z-index:1}
+  .bands{position:relative;height:clamp(170px,19vw,250px);overflow:hidden;z-index:1;perspective:900px}
+  .band{position:absolute;left:-16%;width:132%;top:50%;padding-block:clamp(13px,1.5vw,20px)}
+  .b1{transform:translateY(-64%) rotateX(18deg) rotateY(-4deg) rotate(-3deg);background:var(--accent);color:var(--bg);z-index:2;box-shadow:0 26px 50px -26px rgba(0,0,0,.8)}
+  .b2{transform:translateY(-34%) rotateX(-16deg) rotateY(5deg) rotate(2.2deg);background:var(--deep);border-block:1px solid var(--line);z-index:1}
   .band-track{display:flex;width:max-content;will-change:transform}
   .band-set{display:flex;align-items:center;gap:clamp(22px,2.8vw,40px);padding-right:clamp(22px,2.8vw,40px);
     font-weight:900;font-size:clamp(26px,3.4vw,46px);letter-spacing:-.02em;text-transform:uppercase;white-space:nowrap;line-height:1}
@@ -170,8 +181,63 @@
   .sec-head{max-width:740px}
   .sec-head.c{margin-inline:auto;text-align:center}
   .sec-head h2{font-size:clamp(34px,4.6vw,60px);letter-spacing:-.035em}
+  .sec-head h2 .hl,.final h2 .hl{color:var(--accent)}
   .sec-head p{margin-top:18px;font-size:17.5px;color:var(--text-2);max-width:36em}
   .sec-head.c p{margin-inline:auto}
+
+
+
+  /* ---------- relief 3D ---------- */
+  .tilt{transform:perspective(1100px) var(--base,translateZ(0)) rotateX(var(--tx,0deg)) rotateY(var(--ty,0deg));transform-style:preserve-3d;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+  .tilt.live{transition:transform .12s linear}
+  .tilt .ui,.tilt .vis,.tilt .vs-vis{transform:translateZ(36px)}
+  .tilt h3,.tilt .price,.tilt .rv-h{transform:translateZ(24px)}
+  .tilt .btn{transform:translateZ(30px)}
+  @media (hover:none){.tilt .ui,.tilt .vis,.tilt .vs-vis,.tilt h3,.tilt .price,.tilt .rv-h,.tilt .btn{transform:none}}
+  @media (min-width:821px){.plans{perspective:1600px}.plan:not(.elite){--base:rotateY(8deg) translateZ(-26px)}.plan.elite{--base:rotateY(-4deg) translateZ(34px)}}
+
+  /* ---------- espaces des objets 3D ---------- */
+  .obj-slot{pointer-events:none}
+  .o-hero-a,.o-hero-b{position:absolute;z-index:0;width:clamp(110px,11vw,160px);aspect-ratio:1}
+  .o-hero-a{left:-15%;bottom:11%}
+  .o-hero-b{right:-17%;top:5%}
+  .sec > .wrap{position:relative}
+  .o-side{position:absolute;top:-24px;right:max(clamp(16px,4vw,32px),env(safe-area-inset-right,0px));width:min(290px,max(0px,calc(100% - 820px)));aspect-ratio:1}
+  .o-price{--sw:min(180px,max(0px,calc((100vw - 960px) / 2 - 70px)));position:absolute;left:calc(50% - 510px - var(--sw));top:44%;width:var(--sw);aspect-ratio:1}
+  .o-faq{width:min(230px,70%);aspect-ratio:1;margin-top:34px}
+  @media (max-width:999px){
+    .o-hero-a,.o-hero-b,.o-price{display:none}
+    .o-side{position:relative;top:auto;right:auto;width:140px;margin:-10px 0 6px auto}
+    .o-faq{width:140px;margin:22px 0 0 auto}
+  }
+
+  /* sans / avec */
+  .vs{margin-top:58px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:stretch}
+  .vs-card{display:flex;flex-direction:column;gap:22px;padding:30px;border-radius:30px;border:1px solid var(--line);background:var(--surface)}
+  .vs-without{background:#071A1F;border-color:rgba(156,196,196,.12);box-shadow:0 40px 80px -50px rgba(0,0,0,.95)}
+  .vs-with{background:linear-gradient(170deg,#0C3D42,#072C32 50%,#06232A);border:1.5px solid var(--accent);box-shadow:0 60px 110px -56px rgba(0,0,0,1),0 40px 90px -70px rgba(3,210,182,.8)}
+  .vs-card h3{font-size:24px;letter-spacing:-.02em;display:flex;align-items:center;gap:12px}
+  .vs-without h3{color:var(--text-2)}
+  .vs-card h3 img{width:32px;height:32px;border-radius:50%}
+  .vs-card h3 .xk{flex-basis:32px;height:32px;border-radius:50%}
+  .vs-list{list-style:none;display:flex;flex-direction:column;gap:13px}
+  .vs-list li{display:flex;gap:12px;align-items:flex-start;font-size:15.5px;line-height:1.5}
+  .vs-without .vs-list li{color:var(--text-2)}
+  .xk{flex:0 0 24px;height:24px;border-radius:8px;display:grid;place-items:center;background:rgba(156,196,196,.08);color:#87A6A8}
+  .xk .i{width:14px;height:14px;stroke-width:2.6}
+  .vs-vis{margin-top:auto;border-radius:20px;background:var(--deep);border:1px solid rgba(3,210,182,.10);padding:14px;display:flex;flex-direction:column;gap:9px}
+  .vs-bar{display:flex;align-items:center;gap:9px;padding:2px 4px 6px;font-size:12.5px;font-weight:600;color:#87A6A8}
+  .vs-bar .i{width:17px;height:17px}
+  .vs-bar span{margin-left:auto;font-weight:500}
+  .sold{display:flex;align-items:center;gap:12px;padding:9px;border-radius:13px;background:rgba(255,255,255,.025);border:1px solid rgba(156,196,196,.08);color:#87A6A8;font-size:13.5px;font-weight:600}
+  .sold .th{flex:0 0 40px;height:48px;border-radius:8px;display:grid;place-items:center;background:#0F2428;color:#4E6B6E}
+  .sold .th .i{width:18px;height:18px}
+  .sold em{margin-left:auto;font-style:normal;font-size:11.5px;font-weight:700;padding:4px 9px;border-radius:7px;background:#1C3236;color:#9DB5B7}
+  .vs-with .vs-vis{background:radial-gradient(120% 90% at 50% 0%,rgba(3,210,182,.14),transparent 60%),var(--deep)}
+  .vs-with .notif{opacity:1;transform:none}
+  .vs-buy{display:flex;gap:8px}
+  .vs-buy span{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:7px;font-size:13.5px;font-weight:600;color:#fff}
+  @media (max-width:860px){.vs{grid-template-columns:minmax(0,1fr)}}
 
   /* étapes */
   .flow{list-style:none;margin-top:58px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
@@ -208,7 +274,7 @@
 
   /* fonctionnalités */
   .bento{margin-top:58px;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:18px}
-  .tile{position:relative;display:flex;flex-direction:column;gap:12px;padding:28px;border-radius:28px;background:var(--surface);border:1px solid var(--line);overflow:hidden;
+  .tile{position:relative;display:flex;flex-direction:column;gap:12px;padding:28px;border-radius:28px;background:var(--surface);border:1px solid var(--line);
     box-shadow:0 34px 70px -46px rgba(0,0,0,.9);transition:border-color .25s}
   .tile:hover{border-color:var(--line-2)}
   .tile h3{font-size:22px;letter-spacing:-.02em;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
@@ -259,15 +325,16 @@
   .vid .i{position:absolute;left:50%;top:42%;width:30px;height:30px;transform:translate(-50%,-50%);color:var(--accent-l)}
   .vid span{position:relative;font-size:11.5px;font-weight:600;line-height:1.25;color:var(--text)}
   @media (max-width:980px){.bento{grid-template-columns:repeat(2,minmax(0,1fr))}.t-alerts{grid-column:span 2;grid-row:auto}.t-filters,.t-all,.t-auto,.t-multi{grid-column:span 1}.t-help{grid-column:span 2}}
-  @media (max-width:640px){.bento{grid-template-columns:minmax(0,1fr)}.bento .tile{grid-column:auto}}
+  @media (max-width:640px){.bento{grid-template-columns:minmax(0,1fr)}.bento .tile{grid-column:auto;padding:22px}.t-alerts .vis{padding:20px 12px 12px}.notif{gap:10px;padding:10px}.notif .th{display:none}}
 
   /* preuves */
   .proof-cards{margin-top:64px;display:grid;grid-template-columns:repeat(2,minmax(0,420px));justify-content:center;gap:clamp(22px,4.5vw,64px);perspective:1800px}
   .pcard{border-radius:24px;overflow:hidden;border:1px solid var(--line-2);background:#1C3934;
     box-shadow:0 70px 110px -56px rgba(0,0,0,.95),0 36px 90px -60px rgba(3,210,182,.6);transition:transform .8s cubic-bezier(.16,1,.3,1)}
-  .pcard:first-child{transform:rotateY(12deg) rotateX(3deg)}
-  .pcard:last-child{transform:rotateY(-12deg) rotateX(3deg) translateY(40px)}
-  .pcard:hover{transform:none}
+  .pcard:first-child{transform:rotateY(calc(30deg - 18deg * var(--pp,1))) rotateX(4deg) translateZ(calc(-80px + 60px * var(--pp,1)))}
+  .pcard:last-child{transform:rotateY(calc(-30deg + 18deg * var(--pp,1))) rotateX(4deg) translateY(40px) translateZ(calc(-80px + 60px * var(--pp,1)))}
+  .pcard{transition:transform .25s linear}
+  .pcard:hover{transform:none;transition:transform .8s cubic-bezier(.16,1,.3,1)}
   .pcard figcaption{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:15px 18px;background:#082A2F;border-top:1px solid var(--line);font-weight:600;font-size:14.5px}
   .pcard figcaption span{color:var(--accent-l)}
   .note{margin-top:30px;text-align:center;font-size:13.5px;color:var(--text-3)}
@@ -285,6 +352,8 @@
   .price{margin-top:26px;display:flex;align-items:baseline;gap:8px}
   .price b{font-size:clamp(46px,5vw,60px);font-weight:900;letter-spacing:-.04em;line-height:1}
   .price span{color:var(--text-2)}
+  .per-day{margin-top:8px;font-size:14px;font-weight:600;color:var(--accent-l)}
+  .plan:not(.elite) .per-day{color:var(--text-2)}
   .plan ul{list-style:none;margin-top:28px;display:flex;flex-direction:column;gap:14px;flex:1}
   .plan li{display:flex;gap:12px;align-items:flex-start;font-size:15.5px;line-height:1.5}
   .ck{flex:0 0 24px;height:24px;border-radius:8px;display:grid;place-items:center;background:rgba(3,210,182,.12);color:var(--accent)}
@@ -356,6 +425,7 @@
 
   @media (prefers-reduced-motion: reduce){
     .rise{animation:none}
+    .tilt{transition:none}
     .rig,.feed,.push,.pcard,.btn,.btn-main::after{transition:none}
   }
 </style>
@@ -373,13 +443,15 @@
   <symbol id="i-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.2"/><path d="M10 8.6 15.4 12 10 15.4V8.6Z"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.3 4.3L19 7.2"/></symbol>
   <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7 7 17"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M19.5 11A7.5 7.5 0 0 0 6 6.6L4.5 8"/><path d="M4.5 4v4h4"/><path d="M4.5 13A7.5 7.5 0 0 0 18 17.4l1.5-1.4"/><path d="M19.5 20v-4h-4"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="2.5"/><circle cx="9.5" cy="10" r="1.6"/><path d="m5 17 4.5-4.5 3.5 3.5 2.5-2.5L19.5 17"/></symbol>
   <symbol id="i-hash" viewBox="0 0 24 24"><path d="M9.5 4 7.5 20M16.5 4l-2 16M4.5 9h16M3.5 15h16"/></symbol>
   <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.8l2.7 5.6 6.1.8-4.5 4.2 1.2 6L12 16.5l-5.5 2.9 1.2-6-4.5-4.2 6.1-.8L12 2.8Z"/></symbol>
   <symbol id="i-n" viewBox="-1.25 -0.66 2.5 1.32"><g transform="scale(1,-1)"><polygon points="-1.2,-0.59 -0.57,0.52 -0.51,0.6 -0.49,0.61 0.21,0.61 0.21,0.6 -0.5,-0.6 -0.54,-0.61 -1.2,-0.6"/><polygon points="0.3,0.25 0.5,0.61 1.18,0.61 1.2,0.59 1.2,0.56 0.52,-0.58 0.51,-0.58 0.5,-0.55"/><polygon points="-0.3,-0.29 0.19,0.53 0.21,0.54 0.49,-0.59 -0.18,-0.59 -0.23,-0.55" opacity=".78"/></g></symbol>
 </svg>
 
 <canvas id="world" class="gl-layer" aria-hidden="true"></canvas>
-<canvas id="world-front" class="gl-layer" aria-hidden="true"></canvas>
 <div class="veil" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
 
@@ -387,6 +459,7 @@
   <div class="wrap nav-in">
     <a class="brand" href="#top" data-k="elite-logo"><img src="../logo.png" alt="" width="36" height="36"><span>NANIXSS<b>.</b>HUB</span></a>
     <nav class="nav-links" aria-label="Sections">
+      <a href="#avec">Pourquoi le bot</a>
       <a href="#comment">Comment ça marche</a>
       <a href="#fonctions">Fonctionnalités</a>
       <a href="#tarifs">Tarifs</a>
@@ -415,8 +488,11 @@
       </div>
 
       <div class="hero-vis" id="stage" data-scene="phone">
+        <div class="obj-slot o-hero-a" data-obj="tag" aria-hidden="true"></div>
+        <div class="obj-slot o-hero-b" data-obj="cart" aria-hidden="true"></div>
         <div class="rig" id="rig">
           <div class="phone">
+            <div class="ph-edge" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
             <div class="notch"></div>
             <div class="screen">
               <div class="push" id="push" aria-hidden="true">
@@ -442,7 +518,8 @@
                   </div>
                   <div class="al-btns"><span class="b-buy">⚡ Acheter</span><span class="b-det">📄 Détails ↗</span></div>
                 </article>
-                <article class="alert compact" aria-label="Alerte : Jeu nintendo switch Pokémon, 10 euros">
+                <div class="new-div" id="new-div" aria-hidden="true"><span>Nouvelle alerte</span></div>
+                <article class="alert compact" id="new-alert" aria-label="Alerte : Jeu nintendo switch Pokémon, 10 euros">
                   <header class="al-top"><img src="../logo.png" alt="" width="22" height="22"><b>Nanixss Hub V</b><span class="bot">BOT</span><time>Aujourd'hui à 12:02</time></header>
                   <div class="embed">
                     <p class="al-title">Jeu nintendo switch Pokémon</p>
@@ -480,14 +557,55 @@
     </div></div>
   </div>
 
-  <section class="sec" id="comment" data-scene="steps">
+  <section class="sec" id="avec" data-scene="versus">
     <div class="wrap">
+      <div class="obj-slot o-side" data-obj="bell" aria-hidden="true"></div>
       <div class="sec-head">
-        <h2>Tu règles une fois. Le bot bosse pour toi.</h2>
+        <h2>Arrête de rafraîchir Vinted. <span class="hl">Les pépites viennent à toi.</span></h2>
+        <p>Même Vinted, mêmes annonces. La différence, c'est le moment où tu les vois.</p>
+      </div>
+      <div class="vs">
+        <div class="vs-card vs-without tilt">
+          <h3><span class="xk"><svg class="i"><use href="#i-x"/></svg></span>Sans le bot</h3>
+          <ul class="vs-list">
+            <li><span class="xk"><svg class="i"><use href="#i-x"/></svg></span>Tu rafraîchis Vinted toute la journée</li>
+            <li><span class="xk"><svg class="i"><use href="#i-x"/></svg></span>Tu tombes sur des annonces déjà vendues</li>
+            <li><span class="xk"><svg class="i"><use href="#i-x"/></svg></span>Tu tries des centaines d'annonces sans intérêt</li>
+            <li><span class="xk"><svg class="i"><use href="#i-x"/></svg></span>Dès que tu lâches ton téléphone, tu rates tout</li>
+          </ul>
+          <div class="vs-vis" aria-hidden="true">
+            <div class="vs-bar"><svg class="i"><use href="#i-refresh"/></svg>Vinted<span>Actualiser… encore</span></div>
+            <div class="sold"><span class="th"><svg class="i"><use href="#i-image"/></svg></span>Jeu Switch<em>Vendu</em></div>
+            <div class="sold"><span class="th"><svg class="i"><use href="#i-image"/></svg></span>Console rétro<em>Vendu</em></div>
+            <div class="sold"><span class="th"><svg class="i"><use href="#i-image"/></svg></span>Sneakers<em>Vendu</em></div>
+          </div>
+        </div>
+        <div class="vs-card vs-with tilt" id="vs-with">
+          <h3><img src="../logo.png" alt="" width="32" height="32">Avec Nanixss Hub</h3>
+          <ul class="vs-list">
+            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>L'annonce arrive sur ton téléphone à l'instant où elle sort</li>
+            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Tu ne reçois que ce qui passe tes filtres</li>
+            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Tu achètes en un clic, ou l'autocop achète pour toi en Elite</li>
+            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Tu gardes ton temps pour revendre</li>
+          </ul>
+          <div class="vs-vis" aria-hidden="true">
+            <div class="notif"><img class="app" src="../logo.png" alt="" width="38" height="38"><div><b>Nanixss Hub V <time>à l'instant</time></b><span>Jeu nintendo switch Pokémon</span><span class="num">10,00 € · Très bon état</span></div><img class="th" src="arceus-1.webp" alt="" width="349" height="437"></div>
+            <div class="vs-buy"><span class="b-buy">⚡ Acheter</span><span class="b-det">📄 Détails ↗</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="comment" data-scene="steps" style="padding-top:0">
+    <div class="wrap">
+      <div class="obj-slot o-side" data-obj="colis" aria-hidden="true"></div>
+      <div class="sec-head">
+        <h2>Tu règles une fois. <span class="hl">Le bot bosse pour toi.</span></h2>
         <p>Plus besoin de rafraîchir Vinted toute la journée. Tu choisis ce que tu cherches, et chaque annonce qui correspond arrive sur ton téléphone.</p>
       </div>
       <ol class="flow">
-        <li class="step">
+        <li class="step tilt">
           <div class="ui" aria-hidden="true">
             <div class="f-row"><span>Recherche</span><b>pokémon switch</b></div>
             <div class="f-row"><span>Prix max</span><b class="num">15 €</b></div>
@@ -497,7 +615,7 @@
           <h3><span class="n">1</span>Tu règles tes filtres</h3>
           <p>Ce que tu cherches, ton prix max, l'état. Un tuto vidéo te guide pas à pas.</p>
         </li>
-        <li class="step">
+        <li class="step tilt">
           <div class="ui" aria-hidden="true">
             <div class="radar"></div>
             <div class="hit"><img src="arceus-1.webp" alt="" width="349" height="437"><div><b>Jeu nintendo switch Pokémon</b><span class="num">10,00 € · à l'instant</span></div></div>
@@ -505,7 +623,7 @@
           <h3><span class="n">2</span>Le bot repère l'annonce</h3>
           <p>Dès qu'une annonce colle à ton filtre, elle arrive dans ton salon Discord avec les photos et le prix.</p>
         </li>
-        <li class="step">
+        <li class="step tilt">
           <div class="ui" aria-hidden="true">
             <div class="buy">
               <div class="buy-row"><span class="b-buy">⚡ Acheter</span><span class="b-det">📄 Détails ↗</span>
@@ -522,12 +640,13 @@
 
   <section class="sec" id="fonctions" data-scene="features" style="padding-top:0">
     <div class="wrap">
+      <div class="obj-slot o-side" data-obj="pad" aria-hidden="true"></div>
       <div class="sec-head">
-        <h2>Tout pour ne plus rater une pépite.</h2>
+        <h2>Tout pour ne plus rater une <span class="hl">pépite.</span></h2>
         <p>Un seul abonnement, et tout se passe dans ton Discord.</p>
       </div>
       <div class="bento">
-        <article class="tile t-alerts">
+        <article class="tilt tile t-alerts">
           <h3><svg class="i"><use href="#i-bell"/></svg>Alertes instantanées</h3>
           <p>0 délai entre la mise en ligne sur Vinted et la notification dans ton Discord, sur ordi comme sur téléphone.</p>
           <div class="vis">
@@ -538,7 +657,7 @@
             </ul>
           </div>
         </article>
-        <article class="tile t-filters">
+        <article class="tilt tile t-filters">
           <h3><svg class="i"><use href="#i-sliders"/></svg>Filtres sur mesure</h3>
           <p>Tu ne reçois que ce que tu cherches, pas un flux noyé sous les annonces inutiles.</p>
           <div class="vis" aria-hidden="true">
@@ -546,12 +665,12 @@
             <div class="tgls"><span class="tgl"><span class="tg"></span>Très bon état</span><span class="tgl"><span class="tg"></span>Neuf</span><span class="tgl"><span class="tg off"></span>Lots</span></div>
           </div>
         </article>
-        <article class="tile t-all">
+        <article class="tilt tile t-all">
           <h3><svg class="i"><use href="#i-grid"/></svg>Tout Vinted</h3>
           <p>Jeux, consoles, vêtements, sneakers ou n'importe quel autre article. Si c'est sur Vinted, le bot peut le trouver.</p>
           <div class="vis cats" aria-hidden="true"><span>Jeux vidéo</span><span>Consoles</span><span>Vêtements</span><span>Sneakers</span><span>Rétro</span><span>Accessoires</span><span>Lots</span><span class="more">Et tout le reste</span></div>
         </article>
-        <article class="tile t-auto">
+        <article class="tilt tile t-auto">
           <h3><svg class="i"><use href="#i-bolt"/></svg>Autocop <span class="pill">ELITE</span></h3>
           <p>Le bot achète tout seul les annonces qui passent tes filtres, même quand tu n'es pas devant ton écran.</p>
           <div class="vis" aria-hidden="true">
@@ -559,7 +678,7 @@
             <div class="af ok"><svg class="i"><use href="#i-check"/></svg><div><b>Achat lancé tout seul</b><span>par l'autocop</span></div></div>
           </div>
         </article>
-        <article class="tile t-multi">
+        <article class="tilt tile t-multi">
           <h3><svg class="i"><use href="#i-users"/></svg>Multicompte <span class="pill">ELITE</span></h3>
           <p>Connecte jusqu'à 3 comptes Vinted et gère-les depuis le même Discord.</p>
           <ul class="vis accs" aria-hidden="true">
@@ -568,7 +687,7 @@
             <li><span class="av">3</span>Compte Vinted 3<em>connecté</em></li>
           </ul>
         </article>
-        <article class="tile t-help">
+        <article class="tilt tile t-help">
           <h3><svg class="i"><use href="#i-play"/></svg>Tutos et support</h3>
           <p>Des vidéos pour créer un filtre et connecter tes comptes, des guides, des presets prêts à l'emploi et un support par ticket.</p>
           <div class="vis vids" aria-hidden="true">
@@ -583,7 +702,7 @@
   <section class="sec" id="preuves" data-scene="proof">
     <div class="wrap">
       <div class="sec-head c">
-        <h2>Voilà ce que reçoivent les abonnés.</h2>
+        <h2>Voilà ce que reçoivent <span class="hl">les abonnés.</span></h2>
         <p>Deux jeux Switch à 7 et 10 €, signalés à l'instant de leur mise en ligne. Les deux alertes sont arrivées le même jour, à 12 h 02.</p>
       </div>
       <div class="proof-cards">
@@ -630,15 +749,17 @@
 
   <section class="sec" id="tarifs" data-scene="pricing">
     <div class="wrap">
+      <div class="obj-slot o-price" data-obj="coin" aria-hidden="true"></div>
       <div class="sec-head c">
-        <h2>Choisis ton accès.</h2>
+        <h2>Choisis ton <span class="hl">accès.</span></h2>
         <p>Sans engagement, paiement sécurisé par Stripe. Ton accès s'active sur le Discord Nanixss Hub.</p>
       </div>
       <div class="plans">
-        <div class="plan">
+        <div class="plan tilt">
           <div class="plan-head"><h3>Starter</h3></div>
           <p class="for">Pour recevoir les alertes et cop toi-même.</p>
           <div class="price"><b class="num">14,99 €</b><span>/ mois</span></div>
+          <p class="per-day num">Soit 0,50 € par jour</p>
           <ul>
             <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Alertes Vinted instantanées sur Discord</li>
             <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Filtres sur mesure</li>
@@ -647,10 +768,11 @@
           </ul>
           <a class="btn btn-ghost" href="https://buy.stripe.com/bJecN6gv15TG2eubtN8g002" data-k="elite-starter" rel="noopener">Prendre le Starter</a>
         </div>
-        <div class="plan elite" id="elite-card">
+        <div class="plan elite tilt" id="elite-card">
           <div class="plan-head"><h3>Elite</h3><span class="best">Le plus complet</span></div>
           <p class="for">Pour cop sans être collé à ton écran.</p>
           <div class="price"><b class="num">24,99 €</b><span>/ mois</span></div>
+          <p class="per-day num">Soit 0,83 € par jour</p>
           <ul>
             <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Tout le Starter</li>
             <li class="plus"><span class="ck"><svg class="i"><use href="#i-check"/></svg></span><span><strong>Autocop</strong> : le bot achète pour toi</span></li>
@@ -666,12 +788,13 @@
 
   <section class="sec" id="avis" data-scene="reviews" style="padding-top:0">
     <div class="wrap">
+      <div class="obj-slot o-side" data-obj="star" aria-hidden="true"></div>
       <div class="sec-head">
-        <h2>Ce qu'en disent les abonnés Elite.</h2>
+        <h2>Ce qu'en disent <span class="hl">les abonnés Elite.</span></h2>
         <p>Avis publiés dans le salon avis-client du Discord.</p>
       </div>
       <div class="rv-wrap">
-        <figure class="rv-feat">
+        <figure class="rv-feat tilt">
           <div class="rv-h"><span class="av">B</span>Bita<span class="stars" aria-label="5 sur 5"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
           <blockquote>« Excellent bot, très facile à utiliser et très efficace. Les automatisations fonctionnent parfaitement et permettent de gagner énormément de temps. Le bot est rapide, fiable et très pratique au quotidien. Le support est également au top. Je suis entièrement satisfait de mon expérience avec Nanixss Hub. Je recommande à 100&nbsp;%&nbsp;! »</blockquote>
           <figcaption class="rv-f"><svg class="i"><use href="#i-check"/></svg>Abonné Elite · avis vérifié · <time datetime="2026-10-30">30/10/2026</time></figcaption>
@@ -705,8 +828,9 @@
   <section class="sec" id="faq" data-scene="faq" style="padding-top:0">
     <div class="wrap faq-wrap">
       <div class="sec-head">
-        <h2>Avant de te lancer.</h2>
+        <h2>Avant de te <span class="hl">lancer.</span></h2>
         <p>Une autre question ? Ouvre un ticket sur le Discord, le support te répond.</p>
+        <div class="obj-slot o-faq" data-obj="bubble" aria-hidden="true"></div>
       </div>
       <div class="faq-list">
         <details><summary>Le bot, c'est seulement pour les jeux vidéo ?<span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></summary><div class="ans">Non. Le bot peut trouver tout ce qui est sur Vinted : jeux, consoles, vêtements, sneakers, accessoires… Tu crées les filtres qui correspondent à ce que tu revends.</div></details>
@@ -722,7 +846,7 @@
   <section class="final" data-scene="final">
     <div class="wrap">
       <div class="logo-slot" id="logo-slot"><img src="../logo.png" alt="Logo Nanixss" width="384" height="384" loading="lazy"></div>
-      <h2>La prochaine pépite est pour toi.</h2>
+      <h2>La prochaine pépite est <span class="hl">pour toi.</span></h2>
       <p>Rejoins les abonnés Elite et reçois chaque annonce Vinted à l'instant où elle sort.</p>
       <div class="ctas">
         <a class="btn btn-main" href="https://buy.stripe.com/28EfZigv15TG06mbtN8g001" data-k="elite-final" rel="noopener"><svg class="i"><use href="#i-bolt"/></svg>Prendre l'Elite <span class="btn-price num">24,99 €/mois</span></a>
@@ -749,6 +873,7 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>window.THREE || document.write('<script src="three.min.js"><\/script>')</script>
 <script>
 (() => {
   const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -762,30 +887,57 @@
   // Ouverture : la notification tombe, puis la nouvelle alerte arrive dans le salon
   (() => {
     const feed = document.getElementById('feed'), push = document.getElementById('push');
-    const last = feed && feed.lastElementChild;
-    if (!feed || !last || RM) return;
-    const shift = last.getBoundingClientRect().height + 6;
+    const last = document.getElementById('new-alert'), div = document.getElementById('new-div');
+    if (!feed || !last || !div || RM) return;
+    const shift = last.getBoundingClientRect().bottom - div.getBoundingClientRect().top + 6;
     feed.style.transition = 'none';
     feed.style.transform = `translateY(${shift}px)`;
     feed.getBoundingClientRect();
     feed.style.transition = '';
     setTimeout(() => push.classList.add('show'), 900);
-    setTimeout(() => { feed.style.transform = 'translateY(0)'; }, 1500);
+    setTimeout(() => { feed.style.transform = 'translateY(0)'; last.classList.add('flash'); }, 1500);
     setTimeout(() => push.classList.remove('show'), 4400);
   })();
 
-  // Téléphone qui suit la souris ou le doigt, balancement doux au repos
+  // Téléphone 3D : suit la souris ou le doigt, se balance au repos et pivote pendant le scroll
   (() => {
     const stage = document.getElementById('stage'), rig = document.getElementById('rig');
     if (!stage || !rig || RM) return;
-    let active = false; const t0 = performance.now();
-    const set = (ry, rx) => { rig.style.setProperty('--ry', ry + 'deg'); rig.style.setProperty('--rx', rx + 'deg'); };
-    const idle = (now) => { if (!active) { const t = (now - t0) / 1000; set(-14 + Math.sin(t * .55) * 6, 6 + Math.cos(t * .42) * 2.5); } requestAnimationFrame(idle); };
-    requestAnimationFrame(idle);
+    let active = false, ax = 0, ay = 0; const t0 = performance.now();
+    const loop = (now) => {
+      const t = (now - t0) / 1000, sp = Math.min(Math.max(scrollY / (innerHeight * .9), 0), 1) * (innerWidth <= 900 ? .35 : 1);
+      const by = active ? ay : -14 + Math.sin(t * .55) * 6, bx = active ? ax : 6 + Math.cos(t * .42) * 2.5;
+      rig.style.setProperty('--ry', (by - sp * 26).toFixed(2) + 'deg');
+      rig.style.setProperty('--rx', (bx + sp * 12).toFixed(2) + 'deg');
+      rig.style.setProperty('--sz', (-sp * 150).toFixed(1) + 'px');
+      requestAnimationFrame(loop);
+    };
+    requestAnimationFrame(loop);
     const move = (x, y) => { const r = stage.getBoundingClientRect(); const px = (x - r.left) / r.width - .5, py = (y - r.top) / r.height - .5;
-      active = true; set(px * 30 - 6, -py * 20 + 4); clearTimeout(move.t); move.t = setTimeout(() => active = false, 1800); };
+      active = true; ay = px * 30 - 6; ax = -py * 20 + 4; clearTimeout(move.t); move.t = setTimeout(() => active = false, 1800); };
     addEventListener('pointermove', e => { if (e.pointerType === 'mouse') move(e.clientX, e.clientY); }, { passive: true });
     stage.addEventListener('touchmove', e => { const t = e.touches[0]; if (t) move(t.clientX, t.clientY); }, { passive: true });
+  })();
+
+  // Cartes qui s'inclinent sous la souris, avec du relief
+  (() => {
+    if (RM || !matchMedia('(hover: hover)').matches) return;
+    document.querySelectorAll('.tilt').forEach(el => {
+      el.addEventListener('pointerenter', () => el.classList.add('live'));
+      el.addEventListener('pointermove', e => { const r = el.getBoundingClientRect();
+        el.style.setProperty('--ty', (((e.clientX - r.left) / r.width) - .5) * 12 + 'deg');
+        el.style.setProperty('--tx', (.5 - ((e.clientY - r.top) / r.height)) * 10 + 'deg'); });
+      el.addEventListener('pointerleave', () => { el.classList.remove('live'); el.style.setProperty('--tx', '0deg'); el.style.setProperty('--ty', '0deg'); });
+    });
+  })();
+
+  // Les deux alertes s'ouvrent en 3D quand elles arrivent au centre de l'écran
+  (() => {
+    const pc = document.querySelector('.proof-cards'); if (!pc || RM) return;
+    let tk = false;
+    const upd = () => { tk = false; const r = pc.getBoundingClientRect(); const c = (r.top + r.height / 2 - innerHeight / 2) / innerHeight;
+      pc.style.setProperty('--pp', Math.min(Math.max(1 - Math.abs(c) * 1.6, 0), 1).toFixed(3)); };
+    addEventListener('scroll', () => { if (!tk) { tk = true; requestAnimationFrame(upd); } }, { passive: true }); upd();
   })();
 
   // Bandeaux qui défilent avec le scroll, en sens opposés
@@ -821,54 +973,55 @@
     document.addEventListener('click', (ev) => { const el = ev.target.closest('[data-k]'); if (el) send({ e: 'c', k: el.dataset.k }); }, true);
   })();
 
-  // ---------- Monde 3D : l'anneau du logo, qui suit la page et se recompose en logo à la fin ----------
+  // ---------- Monde 3D : l'anneau du logo, les objets de chaque section, le logo qui se recompose à la fin ----------
   (() => {
-    const back = document.getElementById('world'), front = document.getElementById('world-front');
-    if (!back || !window.THREE) { back && back.remove(); front && front.remove(); return; }
-    let R, F = null;
+    const back = document.getElementById('world');
+    if (!back || !window.THREE) { back && back.remove(); return; }
+    let R;
     try { R = new THREE.WebGLRenderer({ canvas: back, alpha: true, antialias: true, powerPreference: 'high-performance' }); }
-    catch (e) { back.remove(); front.remove(); return; }
-    if (!mobile()) { try { F = new THREE.WebGLRenderer({ canvas: front, alpha: true, antialias: true }); } catch (e) { F = null; } }
-    if (!F) front.remove();
+    catch (e) { back.remove(); return; }
     document.documentElement.classList.add('gl');
     const PR = Math.min(devicePixelRatio || 1, mobile() ? 1.5 : 1.75);
-    R.setPixelRatio(PR); if (F) F.setPixelRatio(PR);
-    // Arrière : ce qui est derrière le plan de la page. Avant : ce qui passe devant (seulement autour du téléphone).
-    const backClip = [new THREE.Plane(new THREE.Vector3(0, 0, -1), 0)], noClip = [];
-    R.clippingPlanes = noClip;
-    if (F) F.clippingPlanes = [new THREE.Plane(new THREE.Vector3(0, 0, 1), 0)];
+    R.setPixelRatio(PR);
 
     const scene = new THREE.Scene();
     const CAMZ = 16; const cam = new THREE.PerspectiveCamera(32, 1, .1, 200); cam.position.set(0, 0, CAMZ);
     const TAN = Math.tan(cam.fov * Math.PI / 360);
     const CA = new THREE.Color('#03EBCA'), CB = new THREE.Color('#048A83'), CC = new THREE.Color('#03D2B6');
-    const layer = { value: 1 }, layerHalo = { value: 1 }, layerOrb = { value: 1 };
-    const VS = 'varying vec3 vN;varying vec3 vV;varying vec2 vUv;\n#include <clipping_planes_pars_vertex>\nvoid main(){vUv=uv;vec4 mvPosition=modelViewMatrix*vec4(position,1.);vN=normalize(normalMatrix*normal);vV=normalize(-mvPosition.xyz);gl_Position=projectionMatrix*mvPosition;\n#include <clipping_planes_vertex>\n}';
-    const FS_HEAD = '#include <clipping_planes_pars_fragment>\n';
+    const VS = 'varying vec3 vN;varying vec3 vV;varying vec2 vUv;void main(){vUv=uv;vec4 mv=modelViewMatrix*vec4(position,1.);vN=normalize(normalMatrix*normal);vV=normalize(-mv.xyz);gl_Position=projectionMatrix*mv;}';
     const neon = (k) => new THREE.ShaderMaterial({
-      uniforms: { uT: { value: 0 }, uO: { value: 1 }, uK: { value: k }, uL: layer, uA: { value: CA }, uB: { value: CB }, uC: { value: CC } },
+      uniforms: { uT: { value: 0 }, uO: { value: 1 }, uK: { value: k }, uA: { value: CA }, uB: { value: CB }, uC: { value: CC } },
       vertexShader: VS,
-      fragmentShader: FS_HEAD + 'uniform float uT,uO,uK,uL;uniform vec3 uA,uB,uC;varying vec3 vN;varying vec3 vV;varying vec2 vUv;' +
-        'void main(){\n#include <clipping_planes_fragment>\nvec3 n=normalize(vN);vec3 v=normalize(vV);vec3 L=normalize(vec3(.45,.75,.6));' +
+      fragmentShader: 'uniform float uT,uO,uK;uniform vec3 uA,uB,uC;varying vec3 vN;varying vec3 vV;varying vec2 vUv;' +
+        'void main(){vec3 n=normalize(vN);vec3 v=normalize(vV);vec3 L=normalize(vec3(.45,.75,.6));' +
         'float f=1.-abs(dot(n,v));float l=clamp(dot(n,L),0.,1.);vec3 c=mix(uB,uC,l);c=mix(c,uA,pow(f,1.5)*.8);' +
         'float s=pow(max(dot(reflect(-L,n),v),0.),28.);float band=pow(.5+.5*sin((vUv.x-uT*.06)*6.2831853),22.);' +
-        'c+=vec3(.8,1.,.97)*(s*.6+band*.5);gl_FragColor=vec4(c*uK,uO*uL);}',
-      transparent: true, clipping: true
+        'c+=vec3(.8,1.,.97)*(s*.6+band*.5);gl_FragColor=vec4(c*uK,uO);}',
+      transparent: true
     });
+    // Matière des objets : laquée, éclairée, reflet turquoise sur les bords
+    const glossy = (base, rim, spec = .7, emit = 0) => new THREE.ShaderMaterial({
+      uniforms: { uB: { value: new THREE.Color(base) }, uR: { value: new THREE.Color(rim) }, uS: { value: spec }, uE: { value: emit } },
+      vertexShader: VS, side: THREE.DoubleSide,
+      fragmentShader: 'uniform vec3 uB,uR;uniform float uS,uE;varying vec3 vN;varying vec3 vV;varying vec2 vUv;void main(){vec3 n=normalize(vN);if(!gl_FrontFacing)n=-n;vec3 v=normalize(vV);' +
+        'vec3 L=normalize(vec3(.4,.8,.55));vec3 L2=normalize(vec3(-.7,-.25,.45));float d=clamp(dot(n,L),0.,1.);float d2=clamp(dot(n,L2),0.,1.);float f=pow(1.-abs(dot(n,v)),2.2);' +
+        'vec3 c=uB*(.28+.85*d)+uR*(d2*.35+f*.95)+uB*uE;c+=vec3(1.)*pow(max(dot(reflect(-L,n),v),0.),36.)*uS;gl_FragColor=vec4(c,1.);}'
+    });
+
     const world = new THREE.Group(); scene.add(world);
     const ringMat = neon(1);
     const ring = new THREE.Mesh(new THREE.TorusGeometry(3, .15, 48, 320), ringMat); world.add(ring);
     const haloMat = new THREE.ShaderMaterial({
-      uniforms: { uO: { value: 1 }, uL: layerHalo, uC: { value: CA } }, vertexShader: VS,
-      fragmentShader: FS_HEAD + 'uniform float uO,uL;uniform vec3 uC;varying vec3 vN;varying vec3 vV;varying vec2 vUv;void main(){\n#include <clipping_planes_fragment>\nfloat d=abs(dot(normalize(vN),normalize(vV)));float a=pow(d,2.6)*.42*uO*uL;gl_FragColor=vec4(uC,a);}',
-      transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, clipping: true
+      uniforms: { uO: { value: 1 }, uC: { value: CA } }, vertexShader: VS,
+      fragmentShader: 'uniform float uO;uniform vec3 uC;varying vec3 vN;varying vec3 vV;varying vec2 vUv;void main(){float d=abs(dot(normalize(vN),normalize(vV)));float a=pow(d,2.6)*.42*uO;gl_FragColor=vec4(uC,a);}',
+      transparent: true, depthWrite: false, blending: THREE.AdditiveBlending
     });
     world.add(new THREE.Mesh(new THREE.TorusGeometry(3, .8, 32, 220), haloMat));
     const orbMat = (o) => new THREE.ShaderMaterial({
-      uniforms: { uO: { value: o }, uL: layerOrb, uC: { value: CA } },
-      vertexShader: '#include <clipping_planes_pars_vertex>\nvoid main(){vec4 mvPosition=modelViewMatrix*vec4(position,1.);gl_Position=projectionMatrix*mvPosition;\n#include <clipping_planes_vertex>\n}',
-      fragmentShader: FS_HEAD + 'uniform float uO,uL;uniform vec3 uC;void main(){\n#include <clipping_planes_fragment>\ngl_FragColor=vec4(uC,uO*uL);}',
-      transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, clipping: true
+      uniforms: { uO: { value: o }, uC: { value: CA } },
+      vertexShader: 'void main(){gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
+      fragmentShader: 'uniform float uO;uniform vec3 uC;void main(){gl_FragColor=vec4(uC,uO);}',
+      transparent: true, depthWrite: false, blending: THREE.AdditiveBlending
     });
     const o1m = orbMat(.5), o2m = orbMat(.28);
     const orb1 = new THREE.Mesh(new THREE.TorusGeometry(3.5, .016, 8, 320), o1m); orb1.rotation.set(.1, .06, 0); world.add(orb1);
@@ -893,12 +1046,12 @@
       const g = new THREE.BufferGeometry();
       g.setAttribute('position', new THREE.BufferAttribute(P, 3)); g.setAttribute('aS', new THREE.BufferAttribute(S, 1)); g.setAttribute('aP', new THREE.BufferAttribute(Ph, 1));
       const m = new THREE.ShaderMaterial({
-        uniforms: { uT: { value: 0 }, uS: { value: 0 }, uO: { value: 1 }, uL: layer, uPR: { value: PR }, uC: { value: CA } },
-        vertexShader: 'attribute float aS;attribute float aP;uniform float uT,uS,uPR;varying float vA;\n#include <clipping_planes_pars_vertex>\nvoid main(){vec3 p=position;' +
+        uniforms: { uT: { value: 0 }, uS: { value: 0 }, uO: { value: 1 }, uPR: { value: PR }, uC: { value: CA } },
+        vertexShader: 'attribute float aS;attribute float aP;uniform float uT,uS,uPR;varying float vA;void main(){vec3 p=position;' +
           (wrap ? 'p.y=mod(p.y+uS+14.,28.)-14.;' : '') +
-          'p.x+=sin(uT*.25+aP)*.12;p.y+=cos(uT*.2+aP)*.1;vec4 mvPosition=modelViewMatrix*vec4(p,1.);gl_PointSize=aS*uPR*(42./-mvPosition.z);vA=.35+.65*(.5+.5*sin(uT*1.1+aP*3.));gl_Position=projectionMatrix*mvPosition;\n#include <clipping_planes_vertex>\n}',
-        fragmentShader: FS_HEAD + 'uniform float uO,uL;uniform vec3 uC;varying float vA;void main(){\n#include <clipping_planes_fragment>\nfloat d=length(gl_PointCoord-.5);float a=smoothstep(.5,0.,d);a*=a*vA*uO*uL;gl_FragColor=vec4(uC,a);}',
-        transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, clipping: true
+          'p.x+=sin(uT*.25+aP)*.12;p.y+=cos(uT*.2+aP)*.1;vec4 mv=modelViewMatrix*vec4(p,1.);gl_PointSize=aS*uPR*(42./-mv.z);vA=.35+.65*(.5+.5*sin(uT*1.1+aP*3.));gl_Position=projectionMatrix*mv;}',
+        fragmentShader: 'uniform float uO;uniform vec3 uC;varying float vA;void main(){float d=length(gl_PointCoord-.5);float a=smoothstep(.5,0.,d);a*=a*vA*uO;gl_FragColor=vec4(uC,a);}',
+        transparent: true, depthWrite: false, blending: THREE.AdditiveBlending
       });
       return { obj: new THREE.Points(g, m), mat: m };
     };
@@ -907,33 +1060,118 @@
     const field = makePts(mobile() ? 520 : 1100, () => [(Math.random() - .5) * 36, (Math.random() - .5) * 28, -17 + Math.random() * 16], true);
     scene.add(field.obj);
 
-    // Où se place l'anneau pour chaque section : [x, y, z, rotX, rotY, rotZ, échelle, opacité, logo, devant]
+    // ---------- Objets 3D modélisés dans la DA ----------
+    const FONT = "'Poppins', system-ui, sans-serif";
+    const tex = (w, h, draw) => { const c = document.createElement('canvas'); c.width = w; c.height = h; const g = c.getContext('2d'); draw(g, w, h); const t = new THREE.CanvasTexture(c); t.anisotropy = 4; return t; };
+    const rr = (g, x, y, w, h, r) => { g.beginPath(); g.moveTo(x + r, y); g.arcTo(x + w, y, x + w, y + h, r); g.arcTo(x + w, y + h, x, y + h, r); g.arcTo(x, y + h, x, y, r); g.arcTo(x, y, x + w, y, r); g.closePath(); };
+    const drawN = (g, cx, cy, s, col) => { g.fillStyle = col; NS.forEach((p, i) => { g.globalAlpha = i === 2 ? .78 : 1; g.beginPath(); p.forEach((q, j) => { const x = cx + q[0] * s, y = cy - q[1] * s; if (j) g.lineTo(x, y); else g.moveTo(x, y); }); g.closePath(); g.fill(); }); g.globalAlpha = 1; };
+    const decal = (t, w, h) => new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ map: t, transparent: true }));
+    const ext = (shape, depth, bevel = .05, seg = 3) => { const g = new THREE.ExtrudeGeometry(shape, { depth, bevelEnabled: true, bevelThickness: bevel, bevelSize: bevel * .8, bevelSegments: seg, curveSegments: 18 }); g.translate(0, 0, -depth / 2); return g; };
+    const rrShape = (w, h, r) => { const s = new THREE.Shape(); s.moveTo(-w/2 + r, -h/2); s.lineTo(w/2 - r, -h/2); s.quadraticCurveTo(w/2, -h/2, w/2, -h/2 + r); s.lineTo(w/2, h/2 - r); s.quadraticCurveTo(w/2, h/2, w/2 - r, h/2); s.lineTo(-w/2 + r, h/2); s.quadraticCurveTo(-w/2, h/2, -w/2, h/2 - r); s.lineTo(-w/2, -h/2 + r); s.quadraticCurveTo(-w/2, -h/2, -w/2 + r, -h/2); return s; };
+    const NAVY = '#0D3138', TQ = '#03D2B6', TQL = '#03EBCA';
+
+    const mkTag = () => { const G = new THREE.Group(), w = 2.1, h = 1.1, r = .16, tip = .55, s = new THREE.Shape();
+      s.moveTo(-w/2 + tip, h/2); s.lineTo(w/2 - r, h/2); s.quadraticCurveTo(w/2, h/2, w/2, h/2 - r); s.lineTo(w/2, -h/2 + r); s.quadraticCurveTo(w/2, -h/2, w/2 - r, -h/2); s.lineTo(-w/2 + tip, -h/2); s.lineTo(-w/2, 0); s.closePath();
+      const hole = new THREE.Path(); hole.absarc(-w/2 + tip * .7, 0, .12, 0, Math.PI * 2, true); s.holes.push(hole);
+      G.add(new THREE.Mesh(ext(s, .12, .05), glossy(TQ, TQL, .9, .12)));
+      const d = decal(tex(512, 256, (g, W, H) => { g.fillStyle = '#04131A'; g.font = `900 150px ${FONT}`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText('10 €', W * .5, H * .56); }), 1.5, .75);
+      d.position.set(.22, 0, .126); G.add(d);
+      const c = new THREE.CatmullRomCurve3([new THREE.Vector3(-w/2 + tip * .7, 0, 0), new THREE.Vector3(-1.28, .45, .08), new THREE.Vector3(-1.15, 1.12, 0)]);
+      G.add(new THREE.Mesh(new THREE.TubeGeometry(c, 30, .028, 8, false), glossy('#DDEDEC', '#9CC4C4', .3)));
+      return G; };
+    const mkCart = () => { const G = new THREE.Group(), w = 1.5, h = 1.72, r = .12, s = new THREE.Shape();
+      s.moveTo(-w/2 + r, -h/2); s.lineTo(w/2 - r, -h/2); s.quadraticCurveTo(w/2, -h/2, w/2, -h/2 + r); s.lineTo(w/2, h/2 - .3); s.lineTo(w/2 - .3, h/2); s.lineTo(-w/2 + r, h/2); s.quadraticCurveTo(-w/2, h/2, -w/2, h/2 - r); s.lineTo(-w/2, -h/2 + r); s.quadraticCurveTo(-w/2, -h/2, -w/2 + r, -h/2);
+      G.add(new THREE.Mesh(ext(s, .28, .05), glossy(NAVY, TQ, .6)));
+      const L = decal(tex(512, 512, (g, W, H) => { const gr = g.createLinearGradient(0, 0, W, H); gr.addColorStop(0, TQL); gr.addColorStop(1, '#048A83'); g.fillStyle = gr; rr(g, 0, 0, W, H, 46); g.fill(); drawN(g, W / 2, H * .43, 150, '#04131A'); g.fillStyle = '#04131A'; g.font = `800 58px ${FONT}`; g.textAlign = 'center'; g.fillText('NANIXSS', W / 2, H * .84); }), 1.12, 1.12);
+      L.position.set(0, -.14, .196); G.add(L);
+      const gm = glossy('#0E3B43', TQ, .2);
+      for (let i = 0; i < 4; i++) { const m = new THREE.Mesh(new THREE.BoxGeometry(.86, .035, .03), gm); m.position.set(-.1, .55 + i * .075, .19); G.add(m); }
+      return G; };
+    const mkBell = () => { const G = new THREE.Group();
+      const prof = [[0,-.02],[.98,-.02],[1.04,.05],[.95,.16],[.8,.36],[.7,.72],[.64,1.08],[.52,1.36],[.3,1.5],[0,1.54]].map(p => new THREE.Vector2(p[0], p[1]));
+      const g = new THREE.LatheGeometry(prof, 72); g.translate(0, -.72, 0);
+      G.add(new THREE.Mesh(g, glossy(TQ, TQL, .9, .08)));
+      const cl = new THREE.Mesh(new THREE.SphereGeometry(.2, 24, 16), glossy('#EAF5F4', TQL, .8)); cl.position.y = -.82; G.add(cl);
+      const tp = new THREE.Mesh(new THREE.TorusGeometry(.17, .065, 14, 36), glossy(TQ, TQL, .8)); tp.position.y = .9; G.add(tp);
+      return G; };
+    const mkColis = () => { const G = new THREE.Group(), W = 1.9, H = 1.32, D = 1.32, b = .07;
+      G.add(new THREE.Mesh(ext(rrShape(W - 2 * b, H - 2 * b, .05), D - 2 * b, b, 3), glossy(NAVY, TQ, .35)));
+      const tape = glossy(TQ, TQL, .7, .1);
+      const t1 = new THREE.Mesh(new THREE.BoxGeometry(.34, .025, D + .01), tape); t1.position.set(0, H / 2 + .005, 0); G.add(t1);
+      const t2 = new THREE.Mesh(new THREE.BoxGeometry(.34, H * .5, .025), tape); t2.position.set(0, H / 4, D / 2 + .005); G.add(t2);
+      const st = decal(tex(256, 256, (g, W2, H2) => { g.fillStyle = '#EAF5F4'; rr(g, 8, 8, W2 - 16, H2 - 16, 34); g.fill(); drawN(g, W2 / 2, H2 / 2, 78, '#048A83'); }), .5, .5);
+      st.position.set(W * .27, -H * .18, D / 2 + .012); G.add(st);
+      return G; };
+    const mkPad = () => { const G = new THREE.Group(), s = new THREE.Shape();
+      s.moveTo(0, .52); s.bezierCurveTo(.5, .52, .75, .58, .95, .5); s.bezierCurveTo(1.25, .38, 1.32, 0, 1.25, -.35); s.bezierCurveTo(1.18, -.7, .92, -.78, .78, -.55); s.bezierCurveTo(.68, -.38, .5, -.28, 0, -.28);
+      s.bezierCurveTo(-.5, -.28, -.68, -.38, -.78, -.55); s.bezierCurveTo(-.92, -.78, -1.18, -.7, -1.25, -.35); s.bezierCurveTo(-1.32, 0, -1.25, .38, -.95, .5); s.bezierCurveTo(-.75, .58, -.5, .52, 0, .52);
+      G.add(new THREE.Mesh(ext(s, .32, .09, 4), glossy(NAVY, TQ, .55)));
+      const acc = glossy(TQ, TQL, .9, .1), z = .25;
+      const dp1 = new THREE.Mesh(new THREE.BoxGeometry(.34, .11, .07), acc), dp2 = dp1.clone(); dp2.rotation.z = Math.PI / 2;
+      [dp1, dp2].forEach(m => { m.position.set(-.66, .13, z + .02); G.add(m); });
+      const bt = new THREE.CylinderGeometry(.068, .068, .07, 20); bt.rotateX(Math.PI / 2);
+      [[.66, .28], [.66, -.02], [.51, .13], [.81, .13]].forEach(p => { const m = new THREE.Mesh(bt, acc); m.position.set(p[0], p[1], z + .02); G.add(m); });
+      const stG = new THREE.CylinderGeometry(.14, .16, .12, 28); stG.rotateX(Math.PI / 2); const stM = glossy('#07222A', TQL, .7);
+      [[-.3, -.1], [.3, -.1]].forEach(p => { const m = new THREE.Mesh(stG, stM); m.position.set(p[0], p[1], z + .04); G.add(m); });
+      const nl = decal(tex(256, 128, (g, W, H) => drawN(g, W / 2, H / 2, 78, TQL)), .36, .18); nl.position.set(0, .3, z + .005); G.add(nl);
+      return G; };
+    const mkStar = () => { const s = new THREE.Shape();
+      for (let i = 0; i < 10; i++) { const a = Math.PI / 2 + i * Math.PI / 5, r = i % 2 ? .44 : 1, x = Math.cos(a) * r, y = Math.sin(a) * r; if (i) s.lineTo(x, y); else s.moveTo(x, y); } s.closePath();
+      const G = new THREE.Group(); G.add(new THREE.Mesh(ext(s, .3, .12, 4), glossy('#FFC233', '#FFE7A3', .9, .1))); return G; };
+    const mkBubble = () => { const w = 2, h = 1.4, r = .42, s = new THREE.Shape();
+      s.moveTo(-w/2 + r, -h/2); s.lineTo(-.5, -h/2); s.lineTo(-.78, -h/2 - .42); s.lineTo(-.15, -h/2); s.lineTo(w/2 - r, -h/2); s.quadraticCurveTo(w/2, -h/2, w/2, -h/2 + r); s.lineTo(w/2, h/2 - r); s.quadraticCurveTo(w/2, h/2, w/2 - r, h/2); s.lineTo(-w/2 + r, h/2); s.quadraticCurveTo(-w/2, h/2, -w/2, h/2 - r); s.lineTo(-w/2, -h/2 + r); s.quadraticCurveTo(-w/2, -h/2, -w/2 + r, -h/2);
+      const G = new THREE.Group(); G.add(new THREE.Mesh(ext(s, .28, .08, 4), glossy(TQ, TQL, .85, .1)));
+      const q = decal(tex(256, 256, (g, W, H) => { g.fillStyle = '#04131A'; g.font = `900 200px ${FONT}`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText('?', W / 2, H * .56); }), .95, .95);
+      q.position.set(0, .02, .232); G.add(q);
+      return G; };
+    const mkCoin = () => { const G = new THREE.Group();
+      const prof = [[0,-.13],[.9,-.13],[1,-.06],[1,.06],[.9,.13],[0,.13]].map(p => new THREE.Vector2(p[0], p[1]));
+      const g = new THREE.LatheGeometry(prof, 64); g.rotateX(Math.PI / 2);
+      G.add(new THREE.Mesh(g, glossy(TQ, TQL, 1, .12)));
+      const t = tex(256, 256, (c, W, H) => { c.strokeStyle = 'rgba(4,19,26,.55)'; c.lineWidth = 10; c.beginPath(); c.arc(W / 2, H / 2, W * .4, 0, Math.PI * 2); c.stroke(); c.fillStyle = '#04131A'; c.font = `900 150px ${FONT}`; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText('€', W / 2, H * .55); });
+      const f = decal(t, 1.6, 1.6); f.position.z = .136; G.add(f);
+      const bk = decal(t, 1.6, 1.6); bk.rotation.y = Math.PI; bk.position.z = -.136; G.add(bk);
+      return G; };
+    // rx/ry : pose de base, spin >= .8 : rotation complète, sinon balancement ; ring : la cloche sonne
+    const OBJ = {
+      tag:    { make: mkTag,    base: 1,   rx: .12, ry: .25, spin: .3, sway: 1 },
+      cart:   { make: mkCart,   base: 1,   rx: .2,  ry: -.3, spin: .3 },
+      bell:   { make: mkBell,   base: 1,   rx: .18, ry: 0,   spin: 1, ring: 1 },
+      colis:  { make: mkColis,  base: .92, rx: .4,  ry: -.62, spin: .3 },
+      pad:    { make: mkPad,    base: 1,   rx: .5,  ry: 0,   spin: .3 },
+      coin:   { make: mkCoin,   base: .9,  rx: .12, ry: 0,   spin: 1.2 },
+      star:   { make: mkStar,   base: 1,   rx: .18, ry: 0,   spin: 1 },
+      bubble: { make: mkBubble, base: .95, rx: .18, ry: -.25, spin: .3 }
+    };
+    const objs = [];
+    const build = () => { document.querySelectorAll('.obj-slot[data-obj]').forEach(slot => { const c = OBJ[slot.dataset.obj]; if (!c) return;
+      const g = c.make(); g.visible = false; scene.add(g); objs.push({ g, c, slot, w: 0, ph: Math.random() * 6.28 }); }); };
+    (document.fonts ? Promise.race([document.fonts.ready, new Promise(r => setTimeout(r, 1500))]) : Promise.resolve()).then(build);
+
+    // ---------- Où se place l'anneau : [x, y, z, rotX, rotY, rotZ, échelle, opacité, logo] ----------
     const cvW = () => back.clientWidth, cvH = () => back.clientHeight;
     const ppu = () => (cvH() / 2) / (TAN * CAMZ);
     const toW = (cx, cy) => [(cx - cvW() / 2) / ppu(), -(cy - cvH() / 2) / ppu()];
     const el = (s) => document.querySelector(s);
     const phoneEl = el('.phone'), txtEl = el('.hero-txt'), eliteEl = el('#elite-card'), proofEl = el('.proof-cards'), slotEl = el('#logo-slot');
-    const side = (sx, y, z, rx, ry, rz, s, o) => { const hw = (CAMZ - z) * TAN * cam.aspect; const x = sx * Math.max(0, hw - 3 * s * 1.08); return [x, y, z, rx, ry, rz, s, o, 0, 0]; };
+    const far = () => [6, 1.5, -20, 1.15, .35, .2, 1.4, 0, 0];
     const K = {
-      hero: (m) => m ? [0, 2.3, -3, 1.15, -.4, .3, .62, .45, 0, 0] : K.phone(false),
-      phone: (m) => { const r = phoneEl.getBoundingClientRect(); const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
-        if (m) { const [x, y] = toW(cx, r.bottom - r.height * .03); return [x, y, 0, -1.42, 0, 0, (cvW() * .42) / ppu() / 3, .95, 0, 0]; }
+      hero: (m) => K.phone(m),
+      phone: (m) => { const r = phoneEl.getBoundingClientRect(); const cx = r.left + r.width / 2;
+        if (m) { const [x, y] = toW(cx, r.bottom - r.height * .03); return [x, y, 0, -1.42, 0, 0, (cvW() * .42) / ppu() / 3, .95, 0]; }
         const tr = txtEl.getBoundingClientRect().right;
         const Rp = Math.max(r.width * .56, Math.min(r.width * .92, (cvW() - cx) * .86 / 1.32, cx * .86 / 1.32, cx - tr - 12));
-        const [x, y] = toW(cx, cy + r.height * .27); return [x, y, 0, 1.2, 0, -.2, Rp / ppu() / 3, 1, 0, 1]; },
-      steps: (m) => m ? side(1, 2.1, -4, .6, 1, 0, .5, .3) : side(-1, .6, -2.5, .55, 1, .1, .9, .5),
-      features: (m) => m ? side(-1, -2.1, -4, 1.2, -.3, .8, .5, .28) : side(1, -.5, -2.5, 1.25, -.3, .8, .9, .45),
+        const [x, y] = toW(cx, r.top + r.height * .62); return [x, y, 0, 1.2, 0, -.2, Rp / ppu() / 3, 1, 0]; },
+      versus: far, steps: far, features: far, reviews: far, faq: far,
       proof: () => { const cards = proofEl.children; const a = cards[0].getBoundingClientRect(), b = cards[cards.length - 1].getBoundingClientRect();
-        const l = Math.min(a.left, b.left), rr = Math.max(a.right, b.right), bot = Math.max(a.bottom, b.bottom), top = Math.min(a.top, b.top);
-        const [x, y] = toW((l + rr) / 2, top + (bot - top) * .8); const Rp = Math.min((rr - l) * .5, cvW() * .34);
-        return [x, y, -.4, 1.45, 0, 0, Rp / ppu() / 3, .9, 0, 0]; },
+        const l = Math.min(a.left, b.left), rr2 = Math.max(a.right, b.right), bot = Math.max(a.bottom, b.bottom), top = Math.min(a.top, b.top);
+        const [x, y] = toW((l + rr2) / 2, top + (bot - top) * .6); const Rp = Math.min((rr2 - l) * .5, cvW() * .34);
+        return [x, y, -.4, 1.45, 0, 0, Rp / ppu() / 3, .75, 0]; },
       pricing: (m) => { const r = eliteEl.getBoundingClientRect(); const [x, y] = toW(r.left + r.width / 2, r.top + r.height / 2);
-        if (m) return [x, y, -1, 1.2, -.25, .12, (cvW() * .47) / ppu() / 3, .7, 0, 0];
-        const Rp = Math.min(Math.max(r.width, r.height) * .56, cvH() * .47); return [x, y, -1, .1, -.18, 0, Rp / ppu() / 3, .9, 0, 0]; },
-      reviews: (m) => m ? side(1, 1.9, -4, 1, .7, 0, .5, .28) : side(-1, .3, -2.5, 1, .7, 0, .85, .4),
-      faq: (m) => m ? side(-1, -1.9, -4, .6, -1, .3, .48, .24) : side(1, -.2, -3, .6, -1, .3, .8, .35),
+        if (m) return [x, y, -1, 1.2, -.25, .12, (cvW() * .44) / ppu() / 3, .6, 0];
+        const Rp = Math.min(r.width * .62, r.height * .5 / .62, cvW() * .3); return [x, y, -1, .9, -.15, 0, Rp / ppu() / 3, .85, 0]; },
       final: () => { const r = slotEl.getBoundingClientRect(); const [x, y] = toW(r.left + r.width / 2, r.top + r.height / 2);
-        return [x, y, -.6, 0, 0, 0, (r.width / 2) / ppu() / 1.12 / 3, 1, 1, 0]; }
+        return [x, y, -.6, 0, 0, 0, (r.width / 2) / ppu() / 1.12 / 3, 1, 1]; }
     };
     const scenes = [...document.querySelectorAll('[data-scene]')];
     let centers = [];
@@ -953,7 +1191,7 @@
     const size = () => {
       const w = cvW(), h = cvH(); if (!w || !h) return;
       if (w === lastW && h === lastH) return; lastW = w; lastH = h;
-      R.setSize(w, h, false); if (F) F.setSize(w, h, false); cam.aspect = w / h; cam.updateProjectionMatrix(); measure();
+      R.setSize(w, h, false); cam.aspect = w / h; cam.updateProjectionMatrix(); measure();
     };
     size(); addEventListener('resize', size);
     if ('ResizeObserver' in window) new ResizeObserver(measure).observe(document.body);
@@ -961,10 +1199,12 @@
 
     let mx = 0, my = 0;
     addEventListener('pointermove', e => { if (e.pointerType !== 'mouse') return; mx = e.clientX / innerWidth - .5; my = e.clientY / innerHeight - .5; }, { passive: true });
+    const sm = (a, b, x) => { const t = Math.min(Math.max((x - a) / (b - a), 0), 1); return t * t * (3 - 2 * t); };
+    const backOut = (w) => { const c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(w - 1, 3) + c1 * Math.pow(w - 1, 2); };
 
-    const apply = (p, t) => {
+    const apply = (p, t, dim) => {
       world.position.set(p[0], p[1], p[2]); world.rotation.set(p[3], p[4], p[5]); world.scale.setScalar(Math.max(p[6], .01));
-      const o = p[7], n = Math.min(Math.max(p[8], 0), 1);
+      const o = p[7] * dim, n = Math.min(Math.max(p[8], 0), 1);
       ring.rotation.z = t * .12; orb1.rotation.z = t * .05; orb2.rotation.z = -t * .035; shell.obj.rotation.y = t * .03;
       ringMat.uniforms.uO.value = o; haloMat.uniforms.uO.value = o * (1 - .3 * n);
       o1m.uniforms.uO.value = .5 * o * (1 - n); o2m.uniforms.uO.value = .28 * o * (1 - n); shell.mat.uniforms.uO.value = o * (1 - .55 * n);
@@ -973,33 +1213,43 @@
       [ringMat, ...nMats].forEach(mm => { mm.uniforms.uT.value = t; });
       field.mat.uniforms.uT.value = t; shell.mat.uniforms.uT.value = t; field.mat.uniforms.uS.value = scrollY * .0022;
     };
-    let frontOn = false;
-    const frontAmt = (flag) => {
-      if (!F) return 0;
-      const r = phoneEl.getBoundingClientRect(); const c = Math.abs(r.top + r.height / 2 - innerHeight / 2) / innerHeight;
-      let x = Math.min(Math.max((c - .2) / .3, 0), 1); x = x * x * (3 - 2 * x); return (1 - x) * Math.min(Math.max(flag, 0), 1);
-    };
-    const render = (fa) => {
-      R.clippingPlanes = fa > .985 ? backClip : noClip;
-      layer.value = 1; layerHalo.value = 1; layerOrb.value = 1; R.render(scene, cam);
-      if (F) {
-        if (fa > .01) { layer.value = fa; layerHalo.value = fa * .55; layerOrb.value = 0; F.render(scene, cam); frontOn = true; }
-        else if (frontOn) { F.clear(); frontOn = false; }
-      }
+    const placeObjs = (t, k) => {
+      objs.forEach(o => {
+        const r = o.slot.getBoundingClientRect();
+        let vis = 0;
+        if (r.width > 4 && r.bottom > -60 && r.top < innerHeight + 60) { const c = Math.abs(r.top + r.height / 2 - innerHeight / 2) / innerHeight; vis = 1 - sm(.4, .72, c); }
+        o.w += (vis - o.w) * k;
+        if (o.w < .01) { o.g.visible = false; return; }
+        o.g.visible = true;
+        const [x, y] = toW(r.left + r.width / 2, r.top + r.height / 2);
+        const size = (Math.min(r.width, r.height) / 2) / ppu() / 1.15;
+        o.g.position.set(x, y + Math.sin(t * 1.1 + o.ph) * size * .06, 0);
+        o.g.scale.setScalar(Math.max(size * o.c.base * backOut(Math.min(o.w, 1)), .0001));
+        const ry = o.c.ry + (o.c.spin >= .8 ? t * o.c.spin * .6 + o.ph : Math.sin(t * .8 + o.ph) * .55) + mx * .5;
+        let rz = o.c.sway ? Math.sin(t * 1.6 + o.ph) * .12 : Math.sin(t * .6 + o.ph) * .05;
+        if (o.c.ring) { const ph = t % 4.2; rz = ph < 1.5 ? Math.sin(t * 15) * .26 * Math.sin(ph / 1.5 * Math.PI) : 0; }
+        o.g.rotation.set(o.c.rx + my * .3, ry, rz);
+      });
     };
 
     measure();
-    if (RM) { const draw = () => { size(); const p = target(); apply(p, 0); render(frontAmt(p[9])); };
-      draw(); addEventListener('scroll', () => requestAnimationFrame(draw), { passive: true }); addEventListener('resize', draw); return; }
+    if (RM) { const draw = () => { size(); const p = target(); apply(p, 0, 1); placeObjs(0, 1); R.render(scene, cam); };
+      draw(); addEventListener('scroll', () => requestAnimationFrame(draw), { passive: true }); addEventListener('resize', draw);
+      (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => setTimeout(draw, 1600)); return; }
 
-    let cur = null, last = performance.now(), visible = !document.hidden; const t0 = last;
+    let cur = null, prev = null, speed = 0, last = performance.now(), visible = !document.hidden; const t0 = last;
     const loop = (now) => {
       if (!visible) return;
       const dt = Math.min((now - last) / 1000, .05); last = now; const t = (now - t0) / 1000;
       const tg = target();
       if (!cur) cur = tg.slice(); else { const k = 1 - Math.exp(-dt * 3.2); for (let j = 0; j < cur.length; j++) cur[j] += (tg[j] - cur[j]) * k; }
+      // l'anneau s'efface quand il voyage, pour ne jamais gêner la lecture
+      if (prev) { const v = Math.hypot(cur[0] - prev[0], cur[1] - prev[1], cur[2] - prev[2]) / Math.max(dt, .001); speed += (v - speed) * .25; }
+      prev = cur.slice(0, 3);
       cam.position.x += (mx * .8 - cam.position.x) * .04; cam.position.y += (-my * .55 - cam.position.y) * .04; cam.lookAt(0, 0, 0);
-      apply(cur, t); render(frontAmt(cur[9]));
+      apply(cur, t, 1 - .75 * sm(.5, 3.5, speed));
+      placeObjs(t, 1 - Math.exp(-dt * 5));
+      R.render(scene, cam);
       requestAnimationFrame(loop);
     };
     document.addEventListener('visibilitychange', () => { visible = !document.hidden; if (visible) { last = performance.now(); requestAnimationFrame(loop); } });
