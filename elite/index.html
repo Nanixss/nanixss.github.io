@@ -40,6 +40,7 @@
   ::-webkit-scrollbar-track{background:var(--bg)}
   ::-webkit-scrollbar-thumb{background:#0C3A40;border-radius:8px;border:3px solid var(--bg)}
   img{max-width:100%;display:block}
+  [hidden]{display:none!important}
   a{color:inherit}
   :focus-visible{outline:2px solid var(--accent-l);outline-offset:3px;border-radius:10px}
   h1,h2,h3{text-wrap:balance;font-weight:800;line-height:1.05;letter-spacing:-.03em;color:var(--text)}
@@ -202,7 +203,7 @@
   .o-hero-a{left:-15%;bottom:11%}
   .o-hero-b{right:-17%;top:5%}
   .sec > .wrap{position:relative}
-  .o-side{position:absolute;top:-24px;right:max(clamp(16px,4vw,32px),env(safe-area-inset-right,0px));width:min(290px,max(0px,calc(100% - 820px)));aspect-ratio:1}
+  .o-side{position:absolute;top:-40px;right:max(clamp(16px,4vw,32px),env(safe-area-inset-right,0px));width:min(250px,max(0px,calc(100% - 820px)));aspect-ratio:1}
   .o-price{--sw:min(180px,max(0px,calc((100vw - 960px) / 2 - 70px)));position:absolute;left:calc(50% - 510px - var(--sw));top:44%;width:var(--sw);aspect-ratio:1}
   .o-faq{width:min(230px,70%);aspect-ratio:1;margin-top:34px}
   @media (max-width:999px){
@@ -423,6 +424,72 @@
     .final{padding-bottom:48px}
   }
 
+
+  /* ---------- vidéo réelle dans le téléphone ---------- */
+  .phone{aspect-ratio:auto}
+  .screen{height:auto;aspect-ratio:660/1434;background:#111214}
+  .screen-vid{display:block;width:100%;height:100%;object-fit:cover}
+  .assure b{color:var(--text);font-weight:700;margin-right:-3px}
+
+  /* ---------- flux réel du bot ---------- */
+  .strip{position:relative;z-index:1;padding-block:clamp(8px,2vw,28px) 0}
+  .strip-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px 30px}
+  .strip-head h2{font-size:clamp(24px,2.6vw,34px);letter-spacing:-.02em;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .strip-head p{color:var(--text-2);font-size:15.5px;max-width:34em}
+  .live{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:rgba(3,210,182,.12);border:1px solid rgba(3,210,182,.4);color:var(--accent-l);font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+  .live i,.pulse{width:8px;height:8px;border-radius:50%;background:var(--accent-l);animation:pulse 1.6s ease-out infinite;flex:0 0 auto}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(3,235,202,.6)}100%{box-shadow:0 0 0 10px rgba(3,235,202,0)}}
+  .rail{margin-top:26px;overflow:hidden;padding-block:26px 40px;perspective:1100px;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+  .rail-track{display:flex;gap:22px;width:max-content;padding-inline:11px;animation:rail 75s linear infinite;transform-style:preserve-3d}
+  .rail:hover .rail-track{animation-play-state:paused}
+  @keyframes rail{to{transform:translateX(-50%)}}
+  .lc{flex:0 0 clamp(178px,16vw,224px);border-radius:20px;overflow:hidden;background:var(--surface);border:1px solid var(--line);
+    box-shadow:0 44px 64px -40px rgba(0,0,0,.95),0 30px 70px -60px rgba(3,210,182,.6);will-change:transform}
+  .lc-ph{aspect-ratio:4/5;background:#0d2227;overflow:hidden}
+  .lc-ph img{width:100%;height:100%;object-fit:cover}
+  .lc-b{padding:12px 14px 15px}
+  .lc-n{font-weight:700;font-size:14.5px;line-height:1.3;min-height:2.6em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .lc-m{margin-top:6px;display:flex;gap:8px;align-items:center;font-size:12px;color:var(--text-3)}
+  .lc-c{padding:2px 8px;border-radius:999px;background:rgba(3,210,182,.12);color:var(--accent-l);font-weight:700;white-space:nowrap}
+  .lc-p{margin-top:8px;font-size:24px;font-weight:800;letter-spacing:-.02em;color:var(--text)}
+  @media (prefers-reduced-motion: reduce){.rail{overflow-x:auto}.rail-track{animation:none}.lc[aria-hidden]{display:none}}
+
+  /* ---------- qui est derrière ---------- */
+  .about-in{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:clamp(36px,6vw,96px);align-items:center}
+  .about-photo{position:relative;justify-self:center;width:min(100%,430px);border-radius:32px;overflow:hidden;border:1px solid var(--line-2);
+    box-shadow:0 70px 110px -56px rgba(0,0,0,1),0 40px 100px -70px rgba(3,210,182,.8)}
+  .about-photo img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover}
+  .about-photo figcaption{position:absolute;left:14px;bottom:14px;display:inline-flex;align-items:center;gap:9px;padding:9px 14px;border-radius:999px;
+    background:rgba(4,19,26,.8);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);font-size:13px;font-weight:600;border:1px solid rgba(3,210,182,.25)}
+  .about-txt h2{font-size:clamp(34px,4.6vw,58px);letter-spacing:-.035em}
+  .about-txt h2 .hl{color:var(--accent)}
+  .about-id{margin-top:14px;font-weight:600;color:var(--accent-l);font-size:15.5px}
+  .about-body{max-width:36em}
+  .about-body p{margin-top:16px;font-size:17px;line-height:1.7;color:var(--text-2)}
+  .about-stats{list-style:none;margin-top:26px;display:flex;flex-wrap:wrap;gap:10px}
+  .about-stats li{padding:10px 16px;border-radius:14px;background:var(--surface);border:1px solid var(--line);font-size:14px;color:var(--text-2)}
+  .about-stats b{color:var(--text);font-weight:800}
+  .about .ctas{margin-top:28px}
+  @media (max-width:900px){.about-in{grid-template-columns:minmax(0,1fr)}.about-photo{width:min(100%,360px)}}
+
+  /* ---------- avis : cartes Discord ---------- */
+  .dgrid{margin-top:58px;columns:2 340px;column-gap:20px}
+  .dcard{display:block;break-inside:avoid;margin:0 0 20px;position:relative;padding:18px 20px 16px 24px;border-radius:12px;
+    background:linear-gradient(165deg,#1E4741,#17362F 70%);border:1px solid rgba(255,255,255,.06);box-shadow:0 40px 70px -46px rgba(0,0,0,.95)}
+  .dcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:12px 0 0 12px;background:#1DE9C0}
+  .dc-h{display:flex;align-items:center;gap:10px;font-size:15.5px}
+  .dc-av{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:#0B2A2E;color:var(--accent-l);font-weight:800;font-size:13px}
+  .dc-st{margin-top:10px;display:flex;align-items:center;gap:8px;font-weight:700;font-size:16px}
+  .dc-st span{font-size:17px;letter-spacing:1px}
+  .dcard blockquote{margin-top:10px;font-size:15px;line-height:1.62;color:#E4EEEC}
+  .dcard figcaption{margin-top:12px;font-size:12.5px;font-weight:600;color:#B5CAC6}
+
+  /* ---------- étapes : vraies images ---------- */
+  .ui{height:230px}
+  .ui.shot{padding:0;background:#151619}
+  .shot-img{width:100%;height:100%;object-fit:cover;object-position:center top}
+
   @media (prefers-reduced-motion: reduce){
     .rise{animation:none}
     .tilt{transition:none}
@@ -459,11 +526,11 @@
   <div class="wrap nav-in">
     <a class="brand" href="#top" data-k="elite-logo"><img src="../logo.png" alt="" width="36" height="36"><span>NANIXSS<b>.</b>HUB</span></a>
     <nav class="nav-links" aria-label="Sections">
-      <a href="#avec">Pourquoi le bot</a>
       <a href="#comment">Comment ça marche</a>
       <a href="#fonctions">Fonctionnalités</a>
       <a href="#tarifs">Tarifs</a>
       <a href="#avis">Avis</a>
+      <a href="#lucas">Qui est derrière</a>
       <a href="#faq">FAQ</a>
     </nav>
     <a class="btn btn-main btn-s" href="#tarifs" data-k="elite-nav">Voir les offres</a>
@@ -482,8 +549,10 @@
         </div>
         <ul class="assure rise d3">
           <li><a href="#avis"><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span>Lire les avis des abonnés</a></li>
+          <li><b class="num">23 000+</b>abonnés TikTok</li>
+          <li><b class="num" data-stat="members">700+</b>membres Discord</li>
+          <li hidden data-wrap="subs"><b class="num" data-stat="subs"></b>abonnés au bot</li>
           <li><svg class="i"><use href="#i-shield"/></svg>Sans engagement</li>
-          <li><svg class="i"><use href="#i-lock"/></svg>Paiement sécurisé par Stripe</li>
         </ul>
       </div>
 
@@ -493,48 +562,9 @@
         <div class="rig" id="rig">
           <div class="phone">
             <div class="ph-edge" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-            <div class="notch"></div>
             <div class="screen">
-              <div class="push" id="push" aria-hidden="true">
-                <img src="../logo.png" alt="" width="34" height="34">
-                <div><b>Nanixss Hub V</b><span>Jeu nintendo switch Pokémon · 10,00 €</span></div>
-                <time>à l'instant</time>
-              </div>
-              <div class="ch-head"><svg class="i"><use href="#i-hash"/></svg>alertes<span>Nanixss Hub</span></div>
-              <div class="feed" id="feed">
-                <p class="ch-start"><b>Bienvenue dans #alertes</b>Chaque annonce qui passe tes filtres arrive ici.</p>
-                <article class="alert compact" aria-label="Alerte : Switch spiel, 7 euros">
-                  <header class="al-top"><img src="../logo.png" alt="" width="22" height="22"><b>Nanixss Hub V</b><span class="bot">BOT</span><time>Aujourd'hui à 12:02</time></header>
-                  <div class="embed">
-                    <p class="al-title">Switch spiel</p>
-                    <dl class="al-grid">
-                      <div><dt>⏳ Publié</dt><dd><span class="ts">à l'instant</span></dd></div>
-                      <div><dt>🔖 Marque</dt><dd>Inconnue</dd></div>
-                      <div><dt>📏 Taille</dt><dd>Unique</dd></div>
-                      <div><dt>💎 État</dt><dd>Très bon état</dd></div>
-                      <div class="w2"><dt>💰 Prix</dt><dd>7,00 € | ≈ 7,97 € (TTC)</dd></div>
-                    </dl>
-                    <div class="al-ph"><img src="mario-1.webp" alt="New Super Mario Bros. U Deluxe, boîte" width="349" height="437"><img src="mario-2.webp" alt="New Super Mario Bros. U Deluxe, intérieur de la boîte" width="349" height="437"></div>
-                  </div>
-                  <div class="al-btns"><span class="b-buy">⚡ Acheter</span><span class="b-det">📄 Détails ↗</span></div>
-                </article>
-                <div class="new-div" id="new-div" aria-hidden="true"><span>Nouvelle alerte</span></div>
-                <article class="alert compact" id="new-alert" aria-label="Alerte : Jeu nintendo switch Pokémon, 10 euros">
-                  <header class="al-top"><img src="../logo.png" alt="" width="22" height="22"><b>Nanixss Hub V</b><span class="bot">BOT</span><time>Aujourd'hui à 12:02</time></header>
-                  <div class="embed">
-                    <p class="al-title">Jeu nintendo switch Pokémon</p>
-                    <dl class="al-grid">
-                      <div><dt>⏳ Publié</dt><dd><span class="ts">à l'instant</span></dd></div>
-                      <div><dt>🔖 Marque</dt><dd>Inconnue</dd></div>
-                      <div><dt>📏 Taille</dt><dd>Unique</dd></div>
-                      <div><dt>💎 État</dt><dd>Très bon état</dd></div>
-                      <div class="w2"><dt>💰 Prix</dt><dd>10,00 € | ≈ 11,12 € (TTC)</dd></div>
-                    </dl>
-                    <div class="al-ph"><img src="arceus-1.webp" alt="Pokémon Légendes Arceus, boîte" width="349" height="437"><img src="arceus-2.webp" alt="Pokémon Légendes Arceus, intérieur de la boîte" width="349" height="437"></div>
-                  </div>
-                  <div class="al-btns"><span class="b-buy">⚡ Acheter</span><span class="b-det">📄 Détails ↗</span></div>
-                </article>
-              </div>
+              <video class="screen-vid" id="vid" src="bot-en-action.mp4" poster="bot-en-action.jpg" autoplay muted loop playsinline preload="auto"
+                aria-label="Enregistrement d'écran réel : des alertes arrivent dans Discord, puis un achat est lancé avec le bouton Acheter"></video>
             </div>
           </div>
         </div>
@@ -542,26 +572,19 @@
     </div>
   </section>
 
-  <div class="bands" aria-label="Le bot trouve tout ce qui est sur Vinted : jeux vidéo, consoles, vêtements, sneakers, rétro, accessoires">
-    <div class="band b1" aria-hidden="true"><div class="band-track">
-      <div class="band-set"><span>Jeux vidéo</span><svg><use href="#i-n"/></svg><span>Consoles</span><svg><use href="#i-n"/></svg><span>Vêtements</span><svg><use href="#i-n"/></svg><span>Sneakers</span><svg><use href="#i-n"/></svg><span>Rétro</span><svg><use href="#i-n"/></svg><span>Accessoires</span><svg><use href="#i-n"/></svg><span>Tout Vinted</span><svg><use href="#i-n"/></svg></div>
-      <div class="band-set"><span>Jeux vidéo</span><svg><use href="#i-n"/></svg><span>Consoles</span><svg><use href="#i-n"/></svg><span>Vêtements</span><svg><use href="#i-n"/></svg><span>Sneakers</span><svg><use href="#i-n"/></svg><span>Rétro</span><svg><use href="#i-n"/></svg><span>Accessoires</span><svg><use href="#i-n"/></svg><span>Tout Vinted</span><svg><use href="#i-n"/></svg></div>
-      <div class="band-set"><span>Jeux vidéo</span><svg><use href="#i-n"/></svg><span>Consoles</span><svg><use href="#i-n"/></svg><span>Vêtements</span><svg><use href="#i-n"/></svg><span>Sneakers</span><svg><use href="#i-n"/></svg><span>Rétro</span><svg><use href="#i-n"/></svg><span>Accessoires</span><svg><use href="#i-n"/></svg><span>Tout Vinted</span><svg><use href="#i-n"/></svg></div>
-      <div class="band-set"><span>Jeux vidéo</span><svg><use href="#i-n"/></svg><span>Consoles</span><svg><use href="#i-n"/></svg><span>Vêtements</span><svg><use href="#i-n"/></svg><span>Sneakers</span><svg><use href="#i-n"/></svg><span>Rétro</span><svg><use href="#i-n"/></svg><span>Accessoires</span><svg><use href="#i-n"/></svg><span>Tout Vinted</span><svg><use href="#i-n"/></svg></div>
-    </div></div>
-    <div class="band b2" aria-hidden="true"><div class="band-track">
-      <div class="band-set"><span>Alertes à l'instant</span><svg><use href="#i-n"/></svg><span>Filtres sur mesure</span><svg><use href="#i-n"/></svg><span>Autocop</span><svg><use href="#i-n"/></svg><span>Multicompte</span><svg><use href="#i-n"/></svg><span>Sans engagement</span><svg><use href="#i-n"/></svg></div>
-      <div class="band-set"><span>Alertes à l'instant</span><svg><use href="#i-n"/></svg><span>Filtres sur mesure</span><svg><use href="#i-n"/></svg><span>Autocop</span><svg><use href="#i-n"/></svg><span>Multicompte</span><svg><use href="#i-n"/></svg><span>Sans engagement</span><svg><use href="#i-n"/></svg></div>
-      <div class="band-set"><span>Alertes à l'instant</span><svg><use href="#i-n"/></svg><span>Filtres sur mesure</span><svg><use href="#i-n"/></svg><span>Autocop</span><svg><use href="#i-n"/></svg><span>Multicompte</span><svg><use href="#i-n"/></svg><span>Sans engagement</span><svg><use href="#i-n"/></svg></div>
-      <div class="band-set"><span>Alertes à l'instant</span><svg><use href="#i-n"/></svg><span>Filtres sur mesure</span><svg><use href="#i-n"/></svg><span>Autocop</span><svg><use href="#i-n"/></svg><span>Multicompte</span><svg><use href="#i-n"/></svg><span>Sans engagement</span><svg><use href="#i-n"/></svg></div>
-    </div></div>
-  </div>
+  <section class="strip" id="vitrine" data-scene="strip" aria-labelledby="strip-t">
+    <div class="wrap strip-head">
+      <h2 id="strip-t"><span class="live" id="strip-live" hidden><i></i>En direct</span><span id="strip-title">Le flux du bot, en vrai.</span></h2>
+      <p id="strip-sub">Des alertes réelles reçues par les abonnés, avec les vraies photos et les vrais prix.</p>
+    </div>
+    <div class="rail" id="rail"><div class="rail-track" id="rail-track"><article class="lc"><div class="lc-ph"><img src="a-wonder.webp" alt="Super Mario Bros. Wonder, photo de l'annonce" width="480" height="641" loading="lazy"></div><div class="lc-b"><p class="lc-n">Super Mario Bros. Wonder</p><p class="lc-m"><span class="lc-c">Switch 2</span><span>Alerte · 22:05</span></p><p class="lc-p num">32 €</p></div></article><article class="lc"><div class="lc-ph"><img src="a-evoli.webp" alt="Pokémon Let's Go Évoli, photo de l'annonce" width="480" height="483" loading="lazy"></div><div class="lc-b"><p class="lc-n">Pokémon Let's Go Évoli</p><p class="lc-m"><span class="lc-c">Switch</span><span>Alerte · 22:05</span></p><p class="lc-p num">29 €</p></div></article><article class="lc"><div class="lc-ph"><img src="a-minecraft.webp" alt="Minecraft, photo de l'annonce" width="480" height="896" loading="lazy"></div><div class="lc-b"><p class="lc-n">Minecraft</p><p class="lc-m"><span class="lc-c">Switch</span><span>Alerte · 22:05</span></p><p class="lc-p num">12 €</p></div></article><article class="lc"><div class="lc-ph"><img src="arceus-1.webp" alt="Pokémon Légendes Arceus, photo de l'annonce" width="349" height="437" loading="lazy"></div><div class="lc-b"><p class="lc-n">Pokémon Légendes Arceus</p><p class="lc-m"><span class="lc-c">Switch</span><span>Alerte · 12:02</span></p><p class="lc-p num">10 €</p></div></article><article class="lc"><div class="lc-ph"><img src="a-justdance.webp" alt="Just Dance 2020, photo de l'annonce" width="480" height="480" loading="lazy"></div><div class="lc-b"><p class="lc-n">Just Dance 2020</p><p class="lc-m"><span class="lc-c">Switch</span><span>Alerte · 22:05</span></p><p class="lc-p num">7 €</p></div></article><article class="lc"><div class="lc-ph"><img src="a-station.webp" alt="Station d'accueil, photo de l'annonce" width="480" height="273" loading="lazy"></div><div class="lc-b"><p class="lc-n">Station d'accueil</p><p class="lc-m"><span class="lc-c">Switch 2</span><span>Alerte · 22:05</span></p><p class="lc-p num">65 €</p></div></article><article class="lc"><div class="lc-ph"><img src="mario-1.webp" alt="New Super Mario Bros. U Deluxe, photo de l'annonce" width="349" height="437" loading="lazy"></div><div class="lc-b"><p class="lc-n">New Super Mario Bros. U Deluxe</p><p class="lc-m"><span class="lc-c">Switch</span><span>Alerte · 12:02</span></p><p class="lc-p num">7 €</p></div></article><article class="lc"><div class="lc-ph"><img src="a-manette.webp" alt="Manette Pro Zelda, photo de l'annonce" width="480" height="480" loading="lazy"></div><div class="lc-b"><p class="lc-n">Manette Pro Zelda</p><p class="lc-m"><span class="lc-c">Switch 2</span><span>Alerte · 22:05</span></p><p class="lc-p num">137 €</p></div></article><article class="lc" aria-hidden="true"><div class="lc-ph"><img src="a-wonder.webp" alt="" width="480" height="641" loading="lazy"></div><div class="lc-b"><p class="lc-n">Super Mario Bros. Wonder</p><p class="lc-m"><span class="lc-c">Switch 2</span><span>Alerte · 22:05</span></p><p class="lc-p num">32 €</p></div></article><article class="lc" aria-hidden="true"><div class="lc-ph"><img src="a-evoli.webp" alt="" width="480" height="483" loading="lazy"></div><div class="lc-b"><p class="lc-n">Pokémon Let's Go Évoli</p><p class="lc-m"><span class="lc-c">Switch</span><span>Alerte · 22:05</span></p><p class="lc-p num">29 €</p></div></article><article class="lc" aria-hidden="true"><div class="lc-ph"><img src="a-minecraft.webp" alt="" width="480" height="896" loading="lazy"></div><div class="lc-b"><p class="lc-n">Minecraft</p><p class="lc-m"><span class="lc-c">Switch</span><span>Alerte · 22:05</span></p><p class="lc-p num">12 €</p></div></article><article class="lc" aria-hidden="true"><div class="lc-ph"><img src="arceus-1.webp" alt="" width="349" height="437" loading="lazy"></div><div class="lc-b"><p class="lc-n">Pokémon Légendes Arceus</p><p class="lc-m"><span class="lc-c">Switch</span><span>Alerte · 12:02</span></p><p class="lc-p num">10 €</p></div></article><article class="lc" aria-hidden="true"><div class="lc-ph"><img src="a-justdance.webp" alt="" width="480" height="480" loading="lazy"></div><div class="lc-b"><p class="lc-n">Just Dance 2020</p><p class="lc-m"><span class="lc-c">Switch</span><span>Alerte · 22:05</span></p><p class="lc-p num">7 €</p></div></article><article class="lc" aria-hidden="true"><div class="lc-ph"><img src="a-station.webp" alt="" width="480" height="273" loading="lazy"></div><div class="lc-b"><p class="lc-n">Station d'accueil</p><p class="lc-m"><span class="lc-c">Switch 2</span><span>Alerte · 22:05</span></p><p class="lc-p num">65 €</p></div></article><article class="lc" aria-hidden="true"><div class="lc-ph"><img src="mario-1.webp" alt="" width="349" height="437" loading="lazy"></div><div class="lc-b"><p class="lc-n">New Super Mario Bros. U Deluxe</p><p class="lc-m"><span class="lc-c">Switch</span><span>Alerte · 12:02</span></p><p class="lc-p num">7 €</p></div></article><article class="lc" aria-hidden="true"><div class="lc-ph"><img src="a-manette.webp" alt="" width="480" height="480" loading="lazy"></div><div class="lc-b"><p class="lc-n">Manette Pro Zelda</p><p class="lc-m"><span class="lc-c">Switch 2</span><span>Alerte · 22:05</span></p><p class="lc-p num">137 €</p></div></article></div></div>
+  </section>
 
   <section class="sec" id="avec" data-scene="versus">
     <div class="wrap">
       <div class="obj-slot o-side" data-obj="bell" aria-hidden="true"></div>
       <div class="sec-head">
-        <h2>Arrête de rafraîchir Vinted. <span class="hl">Les pépites viennent à toi.</span></h2>
+        <h2>Arrête de rafraîchir Vinted. Les pépites viennent à toi.</h2>
         <p>Même Vinted, mêmes annonces. La différence, c'est le moment où tu les vois.</p>
       </div>
       <div class="vs">
@@ -601,7 +624,7 @@
     <div class="wrap">
       <div class="obj-slot o-side" data-obj="colis" aria-hidden="true"></div>
       <div class="sec-head">
-        <h2>Tu règles une fois. <span class="hl">Le bot bosse pour toi.</span></h2>
+        <h2>Tu règles une fois. Le bot bosse pour toi.</h2>
         <p>Plus besoin de rafraîchir Vinted toute la journée. Tu choisis ce que tu cherches, et chaque annonce qui correspond arrive sur ton téléphone.</p>
       </div>
       <ol class="flow">
@@ -616,23 +639,18 @@
           <p>Ce que tu cherches, ton prix max, l'état. Un tuto vidéo te guide pas à pas.</p>
         </li>
         <li class="step tilt">
-          <div class="ui" aria-hidden="true">
-            <div class="radar"></div>
-            <div class="hit"><img src="arceus-1.webp" alt="" width="349" height="437"><div><b>Jeu nintendo switch Pokémon</b><span class="num">10,00 € · à l'instant</span></div></div>
+          <div class="ui shot" aria-hidden="true">
+            <img class="shot-img" src="step-alerte.webp" alt="" width="558" height="426" loading="lazy" style="object-position:center bottom">
           </div>
           <h3><span class="n">2</span>Le bot repère l'annonce</h3>
           <p>Dès qu'une annonce colle à ton filtre, elle arrive dans ton salon Discord avec les photos et le prix.</p>
         </li>
         <li class="step tilt">
-          <div class="ui" aria-hidden="true">
-            <div class="buy">
-              <div class="buy-row"><span class="b-buy">⚡ Acheter</span><span class="b-det">📄 Détails ↗</span>
-                <svg class="cursor" viewBox="0 0 24 24"><path d="M5 2.8 19.2 12l-6.3 1.4L9.6 19.5 5 2.8Z"/></svg></div>
-              <div class="auto"><span class="pill">ELITE</span>Autocop : achat lancé tout seul<svg class="i"><use href="#i-check"/></svg></div>
-            </div>
+          <div class="ui shot" aria-hidden="true">
+            <img class="shot-img" src="step-achat.webp" alt="" width="558" height="400" loading="lazy">
           </div>
           <h3><span class="n">3</span>Tu achètes en un clic</h3>
-          <p>Le bouton Acheter t'envoie direct sur l'annonce. En Elite, l'autocop peut acheter à ta place.</p>
+          <p>Tu appuies sur Acheter et le bot lance l'achat sur ton compte Vinted. En Elite, l'autocop peut même acheter à ta place.</p>
         </li>
       </ol>
     </div>
@@ -702,7 +720,7 @@
   <section class="sec" id="preuves" data-scene="proof">
     <div class="wrap">
       <div class="sec-head c">
-        <h2>Voilà ce que reçoivent <span class="hl">les abonnés.</span></h2>
+        <h2>Voilà ce que reçoivent les abonnés.</h2>
         <p>Deux jeux Switch à 7 et 10 €, signalés à l'instant de leur mise en ligne. Les deux alertes sont arrivées le même jour, à 12 h 02.</p>
       </div>
       <div class="proof-cards">
@@ -790,36 +808,60 @@
     <div class="wrap">
       <div class="obj-slot o-side" data-obj="star" aria-hidden="true"></div>
       <div class="sec-head">
-        <h2>Ce qu'en disent <span class="hl">les abonnés Elite.</span></h2>
-        <p>Avis publiés dans le salon avis-client du Discord.</p>
+        <h2>Ce qu'en disent les abonnés Elite.</h2>
+        <p>Leurs avis, tels qu'ils apparaissent dans le salon avis-client du Discord.</p>
       </div>
-      <div class="rv-wrap">
-        <figure class="rv-feat tilt">
-          <div class="rv-h"><span class="av">B</span>Bita<span class="stars" aria-label="5 sur 5"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
+      <div class="dgrid">
+        <figure class="dcard">
+          <div class="dc-h"><span class="dc-av">B</span><b>Bita</b></div>
+          <p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p>
           <blockquote>« Excellent bot, très facile à utiliser et très efficace. Les automatisations fonctionnent parfaitement et permettent de gagner énormément de temps. Le bot est rapide, fiable et très pratique au quotidien. Le support est également au top. Je suis entièrement satisfait de mon expérience avec Nanixss Hub. Je recommande à 100&nbsp;%&nbsp;! »</blockquote>
-          <figcaption class="rv-f"><svg class="i"><use href="#i-check"/></svg>Abonné Elite · avis vérifié · <time datetime="2026-10-30">30/10/2026</time></figcaption>
+          <figcaption>✅ Abonné Elite · avis vérifié · 30/10/2026 21:56</figcaption>
         </figure>
-        <div class="rv-grid">
-          <figure class="rv">
-            <div class="rv-h"><span class="av">T</span>Terry<span class="stars" aria-label="5 sur 5"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
-            <blockquote>« Le bot est simple d'utilisation, facile à configurer. Le prix reste très attractif par rapport aux fonctionnalités proposées. La modération est également efficace, dans l'ensemble c'est un bot fiable, pratique et accessible. »</blockquote>
-            <figcaption class="rv-f"><svg class="i"><use href="#i-check"/></svg>Abonné Elite · <time datetime="2026-10-20">20/10/2026</time></figcaption>
-          </figure>
-          <figure class="rv">
-            <div class="rv-h"><span class="av">O</span>Ogax<span class="stars" aria-label="5 sur 5"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
-            <blockquote>« J'ai rejoint ce bot Discord très récemment et franchement tout est bien clair et très simple d'utilisation, avec des vidéos explicatives ! Et si jamais vous avez des questions, vous aurez des réponses ! Donc je recommande fort 💪 »</blockquote>
-            <figcaption class="rv-f"><svg class="i"><use href="#i-check"/></svg>Abonné Elite · <time datetime="2026-10-17">17/10/2026</time></figcaption>
-          </figure>
-          <figure class="rv">
-            <div class="rv-h"><span class="av">N</span>Nono<span class="stars" aria-label="5 sur 5"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
-            <blockquote>« […] J'apprécie notamment les alertes Discord, les filtres personnalisables et le gain de temps. […] C'est un bon outil pour débuter dans l'achat-revente et repérer plus facilement les opportunités […] »</blockquote>
-            <figcaption class="rv-f"><svg class="i"><use href="#i-check"/></svg>Abonné Elite · <time datetime="2026-10-18">18/10/2026</time></figcaption>
-          </figure>
-          <figure class="rv">
-            <div class="rv-h"><span class="av">V</span>vava<span class="stars" aria-label="5 sur 5"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
-            <blockquote>« Très bon bot, c'est simple et clair […] alors n'hésitez pas ! »</blockquote>
-            <figcaption class="rv-f"><svg class="i"><use href="#i-check"/></svg>Abonné Elite · <time datetime="2026-10-20">20/10/2026</time></figcaption>
-          </figure>
+        <figure class="dcard">
+          <div class="dc-h"><span class="dc-av">N</span><b>Nono</b></div>
+          <p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p>
+          <blockquote>« Ayant déjà utilisé V-Tools, je trouve que Nanixss Hub est une alternative intéressante pour la recherche d'opportunités en achat-revente. J'apprécie notamment les alertes Discord, les filtres personnalisables et le gain de temps. Son prix, plus abordable que celui de V-Tools, est également un avantage.<br><br>C'est un bon outil pour débuter dans l'achat-revente et repérer plus facilement les opportunités, tout en gardant le réflexe de vérifier les prix et la rentabilité avant chaque achat. »</blockquote>
+          <figcaption>✅ Abonné Elite · avis vérifié · 18/10/2026 14:55</figcaption>
+        </figure>
+        <figure class="dcard">
+          <div class="dc-h"><span class="dc-av">T</span><b>Terry</b></div>
+          <p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p>
+          <blockquote>« Le bot est simple d'utilisation, facile à configurer. Le prix reste très attractif par rapport aux fonctionnalités proposées. La modération est également efficace, dans l'ensemble c'est un bot fiable, pratique et accessible. »</blockquote>
+          <figcaption>✅ Abonné Elite · avis vérifié · 20/10/2026 13:38</figcaption>
+        </figure>
+        <figure class="dcard">
+          <div class="dc-h"><span class="dc-av">O</span><b>Ogax</b></div>
+          <p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p>
+          <blockquote>« J'ai rejoint ce bot Discord très récemment et franchement tout est bien clair et très simple d'utilisation, avec des vidéos explicatives ! Et si jamais vous avez des questions, vous aurez des réponses ! Donc je recommande fort 💪 »</blockquote>
+          <figcaption>✅ Abonné Elite · avis vérifié · 17/10/2026 14:40</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec about" id="lucas" data-scene="about">
+    <div class="wrap about-in">
+      <figure class="about-photo tilt">
+        <img src="lucas.webp" alt="Lucas, alias Nanixss" width="760" height="950" loading="lazy">
+        <figcaption><span class="pulse"></span>En live sur TikTok · @nanixss.off</figcaption>
+      </figure>
+      <div class="about-txt">
+        <h2>Derrière le bot, il y a <span class="hl">Lucas.</span></h2>
+        <p class="about-id">Alias Nanixss · 24 ans · revendeur spécialisé jeux vidéo et consoles depuis début 2025</p>
+        <div class="about-body">
+          <p>Je me suis formé seul quand j'étais encore aide-soignant. J'ai vite arrêté pour me concentrer sur mon business : aujourd'hui, l'achat-revente est mon métier à temps plein.</p>
+          <p>J'ai créé le bot pour donner à ma communauté un outil aussi rapide que V-Tools, que je considère comme le meilleur bot du marché, pour 24,99&nbsp;€ par mois au lieu des 79,99&nbsp;€ de V-Tools. Il lui manque deux fonctions de V-Tools : le CRM et la messagerie Vinted.</p>
+          <p>Je fais régulièrement des lives pour montrer le bot en action et répondre à vos questions.</p>
+        </div>
+        <ul class="about-stats">
+          <li><b class="num">23 000+</b> abonnés sur TikTok</li>
+          <li><b class="num" data-stat="members">700+</b> membres sur Discord</li>
+          <li><b>Temps plein</b> dans l'achat-revente</li>
+        </ul>
+        <div class="ctas">
+          <a class="btn btn-ghost" href="https://www.tiktok.com/@nanixss.off" data-k="elite-tiktok-lucas" target="_blank" rel="noopener"><svg class="i"><use href="#i-play"/></svg>Me suivre sur TikTok</a>
+          <a class="btn btn-ghost" href="https://discord.gg/cyReW8sVJm" data-k="elite-discord-lucas" target="_blank" rel="noopener"><svg class="i"><use href="#i-chat"/></svg>Rejoindre le Discord</a>
         </div>
       </div>
     </div>
@@ -828,7 +870,7 @@
   <section class="sec" id="faq" data-scene="faq" style="padding-top:0">
     <div class="wrap faq-wrap">
       <div class="sec-head">
-        <h2>Avant de te <span class="hl">lancer.</span></h2>
+        <h2>Avant de te lancer.</h2>
         <p>Une autre question ? Ouvre un ticket sur le Discord, le support te répond.</p>
         <div class="obj-slot o-faq" data-obj="bubble" aria-hidden="true"></div>
       </div>
@@ -836,6 +878,7 @@
         <details><summary>Le bot, c'est seulement pour les jeux vidéo ?<span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></summary><div class="ans">Non. Le bot peut trouver tout ce qui est sur Vinted : jeux, consoles, vêtements, sneakers, accessoires… Tu crées les filtres qui correspondent à ce que tu revends.</div></details>
         <details><summary>Quelle différence entre Starter et Elite ?<span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></summary><div class="ans">Les deux te donnent les alertes instantanées et les filtres sur mesure. L'Elite ajoute l'autocop, qui achète à ta place les annonces qui passent tes filtres, et le multicompte, jusqu'à 3 comptes Vinted.</div></details>
         <details><summary>Comment j'accède au bot après le paiement ?<span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></summary><div class="ans">Tu rejoins le Discord Nanixss Hub et ton accès d'abonné s'active sur ton compte. Les tutos vidéo t'expliquent comment créer ton premier filtre et connecter ton compte Vinted, et le support répond par ticket si tu bloques.</div></details>
+        <details><summary>Comment marche le bouton Acheter ?<span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></summary><div class="ans">Il lance l'achat directement depuis ton compte Vinted connecté au bot. Si ta banque demande une vérification (3D Secure), le bot t'envoie un bouton pour valider le paiement, et le résultat s'affiche dans Discord.</div></details>
         <details><summary>Je dois rester devant mon ordi ?<span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></summary><div class="ans">Non. Les alertes arrivent dans Discord, donc sur ton téléphone aussi. Et avec l'autocop de l'Elite, le bot peut acheter sans toi.</div></details>
         <details><summary>Je peux arrêter quand je veux ?<span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></summary><div class="ans">Oui, l'abonnement est sans engagement. Sur le Discord, la commande /abonnement ouvre ton espace client pour gérer, mettre en pause un mois ou arrêter ton abonnement toi-même.</div></details>
         <details><summary>Je débute dans l'achat-revente, c'est pour moi ?<span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></summary><div class="ans">Oui. Les guides et presets te donnent des filtres de départ, et la formation du Hub t'apprend les cotes et la méthode. Comme pour tout achat, vérifie toujours le prix et la rentabilité avant d'acheter.</div></details>
@@ -952,6 +995,60 @@
       tracks.forEach((t, i) => { const w = widths[i] || 1; const o = y % w; t.style.transform = i % 2 ? `translate3d(${o - w}px,0,0)` : `translate3d(${-o}px,0,0)`; }); };
     addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(upd); } }, { passive: true });
     upd();
+  })();
+
+
+  // Vidéo réelle du bot dans le téléphone
+  (() => { const v = document.getElementById('vid'); if (!v) return;
+    if (RM) { v.removeAttribute('autoplay'); v.pause(); v.controls = true; return; }
+    const p = v.play(); if (p && p.catch) p.catch(() => { v.controls = true; });
+  })();
+
+  // Flux réel : les cartes pivotent en 3D selon leur place à l'écran
+  (() => {
+    const rail = document.getElementById('rail'); if (!rail || RM || !('IntersectionObserver' in window)) return;
+    let on = false;
+    const tick = () => { if (!on) return;
+      const cx = innerWidth / 2, k = innerWidth * .55;
+      rail.querySelectorAll('.lc').forEach(c => { const r = c.getBoundingClientRect(); if (r.right < -60 || r.left > innerWidth + 60) return;
+        const d = Math.max(-1, Math.min(1, (r.left + r.width / 2 - cx) / k));
+        c.style.transform = `rotateY(${(-d * 24).toFixed(2)}deg) translateZ(${(-Math.abs(d) * 80).toFixed(1)}px)`; });
+      requestAnimationFrame(tick); };
+    new IntersectionObserver(([e]) => { on = e.isIntersecting; if (on) requestAnimationFrame(tick); }).observe(rail);
+  })();
+
+  // Données en direct du bot Nanixss Hub : membres, abonnés, vitrine (en cas d'échec, la page garde ses contenus)
+  (() => {
+    const API = 'https://nanixss-pay-production.up.railway.app';
+    const fr = (n, d = 0) => Number(n).toLocaleString('fr-FR', { maximumFractionDigits: d });
+    const get = (p) => fetch(API + p, { cache: 'no-store' }).then(r => r.ok ? r.json() : null).catch(() => null);
+    get('/stats').then(d => {
+      if (!d) return;
+      if (d.members > 0) document.querySelectorAll('[data-stat="members"]').forEach(el => { el.textContent = fr(d.members); });
+      if (d.subscribers > 0) document.querySelectorAll('[data-stat="subs"]').forEach(el => { el.textContent = fr(d.subscribers); const w = el.closest('[data-wrap]'); if (w) w.hidden = false; });
+    });
+    get('/vitrine').then(d => {
+      let items = (Array.isArray(d) ? d : (d && d.items) || []).filter(it => it && it.name && typeof it.image === 'string' && /^https:\/\//.test(it.image));
+      if (items.length < 3) return;
+      const ago = (t) => { const m = Math.max(1, Math.round((Date.now() - t) / 60000)); return m < 60 ? `il y a ${m} min` : m < 48 * 60 ? `il y a ${Math.round(m / 60)} h` : `il y a ${Math.round(m / 1440)} j`; };
+      const mk = (it, hidden) => {
+        const a = document.createElement('article'); a.className = 'lc'; if (hidden) a.setAttribute('aria-hidden', 'true');
+        const ph = document.createElement('div'); ph.className = 'lc-ph';
+        const img = document.createElement('img'); img.src = it.image; img.alt = hidden ? '' : `${it.name}, photo de l'annonce`; img.loading = 'lazy'; img.referrerPolicy = 'no-referrer'; ph.append(img);
+        const b = document.createElement('div'); b.className = 'lc-b';
+        const n = document.createElement('p'); n.className = 'lc-n'; n.textContent = it.name;
+        const m = document.createElement('p'); m.className = 'lc-m';
+        if (it.console) { const c = document.createElement('span'); c.className = 'lc-c'; c.textContent = it.console; m.append(c); }
+        const t = document.createElement('span'); t.textContent = it.detectedAt ? 'Repéré ' + ago(it.detectedAt) : (it.etat || ''); m.append(t);
+        const p = document.createElement('p'); p.className = 'lc-p num'; p.textContent = typeof it.price === 'number' ? `${fr(it.price, 2)} €` : '';
+        b.append(n, m, p); a.append(ph, b); return a; };
+      const base = []; while (base.length < 8) base.push(...items);
+      const track = document.getElementById('rail-track'); track.textContent = '';
+      base.forEach(it => track.append(mk(it))); base.forEach(it => track.append(mk(it, true)));
+      document.getElementById('strip-title').textContent = 'Les dernières pépites repérées par le bot.';
+      document.getElementById('strip-sub').textContent = "La vitrine du Discord, en direct. Les abonnés, eux, les ont reçues à l'instant où elles sont sorties.";
+      document.getElementById('strip-live').hidden = false;
+    });
   })();
 
   // Barre d'achat mobile : visible une fois le haut passé, cachée sur les tarifs
@@ -1153,7 +1250,7 @@
     const ppu = () => (cvH() / 2) / (TAN * CAMZ);
     const toW = (cx, cy) => [(cx - cvW() / 2) / ppu(), -(cy - cvH() / 2) / ppu()];
     const el = (s) => document.querySelector(s);
-    const phoneEl = el('.phone'), txtEl = el('.hero-txt'), eliteEl = el('#elite-card'), proofEl = el('.proof-cards'), slotEl = el('#logo-slot');
+    const phoneEl = el('.phone'), txtEl = el('.hero-txt'), aboutEl = el('.about-photo'), eliteEl = el('#elite-card'), proofEl = el('.proof-cards'), slotEl = el('#logo-slot');
     const far = () => [6, 1.5, -20, 1.15, .35, .2, 1.4, 0, 0];
     const K = {
       hero: (m) => K.phone(m),
@@ -1162,14 +1259,16 @@
         const tr = txtEl.getBoundingClientRect().right;
         const Rp = Math.max(r.width * .56, Math.min(r.width * .92, (cvW() - cx) * .86 / 1.32, cx * .86 / 1.32, cx - tr - 12));
         const [x, y] = toW(cx, r.top + r.height * .62); return [x, y, 0, 1.2, 0, -.2, Rp / ppu() / 3, 1, 0]; },
-      versus: far, steps: far, features: far, reviews: far, faq: far,
+      versus: far, steps: far, features: far, reviews: far, faq: far, strip: far,
+      about: (m) => { const r = aboutEl.getBoundingClientRect(); const [x, y] = toW(r.left + r.width / 2, r.bottom - r.height * .05);
+        const Rp = m ? cvW() * .42 : Math.min(r.width * .64, cvW() * .3); return [x, y, -.5, 1.42, 0, 0, Rp / ppu() / 3, .9, 0]; },
       proof: () => { const cards = proofEl.children; const a = cards[0].getBoundingClientRect(), b = cards[cards.length - 1].getBoundingClientRect();
         const l = Math.min(a.left, b.left), rr2 = Math.max(a.right, b.right), bot = Math.max(a.bottom, b.bottom), top = Math.min(a.top, b.top);
         const [x, y] = toW((l + rr2) / 2, top + (bot - top) * .6); const Rp = Math.min((rr2 - l) * .5, cvW() * .34);
         return [x, y, -.4, 1.45, 0, 0, Rp / ppu() / 3, .75, 0]; },
       pricing: (m) => { const r = eliteEl.getBoundingClientRect(); const [x, y] = toW(r.left + r.width / 2, r.top + r.height / 2);
         if (m) return [x, y, -1, 1.2, -.25, .12, (cvW() * .44) / ppu() / 3, .6, 0];
-        const Rp = Math.min(r.width * .62, r.height * .5 / .62, cvW() * .3); return [x, y, -1, .9, -.15, 0, Rp / ppu() / 3, .85, 0]; },
+        const Rp = Math.min(r.width * .62, r.height * .5 / .62, cvW() * .3) * .92; return [x, y, -1, .9, -.15, 0, Rp / ppu() / 3, .75, 0]; },
       final: () => { const r = slotEl.getBoundingClientRect(); const [x, y] = toW(r.left + r.width / 2, r.top + r.height / 2);
         return [x, y, -.6, 0, 0, 0, (r.width / 2) / ppu() / 1.12 / 3, 1, 1]; }
     };
