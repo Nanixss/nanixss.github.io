@@ -660,6 +660,16 @@
   @media (max-width:900px){.res-big,.res-small,.lots{grid-template-columns:minmax(0,1fr)}.res-small{grid-template-columns:repeat(3,minmax(0,1fr))}.res-small .res{padding:18px 16px}.res-small .res-d{font-size:13.5px}.res-small q,.res-small .res-who time{display:none}}
   @media (max-width:560px){.res-small{grid-template-columns:minmax(0,1fr)}.res-small q{display:block}}
 
+  /* ---------- encart bot Elite ---------- */
+  .xsell{margin:22px auto 0;max-width:960px;display:flex;align-items:center;gap:18px;padding:18px 22px;border-radius:22px;text-decoration:none;
+    background:linear-gradient(110deg,rgba(3,210,182,.14),rgba(6,34,41,.85) 55%);border:1px solid var(--line-2);transition:border-color .25s}
+  .xsell:hover{border-color:var(--accent)}
+  .xsell img{width:52px;height:52px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 0 4px rgba(3,210,182,.15)}
+  .xsell span{font-size:14.5px;line-height:1.5;color:var(--text-2)}
+  .xsell b{display:block;font-size:17px;color:var(--text)}
+  .xsell em{margin-left:auto;flex:0 0 auto;font-style:normal;font-weight:700;font-size:14.5px;color:var(--accent-l);white-space:nowrap}
+  @media (max-width:640px){.xsell{flex-wrap:wrap;gap:12px}.xsell em{margin-left:66px}}
+
   .bk-edge i:nth-child(1){transform:translateZ(-2px)}.bk-edge i:nth-child(2){transform:translateZ(-4px)}.bk-edge i:nth-child(3){transform:translateZ(-6px)}.bk-edge i:nth-child(4){transform:translateZ(-8px)}.bk-edge i:nth-child(5){transform:translateZ(-10px)}.bk-edge i:nth-child(6){transform:translateZ(-12px)}.bk-edge i:nth-child(7){transform:translateZ(-14px)}.bk-edge i:nth-child(8){transform:translateZ(-16px)}.bk-edge i:nth-child(9){transform:translateZ(-18px)}.bk-edge i:nth-child(10){transform:translateZ(-20px)}.bk-edge i:nth-child(11){transform:translateZ(-22px)}
 </style>
 </head>
@@ -952,6 +962,11 @@
           </tbody>
         </table>
       </div>
+      <a class="xsell tilt" href="../elite/" data-k="formation-xsell-elite">
+        <img src="../logo.png" alt="" width="52" height="52">
+        <span><b>Tu veux aussi les alertes ?</b>Le bot Elite t'envoie chaque annonce Vinted à l'instant où elle sort, avec l'autocop. Sans engagement, 24,99 €/mois.</span>
+        <em>Découvrir le bot →</em>
+      </a>
       <p class="fine">Déjà abonné Elite ? Tu as -50 € sur la formation avancée, à la place des 2 mois offerts.<br>En achetant, tu acceptes les <a href="https://nanixsshub.fr/legal/" data-k="formation-cgv-offres">CGV</a>.</p>
     </div>
   </section>
@@ -1084,8 +1099,8 @@
   <a class="btn btn-main" href="#offres" data-k="formation-bar">Les offres</a>
 </div>
 
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script>window.THREE || document.write('<script src="../elite/three.min.js"><\/script>')</script>
 <script>
 (() => {
   const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1196,7 +1211,8 @@
     document.addEventListener('click', (ev) => { const el = ev.target.closest('[data-k]'); if (el) send({ e: 'c', k: el.dataset.k }); }, true);
   })();
 
-    // ---------- Monde 3D : l'anneau du logo, les objets de chaque section, le logo qui se recompose à la fin ----------
+  
+  // ---------- Monde 3D : l'anneau du logo, les objets de chaque section, le logo qui se recompose à la fin ----------
   (() => {
     const back = document.getElementById('world');
     if (!back || !window.THREE) { back && back.remove(); return; }
@@ -1482,7 +1498,6 @@
     };
     document.addEventListener('visibilitychange', () => { visible = !document.hidden; if (visible) { last = performance.now(); requestAnimationFrame(loop); } });
     requestAnimationFrame(loop);
-  })();
 })();
 
 </script>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Merci · Nanixss Hub</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#04131A">
+<link rel="icon" href="../logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#04131A; --surface:#062229; --deep:#031017;
+    --line:rgba(3,210,182,.16); --line-2:rgba(3,210,182,.34);
+    --accent:#03D2B6; --accent-l:#03EBCA; --accent-d:#048A83;
+    --text:#EAF5F4; --text-2:#9CC4C4; --text-3:#76A3A4;
+    --font:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{min-height:100vh;font-family:var(--font);font-size:16px;line-height:1.6;color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden;
+    background:radial-gradient(80% 55% at 50% 0%,rgba(3,210,182,.16),transparent 62%),radial-gradient(60% 50% at 10% 90%,rgba(3,138,131,.10),transparent 60%),var(--bg)}
+  ::selection{background:var(--accent);color:var(--bg)}
+  a{color:inherit}
+  :focus-visible{outline:2px solid var(--accent-l);outline-offset:3px;border-radius:10px}
+  .i{width:20px;height:20px;flex:0 0 auto;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .wrap{max-width:860px;margin:0 auto;padding-inline:max(16px,env(safe-area-inset-left,0px))}
+  #stars{position:fixed;inset:0;z-index:0;pointer-events:none}
+  main,header,footer{position:relative;z-index:1}
+
+  header .wrap{display:flex;align-items:center;height:72px}
+  .brand{display:flex;align-items:center;gap:11px;text-decoration:none;font-weight:800;font-size:17px;letter-spacing:.02em}
+  .brand img{width:36px;height:36px;border-radius:50%}
+  .brand b{color:var(--accent)}
+
+  .hero{text-align:center;padding-block:clamp(24px,5vw,56px) 10px}
+  .seal{position:relative;width:132px;height:132px;margin:0 auto;perspective:600px}
+  .seal-in{position:absolute;inset:0;border-radius:50%;display:grid;place-items:center;transform-style:preserve-3d;
+    background:radial-gradient(circle at 35% 30%,#3FF2D8,#03D2B6 45%,#048A83 100%);
+    box-shadow:0 30px 60px -20px rgba(3,210,182,.7),inset 0 -8px 18px rgba(0,0,0,.25),inset 0 6px 14px rgba(255,255,255,.35);
+    animation:pop .9s cubic-bezier(.2,1.4,.4,1) both,tilt 6s ease-in-out 1s infinite}
+  .seal svg{width:62px;height:62px;stroke:var(--bg);stroke-width:3.2;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:30;stroke-dashoffset:30;animation:draw .6s .55s ease-out forwards}
+  .seal::before,.seal::after{content:"";position:absolute;inset:-14px;border-radius:50%;border:1.5px solid rgba(3,235,202,.35);animation:ring 2.6s ease-out .4s infinite}
+  .seal::after{animation-delay:1.7s}
+  @keyframes pop{from{transform:scale(.3) rotateY(-90deg);opacity:0}}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  @keyframes tilt{0%,100%{transform:rotateY(-10deg) rotateX(6deg)}50%{transform:rotateY(10deg) rotateX(-4deg)}}
+  @keyframes ring{from{transform:scale(.85);opacity:1}to{transform:scale(1.5);opacity:0}}
+  .kicker{margin-top:30px;display:inline-flex;align-items:center;gap:8px;padding:6px 13px;border-radius:999px;background:rgba(3,210,182,.12);border:1px solid rgba(3,210,182,.4);color:var(--accent-l);font-size:12.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+  h1{margin-top:16px;font-size:clamp(34px,6vw,58px);font-weight:900;letter-spacing:-.04em;line-height:1.02;text-wrap:balance}
+  h1 span{color:var(--accent)}
+  .sub{margin:16px auto 0;max-width:34em;font-size:17.5px;color:var(--text-2);text-wrap:pretty}
+
+  .steps{list-style:none;margin-top:44px;display:flex;flex-direction:column;gap:14px;counter-reset:s}
+  .step{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 18px;padding:22px 24px;border-radius:24px;background:rgba(6,34,41,.85);border:1px solid var(--line);
+    box-shadow:0 34px 70px -46px rgba(0,0,0,.95);opacity:0;transform:translateY(16px);animation:in .7s cubic-bezier(.16,1,.3,1) forwards}
+  .step:nth-child(1){animation-delay:.5s}.step:nth-child(2){animation-delay:.62s}.step:nth-child(3){animation-delay:.74s}.step:nth-child(4){animation-delay:.86s}
+  @keyframes in{to{opacity:1;transform:none}}
+  .step .n{grid-row:span 3;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-size:18px;font-weight:800;background:var(--accent);color:var(--bg)}
+  .step h2{font-size:19px;font-weight:700;letter-spacing:-.015em;line-height:1.3}
+  .step p{font-size:15px;line-height:1.6;color:var(--text-2)}
+  .step p b{color:var(--text);font-weight:600}
+  .step .act{margin-top:10px}
+  .step.gift{border-color:rgba(3,210,182,.4);background:linear-gradient(170deg,#0B363B,#062229 65%)}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:700 16px/1.2 var(--font);text-decoration:none;border:0;border-radius:15px;padding:15px 22px;cursor:pointer;transition:translate .25s,box-shadow .3s,border-color .2s}
+  .btn:active{scale:.97}
+  .btn-main{background:linear-gradient(135deg,#03EBCA 0%,#03D2B6 55%,#048A83 150%);color:var(--bg);box-shadow:0 16px 36px -14px rgba(3,210,182,.75),inset 0 1px 0 rgba(255,255,255,.4)}
+  .btn-main:hover{translate:0 -2px}
+  .btn-main .i{stroke-width:2.2}
+  .btn-ghost{background:rgba(6,34,41,.7);color:var(--text);border:1.5px solid var(--line-2);padding:12px 18px;font-size:15px}
+  .btn-ghost:hover{border-color:var(--accent)}
+
+  .help{margin-top:26px;display:flex;gap:16px;align-items:flex-start;padding:20px 22px;border-radius:22px;border:1px dashed rgba(3,210,182,.35);background:rgba(3,16,23,.6)}
+  .help .i{width:24px;height:24px;color:var(--accent-l);margin-top:2px}
+  .help b{display:block;font-size:16px}
+  .help p{margin-top:4px;font-size:14.5px;color:var(--text-2)}
+  .tips{margin-top:14px;font-size:14px;color:var(--text-3);text-align:center}
+  .tips code{font-family:inherit;font-weight:700;color:var(--accent-l)}
+
+  footer{margin-top:56px;padding-block:24px 30px;border-top:1px solid rgba(3,210,182,.10);font-size:13.5px;color:var(--text-3)}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:10px 22px;justify-content:space-between}
+  footer nav{display:flex;flex-wrap:wrap;gap:8px 20px}
+  footer a{text-decoration:none;color:var(--text-2)}
+  footer a:hover{color:var(--text)}
+  @media (max-width:560px){.step{padding:18px;gap:4px 14px}.step .n{width:40px;height:40px;font-size:16px;border-radius:12px}.step h2{font-size:17.5px}.btn-main{width:100%}}
+  @media (prefers-reduced-motion: reduce){.seal-in,.seal svg,.seal::before,.seal::after,.step{animation:none}.seal svg{stroke-dashoffset:0}.step{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M20.5 12a8.5 8.5 0 0 1-12.4 7.6L3.5 20.8l1.3-4.4A8.5 8.5 0 1 1 20.5 12Z"/></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.3a2.5 2.5 0 0 1 4.8.9c0 1.7-2.4 2.2-2.4 3.6"/><path d="M12 17.2h.01"/></symbol>
+</svg>
+<canvas id="stars" aria-hidden="true"></canvas>
+
+<header><div class="wrap"><a class="brand" href="../" data-k="merci-logo"><img src="../logo.png" alt="" width="36" height="36"><span>NANIXSS<b>.</b>HUB</span></a></div></header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="seal" aria-hidden="true"><div class="seal-in"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.3 4.3L19 7.2"/></svg></div></div>
+    <p class="kicker" id="kicker">Paiement validé</p>
+    <h1 id="title">Merci, et <span>bienvenue !</span></h1>
+    <p class="sub" id="sub">Ton paiement est bien passé. Voici les étapes pour profiter de ton accès.</p>
+  </section>
+
+  <ol class="steps" id="steps"></ol>
+
+  <div class="help">
+    <svg class="i"><use href="#i-help"/></svg>
+    <div>
+      <b>Ton rôle n'apparaît pas ?</b>
+      <p>Ça arrive si tu n'étais pas encore sur le serveur au moment du paiement, ou si le pseudo Discord indiqué ne correspond pas. Ouvre un ticket sur le serveur avec l'e-mail utilisé pour payer : on active ton accès à la main.</p>
+    </div>
+  </div>
+  <p class="tips" id="tips"></p>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© Lucas1up · Nanixss Hub</span>
+    <nav aria-label="Liens">
+      <a href="../" data-k="merci-liens">Tous mes liens</a>
+      <a href="https://www.tiktok.com/@nanixss.off" target="_blank" rel="noopener" data-k="merci-tiktok">TikTok</a>
+      <a href="https://nanixsshub.fr/legal/" data-k="merci-cgv">CGV &amp; confidentialité</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const DISCORD = 'https://discord.gg/cyReW8sVJm';
+  const joinBtn = '<div class="act"><a class="btn btn-main" href="' + DISCORD + '" target="_blank" rel="noopener" data-k="merci-discord"><svg class="i"><use href="#i-chat"/></svg>Rejoindre le Discord</a></div>';
+  const join = { h: 'Rejoins le serveur Discord', p: 'Connecte-toi avec le compte <b>dont tu as donné le pseudo au paiement</b>. Si tu es déjà sur le serveur, passe à l\'étape suivante.', x: joinBtn };
+  const role = (r, extra) => ({ h: 'Ton rôle ' + r + ' s\'active', p: 'Si tu étais déjà sur le serveur, c\'est fait : le bot vient de t\'envoyer un message privé de confirmation.' + (extra || '') });
+  const canva = { h: 'Ouvre l\'invitation Canva', p: 'Tu reçois l\'invitation à la formation sur <b>l\'e-mail Canva indiqué au paiement</b>, sous 24 h maximum. Pense à vérifier tes spams. L\'accès est personnel.' };
+  const bot = { h: 'Crée ton premier filtre', p: 'Suis le tuto vidéo pour créer ton filtre et connecter ton compte Vinted. Les guides et les presets prêts à l\'emploi sont dispo tout de suite.' };
+  const O = {
+    elite: { k: 'Abonnement Elite', t: 'Bienvenue en <span>Elite !</span>', s: 'Ton abonnement est actif. Plus que quelques minutes avant tes premières alertes.',
+      steps: [join, role('ELITE'), bot, { h: 'Active l\'autocop si tu veux', p: 'Avec l\'Elite, le bot peut acheter tout seul les annonces qui passent tes filtres, et tu peux connecter jusqu\'à 3 comptes Vinted. Tout est expliqué dans les tutos.' }],
+      tips: 'Pour gérer, mettre en pause ou arrêter ton abonnement : tape <code>/abonnement</code> sur le serveur.' },
+    starter: { k: 'Abonnement Starter', t: 'Bienvenue sur le <span>bot !</span>', s: 'Ton abonnement Starter est actif. Plus que quelques minutes avant tes premières alertes.',
+      steps: [join, role('STARTER'), bot],
+      tips: 'Pour gérer, mettre en pause ou arrêter ton abonnement : tape <code>/abonnement</code> sur le serveur.' },
+    avancee: { k: 'Formation avancée', t: 'Bienvenue dans la <span>formation !</span>', s: 'Ton paiement est validé. Voici comment accéder à la formation avancée.',
+      steps: [join, role('Mastermind', ' Tu as aussi accès au salon des élèves.'), canva, { gift: 1, h: 'Active tes 2 mois de bot offerts', p: 'Le bot t\'envoie en message privé <b>ton code personnel</b> et le lien pour l\'activer, quand tu veux : 2 mois d\'accès Elite sans payer, puis 19,99 €/mois tant que tu restes abonné. (Si tu as acheté avec la réduction Elite de -50 €, la réduction remplace ces 2 mois.)' }],
+      tips: 'Une question sur la formation ? Pose-la dans le salon des élèves ou ouvre un ticket.' },
+    formation: { k: 'Formation Starter', t: 'Bienvenue dans la <span>formation !</span>', s: 'Ton paiement est validé. Voici comment accéder à la formation Starter.',
+      steps: [join, role('Intellectuel', ' Tu as aussi accès au salon des élèves.'), canva],
+      tips: 'Une question sur la formation ? Pose-la dans le salon des élèves ou ouvre un ticket.' }
+  };
+  const key = (new URLSearchParams(location.search).get('o') || '').toLowerCase();
+  const o = O[key];
+  const steps = o ? o.steps : [join, { h: 'Ton accès s\'active', p: 'Si tu étais déjà sur le serveur, ton rôle est actif : le bot vient de t\'envoyer un message privé de confirmation.' }, { h: 'Suis le guide', p: 'Les tutos et le salon d\'aide du serveur t\'expliquent la suite pas à pas.' }];
+  if (o) {
+    document.getElementById('kicker').textContent = o.k + ' · paiement validé';
+    document.getElementById('title').innerHTML = o.t;
+    document.getElementById('sub').textContent = o.s;
+    document.getElementById('tips').innerHTML = o.tips;
+    document.title = 'Merci · ' + o.k;
+  }
+  document.getElementById('steps').innerHTML = steps.map((s, i) =>
+    '<li class="step' + (s.gift ? ' gift' : '') + '"><span class="n">' + (i + 1) + '</span><h2>' + s.h + '</h2><p>' + s.p + '</p>' + (s.x || '') + '</li>').join('');
+
+  // Petites étoiles en fond
+  const c = document.getElementById('stars'), g = c.getContext('2d');
+  const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let W, H, P = [];
+  const size = () => { const d = Math.min(devicePixelRatio || 1, 2); W = c.width = innerWidth * d; H = c.height = innerHeight * d; c.style.width = innerWidth + 'px'; c.style.height = innerHeight + 'px';
+    P = Array.from({ length: Math.round(innerWidth * innerHeight / 9000) }, () => ({ x: Math.random() * W, y: Math.random() * H, r: (.5 + Math.random() * 1.4) * d, p: Math.random() * 6.28, v: (.08 + Math.random() * .25) * d })); };
+  const draw = (t) => { g.clearRect(0, 0, W, H);
+    for (const s of P) { if (!RM) { s.y -= s.v; if (s.y < -4) s.y = H + 4; } const a = .25 + .55 * (.5 + .5 * Math.sin(t / 900 + s.p));
+      g.fillStyle = 'rgba(3,235,202,' + a.toFixed(3) + ')'; g.beginPath(); g.arc(s.x, s.y, s.r, 0, 6.283); g.fill(); }
+    if (!RM) requestAnimationFrame(draw); };
+  size(); addEventListener('resize', size); requestAnimationFrame(draw);
+
+  // Statistiques anonymes (vue de la page et clics), envoyées au bot Nanixss Hub. Aucun cookie.
+  const T = 'https://nanixss-pay-production.up.railway.app/t';
+  const send = (x) => { try { const b = JSON.stringify(x); if (!(navigator.sendBeacon && navigator.sendBeacon(T, b))) fetch(T, { method: 'POST', body: b, keepalive: true, mode: 'no-cors' }); } catch (e) {} };
+  send({ e: 'c', k: 'merci-' + (o ? key : 'autre') });
+  document.addEventListener('click', (ev) => { const el = ev.target.closest('[data-k]'); if (el) send({ e: 'c', k: el.dataset.k }); }, true);
+})();
+</script>
+</body>
+</html>
