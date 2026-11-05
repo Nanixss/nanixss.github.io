@@ -671,6 +671,39 @@
   @media (max-width:640px){.xsell{flex-wrap:wrap;gap:12px}.xsell em{margin-left:66px}}
 
   .bk-edge i:nth-child(1){transform:translateZ(-2px)}.bk-edge i:nth-child(2){transform:translateZ(-4px)}.bk-edge i:nth-child(3){transform:translateZ(-6px)}.bk-edge i:nth-child(4){transform:translateZ(-8px)}.bk-edge i:nth-child(5){transform:translateZ(-10px)}.bk-edge i:nth-child(6){transform:translateZ(-12px)}.bk-edge i:nth-child(7){transform:translateZ(-14px)}.bk-edge i:nth-child(8){transform:translateZ(-16px)}.bk-edge i:nth-child(9){transform:translateZ(-18px)}.bk-edge i:nth-child(10){transform:translateZ(-20px)}.bk-edge i:nth-child(11){transform:translateZ(-22px)}
+
+  /* compact-mobile : page plus courte sur téléphone (carrousels, espaces réduits, repliables) */
+  .totop{display:none}
+  @media (max-width:760px){
+    .sec{padding-block:58px}
+    .sec-head p{margin-top:12px}
+    .chaps,.dgrid,.res-big,.bento,.proof-cards,.rv-wrap,.flow,.vs{margin-top:28px!important}
+    .car{display:flex!important;columns:auto!important;grid-template-columns:none!important;perspective:none!important;
+      overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+      gap:12px!important;align-items:flex-start;margin-inline:calc(-1 * clamp(16px,4vw,32px));padding:6px clamp(16px,4vw,32px) 10px;
+      scroll-padding-inline:clamp(16px,4vw,32px);scrollbar-width:none}
+    .car::-webkit-scrollbar{display:none}
+    .car > *{flex:0 0 84%;max-width:360px;min-width:0;scroll-snap-align:start;margin:0!important;transform:none!important;grid-column:auto!important;grid-row:auto!important}
+    .car-dots{display:flex;justify-content:center;align-items:center;gap:6px;margin-top:10px;font-size:12px;color:var(--text-3)}
+    .car-dots i{width:6px;height:6px;border-radius:99px;background:rgba(255,255,255,.22);transition:width .25s,background .25s}
+    .car-dots i.on{width:18px;background:var(--accent)}
+    .car-dots span{margin-left:8px}
+    .chap{cursor:pointer;padding:14px 16px!important}
+    .chap p{display:none}
+    .chap.open p{display:block}
+    .chap h3{font-size:16px;padding-right:22px}
+    .chap::after{content:"+";position:absolute;right:16px;top:50%;translate:0 -50%;font-size:20px;font-weight:700;color:var(--accent);transition:rotate .2s}
+    .chap.open::after{rotate:45deg}
+    .about-photo{width:min(62%,240px)!important;margin-inline:auto}
+    .o-side{width:100px!important;margin:-6px 0 -20px auto!important}
+    .o-faq{width:100px!important;margin:12px 0 0 auto!important}
+    .chaps{gap:8px!important}
+    .faq-list summary{padding:16px 18px}
+    .totop{display:grid;place-items:center;position:fixed;right:max(14px,env(safe-area-inset-right,0px));bottom:calc(92px + env(safe-area-inset-bottom,0px));z-index:31;
+      width:44px;height:44px;border-radius:50%;border:1px solid var(--line-2);background:rgba(4,19,26,.9);color:var(--accent);font-size:20px;font-weight:800;
+      -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);opacity:0;pointer-events:none;transition:opacity .25s,translate .25s;translate:0 8px}
+    .totop.on{opacity:1;pointer-events:auto;translate:0 0}
+  }
 </style>
 </head>
 <body>
@@ -1500,6 +1533,39 @@
     requestAnimationFrame(loop);
 })();
 })();
+</script>
+
+<script>
+  // compact-mobile : carrousels à glisser, chapitres repliables, bouton retour en haut
+  (() => {
+    const mq = matchMedia('(max-width:760px)');
+    const SELS = '#offres .plans,#avec .vs,#resultats .res-big,#resultats .res-small,#resultats .lots,#avis .dgrid';
+    let built = false;
+    const build = () => {
+      if (built || !mq.matches) return; built = true;
+      document.querySelectorAll(SELS).forEach(box => {
+        const items = [...box.children].filter(c => !c.classList.contains('obj-slot'));
+        if (items.length < 2) return;
+        box.classList.add('car');
+        const dots = document.createElement('div'); dots.className = 'car-dots'; dots.setAttribute('aria-hidden', 'true');
+        items.forEach(() => dots.append(document.createElement('i')));
+        const lab = document.createElement('span'); lab.textContent = 'Glisse →'; dots.append(lab);
+        box.after(dots);
+        const upd = () => { const x = box.scrollLeft; let k = 0, best = 1e9;
+          items.forEach((c, i) => { const d = Math.abs(c.offsetLeft - box.offsetLeft - x - parseFloat(getComputedStyle(box).paddingLeft)); if (d < best) { best = d; k = i; } });
+          if (box.scrollLeft + box.clientWidth >= box.scrollWidth - 4) k = items.length - 1;
+          [...dots.children].forEach((d, i) => d.classList.toggle('on', i === k)); };
+        box.addEventListener('scroll', () => requestAnimationFrame(upd), { passive: true }); upd();
+      });
+      document.querySelectorAll('.chap').forEach(c => c.addEventListener('click', () => c.classList.toggle('open')));
+    };
+    build(); mq.addEventListener ? mq.addEventListener('change', build) : mq.addListener(build);
+    const b = document.createElement('button'); b.className = 'totop'; b.type = 'button'; b.setAttribute('aria-label', 'Retour en haut'); b.textContent = '↑';
+    b.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
+    document.body.append(b);
+    const t = () => b.classList.toggle('on', scrollY > innerHeight * 2);
+    addEventListener('scroll', t, { passive: true }); t();
+  })();
 </script>
 </body>
 </html>
