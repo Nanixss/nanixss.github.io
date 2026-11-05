@@ -716,14 +716,6 @@
   @media (max-width:560px){.brand span{display:none}.nav-in{gap:12px}.nav-ic{margin-left:0}.nav .btn-s{padding:10px 12px;font-size:13.5px}.nav-x + .btn-s{margin-left:-4px}}
   @media (max-width:370px){.nav-x .i{display:none}}
 
-  /* ligne de chiffres sous le haut de page (remplace les bandes inclinées) */
-  .facts{position:relative;z-index:1;margin-top:clamp(10px,2vw,30px);border-block:1px solid var(--line);background:rgba(6,34,41,.45)}
-  .facts ul{list-style:none;display:flex;justify-content:center;align-items:center;flex-wrap:wrap;padding-block:20px;gap:0}
-  .facts li{display:flex;align-items:baseline;gap:8px;padding-inline:clamp(18px,3vw,40px);font-size:15px;color:var(--text-2)}
-  .facts li + li{border-left:1px solid var(--line-2)}
-  .facts b{font-size:clamp(22px,2.2vw,28px);font-weight:800;letter-spacing:-.02em;color:var(--text)}
-  @media (max-width:560px){.facts ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));row-gap:14px;padding-block:16px}
-    .facts li{justify-content:center;padding-inline:8px;font-size:14px}.facts li + li{border-left:0}.facts li:nth-child(even){border-left:1px solid var(--line-2)}}
 </style>
 </head>
 <body>
@@ -841,14 +833,7 @@
     </div>
   </section>
 
-  <div class="facts" aria-label="La formation en chiffres">
-    <ul class="wrap">
-      <li><b class="num">790</b>jeux cotés</li>
-      <li><b class="num">16</b>consoles</li>
-      <li><b class="num">134</b>pages</li>
-      <li><b class="num">+40</b>élèves</li>
-    </ul>
-  </div>
+
 
   <section class="sec" id="avec" data-scene="versus">
     <div class="wrap">
