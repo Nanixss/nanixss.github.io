@@ -74,8 +74,9 @@
   @media (prefers-reduced-motion: reduce){.dvd{display:none}}
   .reviews{width:calc(100% + 32px);margin:26px -16px 0;overflow:hidden;text-decoration:none;color:inherit;display:block;
            -webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent)}
-  .track{display:flex;gap:12px;width:max-content;animation:defile 52s linear infinite;padding:4px 0}
-  .reviews:hover .track,.reviews:active .track{animation-play-state:paused}
+  .track{display:flex;gap:12px;width:max-content;animation:defile 52s linear infinite;padding:4px 0;will-change:transform;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+  .track.js{animation:none}
+  @media (hover:hover){.reviews:hover .track{animation-play-state:paused}}
   @keyframes defile{to{transform:translateX(calc(-50% - 6px))}}
   .rv{flex:0 0 250px;padding:13px 15px;border-radius:16px;background:var(--card);border:1.5px solid var(--line)}
   .rv-h{display:flex;align-items:center;gap:8px;font-weight:700;font-size:14px}
@@ -172,6 +173,38 @@
     const done = () => { b.textContent = 'Copié ✓'; b.classList.add('ok'); setTimeout(() => { b.textContent = c; b.classList.remove('ok'); }, 1400); };
     if (navigator.clipboard) navigator.clipboard.writeText(c).then(done, done); else done();
   }));
+  // Bandeau d'avis : boucle continue en pixels, sans jamais de vide
+  (() => {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const box = document.querySelector('.reviews'), track = box && box.querySelector('.track');
+    if (!track) return;
+    const originals = [...track.children].filter(c => !c.hasAttribute('aria-hidden'));
+    const n = originals.length, SPEED = 25; // px par seconde
+    let setW = 0, x = 0, last = performance.now(), paused = false;
+    const measure = () => {
+      const kids = track.children;
+      setW = kids[n].offsetLeft - kids[0].offsetLeft; // largeur exacte d'une série d'avis
+      // assez de copies pour couvrir l'écran + une série entière, quelle que soit la largeur
+      while (track.scrollWidth < box.clientWidth + setW * 2) {
+        originals.forEach(o => { const c = o.cloneNode(true); c.setAttribute('aria-hidden', 'true'); track.appendChild(c); });
+      }
+      x = x % setW;
+    };
+    track.classList.add('js');
+    measure();
+    addEventListener('resize', measure);
+    if (document.fonts) document.fonts.ready.then(measure);
+    if (matchMedia('(hover:hover)').matches) {
+      box.addEventListener('mouseenter', () => paused = true);
+      box.addEventListener('mouseleave', () => paused = false);
+    }
+    (function step(now) {
+      const dt = Math.min((now - last) / 1000, 0.05); last = now;
+      if (!paused && setW > 0) { x -= SPEED * dt; if (x <= -setW) x += setW; }
+      track.style.transform = `translate3d(${x}px,0,0)`;
+      requestAnimationFrame(step);
+    })(last);
+  })();
   // N qui rebondissent façon écran DVD
   (() => {
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
