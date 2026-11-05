@@ -705,6 +705,16 @@
       -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);opacity:0;pointer-events:none;transition:opacity .25s,translate .25s;translate:0 8px}
     .totop.on{opacity:1;pointer-events:auto;translate:0 0}
   }
+
+  .nav-ic{display:grid;place-items:center;width:40px;height:40px;flex:0 0 auto;margin-left:-2px;border-radius:12px;border:1.5px solid var(--line-2);color:var(--text-2);background:rgba(6,34,41,.7);transition:color .2s,border-color .2s}
+  .nav-ic:hover{color:var(--accent-l);border-color:var(--accent)}
+  .nav-ic .i{width:19px;height:19px}
+  .nav-x + .btn-s{margin-left:-10px}
+  .nav-links a,.nav .btn-s{white-space:nowrap}
+  .nav-links{gap:20px}
+  @media (max-width:1280px){.nav-links{display:none}.nav .nav-x{margin-left:auto}}
+  @media (max-width:560px){.brand span{display:none}.nav-in{gap:12px}.nav-ic{margin-left:0}.nav .btn-s{padding:10px 12px;font-size:13.5px}.nav-x + .btn-s{margin-left:-4px}}
+  @media (max-width:370px){.nav-x .i{display:none}}
 </style>
 </head>
 <body>
@@ -740,6 +750,7 @@
 <header class="nav" id="nav">
   <div class="wrap nav-in">
     <a class="brand" href="#top" data-k="formation-logo"><img src="../logo.png" alt="" width="36" height="36"><span>NANIXSS<b>.</b>HUB</span></a>
+    <a class="nav-ic" href="../" data-k="formation-nav-accueil" aria-label="Retour à l'accueil" title="Accueil"><svg class="i" viewBox="0 0 24 24"><path d="M3.5 10.5 12 3.5l8.5 7"/><path d="M5.5 9v10.5h4.5V14h4v5.5h4.5V9"/></svg></a>
     <nav class="nav-links" aria-label="Sections">
       <a href="#programme">Programme</a>
       <a href="#cotes">Les cotes</a>
@@ -749,6 +760,7 @@
       <a href="#lucas">Qui est derrière</a>
       <a href="#faq">FAQ</a>
     </nav>
+    <a class="btn btn-ghost btn-s nav-x" href="../elite/" data-k="formation-nav-elite"><svg class="i"><use href="#i-bolt"/></svg>Bot Elite</a>
     <a class="btn btn-main btn-s" href="#offres" data-k="formation-nav">Les offres</a>
   </div>
 </header>
