@@ -540,7 +540,7 @@
   .rail{margin-top:26px;overflow:hidden;padding-block:26px 40px;perspective:1100px;
     -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
   .rail-track{display:flex;gap:22px;width:max-content;padding-inline:11px;animation:rail 75s linear infinite;transform-style:preserve-3d}
-  .rail:hover .rail-track{animation-play-state:paused}
+  @media (hover:hover){.rail:hover .rail-track{animation-play-state:paused}}
   @keyframes rail{to{transform:translateX(-50%)}}
   .lc{flex:0 0 clamp(178px,16vw,224px);border-radius:20px;overflow:hidden;background:var(--surface);border:1px solid var(--line);
     box-shadow:0 44px 64px -40px rgba(0,0,0,.95),0 30px 70px -60px rgba(3,210,182,.6);will-change:transform}
@@ -1211,17 +1211,50 @@
     if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => { if (e.isIntersecting) { const q = v.play(); if (q && q.catch) q.catch(() => {}); } else v.pause(); }).observe(v);
   })();
 
-  // Flux réel : les cartes pivotent en 3D selon leur place à l'écran
+  // Flux réel : défilement continu en pixels (jamais figé, jamais de vide) + cartes qui pivotent en 3D
   (() => {
-    const rail = document.getElementById('rail'); if (!rail || RM || LOW || !('IntersectionObserver' in window)) return;
-    let on = false;
-    const tick = () => { if (!on) return;
-      const cx = innerWidth / 2, k = innerWidth * .55;
-      rail.querySelectorAll('.lc').forEach(c => { const r = c.getBoundingClientRect(); if (r.right < -60 || r.left > innerWidth + 60) return;
-        const d = Math.max(-1, Math.min(1, (r.left + r.width / 2 - cx) / k));
-        c.style.transform = `rotateY(${(-d * 24).toFixed(2)}deg) translateZ(${(-Math.abs(d) * 80).toFixed(1)}px)`; });
-      requestAnimationFrame(tick); };
-    new IntersectionObserver(([e]) => { on = e.isIntersecting; if (on) requestAnimationFrame(tick); }).observe(rail);
+    const rail = document.getElementById('rail'), track = document.getElementById('rail-track');
+    if (!rail || !track || RM) return;
+    const DUREE = 75; // secondes pour faire défiler une série complète (même vitesse qu'avant)
+    let setW = 0, speed = 0, x = 0, last = performance.now(), paused = false, on = true, cards = [], mo = null;
+    const measure = () => {
+      [...track.children].forEach(c => { if (c.dataset.clone) c.remove(); });
+      const kids = [...track.children], originals = kids.filter(c => !c.hasAttribute('aria-hidden'));
+      const n = originals.length; if (!n) return;
+      // largeur exacte d'une série (si la page n'a qu'une série, on la duplique)
+      if (kids.length < 2 * n) originals.forEach(o => { const c = o.cloneNode(true); c.setAttribute('aria-hidden', 'true'); c.dataset.clone = '1'; c.querySelectorAll('img').forEach(i => { i.alt = ''; }); track.append(c); });
+      setW = track.children[n].offsetLeft - track.children[0].offsetLeft;
+      // assez de cartes pour couvrir l'écran + une série entière, quelle que soit la largeur
+      while (track.scrollWidth < rail.clientWidth + setW * 2) originals.forEach(o => { const c = o.cloneNode(true); c.setAttribute('aria-hidden', 'true'); c.dataset.clone = '1'; c.querySelectorAll('img').forEach(i => { i.alt = ''; }); track.append(c); });
+      speed = setW / DUREE; x = setW ? x % setW : 0;
+      cards = [...track.children].map(c => ({ c, l: c.offsetLeft, w: c.offsetWidth }));
+      if (mo) mo.takeRecords(); // ignorer nos propres ajouts de cartes
+    };
+    track.style.animation = 'none';
+    measure();
+    addEventListener('resize', measure);
+    if (document.fonts) document.fonts.ready.then(measure);
+    // la vitrine en direct remplace les cartes : on remesure
+    mo = new MutationObserver(measure); mo.observe(track, { childList: true });
+    if (matchMedia('(hover: hover)').matches) {
+      rail.addEventListener('mouseenter', () => paused = true);
+      rail.addEventListener('mouseleave', () => paused = false);
+    }
+    const loop = (now) => {
+      const dt = Math.min((now - last) / 1000, 0.05); last = now;
+      if (!on) return;
+      if (!paused && setW > 0) { x -= speed * dt; if (x <= -setW) x += setW; }
+      track.style.transform = `translate3d(${x.toFixed(2)}px,0,0)`;
+      if (!LOW) {
+        const rl = rail.getBoundingClientRect().left, cx = innerWidth / 2, k = innerWidth * .55;
+        for (const o of cards) { const left = rl + x + o.l; if (left + o.w < -60 || left > innerWidth + 60) continue;
+          const d = Math.max(-1, Math.min(1, (left + o.w / 2 - cx) / k));
+          o.c.style.transform = `rotateY(${(-d * 24).toFixed(2)}deg) translateZ(${(-Math.abs(d) * 80).toFixed(1)}px)`; }
+      }
+      requestAnimationFrame(loop);
+    };
+    if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => { const was = on; on = e.isIntersecting; if (on && !was) { last = performance.now(); requestAnimationFrame(loop); } }).observe(rail);
+    requestAnimationFrame(loop);
   })();
 
   // Données en direct du bot Nanixss Hub : membres, abonnés, vitrine (en cas d'échec, la page garde ses contenus)
