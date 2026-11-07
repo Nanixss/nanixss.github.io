@@ -701,7 +701,7 @@
           <li><a href="#avis"><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span>Lire les avis des abonnés</a></li>
           <li><b class="num">23 000+</b>abonnés TikTok</li>
           <li><b class="num" data-stat="members">700+</b>membres Discord</li>
-          <li hidden data-wrap="subs"><b class="num" data-stat="subs"></b>abonnés au bot</li>
+          <li><b class="num">50+</b>abonnés au bot</li>
           <li><svg class="i"><use href="#i-shield"/></svg>Sans engagement</li>
         </ul>
       </div>
@@ -1304,7 +1304,7 @@
     requestAnimationFrame(loop);
   })();
 
-  // Données en direct du bot Nanixss Hub : membres, abonnés, vitrine (en cas d'échec, la page garde ses contenus)
+  // Données en direct du bot Nanixss Hub : membres, vitrine (le nombre d'abonnés reste fixe : 50+) (en cas d'échec, la page garde ses contenus)
   (() => {
     const API = 'https://nanixss-pay-production.up.railway.app';
     const fr = (n, d = 0) => Number(n).toLocaleString('fr-FR', { maximumFractionDigits: d });
@@ -1312,7 +1312,6 @@
     get('/stats').then(d => {
       if (!d) return;
       if (d.members > 0) document.querySelectorAll('[data-stat="members"]').forEach(el => { el.textContent = fr(d.members); });
-      if (d.subscribers > 0) document.querySelectorAll('[data-stat="subs"]').forEach(el => { el.textContent = fr(d.subscribers); const w = el.closest('[data-wrap]'); if (w) w.hidden = false; });
     });
     get('/vitrine').then(d => {
       let items = (Array.isArray(d) ? d : (d && d.items) || []).filter(it => it && it.name && typeof it.image === 'string' && /^https:\/\//.test(it.image));
