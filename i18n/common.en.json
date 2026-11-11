@@ -1,0 +1,84 @@
+{
+"t": {
+"Retour en haut": "Back to top",
+"Glisse →": "Swipe →",
+"Copié ✓": "Copied ✓",
+"Accueil": "Home",
+"Retour à l'accueil": "Back to home",
+"Sections": "Sections",
+"Liens": "Links",
+"Réseaux": "Socials",
+"5 sur 5": "5 out of 5",
+"Logo Nanixss": "Nanixss logo",
+"Lucas, alias Nanixss": "Lucas, aka Nanixss",
+"Avant de te lancer.": "Before you start.",
+"<i0></i0>En live sur TikTok · @nanixss.off": "<i0></i0>Live on TikTok · @nanixss.off",
+"<i0>23 000+</i0> abonnés sur TikTok": "<i0>23,000+</i0> TikTok followers",
+"<x0/> membres sur Discord": "<x0/> Discord members",
+"<i0>Temps plein</i0> dans l'achat-revente": "<i0>Full-time</i0> reseller",
+"<i0><x1/>Me suivre sur TikTok</i0> <i2><x3/>Rejoindre le Discord</i2>": "<i0><x1/>Follow me on TikTok</i0> <i2><x3/>Join the Discord</i2>",
+"Très bon état": "Very good condition",
+"Bon état": "Good condition",
+"Neuf sans étiquette": "New without tags",
+"Neuf avec étiquette": "New with tags",
+"Satisfaisant": "Satisfactory",
+"Inconnue": "Unknown",
+"Unique": "One size",
+"à l'instant": "just now",
+"<i0>à l'instant</i0>": "<i0>just now</i0>",
+"⏳ Publié": "⏳ Posted",
+"🔖 Marque": "🔖 Brand",
+"📏 Taille": "📏 Size",
+"💎 État": "💎 Condition",
+"💰 Prix": "💰 Price",
+"<i0>⚡ Acheter</i0><i1>📄 Détails ↗</i1>": "<i0>⚡ Buy</i0><i1>📄 Details ↗</i1>",
+"Vitrine du Discord": "Discord showcase",
+"CGV & confidentialité": "Terms & privacy"
+},
+"p": [
+[
+"^(.*)Aujourd'hui à (\\d\\d:\\d\\d)(.*)$",
+"$1Today at $2$3"
+],
+[
+"^<i0>(.+?)</i0><i1>Alerte · (\\d\\d:\\d\\d)</i1>$",
+"<i0>$1</i0><i1>Alert · $2</i1>"
+],
+[
+"^(.+), photo de l'annonce$",
+"$1, listing photo"
+],
+[
+"^(.+), intérieur de la boîte$",
+"$1, inside of the box"
+],
+[
+"^(.+), boîte$",
+"$1, box"
+],
+[
+"^(.*)Vitrine · il y a (\\d+) min(.*)$",
+"$1Showcase · $2 min ago$3"
+],
+[
+"^(.*)Vitrine · il y a (\\d+) h(.*)$",
+"$1Showcase · $2 h ago$3"
+],
+[
+"^(.*)Vitrine · il y a (\\d+) j(.*)$",
+"$1Showcase · $2 d ago$3"
+],
+[
+"^(.*)<i(\\d+)>(\\d+) jeux</i\\2>$",
+"$1<i$2>$3 games</i$2>"
+],
+[
+"^(\\d+) ans / (\\d+) cm$",
+"$1 years / $2 cm"
+],
+[
+"^(.*) <i0>(\\d+) € · à l'instant</i0>$",
+"$1 <i0>€$2 · just now</i0>"
+]
+]
+}

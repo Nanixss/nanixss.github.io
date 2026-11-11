@@ -1,0 +1,84 @@
+{
+"t": {
+"Retour en haut": "Torna su",
+"Glisse →": "Scorri →",
+"Copié ✓": "Copiato ✓",
+"Accueil": "Home",
+"Retour à l'accueil": "Torna alla home",
+"Sections": "Sezioni",
+"Liens": "Link",
+"Réseaux": "Social",
+"5 sur 5": "5 su 5",
+"Logo Nanixss": "Logo Nanixss",
+"Lucas, alias Nanixss": "Lucas, alias Nanixss",
+"Avant de te lancer.": "Prima di iniziare.",
+"<i0></i0>En live sur TikTok · @nanixss.off": "<i0></i0>In live su TikTok · @nanixss.off",
+"<i0>23 000+</i0> abonnés sur TikTok": "<i0>23.000+</i0> follower su TikTok",
+"<x0/> membres sur Discord": "<x0/> membri su Discord",
+"<i0>Temps plein</i0> dans l'achat-revente": "<i0>A tempo pieno</i0> nella compravendita",
+"<i0><x1/>Me suivre sur TikTok</i0> <i2><x3/>Rejoindre le Discord</i2>": "<i0><x1/>Seguimi su TikTok</i0> <i2><x3/>Entra nel Discord</i2>",
+"Très bon état": "Ottime condizioni",
+"Bon état": "Buone condizioni",
+"Neuf sans étiquette": "Nuovo senza cartellino",
+"Neuf avec étiquette": "Nuovo con cartellino",
+"Satisfaisant": "Discrete",
+"Inconnue": "Sconosciuta",
+"Unique": "Taglia unica",
+"à l'instant": "proprio ora",
+"<i0>à l'instant</i0>": "<i0>proprio ora</i0>",
+"⏳ Publié": "⏳ Pubblicato",
+"🔖 Marque": "🔖 Marca",
+"📏 Taille": "📏 Taglia",
+"💎 État": "💎 Condizioni",
+"💰 Prix": "💰 Prezzo",
+"<i0>⚡ Acheter</i0><i1>📄 Détails ↗</i1>": "<i0>⚡ Acquista</i0><i1>📄 Dettagli ↗</i1>",
+"Vitrine du Discord": "Vetrina del Discord",
+"CGV & confidentialité": "Condizioni e privacy"
+},
+"p": [
+[
+"^(.*)Aujourd'hui à (\\d\\d:\\d\\d)(.*)$",
+"$1Oggi alle $2$3"
+],
+[
+"^<i0>(.+?)</i0><i1>Alerte · (\\d\\d:\\d\\d)</i1>$",
+"<i0>$1</i0><i1>Avviso · $2</i1>"
+],
+[
+"^(.+), photo de l'annonce$",
+"$1, foto dell'annuncio"
+],
+[
+"^(.+), intérieur de la boîte$",
+"$1, interno della scatola"
+],
+[
+"^(.+), boîte$",
+"$1, scatola"
+],
+[
+"^(.*)Vitrine · il y a (\\d+) min(.*)$",
+"$1Vetrina · $2 min fa$3"
+],
+[
+"^(.*)Vitrine · il y a (\\d+) h(.*)$",
+"$1Vetrina · $2 h fa$3"
+],
+[
+"^(.*)Vitrine · il y a (\\d+) j(.*)$",
+"$1Vetrina · $2 g fa$3"
+],
+[
+"^(.*)<i(\\d+)>(\\d+) jeux</i\\2>$",
+"$1<i$2>$3 giochi</i$2>"
+],
+[
+"^(\\d+) ans / (\\d+) cm$",
+"$1 anni / $2 cm"
+],
+[
+"^(.*) <i0>(\\d+) € · à l'instant</i0>$",
+"$1 <i0>$2 € · proprio ora</i0>"
+]
+]
+}

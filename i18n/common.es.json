@@ -1,0 +1,84 @@
+{
+"t": {
+"Retour en haut": "Volver arriba",
+"Glisse →": "Desliza →",
+"Copié ✓": "Copiado ✓",
+"Accueil": "Inicio",
+"Retour à l'accueil": "Volver al inicio",
+"Sections": "Secciones",
+"Liens": "Enlaces",
+"Réseaux": "Redes",
+"5 sur 5": "5 de 5",
+"Logo Nanixss": "Logo de Nanixss",
+"Lucas, alias Nanixss": "Lucas, alias Nanixss",
+"Avant de te lancer.": "Antes de lanzarte.",
+"<i0></i0>En live sur TikTok · @nanixss.off": "<i0></i0>En directo en TikTok · @nanixss.off",
+"<i0>23 000+</i0> abonnés sur TikTok": "<i0>23 000+</i0> seguidores en TikTok",
+"<x0/> membres sur Discord": "<x0/> miembros en Discord",
+"<i0>Temps plein</i0> dans l'achat-revente": "<i0>A tiempo completo</i0> en la compraventa",
+"<i0><x1/>Me suivre sur TikTok</i0> <i2><x3/>Rejoindre le Discord</i2>": "<i0><x1/>Sígueme en TikTok</i0> <i2><x3/>Unirme al Discord</i2>",
+"Très bon état": "Muy buen estado",
+"Bon état": "Buen estado",
+"Neuf sans étiquette": "Nuevo sin etiquetas",
+"Neuf avec étiquette": "Nuevo con etiquetas",
+"Satisfaisant": "Satisfactorio",
+"Inconnue": "Desconocida",
+"Unique": "Talla única",
+"à l'instant": "ahora mismo",
+"<i0>à l'instant</i0>": "<i0>ahora mismo</i0>",
+"⏳ Publié": "⏳ Publicado",
+"🔖 Marque": "🔖 Marca",
+"📏 Taille": "📏 Talla",
+"💎 État": "💎 Estado",
+"💰 Prix": "💰 Precio",
+"<i0>⚡ Acheter</i0><i1>📄 Détails ↗</i1>": "<i0>⚡ Comprar</i0><i1>📄 Detalles ↗</i1>",
+"Vitrine du Discord": "Escaparate del Discord",
+"CGV & confidentialité": "Condiciones y privacidad"
+},
+"p": [
+[
+"^(.*)Aujourd'hui à (\\d\\d:\\d\\d)(.*)$",
+"$1Hoy a las $2$3"
+],
+[
+"^<i0>(.+?)</i0><i1>Alerte · (\\d\\d:\\d\\d)</i1>$",
+"<i0>$1</i0><i1>Alerta · $2</i1>"
+],
+[
+"^(.+), photo de l'annonce$",
+"$1, foto del anuncio"
+],
+[
+"^(.+), intérieur de la boîte$",
+"$1, interior de la caja"
+],
+[
+"^(.+), boîte$",
+"$1, caja"
+],
+[
+"^(.*)Vitrine · il y a (\\d+) min(.*)$",
+"$1Escaparate · hace $2 min$3"
+],
+[
+"^(.*)Vitrine · il y a (\\d+) h(.*)$",
+"$1Escaparate · hace $2 h$3"
+],
+[
+"^(.*)Vitrine · il y a (\\d+) j(.*)$",
+"$1Escaparate · hace $2 d$3"
+],
+[
+"^(.*)<i(\\d+)>(\\d+) jeux</i\\2>$",
+"$1<i$2>$3 juegos</i$2>"
+],
+[
+"^(\\d+) ans / (\\d+) cm$",
+"$1 años / $2 cm"
+],
+[
+"^(.*) <i0>(\\d+) € · à l'instant</i0>$",
+"$1 <i0>$2 € · ahora mismo</i0>"
+]
+]
+}
