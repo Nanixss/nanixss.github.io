@@ -1,6 +1,6 @@
 {
 "t": {
-"Le bot Vinted de Nanixss Hub : chaque pépite dans ton Discord à l'instant où elle sort. Filtres sur mesure, autocop, multicompte. Sans engagement.": "El bot de Vinted de Nanixss Hub: cada chollo en tu Discord en cuanto se publica. Filtros a medida, autocop, multicuenta. Sin permanencia.",
+"Le bot Vinted de Nanixss Hub : chaque pépite dans ton Discord à l'instant où elle sort. Filtres sur mesure, autocop, multicompte, extension Vinted. Sans engagement.": "El bot de Vinted de Nanixss Hub: cada chollo en tu Discord en el momento en que se publica. Filtros a medida, autocop, multicuenta, extensión de Vinted. Sin permanencia.",
 "Nanixss Hub · Bot Vinted Elite": "Nanixss Hub · Bot de Vinted Elite",
 "Chaque pépite Vinted, à l'instant où elle sort, dans ton Discord.": "Cada chollo de Vinted, en cuanto se publica, en tu Discord.",
 "<i0>Comment ça marche</i0> <i1>Fonctionnalités</i1> <i2>Tarifs</i2> <i3>Avis</i3> <i4>Qui est derrière</i4> <i5>FAQ</i5>": "<i0>Cómo funciona</i0> <i1>Funciones</i1> <i2>Precios</i2> <i3>Opiniones</i3> <i4>Quién está detrás</i4> <i5>FAQ</i5>",
@@ -129,7 +129,7 @@
 "Le bot, c'est seulement pour les jeux vidéo ?<i0><x1/></i0>": "¿El bot es solo para videojuegos?<i0><x1/></i0>",
 "Non. Le bot peut trouver tout ce qui est sur Vinted : jeux, consoles, vêtements, sneakers, accessoires… Tu crées les filtres qui correspondent à ce que tu revends.": "No. El bot puede encontrar todo lo que hay en Vinted: juegos, consolas, ropa, zapatillas, accesorios… Creas los filtros que encajan con lo que revendes.",
 "Quelle différence entre Starter et Elite ?<i0><x1/></i0>": "¿Qué diferencia hay entre Starter y Elite?<i0><x1/></i0>",
-"Les deux te donnent les alertes instantanées et les filtres sur mesure. L'Elite ajoute l'autocop, qui achète à ta place les annonces qui passent tes filtres, et le multicompte, jusqu'à 3 comptes Vinted.": "Los dos te dan las alertas instantáneas y los filtros a medida. Elite añade el autocop, que compra por ti los anuncios que pasan tus filtros, y la multicuenta, hasta 3 cuentas de Vinted.",
+"Les deux te donnent les alertes instantanées et les filtres sur mesure. L'Elite ajoute l'autocop, qui achète à ta place les annonces qui passent tes filtres, le multicompte, jusqu'à 3 comptes Vinted, et l'extension Vinted Nanixss Hub.": "Los dos te dan las alertas instantáneas y los filtros a medida. Elite añade el autocop, que compra por ti los anuncios que pasan tus filtros, la multicuenta, hasta 3 cuentas de Vinted, y la extensión de Vinted Nanixss Hub.",
 "Comment j'accède au bot après le paiement ?<i0><x1/></i0>": "¿Cómo accedo al bot después de pagar?<i0><x1/></i0>",
 "Au moment du paiement, tu indiques ton pseudo Discord : le lien avec ton compte se fait automatiquement et ton accès s'active sur le serveur Nanixss Hub. Ensuite, les tutos vidéo t'expliquent comment créer ton premier filtre et connecter ton compte Vinted, et le support répond par ticket si tu bloques.": "Al pagar, indicas tu nombre de usuario de Discord: tu cuenta se vincula automáticamente y tu acceso se activa en el servidor Nanixss Hub. Después, los tutoriales en vídeo te explican cómo crear tu primer filtro y conectar tu cuenta de Vinted, y el soporte responde por ticket si te atascas.",
 "Comment marche le bouton Acheter ?<i0><x1/></i0>": "¿Cómo funciona el botón Comprar?<i0><x1/></i0>",
@@ -146,6 +146,12 @@
 "<i0>Tous mes liens</i0> <i1>TikTok</i1> <i2>La formation</i2> <i3>CGV & confidentialité</i3>": "<i0>Todos mis enlaces</i0> <i1>TikTok</i1> <i2>La formación</i2> <i3>Condiciones y privacidad</i3>",
 "<i0>Elite · <i1>24,99 €/mois</i1></i0>Sans engagement": "<i0>Elite · <i1>24,99 €/mes</i1></i0>Sin permanencia",
 "Enregistrement d'écran réel : des alertes arrivent dans Discord, puis un achat est lancé avec le bouton Acheter": "Grabación de pantalla real: llegan alertas a Discord y luego se lanza una compra con el botón Comprar",
-"La même alerte du bot arrive au même moment sur un ordinateur portable et sur un téléphone": "La misma alerta del bot llega al mismo tiempo a un portátil y a un móvil"
+"La même alerte du bot arrive au même moment sur un ordinateur portable et sur un téléphone": "La misma alerta del bot llega al mismo tiempo a un portátil y a un móvil",
+"<x0/>Extension Vinted <i1>ELITE</i1>": "<x0/>Extensión de Vinted <i1>ELITE</i1>",
+"L'extension Nanixss Hub s'ajoute à ton navigateur et t'aide directement sur Vinted, à l'achat comme à la vente.": "La extensión Nanixss Hub se añade a tu navegador y te ayuda directamente en Vinted, tanto al comprar como al vender.",
+"<i0>Calcul de marge</i0><i1>Messages types</i1><i2>Annonce rédigée par l'IA</i2><i3>Aide aux litiges</i3><i4>Bons plans vers le Discord</i4><i5>Et plus encore</i5>": "<i0>Cálculo de margen</i0><i1>Mensajes predefinidos</i1><i2>Anuncio redactado por la IA</i2><i3>Ayuda con disputas</i3><i4>Chollos al Discord</i4><i5>Y mucho más</i5>",
+"<i0><x1/></i0><i2><i3>Extension Vinted</i3> Nanixss Hub</i2>": "<i0><x1/></i0><i2><i3>Extensión de Vinted</i3> Nanixss Hub</i2>",
+"C'est quoi l'extension Vinted ?<i0><x1/></i0>": "¿Qué es la extensión de Vinted?<i0><x1/></i0>",
+"Une extension pour ton navigateur, incluse dans l'Elite. Elle t'aide directement sur Vinted : calcul de ta marge, messages types, rédaction d'annonce par l'IA, aide en cas de litige et partage de bons plans vers le Discord. Tu reçois ta clé avec la commande /extension sur le Discord. Elle est en bêta et s'enrichit au fil des mises à jour.": "Una extensión para tu navegador, incluida en Elite. Te ayuda directamente en Vinted: cálculo de tu margen, mensajes predefinidos, redacción de anuncios por la IA, ayuda en caso de disputa y envío de chollos al Discord. Recibes tu clave con el comando /extension en el Discord. Está en beta y mejora con cada actualización."
 }
 }

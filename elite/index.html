@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Nanixss Hub Elite</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Le bot Vinted de Nanixss Hub : chaque pépite dans ton Discord à l'instant où elle sort. Filtres sur mesure, autocop, multicompte. Sans engagement.">
+<meta name="description" content="Le bot Vinted de Nanixss Hub : chaque pépite dans ton Discord à l'instant où elle sort. Filtres sur mesure, autocop, multicompte, extension Vinted. Sans engagement.">
 <meta property="og:title" content="Nanixss Hub · Bot Vinted Elite">
 <meta property="og:description" content="Chaque pépite Vinted, à l'instant où elle sort, dans ton Discord.">
 <meta property="og:image" content="https://nanixsshub.fr/elite/partage.jpg">
@@ -286,7 +286,7 @@
   .vis{margin-top:auto;padding-top:14px}
   .t-alerts{grid-column:span 3;grid-row:span 2}
   .t-filters,.t-all{grid-column:span 3}
-  .t-auto,.t-multi,.t-help{grid-column:span 2}
+  .t-auto,.t-multi,.t-ext,.t-help{grid-column:span 3}
   .t-alerts .vis{margin-top:auto;padding:26px 18px 18px;border-radius:24px;background:radial-gradient(120% 80% at 50% 0%,rgba(3,210,182,.16),transparent 62%),var(--deep);border:1px solid rgba(3,210,182,.12)}
   .lock{text-align:center;margin-bottom:22px}
   .lock b{display:block;font-size:clamp(58px,6vw,84px);font-weight:300;letter-spacing:-.03em;line-height:1;color:var(--text)}
@@ -327,7 +327,7 @@
   .vid{position:relative;aspect-ratio:16/10;border-radius:13px;overflow:hidden;background:linear-gradient(140deg,#0D3A40,#04161B);border:1px solid rgba(3,210,182,.14);display:flex;align-items:flex-end;padding:9px}
   .vid .i{position:absolute;left:50%;top:42%;width:30px;height:30px;transform:translate(-50%,-50%);color:var(--accent-l)}
   .vid span{position:relative;font-size:11.5px;font-weight:600;line-height:1.25;color:var(--text)}
-  @media (max-width:980px){.bento{grid-template-columns:repeat(2,minmax(0,1fr))}.t-alerts{grid-column:span 2;grid-row:auto}.t-filters,.t-all,.t-auto,.t-multi{grid-column:span 1}.t-help{grid-column:span 2}}
+  @media (max-width:980px){.bento{grid-template-columns:repeat(2,minmax(0,1fr))}.t-alerts{grid-column:span 2;grid-row:auto}.t-filters,.t-all,.t-auto,.t-multi,.t-ext,.t-help{grid-column:span 1}}
   @media (max-width:640px){.bento{grid-template-columns:minmax(0,1fr)}.bento .tile{grid-column:auto;padding:22px}.t-alerts .vis{padding:20px 12px 12px}.notif{gap:10px;padding:10px}.notif .th{display:none}}
 
   /* preuves */
@@ -905,6 +905,11 @@
             <li><span class="av">3</span>Compte Vinted 3<em>connecté</em></li>
           </ul>
         </article>
+        <article class="tilt tile t-ext">
+          <h3><svg class="i"><use href="#i-laptop"/></svg>Extension Vinted <span class="pill">ELITE</span></h3>
+          <p>L'extension Nanixss Hub s'ajoute à ton navigateur et t'aide directement sur Vinted, à l'achat comme à la vente.</p>
+          <div class="vis cats" aria-hidden="true"><span>Calcul de marge</span><span>Messages types</span><span>Annonce rédigée par l'IA</span><span>Aide aux litiges</span><span>Bons plans vers le Discord</span><span class="more">Et plus encore</span></div>
+        </article>
         <article class="tilt tile t-help">
           <h3><svg class="i"><use href="#i-play"/></svg>Tutos et support</h3>
           <p>Des vidéos pour créer un filtre et connecter tes comptes, des guides, des presets prêts à l'emploi et un support par ticket.</p>
@@ -994,6 +999,7 @@
             <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Tout le Starter</li>
             <li class="plus"><span class="ck"><svg class="i"><use href="#i-check"/></svg></span><span><strong>Autocop</strong> : le bot achète pour toi</span></li>
             <li class="plus"><span class="ck"><svg class="i"><use href="#i-check"/></svg></span><span><strong>Multicompte</strong> : jusqu'à 3 comptes Vinted</span></li>
+            <li class="plus"><span class="ck"><svg class="i"><use href="#i-check"/></svg></span><span><strong>Extension Vinted</strong> Nanixss Hub</span></li>
             <li class="plus"><span class="ck"><svg class="i"><use href="#i-check"/></svg></span><span>-50 € sur la <a href="../formation/" data-k="elite-formation-plan" style="color:var(--accent-l)">formation avancée</a></span></li>
           </ul>
           <a class="btn btn-main" href="https://buy.stripe.com/28EfZigv15TG06mbtN8g001" data-k="elite-plan" rel="noopener"><svg class="i"><use href="#i-bolt"/></svg>Prendre l'Elite</a>
@@ -1075,7 +1081,8 @@
       </div>
       <div class="faq-list">
         <details><summary>Le bot, c'est seulement pour les jeux vidéo ?<span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></summary><div class="ans">Non. Le bot peut trouver tout ce qui est sur Vinted : jeux, consoles, vêtements, sneakers, accessoires… Tu crées les filtres qui correspondent à ce que tu revends.</div></details>
-        <details><summary>Quelle différence entre Starter et Elite ?<span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></summary><div class="ans">Les deux te donnent les alertes instantanées et les filtres sur mesure. L'Elite ajoute l'autocop, qui achète à ta place les annonces qui passent tes filtres, et le multicompte, jusqu'à 3 comptes Vinted.</div></details>
+        <details><summary>Quelle différence entre Starter et Elite ?<span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></summary><div class="ans">Les deux te donnent les alertes instantanées et les filtres sur mesure. L'Elite ajoute l'autocop, qui achète à ta place les annonces qui passent tes filtres, le multicompte, jusqu'à 3 comptes Vinted, et l'extension Vinted Nanixss Hub.</div></details>
+        <details><summary>C'est quoi l'extension Vinted ?<span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></summary><div class="ans">Une extension pour ton navigateur, incluse dans l'Elite. Elle t'aide directement sur Vinted : calcul de ta marge, messages types, rédaction d'annonce par l'IA, aide en cas de litige et partage de bons plans vers le Discord. Tu reçois ta clé avec la commande /extension sur le Discord. Elle est en bêta et s'enrichit au fil des mises à jour.</div></details>
         <details><summary>Comment j'accède au bot après le paiement ?<span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></summary><div class="ans">Au moment du paiement, tu indiques ton pseudo Discord : le lien avec ton compte se fait automatiquement et ton accès s'active sur le serveur Nanixss Hub. Ensuite, les tutos vidéo t'expliquent comment créer ton premier filtre et connecter ton compte Vinted, et le support répond par ticket si tu bloques.</div></details>
         <details><summary>Comment marche le bouton Acheter ?<span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></summary><div class="ans">Il lance l'achat directement depuis ton compte Vinted connecté au bot. Si ta banque demande une vérification (3D Secure), le bot t'envoie un bouton pour valider le paiement, et le résultat s'affiche dans Discord.</div></details>
         <details><summary>Je dois rester devant mon ordi ?<span class="pm"><svg class="i"><use href="#i-plus"/></svg></span></summary><div class="ans">Non. Les alertes arrivent dans Discord, donc sur ton téléphone aussi. Et avec l'autocop de l'Elite, le bot peut acheter sans toi.</div></details>
