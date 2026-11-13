@@ -89,6 +89,7 @@
   @media (prefers-reduced-motion: reduce){.track{animation:none}.reviews{overflow-x:auto}}
 </style>
 <script src="/i18n/i18n.js" data-page="index"></script>
+<script src="/avis-live.js"></script>
 </head>
 <body>
 <div class="dvd" aria-hidden="true"><img src="n.png" alt=""><img src="n.png" alt=""><img src="n.png" alt=""></div>
@@ -175,7 +176,8 @@
     if (navigator.clipboard) navigator.clipboard.writeText(c).then(done, done); else done();
   }));
   // Bandeau d'avis : boucle continue en pixels, sans jamais de vide
-  (() => {
+  (async () => {
+    if (window.__avisLive) await Promise.race([window.__avisLive, new Promise((r) => setTimeout(r, 1500))]);
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const box = document.querySelector('.reviews'), track = box && box.querySelector('.track');
     if (!track) return;
