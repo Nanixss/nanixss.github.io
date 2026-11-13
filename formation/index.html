@@ -757,12 +757,12 @@
   .pages-rig{position:relative;transform-style:preserve-3d;transform:rotateX(var(--prx,14deg)) rotateY(var(--pry,-16deg));transition:transform .9s cubic-bezier(.2,.7,.2,1)}
   .pg-sheet{position:relative;width:78cqw;margin-left:4cqw;aspect-ratio:1122/1300;border-radius:2cqw;overflow:hidden;background:#FBFCFC;color:#16323A;
     box-shadow:0 70px 100px -50px rgba(0,0,0,.95),0 0 0 1px rgba(3,210,182,.3);transform:translateZ(calc(60px * var(--pp,1)))}
-  .pg-sheet.behind{position:absolute;top:0;left:0;margin-left:18cqw;transform:translateZ(calc(-90px * var(--pp,1))) translateY(-6cqw) rotateZ(3deg);opacity:.92}
+  .pg-sheet.behind{position:absolute;top:0;left:0;margin-left:18cqw;transform:translateZ(calc(-90px * var(--pp,1))) translateY(-6cqw) rotateZ(3deg)}
   .pg-h{display:flex;justify-content:space-between;align-items:flex-end;padding:5.2cqw 5.5cqw 3.4cqw;background:#061820;color:#fff;border-bottom:.9cqw solid #19E0CB}
   .pg-h b{font-size:6cqw;font-weight:800;letter-spacing:-.02em;line-height:1}
   .pg-h span{font-size:2.3cqw;color:#9CC4C4;font-weight:600}
   .pg-t{width:100%;border-collapse:collapse;font-size:2.35cqw}
-  .pg-t th{padding:2.4cqw 2.2cqw 1.6cqw;text-align:left;font-size:1.95cqw;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#0A6E67}
+  .pg-t th{padding:2.4cqw 2.2cqw 1.6cqw;text-align:left;font-size:1.95cqw;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#065A53}
   .pg-t td{padding:1.65cqw 2.2cqw;border-top:1px solid #E3EAEB;font-weight:600;white-space:nowrap}
   .pg-t td:first-child{padding-left:5.5cqw;width:52%;overflow:hidden;text-overflow:ellipsis;max-width:0}
   .pg-t th:first-child{padding-left:5.5cqw}
@@ -1713,7 +1713,7 @@
     document.addEventListener('visibilitychange', () => { visible = !document.hidden; if (visible) { last = performance.now(); requestAnimationFrame(loop); } });
     requestAnimationFrame(loop);
 };
-  // La 3D se charge après l'affichage de la page (premier geste ou 3,5 s), pour que le haut de page s'affiche tout de suite
+  // La 3D se charge après l'affichage de la page (premier geste ou 6 s), pour que le haut de page s'affiche tout de suite
   (() => {
     let done = false;
     const go = () => {
@@ -1726,7 +1726,7 @@
       document.head.appendChild(s);
     };
     ['scroll','pointerdown','pointermove','keydown','touchstart'].forEach(ev => addEventListener(ev, go, { once: true, passive: true }));
-    const later = () => setTimeout(go, 3500);
+    const later = () => setTimeout(go, 6000);
     if (document.readyState === 'complete') later(); else addEventListener('load', later, { once: true });
   })();
 })();
