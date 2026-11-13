@@ -62,7 +62,7 @@
   body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:21;background:var(--bg)}
   .nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;border-bottom:1px solid transparent;transition:background-color .3s,border-color .3s}
   .nav.scrolled{background:rgba(4,19,26,.8);-webkit-backdrop-filter:blur(16px) saturate(140%);backdrop-filter:blur(16px) saturate(140%);border-bottom-color:rgba(3,210,182,.10)}
-  .nav-in{display:flex;align-items:center;gap:22px;height:70px}
+  .nav-in{display:flex;align-items:center;gap:22px;height:58px}
   .brand{display:flex;align-items:center;gap:11px;text-decoration:none;font-weight:800;font-size:17px;letter-spacing:.02em}
   .brand img{width:36px;height:36px;border-radius:50%}
   .brand b{color:var(--accent)}
@@ -723,7 +723,7 @@
   .vx{position:relative;width:min(540px,100%);aspect-ratio:1/1.04;transform-style:preserve-3d;transform:rotateY(var(--ry,-14deg)) rotateX(var(--rx,6deg)) translateZ(var(--sz,0px))}
   .vx .card{position:absolute;margin:0;border-radius:18px;background:var(--surface);border:1px solid var(--line-2);box-shadow:0 30px 60px -20px rgba(0,0,0,.75);color:var(--text);text-decoration:none}
   .vx .card small{display:block;font-size:12px;color:var(--text-3);font-weight:500}
-  .c-stock{inset:0 8% 10% 4%;overflow:hidden}
+  .c-stock{inset:6% 0 6% 0;overflow:hidden}
   .c-stock img{width:100%;height:100%;object-fit:cover;display:block}
   .c-stock figcaption{position:absolute;left:12px;top:12px;padding:6px 10px;border-radius:999px;background:rgba(3,16,23,.78);font-size:12px;color:var(--text-2)}
   .c-tk{left:-4%;top:8%;transform:translateZ(110px);display:flex;align-items:center;gap:10px;padding:10px 14px;background:#000!important;border-radius:14px!important}
@@ -733,7 +733,7 @@
   .c-avis{right:-2%;bottom:0;width:62%;transform:translateZ(130px);padding:14px 16px;background:#0b2a31!important}
   .c-avis .h{display:flex;align-items:center;gap:9px;margin-bottom:7px}.c-avis .av{width:28px;height:28px;border-radius:50%;background:#5865F2;display:grid;place-items:center;font-weight:800;font-size:12px;color:#fff}
   .c-avis .st{color:#f5c518;font-size:13px}.c-avis .q{display:block;font-size:13px;line-height:1.45;color:var(--text-2)}.c-avis small{margin-top:7px}
-  @media (max-width:900px){.vx{width:min(430px,94%);margin-inline:auto;aspect-ratio:1/1.12}.c-stock{inset:0 4% 22% 4%}.c-stock figcaption{display:none}.c-tk{left:0;top:4%}.c-lot{right:0;top:30%}.c-avis{right:0;bottom:0;width:78%;padding:12px 14px}.c-avis .q{font-size:12.5px}}
+  @media (max-width:900px){.vx{width:min(430px,94%);margin-inline:auto;aspect-ratio:1/.9}.c-stock{inset:4% 0}.c-tk{left:0;top:4%}.c-lot{right:0;top:30%}.c-avis{right:0;bottom:0;width:78%;padding:12px 14px}.c-avis .q{font-size:12.5px}}
 
   /* captures brutes */
   .preuves{padding-top:0}
@@ -790,8 +790,7 @@
 
 <header class="nav" id="nav">
   <div class="wrap nav-in">
-    <a class="brand" href="#top" data-k="formation-logo"><img src="../logo.png" alt="" width="36" height="36"><span>NANIXSS<b>.</b>HUB</span></a>
-    <a class="nav-ic" href="../" data-k="formation-nav-accueil" aria-label="Retour à l'accueil" title="Accueil"><svg class="i" viewBox="0 0 24 24"><path d="M3.5 10.5 12 3.5l8.5 7"/><path d="M5.5 9v10.5h4.5V14h4v5.5h4.5V9"/></svg></a>
+    <a class="brand" href="../" data-k="formation-logo" title="Accueil"><img src="../logo.png" alt="" width="36" height="36"><span>NANIXSS<b>.</b>HUB</span></a>
     <nav class="nav-links" aria-label="Sections">
       <a href="#preuves">Preuves</a>
       <a href="#offres">Offres</a>
@@ -825,10 +824,7 @@
 
       <div class="hero-vis" id="stage" data-scene="phone">
         <div class="vx" id="rig">
-          <figure class="card c-stock"><img src="stock.webp" alt="Le stock de jeux vidéo de Lucas sur ses étagères : DS, Switch, Wii, GameCube, PS4, GBA" width="1000" height="840" fetchpriority="high"><figcaption>Mon stock, photo prise chez moi</figcaption></figure>
-          <a class="card c-tk" href="https://www.tiktok.com/@nanixss.off" target="_blank" rel="noopener" data-k="formation-hero-tiktok"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M16.6 5.8A4.3 4.3 0 0 1 15.5 3h-3.1v12.4a2.6 2.6 0 1 1-2.6-2.6c.3 0 .5 0 .8.1V9.7a5.7 5.7 0 1 0 4.9 5.7V9a7.4 7.4 0 0 0 4.3 1.4V7.3a4.3 4.3 0 0 1-3.2-1.5z"/></svg><span><b>@nanixss.off</b><small>23 000+ abonnés sur TikTok</small></span></a>
-          <div class="card c-lot"><b>Lot GBA : 213 € → 700 €+</b><small>Acheté et revendu le 21/03/2026</small></div>
-          <a class="card c-avis" href="#avis"><span class="h"><span class="av">N</span><b>Nono</b><span class="st" aria-label="5 sur 5">★★★★★</span></span><span class="q">« La formation m'a permis de gagner pas mal de temps et de mieux structurer mon activité. »</span><small>Avis Discord · Élève Formation Avancée</small></a>
+          <figure class="card c-stock"><img src="stock-etageres.webp" alt="Le stock de jeux vidéo de Lucas sur ses étagères : DS, Switch, Wii, GameCube, PS4, GBA" width="1000" height="840" fetchpriority="high"><figcaption>Mon stock, photo prise chez moi</figcaption></figure>
         </div>
       </div>
     </div>
