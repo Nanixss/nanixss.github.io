@@ -916,12 +916,12 @@
   @media (max-width:600px){.shots{columns:auto;display:flex;align-items:flex-start;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px;margin-inline:-20px;padding-inline:20px;scrollbar-width:none}.shots::-webkit-scrollbar{display:none}.shot{flex:0 0 82%;scroll-snap-align:center;margin:0}.preuves .head-hint{display:block}}
 
   /* avis qui défilent */
-  .rv-rows{margin-top:46px;display:flex;flex-direction:column;gap:18px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+  .rv-rows{margin-top:46px;display:flex;flex-direction:column;gap:18px;margin-inline:calc(50% - 50vw);-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
   .rv-row{overflow:hidden}
   .rv-track{display:flex;align-items:stretch;gap:18px;width:max-content;animation:rv 70s linear infinite}
   .rv-row.rev .rv-track{animation-direction:reverse;animation-duration:62s}
   .rv-rows:hover .rv-track{animation-play-state:paused}
-  .rv-track .dcard{flex:0 0 340px;margin:0;break-inside:auto}
+  .rv-track .dcard{flex:0 0 max(340px, calc((100vw - 90px) / 6));margin:0;break-inside:auto}
   .rv-track .dcard blockquote{display:-webkit-box;-webkit-line-clamp:7;-webkit-box-orient:vertical;overflow:hidden}
   @keyframes rv{to{transform:translateX(calc(-50% - 9px))}}
   @media (max-width:600px){.rv-track .dcard{flex-basis:280px}.rv-track{animation-duration:55s}.rv-row.rev .rv-track{animation-duration:48s}}
