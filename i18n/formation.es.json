@@ -188,7 +188,6 @@
 "Je prends la Starter, je pourrai passer à l'Avancée ensuite ?<i0><x1/></i0>": "Si cojo la Starter, ¿podré pasar a la Avanzada después?<i0><x1/></i0>",
 "Pas en payant la différence : les deux formations s'achètent séparément. Si tu comptes te lancer sérieusement, prends directement l'Avancée.": "No pagando la diferencia: las dos formaciones se compran por separado. Si piensas lanzarte en serio, coge directamente la Avanzada.",
 "Je peux payer en plusieurs fois ?<i0><x1/></i0>": "¿Puedo pagar a plazos?<i0><x1/></i0>",
-"Oui, pour les deux formations : au moment du paiement, choisis PayPal, puis « Paiement en 4X ». Tu paies en 4 fois sans frais, et ton accès est débloqué dès le premier paiement (le 4x est accordé par PayPal selon ton éligibilité). Pour l'Avancée, le paiement en 3 fois avec Klarna reste aussi possible.": "Sí, para las dos formaciones: al pagar, elige PayPal y luego «Paga en 4 plazos». Pagas en 4 plazos sin intereses y tu acceso se desbloquea con el primer pago (PayPal concede el pago en 4 plazos según tu elegibilidad).",
 "Comment marchent les 2 mois de bot offerts ?<i0><x1/></i0>": "¿Cómo funcionan los 2 meses de bot de regalo?<i0><x1/></i0>",
 "Avec la formation avancée, tu reçois un code personnel à activer quand tu veux : 2 mois d'accès au bot Elite sans rien payer, puis 19,99 €/mois au lieu de 24,99 €, tant que tu restes abonné. Résiliable à tout moment : si tu reviens après avoir résilié, ce sera au prix normal de 24,99 €.": "Con la formación avanzada recibes un código personal que activas cuando quieras: 2 meses de acceso al bot Elite sin pagar nada, luego 19,99 €/mes en lugar de 24,99 €, mientras sigas suscrito. Cancelable en cualquier momento: si vuelves después de cancelar, será al precio normal de 24,99 €.",
 "Je suis déjà abonné Elite, j'ai un avantage ?<i0><x1/></i0>": "Ya soy suscriptor Elite, ¿tengo alguna ventaja?<i0><x1/></i0>",
@@ -223,6 +222,8 @@
 "Tableau de kaluminium pour février : 822 € d'achats, 1 478 € de ventes, 656 € de bénéfice brut": "Tabla de kaluminium de febrero: 822 € de compras, 1478 € de ventas, 656 € de beneficio bruto",
 "Lot d'une trentaine de jeux GameCube posté par samuellibeert, payé 90 €": "Lote de una treintena de juegos de GameCube publicado por samuellibeert, pagado 90 €",
 "Avis de snayzz, 5 étoiles : formation incroyable, vaut deux à trois fois son prix": "Opinión de snayzz, 5 estrellas: formación increíble, vale dos o tres veces su precio",
-"Message de Nono dans le salon flex : 3,9K de chiffre d'affaires et 1,6K de bénéfice sur le mois": "Mensaje de Nono en el canal flex: 3,9K de facturación y 1,6K de beneficio en el mes"
+"Message de Nono dans le salon flex : 3,9K de chiffre d'affaires et 1,6K de bénéfice sur le mois": "Mensaje de Nono en el canal flex: 3,9K de facturación y 1,6K de beneficio en el mes",
+"<i0>Preuves</i0> <i1>Offres</i1> <i2>Qui est derrière</i2> <i3>Les cotes</i3> <i4>Résultats</i4> <i5>Avis</i5> <i6>FAQ</i6>": "<i0>Pruebas</i0> <i1>Planes</i1> <i2>Quién está detrás</i2> <i3>Los precios</i3> <i4>Resultados</i4> <i5>Opiniones</i5> <i6>FAQ</i6>",
+"Oui, pour les deux formations : au moment du paiement, choisis PayPal, puis « Paiement en 4X ». Tu paies en 4 fois sans frais, et ton accès est débloqué dès le premier paiement (le 4x est accordé par PayPal selon ton éligibilité).": "Sí, para las dos formaciones: al pagar, elige PayPal y luego «Paga en 4 plazos». Pagas en 4 plazos sin intereses y tu acceso se desbloquea con el primer pago (PayPal concede el pago en 4 plazos según tu elegibilidad)."
 }
 }

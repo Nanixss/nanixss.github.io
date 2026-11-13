@@ -188,7 +188,6 @@
 "Je prends la Starter, je pourrai passer à l'Avancée ensuite ?<i0><x1/></i0>": "Se prendo lo Starter, potrò passare all'Avanzato dopo?<i0><x1/></i0>",
 "Pas en payant la différence : les deux formations s'achètent séparément. Si tu comptes te lancer sérieusement, prends directement l'Avancée.": "Non pagando la differenza: i due corsi si acquistano separatamente. Se vuoi iniziare sul serio, prendi direttamente l'Avanzato.",
 "Je peux payer en plusieurs fois ?<i0><x1/></i0>": "Posso pagare a rate?<i0><x1/></i0>",
-"Oui, pour les deux formations : au moment du paiement, choisis PayPal, puis « Paiement en 4X ». Tu paies en 4 fois sans frais, et ton accès est débloqué dès le premier paiement (le 4x est accordé par PayPal selon ton éligibilité). Pour l'Avancée, le paiement en 3 fois avec Klarna reste aussi possible.": "Sì, per entrambi i corsi: al pagamento scegli PayPal, poi «Paga in 4 rate». Paghi in 4 rate senza interessi e l'accesso si sblocca dal primo pagamento (il pagamento in 4 rate è concesso da PayPal in base alla tua idoneità).",
 "Comment marchent les 2 mois de bot offerts ?<i0><x1/></i0>": "Come funzionano i 2 mesi di bot in regalo?<i0><x1/></i0>",
 "Avec la formation avancée, tu reçois un code personnel à activer quand tu veux : 2 mois d'accès au bot Elite sans rien payer, puis 19,99 €/mois au lieu de 24,99 €, tant que tu restes abonné. Résiliable à tout moment : si tu reviens après avoir résilié, ce sera au prix normal de 24,99 €.": "Con il corso avanzato ricevi un codice personale da attivare quando vuoi: 2 mesi di accesso al bot Elite senza pagare nulla, poi 19,99 €/mese invece di 24,99 €, finché resti abbonato. Annullabile in qualsiasi momento: se torni dopo aver annullato, sarà al prezzo normale di 24,99 €.",
 "Je suis déjà abonné Elite, j'ai un avantage ?<i0><x1/></i0>": "Sono già abbonato Elite, ho un vantaggio?<i0><x1/></i0>",
@@ -223,6 +222,8 @@
 "Tableau de kaluminium pour février : 822 € d'achats, 1 478 € de ventes, 656 € de bénéfice brut": "Tabella di kaluminium di febbraio: 822 € di acquisti, 1.478 € di vendite, 656 € di utile lordo",
 "Lot d'une trentaine de jeux GameCube posté par samuellibeert, payé 90 €": "Lotto di una trentina di giochi GameCube pubblicato da samuellibeert, pagato 90 €",
 "Avis de snayzz, 5 étoiles : formation incroyable, vaut deux à trois fois son prix": "Recensione di snayzz, 5 stelle: corso incredibile, vale due o tre volte il suo prezzo",
-"Message de Nono dans le salon flex : 3,9K de chiffre d'affaires et 1,6K de bénéfice sur le mois": "Messaggio di Nono nel canale flex: 3,9K di fatturato e 1,6K di utile nel mese"
+"Message de Nono dans le salon flex : 3,9K de chiffre d'affaires et 1,6K de bénéfice sur le mois": "Messaggio di Nono nel canale flex: 3,9K di fatturato e 1,6K di utile nel mese",
+"<i0>Preuves</i0> <i1>Offres</i1> <i2>Qui est derrière</i2> <i3>Les cotes</i3> <i4>Résultats</i4> <i5>Avis</i5> <i6>FAQ</i6>": "<i0>Prove</i0> <i1>Offerte</i1> <i2>Chi c'è dietro</i2> <i3>Le quotazioni</i3> <i4>Risultati</i4> <i5>Recensioni</i5> <i6>FAQ</i6>",
+"Oui, pour les deux formations : au moment du paiement, choisis PayPal, puis « Paiement en 4X ». Tu paies en 4 fois sans frais, et ton accès est débloqué dès le premier paiement (le 4x est accordé par PayPal selon ton éligibilité).": "Sì, per entrambi i corsi: al pagamento scegli PayPal, poi «Paga in 4 rate». Paghi in 4 rate senza interessi e l'accesso si sblocca dal primo pagamento (il pagamento in 4 rate è concesso da PayPal in base alla tua idoneità)."
 }
 }
