@@ -152,6 +152,10 @@
 "<i0>Calcul de marge</i0><i1>Messages types</i1><i2>Annonce rédigée par l'IA</i2><i3>Aide aux litiges</i3><i4>Bons plans vers le Discord</i4><i5>Et plus encore</i5>": "<i0>Margin calculator</i0><i1>Message templates</i1><i2>AI-written listings</i2><i3>Dispute help</i3><i4>Deals shared to Discord</i4><i5>And more</i5>",
 "<i0><x1/></i0><i2><i3>Extension Vinted</i3> Nanixss Hub</i2>": "<i0><x1/></i0><i2><i3>Vinted extension</i3> Nanixss Hub</i2>",
 "C'est quoi l'extension Vinted ?<i0><x1/></i0>": "What is the Vinted extension?<i0><x1/></i0>",
-"Une extension pour ton navigateur, incluse dans l'Elite. Elle t'aide directement sur Vinted : calcul de ta marge, messages types, rédaction d'annonce par l'IA, aide en cas de litige et partage de bons plans vers le Discord. Tu reçois ta clé avec la commande /extension sur le Discord. Elle est en bêta et s'enrichit au fil des mises à jour.": "A browser extension included with Elite. It helps you right on Vinted: margin calculator, message templates, AI-written listings, dispute help and sharing deals to the Discord. You get your key with the /extension command on the Discord. It's in beta and keeps improving with each update."
+"Une extension pour ton navigateur, incluse dans l'Elite. Elle t'aide directement sur Vinted : calcul de ta marge, messages types, rédaction d'annonce par l'IA, aide en cas de litige et partage de bons plans vers le Discord. Tu reçois ta clé avec la commande /extension sur le Discord. Elle est en bêta et s'enrichit au fil des mises à jour.": "A browser extension included with Elite. It helps you right on Vinted: margin calculator, message templates, AI-written listings, dispute help and sharing deals to the Discord. You get your key with the /extension command on the Discord. It's in beta and keeps improving with each update.",
+"<i0>Avis</i0> <i1>Le flux</i1> <i2>Qui est derrière</i2> <i3>Tarifs</i3> <i4>Fonctionnalités</i4> <i5>FAQ</i5>": "<i0>Reviews</i0> <i1>The feed</i1> <i2>Who's behind it</i2> <i3>Pricing</i3> <i4>Features</i4> <i5>FAQ</i5>",
+"Bot d'alertes Vinted": "Vinted alert bot",
+"<i0><x1/>Prendre l'Elite <i2>24,99 €/mois</i2></i0>": "<i0><x1/>Get Elite <i2>€24.99/month</i2></i0>",
+"<i0><x1/>Prendre l'Elite <i2>24,99 €/mois</i2></i0> <i3><x4/>Rejoindre le Discord</i3>": "<i0><x1/>Get Elite <i2>€24.99/month</i2></i0> <i3><x4/>Join the Discord</i3>"
 }
 }

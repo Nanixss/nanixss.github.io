@@ -182,6 +182,7 @@
 @font-face{font-family:'Poppins';font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/poppins-700.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:'Poppins';font-style:normal;font-weight:800;font-display:swap;src:url(/fonts/poppins-800.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:'Poppins';font-style:normal;font-weight:900;font-display:swap;src:url(/fonts/poppins-900.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+  .kicker{display:inline-flex;align-items:center;margin-bottom:18px;padding:7px 14px;border-radius:999px;border:1px solid var(--line-2);background:rgba(3,210,182,.08);color:var(--accent-l);font-weight:700;font-size:14px;letter-spacing:.02em}
 </style>
 <script src="/i18n/i18n.js" data-page="elite"></script>
 <style>
@@ -840,11 +841,11 @@
   <div class="wrap nav-in">
     <a class="brand" href="../" data-k="elite-logo" title="Accueil"><img src="../logo-112.webp" alt="" width="36" height="36"><span>NANIXSS<b>.</b>HUB</span></a>
     <nav class="nav-links" aria-label="Sections">
-      <a href="#comment">Comment ça marche</a>
-      <a href="#fonctions">Fonctionnalités</a>
-      <a href="#tarifs">Tarifs</a>
       <a href="#avis">Avis</a>
+      <a href="#vitrine">Le flux</a>
       <a href="#lucas">Qui est derrière</a>
+      <a href="#tarifs">Tarifs</a>
+      <a href="#fonctions">Fonctionnalités</a>
       <a href="#faq">FAQ</a>
     </nav>
     <a class="btn btn-ghost btn-s nav-x" href="../formation/" data-k="elite-nav-formation"><svg class="i"><use href="#i-bookx"/></svg>Formation</a>
@@ -856,11 +857,11 @@
   <section class="hero">
     <div class="wrap hero-in">
       <div class="hero-txt" data-scene="hero">
+        <p class="kicker rise">Bot d'alertes Vinted</p>
         <h1 class="rise">Chaque pépite Vinted, <span class="hl">à l'instant où elle sort.</span></h1>
         <p class="lead rise d1">Le bot Nanixss Hub surveille Vinted selon tes filtres et t'envoie chaque annonce sur Discord, avec un bouton pour l'acheter en un clic. <strong>En Elite, l'autocop achète même à ta place.</strong></p>
         <div class="ctas rise d2">
           <a class="btn btn-main" href="https://buy.stripe.com/28EfZigv15TG06mbtN8g001" data-k="elite-hero" rel="noopener"><svg class="i"><use href="#i-bolt"/></svg>Prendre l'Elite <span class="btn-price num">24,99 €/mois</span></a>
-          <a class="btn btn-ghost" href="https://discord.gg/cyReW8sVJm" data-k="elite-discord-hero" target="_blank" rel="noopener"><svg class="i"><use href="#i-chat"/></svg>Voir le Discord gratuit</a>
         </div>
         <ul class="assure rise d3">
           <li><a href="#avis"><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span>Lire les avis des abonnés</a></li>
@@ -887,6 +888,43 @@
     </div>
   </section>
 
+  <section class="sec" id="avis" data-scene="reviews">
+    <div class="wrap">
+      <div class="obj-slot o-side" data-obj="star" aria-hidden="true"></div>
+      <div class="sec-head">
+        <h2>Ce qu'en disent les abonnés Elite.</h2>
+        <p>Leurs avis, tels qu'ils apparaissent dans le salon avis-client du Discord.</p>
+      </div>
+      <div class="dgrid">
+        <figure class="dcard">
+          <div class="dc-h"><span class="dc-av">B</span><b>Bita</b></div>
+          <p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p>
+          <blockquote>« Excellent bot, très facile à utiliser et très efficace. Les automatisations fonctionnent parfaitement et permettent de gagner énormément de temps. Le bot est rapide, fiable et très pratique au quotidien. Le support est également au top. Je suis entièrement satisfait de mon expérience avec Nanixss Hub. Je recommande à 100&nbsp;%&nbsp;! »</blockquote>
+          <figcaption>✅ Abonné Elite · avis vérifié · 30/10/2026 21:56</figcaption>
+        </figure>
+        <figure class="dcard">
+          <div class="dc-h"><span class="dc-av">N</span><b>Nono</b></div>
+          <p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p>
+          <blockquote>« […] J'apprécie notamment les alertes Discord, les filtres personnalisables et le gain de temps. […]<br><br>C'est un bon outil pour débuter dans l'achat-revente et repérer plus facilement les opportunités, tout en gardant le réflexe de vérifier les prix et la rentabilité avant chaque achat. »</blockquote>
+          <figcaption>✅ Abonné Elite · avis vérifié · 18/10/2026 14:55</figcaption>
+        </figure>
+        <figure class="dcard">
+          <div class="dc-h"><span class="dc-av">T</span><b>Terry</b></div>
+          <p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p>
+          <blockquote>« Le bot est simple d'utilisation, facile à configurer. Le prix reste très attractif par rapport aux fonctionnalités proposées. La modération est également efficace, dans l'ensemble c'est un bot fiable, pratique et accessible. »</blockquote>
+          <figcaption>✅ Abonné Elite · avis vérifié · 20/10/2026 13:38</figcaption>
+        </figure>
+        <figure class="dcard">
+          <div class="dc-h"><span class="dc-av">O</span><b>Ogax</b></div>
+          <p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p>
+          <blockquote>« J'ai rejoint ce bot Discord très récemment et franchement tout est bien clair et très simple d'utilisation, avec des vidéos explicatives ! Et si jamais vous avez des questions, vous aurez des réponses ! Donc je recommande fort 💪 »</blockquote>
+          <figcaption>✅ Abonné Elite · avis vérifié · 17/10/2026 14:40</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+
   <section class="strip" id="vitrine" data-scene="strip" aria-labelledby="strip-t">
     <div class="wrap strip-head">
       <h2 id="strip-t">Le flux du bot, en vrai.</h2>
@@ -894,6 +932,83 @@
     </div>
     <div class="rail" id="rail"><div class="rail-track" id="rail-track"><article class="lc" data-cat="jeu"><div class="lc-ph"><img src="a-wonder.webp" alt="Super Mario Bros. Wonder, photo de l&#39;annonce" width="480" height="641" loading="lazy"></div><div class="lc-b"><p class="lc-n">Super Mario Bros. Wonder</p><p class="lc-m"><span class="lc-c">Switch 2</span><span>Alerte · 22:05</span></p><p class="lc-p num">32 €</p></div></article><article class="lc" data-cat="mode"><div class="lc-ph"><img src="a-tnf-polaire.webp" alt="Polaire The North Face, photo de l&#39;annonce" width="454" height="622" loading="lazy"></div><div class="lc-b"><p class="lc-n">Polaire The North Face</p><p class="lc-m"><span class="lc-c">Mode</span><span>Alerte · 22:59</span></p><p class="lc-p num">22 €</p></div></article><article class="lc" data-cat="sneakers"><div class="lc-ph"><img src="a-nb-550.webp" alt="New Balance 550, photo de l&#39;annonce" width="480" height="484" loading="lazy"></div><div class="lc-b"><p class="lc-n">New Balance 550</p><p class="lc-m"><span class="lc-c">Sneakers</span><span>Alerte · 23:00</span></p><p class="lc-p num">44 €</p></div></article><article class="lc" data-cat="tcg"><div class="lc-ph"><img src="a-pkm-jungko.webp" alt="Carte Pokémon Jungko, photo de l&#39;annonce" width="454" height="620" loading="lazy"></div><div class="lc-b"><p class="lc-n">Carte Pokémon Jungko</p><p class="lc-m"><span class="lc-c">Pokémon TCG</span><span>Alerte · 22:59</span></p><p class="lc-p num">7 €</p></div></article><article class="lc" data-cat="jeu"><div class="lc-ph"><img src="a-evoli.webp" alt="Pokémon Let's Go Évoli, photo de l&#39;annonce" width="480" height="483" loading="lazy"></div><div class="lc-b"><p class="lc-n">Pokémon Let's Go Évoli</p><p class="lc-m"><span class="lc-c">Switch</span><span>Alerte · 22:05</span></p><p class="lc-p num">29 €</p></div></article><article class="lc" data-cat="mode"><div class="lc-ph"><img src="a-polo-rl.webp" alt="Polo Ralph Lauren, photo de l&#39;annonce" width="454" height="622" loading="lazy"></div><div class="lc-b"><p class="lc-n">Polo Ralph Lauren</p><p class="lc-m"><span class="lc-c">Mode</span><span>Alerte · 22:59</span></p><p class="lc-p num">5 €</p></div></article><article class="lc" data-cat="lego"><div class="lc-ph"><img src="a-lego-31008.webp" alt="LEGO Creator 31008, photo de l&#39;annonce" width="480" height="480" loading="lazy"></div><div class="lc-b"><p class="lc-n">LEGO Creator 31008</p><p class="lc-m"><span class="lc-c">LEGO</span><span>Alerte · 23:00</span></p><p class="lc-p num">40 €</p></div></article><article class="lc" data-cat="jeu"><div class="lc-ph"><img src="a-minecraft.webp" alt="Minecraft, photo de l&#39;annonce" width="480" height="896" loading="lazy"></div><div class="lc-b"><p class="lc-n">Minecraft</p><p class="lc-m"><span class="lc-c">Switch</span><span>Alerte · 22:05</span></p><p class="lc-p num">12 €</p></div></article><article class="lc" data-cat="mode"><div class="lc-ph"><img src="a-tnf-sweat.webp" alt="Sweat The North Face, photo de l&#39;annonce" width="480" height="599" loading="lazy"></div><div class="lc-b"><p class="lc-n">Sweat The North Face</p><p class="lc-m"><span class="lc-c">Mode</span><span>Alerte · 22:59</span></p><p class="lc-p num">20 €</p></div></article><article class="lc" data-cat="sneakers"><div class="lc-ph"><img src="a-nb-noires.webp" alt="Sneakers New Balance, photo de l&#39;annonce" width="480" height="484" loading="lazy"></div><div class="lc-b"><p class="lc-n">Sneakers New Balance</p><p class="lc-m"><span class="lc-c">Sneakers</span><span>Alerte · 23:00</span></p><p class="lc-p num">29,99 €</p></div></article><article class="lc" data-cat="jeu"><div class="lc-ph"><img src="arceus-1.webp" alt="Pokémon Légendes Arceus, photo de l&#39;annonce" width="349" height="437" loading="lazy"></div><div class="lc-b"><p class="lc-n">Pokémon Légendes Arceus</p><p class="lc-m"><span class="lc-c">Switch</span><span>Alerte · 12:02</span></p><p class="lc-p num">10 €</p></div></article><article class="lc" data-cat="tcg"><div class="lc-ph"><img src="a-op-arlong.webp" alt="Carte One Piece Arlong, photo de l&#39;annonce" width="392" height="618" loading="lazy"></div><div class="lc-b"><p class="lc-n">Carte One Piece Arlong</p><p class="lc-m"><span class="lc-c">One Piece</span><span>Alerte · 22:59</span></p><p class="lc-p num">9 €</p></div></article><article class="lc" data-cat="mode"><div class="lc-ph"><img src="a-maillot-lfc.webp" alt="Maillot Liverpool, photo de l&#39;annonce" width="480" height="484" loading="lazy"></div><div class="lc-b"><p class="lc-n">Maillot Liverpool</p><p class="lc-m"><span class="lc-c">Mode</span><span>Alerte · 23:00</span></p><p class="lc-p num">8,50 €</p></div></article><article class="lc" data-cat="jeu"><div class="lc-ph"><img src="a-manette.webp" alt="Manette Pro Zelda, photo de l&#39;annonce" width="480" height="480" loading="lazy"></div><div class="lc-b"><p class="lc-n">Manette Pro Zelda</p><p class="lc-m"><span class="lc-c">Switch 2</span><span>Alerte · 22:05</span></p><p class="lc-p num">137 €</p></div></article><article class="lc" data-cat="jeu"><div class="lc-ph"><img src="a-justdance.webp" alt="Just Dance 2020, photo de l&#39;annonce" width="480" height="480" loading="lazy"></div><div class="lc-b"><p class="lc-n">Just Dance 2020</p><p class="lc-m"><span class="lc-c">Switch</span><span>Alerte · 22:05</span></p><p class="lc-p num">7 €</p></div></article><article class="lc" data-cat="jeu" aria-hidden="true"><div class="lc-ph"><img src="a-wonder.webp" alt="" width="480" height="641" loading="lazy"></div><div class="lc-b"><p class="lc-n">Super Mario Bros. Wonder</p><p class="lc-m"><span class="lc-c">Switch 2</span><span>Alerte · 22:05</span></p><p class="lc-p num">32 €</p></div></article><article class="lc" data-cat="mode" aria-hidden="true"><div class="lc-ph"><img src="a-tnf-polaire.webp" alt="" width="454" height="622" loading="lazy"></div><div class="lc-b"><p class="lc-n">Polaire The North Face</p><p class="lc-m"><span class="lc-c">Mode</span><span>Alerte · 22:59</span></p><p class="lc-p num">22 €</p></div></article><article class="lc" data-cat="sneakers" aria-hidden="true"><div class="lc-ph"><img src="a-nb-550.webp" alt="" width="480" height="484" loading="lazy"></div><div class="lc-b"><p class="lc-n">New Balance 550</p><p class="lc-m"><span class="lc-c">Sneakers</span><span>Alerte · 23:00</span></p><p class="lc-p num">44 €</p></div></article><article class="lc" data-cat="tcg" aria-hidden="true"><div class="lc-ph"><img src="a-pkm-jungko.webp" alt="" width="454" height="620" loading="lazy"></div><div class="lc-b"><p class="lc-n">Carte Pokémon Jungko</p><p class="lc-m"><span class="lc-c">Pokémon TCG</span><span>Alerte · 22:59</span></p><p class="lc-p num">7 €</p></div></article><article class="lc" data-cat="jeu" aria-hidden="true"><div class="lc-ph"><img src="a-evoli.webp" alt="" width="480" height="483" loading="lazy"></div><div class="lc-b"><p class="lc-n">Pokémon Let's Go Évoli</p><p class="lc-m"><span class="lc-c">Switch</span><span>Alerte · 22:05</span></p><p class="lc-p num">29 €</p></div></article><article class="lc" data-cat="mode" aria-hidden="true"><div class="lc-ph"><img src="a-polo-rl.webp" alt="" width="454" height="622" loading="lazy"></div><div class="lc-b"><p class="lc-n">Polo Ralph Lauren</p><p class="lc-m"><span class="lc-c">Mode</span><span>Alerte · 22:59</span></p><p class="lc-p num">5 €</p></div></article><article class="lc" data-cat="lego" aria-hidden="true"><div class="lc-ph"><img src="a-lego-31008.webp" alt="" width="480" height="480" loading="lazy"></div><div class="lc-b"><p class="lc-n">LEGO Creator 31008</p><p class="lc-m"><span class="lc-c">LEGO</span><span>Alerte · 23:00</span></p><p class="lc-p num">40 €</p></div></article><article class="lc" data-cat="jeu" aria-hidden="true"><div class="lc-ph"><img src="a-minecraft.webp" alt="" width="480" height="896" loading="lazy"></div><div class="lc-b"><p class="lc-n">Minecraft</p><p class="lc-m"><span class="lc-c">Switch</span><span>Alerte · 22:05</span></p><p class="lc-p num">12 €</p></div></article><article class="lc" data-cat="mode" aria-hidden="true"><div class="lc-ph"><img src="a-tnf-sweat.webp" alt="" width="480" height="599" loading="lazy"></div><div class="lc-b"><p class="lc-n">Sweat The North Face</p><p class="lc-m"><span class="lc-c">Mode</span><span>Alerte · 22:59</span></p><p class="lc-p num">20 €</p></div></article><article class="lc" data-cat="sneakers" aria-hidden="true"><div class="lc-ph"><img src="a-nb-noires.webp" alt="" width="480" height="484" loading="lazy"></div><div class="lc-b"><p class="lc-n">Sneakers New Balance</p><p class="lc-m"><span class="lc-c">Sneakers</span><span>Alerte · 23:00</span></p><p class="lc-p num">29,99 €</p></div></article><article class="lc" data-cat="jeu" aria-hidden="true"><div class="lc-ph"><img src="arceus-1.webp" alt="" width="349" height="437" loading="lazy"></div><div class="lc-b"><p class="lc-n">Pokémon Légendes Arceus</p><p class="lc-m"><span class="lc-c">Switch</span><span>Alerte · 12:02</span></p><p class="lc-p num">10 €</p></div></article><article class="lc" data-cat="tcg" aria-hidden="true"><div class="lc-ph"><img src="a-op-arlong.webp" alt="" width="392" height="618" loading="lazy"></div><div class="lc-b"><p class="lc-n">Carte One Piece Arlong</p><p class="lc-m"><span class="lc-c">One Piece</span><span>Alerte · 22:59</span></p><p class="lc-p num">9 €</p></div></article><article class="lc" data-cat="mode" aria-hidden="true"><div class="lc-ph"><img src="a-maillot-lfc.webp" alt="" width="480" height="484" loading="lazy"></div><div class="lc-b"><p class="lc-n">Maillot Liverpool</p><p class="lc-m"><span class="lc-c">Mode</span><span>Alerte · 23:00</span></p><p class="lc-p num">8,50 €</p></div></article><article class="lc" data-cat="jeu" aria-hidden="true"><div class="lc-ph"><img src="a-manette.webp" alt="" width="480" height="480" loading="lazy"></div><div class="lc-b"><p class="lc-n">Manette Pro Zelda</p><p class="lc-m"><span class="lc-c">Switch 2</span><span>Alerte · 22:05</span></p><p class="lc-p num">137 €</p></div></article><article class="lc" data-cat="jeu" aria-hidden="true"><div class="lc-ph"><img src="a-justdance.webp" alt="" width="480" height="480" loading="lazy"></div><div class="lc-b"><p class="lc-n">Just Dance 2020</p><p class="lc-m"><span class="lc-c">Switch</span><span>Alerte · 22:05</span></p><p class="lc-p num">7 €</p></div></article></div></div>
   </section>
+
+
+  <section class="sec" id="preuves" data-scene="proof">
+    <div class="wrap">
+      <div class="sec-head c">
+        <h2>Voilà ce que reçoivent les abonnés.</h2>
+        <p>Deux jeux Switch à 7 et 10 €, signalés à l'instant de leur mise en ligne, le même jour à 12 h 02. Alertes réelles reproduites à l'identique, pseudos des vendeurs retirés.</p>
+      </div>
+      <div class="proof-cards">
+        <figure class="pcard">
+          <div class="alert">
+            <header class="al-top"><img src="../logo-112.webp" alt="" width="22" height="22"><b>Nanixss Hub V</b><span class="bot">BOT</span><time>Aujourd'hui à 12:02</time></header>
+            <div class="embed">
+              <p class="al-title">Jeu nintendo switch Pokémon</p>
+              <dl class="al-grid">
+                <div><dt>⏳ Publié</dt><dd><span class="ts">à l'instant</span></dd></div>
+                <div><dt>🔖 Marque</dt><dd>Inconnue</dd></div>
+                <div><dt>📏 Taille</dt><dd>Unique</dd></div>
+                <div><dt>💎 État</dt><dd>Très bon état</dd></div>
+                <div class="w2"><dt>💰 Prix</dt><dd>10,00 € | ≈ 11,12 € (TTC)</dd></div>
+              </dl>
+              <div class="al-ph"><img src="arceus-1.webp" alt="Pokémon Légendes Arceus, boîte" width="349" height="437" loading="lazy"><img src="arceus-2.webp" alt="Pokémon Légendes Arceus, intérieur de la boîte" width="349" height="437" loading="lazy"></div>
+            </div>
+            <div class="al-btns"><span class="b-buy">⚡ Acheter</span><span class="b-det">📄 Détails ↗</span></div>
+          </div>
+          <figcaption>Légendes Pokémon Arceus <span class="num">10 € · à l'instant</span></figcaption>
+        </figure>
+        <figure class="pcard">
+          <div class="alert">
+            <header class="al-top"><img src="../logo-112.webp" alt="" width="22" height="22"><b>Nanixss Hub V</b><span class="bot">BOT</span><time>Aujourd'hui à 12:02</time></header>
+            <div class="embed">
+              <p class="al-title">Switch spiel</p>
+              <dl class="al-grid">
+                <div><dt>⏳ Publié</dt><dd><span class="ts">à l'instant</span></dd></div>
+                <div><dt>🔖 Marque</dt><dd>Inconnue</dd></div>
+                <div><dt>📏 Taille</dt><dd>Unique</dd></div>
+                <div><dt>💎 État</dt><dd>Très bon état</dd></div>
+                <div class="w2"><dt>💰 Prix</dt><dd>7,00 € | ≈ 7,97 € (TTC)</dd></div>
+              </dl>
+              <div class="al-ph"><img src="mario-1.webp" alt="New Super Mario Bros. U Deluxe, boîte" width="349" height="437" loading="lazy"><img src="mario-2.webp" alt="New Super Mario Bros. U Deluxe, intérieur de la boîte" width="349" height="437" loading="lazy"></div>
+            </div>
+            <div class="al-btns"><span class="b-buy">⚡ Acheter</span><span class="b-det">📄 Détails ↗</span></div>
+          </div>
+          <figcaption>New Super Mario Bros. U Deluxe <span class="num">7 € · à l'instant</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="sec about" id="lucas" data-scene="about">
+    <div class="wrap about-in">
+      <figure class="about-photo tilt">
+        <img src="lucas.webp" alt="Lucas, alias Nanixss" width="760" height="950" loading="lazy">
+        <figcaption><span class="pulse"></span>En live sur TikTok · @nanixss.off</figcaption>
+      </figure>
+      <div class="about-txt">
+        <h2>Derrière le bot, il y a <span class="hl">Lucas.</span></h2>
+        <p class="about-id">Alias Nanixss · 24 ans · revendeur spécialisé jeux vidéo et consoles depuis début 2025</p>
+        <div class="about-body">
+          <p>Je me suis formé seul quand j'étais encore aide-soignant. J'ai vite arrêté pour me concentrer sur mon business : aujourd'hui, l'achat-revente est mon métier à temps plein.</p>
+          <p>J'ai créé le bot pour offrir à ma communauté des alertes Vinted ultra rapides, à un prix accessible.</p>
+          <p>Je fais régulièrement des lives pour montrer le bot en action et répondre à vos questions.</p>
+        </div>
+        <ul class="about-stats">
+          <li><b class="num">23 000+</b> abonnés sur TikTok</li>
+          <li><b class="num" data-stat="members">700+</b> membres sur Discord</li>
+          <li><b>Temps plein</b> dans l'achat-revente</li>
+        </ul>
+        <div class="ctas">
+          <a class="btn btn-ghost" href="https://www.tiktok.com/@nanixss.off" data-k="elite-tiktok-lucas" target="_blank" rel="noopener"><svg class="i"><use href="#i-play"/></svg>Me suivre sur TikTok</a>
+          <a class="btn btn-ghost" href="https://discord.gg/cyReW8sVJm" data-k="elite-discord-lucas" target="_blank" rel="noopener"><svg class="i"><use href="#i-chat"/></svg>Rejoindre le Discord</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
 
   <section class="sec" id="avec" data-scene="versus">
     <div class="wrap">
@@ -935,6 +1050,48 @@
     </div>
   </section>
 
+
+  <section class="sec" id="tarifs" data-scene="pricing">
+    <div class="wrap">
+      <div class="obj-slot o-price" data-obj="coin" aria-hidden="true"></div>
+      <div class="sec-head c">
+        <h2>Choisis ton <span class="hl">accès.</span></h2>
+        <p>Sans engagement, paiement sécurisé par Stripe. Tu indiques ton pseudo Discord au paiement et ton accès s'active tout seul.</p>
+      </div>
+      <div class="plans">
+        <div class="plan tilt">
+          <div class="plan-head"><h3>Starter</h3></div>
+          <p class="for">Pour recevoir les alertes et cop toi-même.</p>
+          <div class="price"><b class="num">14,99 €</b><span>/ mois</span></div>
+          <p class="per-day num">Soit 0,50 € par jour</p>
+          <ul>
+            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Alertes Vinted instantanées sur Discord</li>
+            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Filtres sur mesure</li>
+            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Tutos vidéo, guides et presets</li>
+            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Support par ticket</li>
+          </ul>
+          <a class="btn btn-ghost" href="https://buy.stripe.com/bJecN6gv15TG2eubtN8g002" data-k="elite-starter" rel="noopener">Prendre le Starter</a>
+        </div>
+        <div class="plan elite tilt" id="elite-card">
+          <div class="plan-head"><h3>Elite</h3><span class="best">Le plus complet</span></div>
+          <p class="for">Pour cop sans être collé à ton écran.</p>
+          <div class="price"><b class="num">24,99 €</b><span>/ mois</span></div>
+          <p class="per-day num">Soit 0,83 € par jour</p>
+          <ul>
+            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Tout le Starter</li>
+            <li class="plus"><span class="ck"><svg class="i"><use href="#i-check"/></svg></span><span><strong>Autocop</strong> : le bot achète pour toi</span></li>
+            <li class="plus"><span class="ck"><svg class="i"><use href="#i-check"/></svg></span><span><strong>Multicompte</strong> : jusqu'à 3 comptes Vinted</span></li>
+            <li class="plus"><span class="ck"><svg class="i"><use href="#i-check"/></svg></span><span><strong>Extension Vinted</strong> Nanixss Hub</span></li>
+            <li class="plus"><span class="ck"><svg class="i"><use href="#i-check"/></svg></span><span>-50 € sur la <a href="../formation/" data-k="elite-formation-plan" style="color:var(--accent-l)">formation avancée</a></span></li>
+          </ul>
+          <a class="btn btn-main" href="https://buy.stripe.com/28EfZigv15TG06mbtN8g001" data-k="elite-plan" rel="noopener"><svg class="i"><use href="#i-bolt"/></svg>Prendre l'Elite</a>
+        </div>
+      </div>
+      <p class="fine">Sans engagement : tu gères, mets en pause ou arrêtes ton abonnement toi-même depuis le Discord.<br>En t'abonnant, tu acceptes les <a href="https://nanixsshub.fr/legal/" data-k="elite-cgv-tarifs">CGV</a>.</p>
+    </div>
+  </section>
+
+
   <section class="sec" id="comment" data-scene="steps" style="padding-top:0">
     <div class="wrap">
       <div class="obj-slot o-side" data-obj="colis" aria-hidden="true"></div>
@@ -970,6 +1127,7 @@
       </ol>
     </div>
   </section>
+
 
   <section class="sec devices" id="appareils" data-scene="devices" style="padding-top:0">
     <div class="wrap">
@@ -1019,6 +1177,7 @@
       </div>
     </div>
   </section>
+
 
   <section class="sec" id="fonctions" data-scene="features" style="padding-top:0">
     <div class="wrap">
@@ -1086,155 +1245,6 @@
     </div>
   </section>
 
-  <section class="sec" id="preuves" data-scene="proof">
-    <div class="wrap">
-      <div class="sec-head c">
-        <h2>Voilà ce que reçoivent les abonnés.</h2>
-        <p>Deux jeux Switch à 7 et 10 €, signalés à l'instant de leur mise en ligne, le même jour à 12 h 02. Alertes réelles reproduites à l'identique, pseudos des vendeurs retirés.</p>
-      </div>
-      <div class="proof-cards">
-        <figure class="pcard">
-          <div class="alert">
-            <header class="al-top"><img src="../logo-112.webp" alt="" width="22" height="22"><b>Nanixss Hub V</b><span class="bot">BOT</span><time>Aujourd'hui à 12:02</time></header>
-            <div class="embed">
-              <p class="al-title">Jeu nintendo switch Pokémon</p>
-              <dl class="al-grid">
-                <div><dt>⏳ Publié</dt><dd><span class="ts">à l'instant</span></dd></div>
-                <div><dt>🔖 Marque</dt><dd>Inconnue</dd></div>
-                <div><dt>📏 Taille</dt><dd>Unique</dd></div>
-                <div><dt>💎 État</dt><dd>Très bon état</dd></div>
-                <div class="w2"><dt>💰 Prix</dt><dd>10,00 € | ≈ 11,12 € (TTC)</dd></div>
-              </dl>
-              <div class="al-ph"><img src="arceus-1.webp" alt="Pokémon Légendes Arceus, boîte" width="349" height="437" loading="lazy"><img src="arceus-2.webp" alt="Pokémon Légendes Arceus, intérieur de la boîte" width="349" height="437" loading="lazy"></div>
-            </div>
-            <div class="al-btns"><span class="b-buy">⚡ Acheter</span><span class="b-det">📄 Détails ↗</span></div>
-          </div>
-          <figcaption>Légendes Pokémon Arceus <span class="num">10 € · à l'instant</span></figcaption>
-        </figure>
-        <figure class="pcard">
-          <div class="alert">
-            <header class="al-top"><img src="../logo-112.webp" alt="" width="22" height="22"><b>Nanixss Hub V</b><span class="bot">BOT</span><time>Aujourd'hui à 12:02</time></header>
-            <div class="embed">
-              <p class="al-title">Switch spiel</p>
-              <dl class="al-grid">
-                <div><dt>⏳ Publié</dt><dd><span class="ts">à l'instant</span></dd></div>
-                <div><dt>🔖 Marque</dt><dd>Inconnue</dd></div>
-                <div><dt>📏 Taille</dt><dd>Unique</dd></div>
-                <div><dt>💎 État</dt><dd>Très bon état</dd></div>
-                <div class="w2"><dt>💰 Prix</dt><dd>7,00 € | ≈ 7,97 € (TTC)</dd></div>
-              </dl>
-              <div class="al-ph"><img src="mario-1.webp" alt="New Super Mario Bros. U Deluxe, boîte" width="349" height="437" loading="lazy"><img src="mario-2.webp" alt="New Super Mario Bros. U Deluxe, intérieur de la boîte" width="349" height="437" loading="lazy"></div>
-            </div>
-            <div class="al-btns"><span class="b-buy">⚡ Acheter</span><span class="b-det">📄 Détails ↗</span></div>
-          </div>
-          <figcaption>New Super Mario Bros. U Deluxe <span class="num">7 € · à l'instant</span></figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec" id="tarifs" data-scene="pricing">
-    <div class="wrap">
-      <div class="obj-slot o-price" data-obj="coin" aria-hidden="true"></div>
-      <div class="sec-head c">
-        <h2>Choisis ton <span class="hl">accès.</span></h2>
-        <p>Sans engagement, paiement sécurisé par Stripe. Tu indiques ton pseudo Discord au paiement et ton accès s'active tout seul.</p>
-      </div>
-      <div class="plans">
-        <div class="plan tilt">
-          <div class="plan-head"><h3>Starter</h3></div>
-          <p class="for">Pour recevoir les alertes et cop toi-même.</p>
-          <div class="price"><b class="num">14,99 €</b><span>/ mois</span></div>
-          <p class="per-day num">Soit 0,50 € par jour</p>
-          <ul>
-            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Alertes Vinted instantanées sur Discord</li>
-            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Filtres sur mesure</li>
-            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Tutos vidéo, guides et presets</li>
-            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Support par ticket</li>
-          </ul>
-          <a class="btn btn-ghost" href="https://buy.stripe.com/bJecN6gv15TG2eubtN8g002" data-k="elite-starter" rel="noopener">Prendre le Starter</a>
-        </div>
-        <div class="plan elite tilt" id="elite-card">
-          <div class="plan-head"><h3>Elite</h3><span class="best">Le plus complet</span></div>
-          <p class="for">Pour cop sans être collé à ton écran.</p>
-          <div class="price"><b class="num">24,99 €</b><span>/ mois</span></div>
-          <p class="per-day num">Soit 0,83 € par jour</p>
-          <ul>
-            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Tout le Starter</li>
-            <li class="plus"><span class="ck"><svg class="i"><use href="#i-check"/></svg></span><span><strong>Autocop</strong> : le bot achète pour toi</span></li>
-            <li class="plus"><span class="ck"><svg class="i"><use href="#i-check"/></svg></span><span><strong>Multicompte</strong> : jusqu'à 3 comptes Vinted</span></li>
-            <li class="plus"><span class="ck"><svg class="i"><use href="#i-check"/></svg></span><span><strong>Extension Vinted</strong> Nanixss Hub</span></li>
-            <li class="plus"><span class="ck"><svg class="i"><use href="#i-check"/></svg></span><span>-50 € sur la <a href="../formation/" data-k="elite-formation-plan" style="color:var(--accent-l)">formation avancée</a></span></li>
-          </ul>
-          <a class="btn btn-main" href="https://buy.stripe.com/28EfZigv15TG06mbtN8g001" data-k="elite-plan" rel="noopener"><svg class="i"><use href="#i-bolt"/></svg>Prendre l'Elite</a>
-        </div>
-      </div>
-      <p class="fine">Sans engagement : tu gères, mets en pause ou arrêtes ton abonnement toi-même depuis le Discord.<br>En t'abonnant, tu acceptes les <a href="https://nanixsshub.fr/legal/" data-k="elite-cgv-tarifs">CGV</a>.</p>
-    </div>
-  </section>
-
-  <section class="sec" id="avis" data-scene="reviews" style="padding-top:0">
-    <div class="wrap">
-      <div class="obj-slot o-side" data-obj="star" aria-hidden="true"></div>
-      <div class="sec-head">
-        <h2>Ce qu'en disent les abonnés Elite.</h2>
-        <p>Leurs avis, tels qu'ils apparaissent dans le salon avis-client du Discord.</p>
-      </div>
-      <div class="dgrid">
-        <figure class="dcard">
-          <div class="dc-h"><span class="dc-av">B</span><b>Bita</b></div>
-          <p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p>
-          <blockquote>« Excellent bot, très facile à utiliser et très efficace. Les automatisations fonctionnent parfaitement et permettent de gagner énormément de temps. Le bot est rapide, fiable et très pratique au quotidien. Le support est également au top. Je suis entièrement satisfait de mon expérience avec Nanixss Hub. Je recommande à 100&nbsp;%&nbsp;! »</blockquote>
-          <figcaption>✅ Abonné Elite · avis vérifié · 30/10/2026 21:56</figcaption>
-        </figure>
-        <figure class="dcard">
-          <div class="dc-h"><span class="dc-av">N</span><b>Nono</b></div>
-          <p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p>
-          <blockquote>« […] J'apprécie notamment les alertes Discord, les filtres personnalisables et le gain de temps. […]<br><br>C'est un bon outil pour débuter dans l'achat-revente et repérer plus facilement les opportunités, tout en gardant le réflexe de vérifier les prix et la rentabilité avant chaque achat. »</blockquote>
-          <figcaption>✅ Abonné Elite · avis vérifié · 18/10/2026 14:55</figcaption>
-        </figure>
-        <figure class="dcard">
-          <div class="dc-h"><span class="dc-av">T</span><b>Terry</b></div>
-          <p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p>
-          <blockquote>« Le bot est simple d'utilisation, facile à configurer. Le prix reste très attractif par rapport aux fonctionnalités proposées. La modération est également efficace, dans l'ensemble c'est un bot fiable, pratique et accessible. »</blockquote>
-          <figcaption>✅ Abonné Elite · avis vérifié · 20/10/2026 13:38</figcaption>
-        </figure>
-        <figure class="dcard">
-          <div class="dc-h"><span class="dc-av">O</span><b>Ogax</b></div>
-          <p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p>
-          <blockquote>« J'ai rejoint ce bot Discord très récemment et franchement tout est bien clair et très simple d'utilisation, avec des vidéos explicatives ! Et si jamais vous avez des questions, vous aurez des réponses ! Donc je recommande fort 💪 »</blockquote>
-          <figcaption>✅ Abonné Elite · avis vérifié · 17/10/2026 14:40</figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec about" id="lucas" data-scene="about">
-    <div class="wrap about-in">
-      <figure class="about-photo tilt">
-        <img src="lucas.webp" alt="Lucas, alias Nanixss" width="760" height="950" loading="lazy">
-        <figcaption><span class="pulse"></span>En live sur TikTok · @nanixss.off</figcaption>
-      </figure>
-      <div class="about-txt">
-        <h2>Derrière le bot, il y a <span class="hl">Lucas.</span></h2>
-        <p class="about-id">Alias Nanixss · 24 ans · revendeur spécialisé jeux vidéo et consoles depuis début 2025</p>
-        <div class="about-body">
-          <p>Je me suis formé seul quand j'étais encore aide-soignant. J'ai vite arrêté pour me concentrer sur mon business : aujourd'hui, l'achat-revente est mon métier à temps plein.</p>
-          <p>J'ai créé le bot pour offrir à ma communauté des alertes Vinted ultra rapides, à un prix accessible.</p>
-          <p>Je fais régulièrement des lives pour montrer le bot en action et répondre à vos questions.</p>
-        </div>
-        <ul class="about-stats">
-          <li><b class="num">23 000+</b> abonnés sur TikTok</li>
-          <li><b class="num" data-stat="members">700+</b> membres sur Discord</li>
-          <li><b>Temps plein</b> dans l'achat-revente</li>
-        </ul>
-        <div class="ctas">
-          <a class="btn btn-ghost" href="https://www.tiktok.com/@nanixss.off" data-k="elite-tiktok-lucas" target="_blank" rel="noopener"><svg class="i"><use href="#i-play"/></svg>Me suivre sur TikTok</a>
-          <a class="btn btn-ghost" href="https://discord.gg/cyReW8sVJm" data-k="elite-discord-lucas" target="_blank" rel="noopener"><svg class="i"><use href="#i-chat"/></svg>Rejoindre le Discord</a>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <section class="sec" id="faq" data-scene="faq" style="padding-top:0">
     <div class="wrap faq-wrap">
@@ -1263,7 +1273,7 @@
       <p>Rejoins les abonnés Elite et reçois chaque annonce Vinted à l'instant où elle sort.</p>
       <div class="ctas">
         <a class="btn btn-main" href="https://buy.stripe.com/28EfZigv15TG06mbtN8g001" data-k="elite-final" rel="noopener"><svg class="i"><use href="#i-bolt"/></svg>Prendre l'Elite <span class="btn-price num">24,99 €/mois</span></a>
-        <a class="btn btn-ghost" href="https://discord.gg/cyReW8sVJm" data-k="elite-discord-final" target="_blank" rel="noopener"><svg class="i"><use href="#i-chat"/></svg>Rejoindre le Discord gratuit</a>
+        <a class="btn btn-ghost" href="https://discord.gg/cyReW8sVJm" data-k="elite-discord-final" target="_blank" rel="noopener"><svg class="i"><use href="#i-chat"/></svg>Rejoindre le Discord</a>
       </div>
     </div>
   </section>
