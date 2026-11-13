@@ -62,7 +62,7 @@
   body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:21;background:var(--bg)}
   .nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;border-bottom:1px solid transparent;transition:background-color .3s,border-color .3s}
   .nav.scrolled{background:rgba(4,19,26,.8);-webkit-backdrop-filter:blur(16px) saturate(140%);backdrop-filter:blur(16px) saturate(140%);border-bottom-color:rgba(3,210,182,.10)}
-  .nav-in{display:flex;align-items:center;gap:22px;height:70px}
+  .nav-in{display:flex;align-items:center;gap:22px;height:58px}
   .brand{display:flex;align-items:center;gap:11px;text-decoration:none;font-weight:800;font-size:17px;letter-spacing:.02em}
   .brand img{width:36px;height:36px;border-radius:50%}
   .brand b{color:var(--accent)}
@@ -673,8 +673,7 @@
 
 <header class="nav" id="nav">
   <div class="wrap nav-in">
-    <a class="brand" href="#top" data-k="elite-logo"><img src="../logo.png" alt="" width="36" height="36"><span>NANIXSS<b>.</b>HUB</span></a>
-    <a class="nav-ic" href="../" data-k="elite-nav-accueil" aria-label="Retour à l'accueil" title="Accueil"><svg class="i" viewBox="0 0 24 24"><path d="M3.5 10.5 12 3.5l8.5 7"/><path d="M5.5 9v10.5h4.5V14h4v5.5h4.5V9"/></svg></a>
+    <a class="brand" href="../" data-k="elite-logo" title="Accueil"><img src="../logo.png" alt="" width="36" height="36"><span>NANIXSS<b>.</b>HUB</span></a>
     <nav class="nav-links" aria-label="Sections">
       <a href="#comment">Comment ça marche</a>
       <a href="#fonctions">Fonctionnalités</a>
