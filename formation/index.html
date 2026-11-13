@@ -921,7 +921,7 @@
   .nw{white-space:nowrap}
   .cons-line{margin-top:22px;font-size:14.5px;line-height:1.8;color:var(--text-3);max-width:34em}
 </style>
-<script src="/i18n/i18n.js" data-page="formation"></script>
+<script src="/i18n/i18n.js" data-page="formation" defer></script>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -1305,7 +1305,7 @@
 </div>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
 <script>
 (() => {
   const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1418,7 +1418,7 @@
 
   
   // ---------- Monde 3D : l'anneau du logo, les objets de chaque section, le logo qui se recompose à la fin ----------
-  (() => {
+  const startWorld = () => {
     const back = document.getElementById('world');
     if (!back || !window.THREE) { back && back.remove(); return; }
     let R;
@@ -1703,7 +1703,23 @@
     };
     document.addEventListener('visibilitychange', () => { visible = !document.hidden; if (visible) { last = performance.now(); requestAnimationFrame(loop); } });
     requestAnimationFrame(loop);
-})();
+};
+  // La 3D se charge après l'affichage de la page (premier geste ou 3,5 s), pour que le haut de page s'affiche tout de suite
+  (() => {
+    let done = false;
+    const go = () => {
+      if (done) return; done = true;
+      ['scroll','pointerdown','pointermove','keydown','touchstart'].forEach(ev => removeEventListener(ev, go));
+      const s = document.createElement('script');
+      s.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+      s.onload = startWorld;
+      s.onerror = () => { const b = document.getElementById('world'); b && b.remove(); };
+      document.head.appendChild(s);
+    };
+    ['scroll','pointerdown','pointermove','keydown','touchstart'].forEach(ev => addEventListener(ev, go, { once: true, passive: true }));
+    const later = () => setTimeout(go, 3500);
+    if (document.readyState === 'complete') later(); else addEventListener('load', later, { once: true });
+  })();
 })();
 </script>
 
