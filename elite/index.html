@@ -183,6 +183,16 @@
 @font-face{font-family:'Poppins';font-style:normal;font-weight:800;font-display:swap;src:url(/fonts/poppins-800.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:'Poppins';font-style:normal;font-weight:900;font-display:swap;src:url(/fonts/poppins-900.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
   .kicker{display:inline-flex;align-items:center;margin-bottom:18px;padding:7px 14px;border-radius:999px;border:1px solid var(--line-2);background:rgba(3,210,182,.08);color:var(--accent-l);font-weight:700;font-size:14px;letter-spacing:.02em}
+  .rv-rows{margin-top:46px;display:flex;flex-direction:column;gap:18px;margin-inline:calc(50% - 50vw);-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+  .rv-row{overflow:hidden}
+  .rv-track{display:flex;align-items:stretch;gap:18px;width:max-content;animation:rv 60s linear infinite}
+  .rv-row.rev .rv-track{animation-direction:reverse;animation-duration:52s}
+  .rv-rows:hover .rv-track{animation-play-state:paused}
+  .rv-track .dcard{flex:0 0 340px;margin:0}
+  .rv-track .dcard blockquote{display:-webkit-box;-webkit-line-clamp:8;-webkit-box-orient:vertical;overflow:hidden}
+  @keyframes rv{to{transform:translateX(calc(-50% - 9px))}}
+  @media (max-width:600px){.rv-track .dcard{flex-basis:280px}}
+  @media (prefers-reduced-motion: reduce){.rv-track{animation:none}.rv-row{overflow-x:auto}}
 </style>
 <script src="/i18n/i18n.js" data-page="elite"></script>
 <style>
@@ -892,21 +902,23 @@
     <div class="wrap">
       <div class="obj-slot o-side" data-obj="star" aria-hidden="true"></div>
       <div class="sec-head">
-        <h2>Ce qu'en disent les abonnés Elite.</h2>
+        <h2>Ce qu'en disent les abonnés.</h2>
         <p>Leurs avis, tels qu'ils apparaissent dans le salon avis-client du Discord.</p>
       </div>
-      <div class="dgrid">
+      <div class="rv-rows">
+        <div class="rv-row">
+          <div class="rv-track">
+        <figure class="dcard">
+          <div class="dc-h"><span class="dc-av">N</span><b>NFZ</b></div>
+          <p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p>
+          <blockquote>« Au début, je pensais honnêtement que c'était un scam. Avant de m'abonner, j'ai donc passé du temps sur les lives pour voir comment tout fonctionnait et surtout à qui j'avais affaire. J'ai rapidement découvert quelqu'un de sérieux, honnête, transparent et toujours à l'écoute de sa communauté.<br>J'ai décidé de me lancer il y a seulement deux semaines avec 50 € de départ. Aujourd'hui, j'ai déjà l'équivalent de 500 € de stock grâce aux opportunités trouvées avec le bot. Bien sûr, cela demande de s'investir et de faire ses propres vérifications, mais les alertes permettent de gagner un temps énorme et de repérer des offres qu'on aurait ratées autrement.<br>Le bot est simple à utiliser, le prix est largement rentable et le support est toujours présent quand on a une question. Franchement, je ne regrette pas du tout mon abonnement et je recommande Nanixss Hub à tous ceux qui veulent se lancer ou développer leur activité d'achat-revente. »</blockquote>
+          <figcaption>✅ Abonné Starter · avis vérifié · 12/11/2026 11:08</figcaption>
+        </figure>
         <figure class="dcard">
           <div class="dc-h"><span class="dc-av">B</span><b>Bita</b></div>
           <p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p>
           <blockquote>« Excellent bot, très facile à utiliser et très efficace. Les automatisations fonctionnent parfaitement et permettent de gagner énormément de temps. Le bot est rapide, fiable et très pratique au quotidien. Le support est également au top. Je suis entièrement satisfait de mon expérience avec Nanixss Hub. Je recommande à 100&nbsp;%&nbsp;! »</blockquote>
           <figcaption>✅ Abonné Elite · avis vérifié · 30/10/2026 21:56</figcaption>
-        </figure>
-        <figure class="dcard">
-          <div class="dc-h"><span class="dc-av">N</span><b>Nono</b></div>
-          <p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p>
-          <blockquote>« […] J'apprécie notamment les alertes Discord, les filtres personnalisables et le gain de temps. […]<br><br>C'est un bon outil pour débuter dans l'achat-revente et repérer plus facilement les opportunités, tout en gardant le réflexe de vérifier les prix et la rentabilité avant chaque achat. »</blockquote>
-          <figcaption>✅ Abonné Elite · avis vérifié · 18/10/2026 14:55</figcaption>
         </figure>
         <figure class="dcard">
           <div class="dc-h"><span class="dc-av">T</span><b>Terry</b></div>
@@ -915,11 +927,161 @@
           <figcaption>✅ Abonné Elite · avis vérifié · 20/10/2026 13:38</figcaption>
         </figure>
         <figure class="dcard">
+          <div class="dc-h"><span class="dc-av">A</span><b>ASTRAL</b></div>
+          <p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p>
+          <blockquote>« Franchement, le bot est juste parfait. Le prix rien à dire comparé à la concurrence. La vitesse de cop est juste phénoménale. Même si j'ai longtemps hésité à changer de bot (ancien abonné souk) pour passer sur Nanixss Ub. Je ne regrette en aucun mon choix la vitesse est juste phénoménale. Grace à ce bot j'ai pu avoir un Mario kart 8 Deluxe à 4€.<br><br>En un mot foncé !!! »</blockquote>
+          <figcaption>✅ Abonné Starter · avis vérifié · 06/11/2026 21:57</figcaption>
+        </figure>
+        <figure class="dcard" aria-hidden="true">
+          <div class="dc-h"><span class="dc-av">N</span><b>NFZ</b></div>
+          <p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p>
+          <blockquote>« Au début, je pensais honnêtement que c'était un scam. Avant de m'abonner, j'ai donc passé du temps sur les lives pour voir comment tout fonctionnait et surtout à qui j'avais affaire. J'ai rapidement découvert quelqu'un de sérieux, honnête, transparent et toujours à l'écoute de sa communauté.<br>J'ai décidé de me lancer il y a seulement deux semaines avec 50 € de départ. Aujourd'hui, j'ai déjà l'équivalent de 500 € de stock grâce aux opportunités trouvées avec le bot. Bien sûr, cela demande de s'investir et de faire ses propres vérifications, mais les alertes permettent de gagner un temps énorme et de repérer des offres qu'on aurait ratées autrement.<br>Le bot est simple à utiliser, le prix est largement rentable et le support est toujours présent quand on a une question. Franchement, je ne regrette pas du tout mon abonnement et je recommande Nanixss Hub à tous ceux qui veulent se lancer ou développer leur activité d'achat-revente. »</blockquote>
+          <figcaption>✅ Abonné Starter · avis vérifié · 12/11/2026 11:08</figcaption>
+        </figure>
+        <figure class="dcard" aria-hidden="true">
+          <div class="dc-h"><span class="dc-av">B</span><b>Bita</b></div>
+          <p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p>
+          <blockquote>« Excellent bot, très facile à utiliser et très efficace. Les automatisations fonctionnent parfaitement et permettent de gagner énormément de temps. Le bot est rapide, fiable et très pratique au quotidien. Le support est également au top. Je suis entièrement satisfait de mon expérience avec Nanixss Hub. Je recommande à 100&nbsp;%&nbsp;! »</blockquote>
+          <figcaption>✅ Abonné Elite · avis vérifié · 30/10/2026 21:56</figcaption>
+        </figure>
+        <figure class="dcard" aria-hidden="true">
+          <div class="dc-h"><span class="dc-av">T</span><b>Terry</b></div>
+          <p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p>
+          <blockquote>« Le bot est simple d'utilisation, facile à configurer. Le prix reste très attractif par rapport aux fonctionnalités proposées. La modération est également efficace, dans l'ensemble c'est un bot fiable, pratique et accessible. »</blockquote>
+          <figcaption>✅ Abonné Elite · avis vérifié · 20/10/2026 13:38</figcaption>
+        </figure>
+        <figure class="dcard" aria-hidden="true">
+          <div class="dc-h"><span class="dc-av">A</span><b>ASTRAL</b></div>
+          <p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p>
+          <blockquote>« Franchement, le bot est juste parfait. Le prix rien à dire comparé à la concurrence. La vitesse de cop est juste phénoménale. Même si j'ai longtemps hésité à changer de bot (ancien abonné souk) pour passer sur Nanixss Ub. Je ne regrette en aucun mon choix la vitesse est juste phénoménale. Grace à ce bot j'ai pu avoir un Mario kart 8 Deluxe à 4€.<br><br>En un mot foncé !!! »</blockquote>
+          <figcaption>✅ Abonné Starter · avis vérifié · 06/11/2026 21:57</figcaption>
+        </figure>
+        <figure class="dcard" aria-hidden="true">
+          <div class="dc-h"><span class="dc-av">N</span><b>NFZ</b></div>
+          <p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p>
+          <blockquote>« Au début, je pensais honnêtement que c'était un scam. Avant de m'abonner, j'ai donc passé du temps sur les lives pour voir comment tout fonctionnait et surtout à qui j'avais affaire. J'ai rapidement découvert quelqu'un de sérieux, honnête, transparent et toujours à l'écoute de sa communauté.<br>J'ai décidé de me lancer il y a seulement deux semaines avec 50 € de départ. Aujourd'hui, j'ai déjà l'équivalent de 500 € de stock grâce aux opportunités trouvées avec le bot. Bien sûr, cela demande de s'investir et de faire ses propres vérifications, mais les alertes permettent de gagner un temps énorme et de repérer des offres qu'on aurait ratées autrement.<br>Le bot est simple à utiliser, le prix est largement rentable et le support est toujours présent quand on a une question. Franchement, je ne regrette pas du tout mon abonnement et je recommande Nanixss Hub à tous ceux qui veulent se lancer ou développer leur activité d'achat-revente. »</blockquote>
+          <figcaption>✅ Abonné Starter · avis vérifié · 12/11/2026 11:08</figcaption>
+        </figure>
+        <figure class="dcard" aria-hidden="true">
+          <div class="dc-h"><span class="dc-av">B</span><b>Bita</b></div>
+          <p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p>
+          <blockquote>« Excellent bot, très facile à utiliser et très efficace. Les automatisations fonctionnent parfaitement et permettent de gagner énormément de temps. Le bot est rapide, fiable et très pratique au quotidien. Le support est également au top. Je suis entièrement satisfait de mon expérience avec Nanixss Hub. Je recommande à 100&nbsp;%&nbsp;! »</blockquote>
+          <figcaption>✅ Abonné Elite · avis vérifié · 30/10/2026 21:56</figcaption>
+        </figure>
+        <figure class="dcard" aria-hidden="true">
+          <div class="dc-h"><span class="dc-av">T</span><b>Terry</b></div>
+          <p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p>
+          <blockquote>« Le bot est simple d'utilisation, facile à configurer. Le prix reste très attractif par rapport aux fonctionnalités proposées. La modération est également efficace, dans l'ensemble c'est un bot fiable, pratique et accessible. »</blockquote>
+          <figcaption>✅ Abonné Elite · avis vérifié · 20/10/2026 13:38</figcaption>
+        </figure>
+        <figure class="dcard" aria-hidden="true">
+          <div class="dc-h"><span class="dc-av">A</span><b>ASTRAL</b></div>
+          <p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p>
+          <blockquote>« Franchement, le bot est juste parfait. Le prix rien à dire comparé à la concurrence. La vitesse de cop est juste phénoménale. Même si j'ai longtemps hésité à changer de bot (ancien abonné souk) pour passer sur Nanixss Ub. Je ne regrette en aucun mon choix la vitesse est juste phénoménale. Grace à ce bot j'ai pu avoir un Mario kart 8 Deluxe à 4€.<br><br>En un mot foncé !!! »</blockquote>
+          <figcaption>✅ Abonné Starter · avis vérifié · 06/11/2026 21:57</figcaption>
+        </figure>
+        <figure class="dcard" aria-hidden="true">
+          <div class="dc-h"><span class="dc-av">N</span><b>NFZ</b></div>
+          <p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p>
+          <blockquote>« Au début, je pensais honnêtement que c'était un scam. Avant de m'abonner, j'ai donc passé du temps sur les lives pour voir comment tout fonctionnait et surtout à qui j'avais affaire. J'ai rapidement découvert quelqu'un de sérieux, honnête, transparent et toujours à l'écoute de sa communauté.<br>J'ai décidé de me lancer il y a seulement deux semaines avec 50 € de départ. Aujourd'hui, j'ai déjà l'équivalent de 500 € de stock grâce aux opportunités trouvées avec le bot. Bien sûr, cela demande de s'investir et de faire ses propres vérifications, mais les alertes permettent de gagner un temps énorme et de repérer des offres qu'on aurait ratées autrement.<br>Le bot est simple à utiliser, le prix est largement rentable et le support est toujours présent quand on a une question. Franchement, je ne regrette pas du tout mon abonnement et je recommande Nanixss Hub à tous ceux qui veulent se lancer ou développer leur activité d'achat-revente. »</blockquote>
+          <figcaption>✅ Abonné Starter · avis vérifié · 12/11/2026 11:08</figcaption>
+        </figure>
+        <figure class="dcard" aria-hidden="true">
+          <div class="dc-h"><span class="dc-av">B</span><b>Bita</b></div>
+          <p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p>
+          <blockquote>« Excellent bot, très facile à utiliser et très efficace. Les automatisations fonctionnent parfaitement et permettent de gagner énormément de temps. Le bot est rapide, fiable et très pratique au quotidien. Le support est également au top. Je suis entièrement satisfait de mon expérience avec Nanixss Hub. Je recommande à 100&nbsp;%&nbsp;! »</blockquote>
+          <figcaption>✅ Abonné Elite · avis vérifié · 30/10/2026 21:56</figcaption>
+        </figure>
+        <figure class="dcard" aria-hidden="true">
+          <div class="dc-h"><span class="dc-av">T</span><b>Terry</b></div>
+          <p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p>
+          <blockquote>« Le bot est simple d'utilisation, facile à configurer. Le prix reste très attractif par rapport aux fonctionnalités proposées. La modération est également efficace, dans l'ensemble c'est un bot fiable, pratique et accessible. »</blockquote>
+          <figcaption>✅ Abonné Elite · avis vérifié · 20/10/2026 13:38</figcaption>
+        </figure>
+        <figure class="dcard" aria-hidden="true">
+          <div class="dc-h"><span class="dc-av">A</span><b>ASTRAL</b></div>
+          <p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p>
+          <blockquote>« Franchement, le bot est juste parfait. Le prix rien à dire comparé à la concurrence. La vitesse de cop est juste phénoménale. Même si j'ai longtemps hésité à changer de bot (ancien abonné souk) pour passer sur Nanixss Ub. Je ne regrette en aucun mon choix la vitesse est juste phénoménale. Grace à ce bot j'ai pu avoir un Mario kart 8 Deluxe à 4€.<br><br>En un mot foncé !!! »</blockquote>
+          <figcaption>✅ Abonné Starter · avis vérifié · 06/11/2026 21:57</figcaption>
+        </figure>
+          </div>
+        </div>
+        <div class="rv-row rev">
+          <div class="rv-track">
+        <figure class="dcard">
+          <div class="dc-h"><span class="dc-av">N</span><b>Nono</b></div>
+          <p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p>
+          <blockquote>« […] J'apprécie notamment les alertes Discord, les filtres personnalisables et le gain de temps. […]<br><br>C'est un bon outil pour débuter dans l'achat-revente et repérer plus facilement les opportunités, tout en gardant le réflexe de vérifier les prix et la rentabilité avant chaque achat. »</blockquote>
+          <figcaption>✅ Abonné Elite · avis vérifié · 18/10/2026 14:55</figcaption>
+        </figure>
+        <figure class="dcard">
+          <div class="dc-h"><span class="dc-av">V</span><b>vava</b></div>
+          <p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p>
+          <blockquote>« très bon bot c simple et clair, je le trv cependant moins rapide que v tools donc faut essayer de cliquer bien plus vite mais le prix justifie largement ( 3.5mois ici = 1 mois v tools ) alors n'hesithez pas ! »</blockquote>
+          <figcaption>✅ Abonné Elite · avis vérifié · 20/10/2026 21:50</figcaption>
+        </figure>
+        <figure class="dcard">
           <div class="dc-h"><span class="dc-av">O</span><b>Ogax</b></div>
           <p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p>
           <blockquote>« J'ai rejoint ce bot Discord très récemment et franchement tout est bien clair et très simple d'utilisation, avec des vidéos explicatives ! Et si jamais vous avez des questions, vous aurez des réponses ! Donc je recommande fort 💪 »</blockquote>
           <figcaption>✅ Abonné Elite · avis vérifié · 17/10/2026 14:40</figcaption>
         </figure>
+        <figure class="dcard" aria-hidden="true">
+          <div class="dc-h"><span class="dc-av">N</span><b>Nono</b></div>
+          <p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p>
+          <blockquote>« […] J'apprécie notamment les alertes Discord, les filtres personnalisables et le gain de temps. […]<br><br>C'est un bon outil pour débuter dans l'achat-revente et repérer plus facilement les opportunités, tout en gardant le réflexe de vérifier les prix et la rentabilité avant chaque achat. »</blockquote>
+          <figcaption>✅ Abonné Elite · avis vérifié · 18/10/2026 14:55</figcaption>
+        </figure>
+        <figure class="dcard" aria-hidden="true">
+          <div class="dc-h"><span class="dc-av">V</span><b>vava</b></div>
+          <p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p>
+          <blockquote>« très bon bot c simple et clair, je le trv cependant moins rapide que v tools donc faut essayer de cliquer bien plus vite mais le prix justifie largement ( 3.5mois ici = 1 mois v tools ) alors n'hesithez pas ! »</blockquote>
+          <figcaption>✅ Abonné Elite · avis vérifié · 20/10/2026 21:50</figcaption>
+        </figure>
+        <figure class="dcard" aria-hidden="true">
+          <div class="dc-h"><span class="dc-av">O</span><b>Ogax</b></div>
+          <p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p>
+          <blockquote>« J'ai rejoint ce bot Discord très récemment et franchement tout est bien clair et très simple d'utilisation, avec des vidéos explicatives ! Et si jamais vous avez des questions, vous aurez des réponses ! Donc je recommande fort 💪 »</blockquote>
+          <figcaption>✅ Abonné Elite · avis vérifié · 17/10/2026 14:40</figcaption>
+        </figure>
+        <figure class="dcard" aria-hidden="true">
+          <div class="dc-h"><span class="dc-av">N</span><b>Nono</b></div>
+          <p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p>
+          <blockquote>« […] J'apprécie notamment les alertes Discord, les filtres personnalisables et le gain de temps. […]<br><br>C'est un bon outil pour débuter dans l'achat-revente et repérer plus facilement les opportunités, tout en gardant le réflexe de vérifier les prix et la rentabilité avant chaque achat. »</blockquote>
+          <figcaption>✅ Abonné Elite · avis vérifié · 18/10/2026 14:55</figcaption>
+        </figure>
+        <figure class="dcard" aria-hidden="true">
+          <div class="dc-h"><span class="dc-av">V</span><b>vava</b></div>
+          <p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p>
+          <blockquote>« très bon bot c simple et clair, je le trv cependant moins rapide que v tools donc faut essayer de cliquer bien plus vite mais le prix justifie largement ( 3.5mois ici = 1 mois v tools ) alors n'hesithez pas ! »</blockquote>
+          <figcaption>✅ Abonné Elite · avis vérifié · 20/10/2026 21:50</figcaption>
+        </figure>
+        <figure class="dcard" aria-hidden="true">
+          <div class="dc-h"><span class="dc-av">O</span><b>Ogax</b></div>
+          <p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p>
+          <blockquote>« J'ai rejoint ce bot Discord très récemment et franchement tout est bien clair et très simple d'utilisation, avec des vidéos explicatives ! Et si jamais vous avez des questions, vous aurez des réponses ! Donc je recommande fort 💪 »</blockquote>
+          <figcaption>✅ Abonné Elite · avis vérifié · 17/10/2026 14:40</figcaption>
+        </figure>
+        <figure class="dcard" aria-hidden="true">
+          <div class="dc-h"><span class="dc-av">N</span><b>Nono</b></div>
+          <p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p>
+          <blockquote>« […] J'apprécie notamment les alertes Discord, les filtres personnalisables et le gain de temps. […]<br><br>C'est un bon outil pour débuter dans l'achat-revente et repérer plus facilement les opportunités, tout en gardant le réflexe de vérifier les prix et la rentabilité avant chaque achat. »</blockquote>
+          <figcaption>✅ Abonné Elite · avis vérifié · 18/10/2026 14:55</figcaption>
+        </figure>
+        <figure class="dcard" aria-hidden="true">
+          <div class="dc-h"><span class="dc-av">V</span><b>vava</b></div>
+          <p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p>
+          <blockquote>« très bon bot c simple et clair, je le trv cependant moins rapide que v tools donc faut essayer de cliquer bien plus vite mais le prix justifie largement ( 3.5mois ici = 1 mois v tools ) alors n'hesithez pas ! »</blockquote>
+          <figcaption>✅ Abonné Elite · avis vérifié · 20/10/2026 21:50</figcaption>
+        </figure>
+        <figure class="dcard" aria-hidden="true">
+          <div class="dc-h"><span class="dc-av">O</span><b>Ogax</b></div>
+          <p class="dc-st" aria-label="5 sur 5"><span aria-hidden="true">⭐⭐⭐⭐⭐</span>5/5</p>
+          <blockquote>« J'ai rejoint ce bot Discord très récemment et franchement tout est bien clair et très simple d'utilisation, avec des vidéos explicatives ! Et si jamais vous avez des questions, vous aurez des réponses ! Donc je recommande fort 💪 »</blockquote>
+          <figcaption>✅ Abonné Elite · avis vérifié · 17/10/2026 14:40</figcaption>
+        </figure>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1854,7 +2016,7 @@
   // compact-mobile : carrousels à glisser, chapitres repliables, bouton retour en haut
   (() => {
     const mq = matchMedia('(max-width:760px)');
-    const SELS = '#tarifs .plans,#avec .vs,#comment .flow,#fonctions .bento,#preuves .proof-cards,#avis .dgrid';
+    const SELS = '#tarifs .plans,#avec .vs,#comment .flow,#fonctions .bento,#preuves .proof-cards';
     let built = false;
     const build = () => {
       if (built || !mq.matches) return; built = true;
