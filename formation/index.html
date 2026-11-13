@@ -759,6 +759,7 @@
     box-shadow:0 70px 100px -50px rgba(0,0,0,.95),0 0 0 1px rgba(3,210,182,.3);transform:translateZ(calc(60px * var(--pp,1)))}
   .pg-sheet.behind{position:absolute;top:0;left:0;margin-left:18cqw;transform:translateZ(calc(-90px * var(--pp,1))) translateY(-6cqw) rotateZ(3deg)}
   .pg-h{display:flex;justify-content:space-between;align-items:flex-end;padding:5.2cqw 5.5cqw 3.4cqw;background:#061820;color:#fff;border-bottom:.9cqw solid #19E0CB}
+  .pg-h b::before,.pg-t th::before{content:attr(data-t)}
   .pg-h b{font-size:6cqw;font-weight:800;letter-spacing:-.02em;line-height:1}
   .pg-h span{font-size:2.3cqw;color:#9CC4C4;font-weight:600}
   .pg-t{width:100%;border-collapse:collapse;font-size:2.35cqw}
@@ -1228,8 +1229,8 @@
       <div class="pages" id="pages" role="img" aria-label="Aperçu flouté de deux pages de cotes de la formation, Switch et GameCube">
         <div class="pages-rig" id="pages-rig">
           <div class="pg-sheet behind" aria-hidden="true">
-            <div class="pg-h"><b>GAMECUBE</b></div>
-            <table class="pg-t"><thead><tr><th>Jeu</th><th>Loose</th><th>Complet</th><th>Note</th></tr></thead><tbody>
+            <div class="pg-h"><b data-t="GAMECUBE"></b></div>
+            <table class="pg-t"><thead><tr><th data-t="Jeu"></th><th data-t="Loose"></th><th data-t="Complet"></th><th data-t="Note"></th></tr></thead><tbody>
               <tr><td><span class="bl n"></span></td><td><span class="bl" style="width:70%"></span></td><td><span class="bl" style="width:80%"></span></td><td><span class="bl r" style="width:90%"></span></td></tr>
               <tr><td><span class="bl n" style="width:44%"></span></td><td><span class="bl" style="width:60%"></span></td><td><span class="bl" style="width:75%"></span></td><td><span class="bl r" style="width:70%"></span></td></tr>
               <tr><td><span class="bl n" style="width:66%"></span></td><td><span class="bl" style="width:72%"></span></td><td><span class="bl" style="width:84%"></span></td><td><span class="bl r" style="width:90%"></span></td></tr>
@@ -1241,8 +1242,8 @@
             </tbody></table>
           </div>
           <div class="pg-sheet" aria-hidden="true">
-            <div class="pg-h"><b>SWITCH</b></div>
-            <table class="pg-t"><thead><tr><th>Jeu</th><th>Loose</th><th>Complet</th><th>Note</th></tr></thead><tbody>
+            <div class="pg-h"><b data-t="SWITCH"></b></div>
+            <table class="pg-t"><thead><tr><th data-t="Jeu"></th><th data-t="Loose"></th><th data-t="Complet"></th><th data-t="Note"></th></tr></thead><tbody>
               <tr><td>1-2-Switch</td><td><span class="bl" style="width:70%"></span></td><td><span class="bl" style="width:80%"></span></td><td><span class="bl r" style="width:90%"></span></td></tr>
               <tr><td>Animal Crossing New Horizons</td><td><span class="bl" style="width:60%"></span></td><td><span class="bl" style="width:75%"></span></td><td><span class="bl r" style="width:70%"></span></td></tr>
               <tr><td>Arms</td><td><span class="bl" style="width:72%"></span></td><td><span class="bl" style="width:84%"></span></td><td><span class="bl r" style="width:90%"></span></td></tr>
