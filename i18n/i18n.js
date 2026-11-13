@@ -157,7 +157,7 @@
 .nx-lang li a:hover,.nx-lang li a:focus-visible{background:rgba(3,210,182,.12);outline:none}
 .nx-lang li a[aria-current="true"]{color:#03EBCA;font-weight:600}
 .nx-lang .ok{margin-left:auto;width:16px;height:16px;color:#03D2B6}
-.nx-lang .cap{padding:6px 12px 8px;color:rgba(234,247,245,.55);font:500 12.5px/1.2 Poppins,system-ui,sans-serif}
+.nx-lang .cap{padding:6px 12px 8px;color:rgba(234,247,245,.72);font:500 12.5px/1.2 Poppins,system-ui,sans-serif}
 @media (max-width:560px){.nx-lang>button{padding:0 10px;gap:6px}.nx-lang .code{display:none}
 .nav-in .nx-lang>button{width:40px;padding:0;justify-content:center}.nav-in .nx-lang .chev{display:none}}
 .nx-lang.out{position:absolute;right:20px;top:50%;transform:translateY(-50%)}.nx-lang.out .code{display:none}
@@ -170,7 +170,7 @@
     const capTxt = { fr: 'Langue du site', en: 'Site language', es: 'Idioma del sitio', it: 'Lingua del sito' }[lang];
     const box = document.createElement('div'); box.className = 'nx-lang'; box.setAttribute('data-i18n-skip', '');
     box.innerHTML = `<button type="button" aria-haspopup="true" aria-expanded="false" aria-label="${capTxt}"><span class="fl">${LANGS[lang].flag}</span><span class="code">${lang.toUpperCase()}</span><svg class="chev" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 3.5 5 6.5 8 3.5"/></svg></button>
-<ul role="menu"><li class="cap">${capTxt}</li>${Object.entries(LANGS).map(([k, v]) => `<li role="none"><a role="menuitem" href="?lang=${k}" lang="${k}" data-l="${k}"${k === lang ? ' aria-current="true"' : ''}><span class="fl">${v.flag}</span>${v.label}${k === lang ? '<svg class="ok" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8.5 6.5 12 13 4.5"/></svg>' : ''}</a></li>`).join('')}</ul>`;
+<ul role="menu"><li class="cap" role="none" aria-hidden="true">${capTxt}</li>${Object.entries(LANGS).map(([k, v]) => `<li role="none"><a role="menuitem" href="?lang=${k}" lang="${k}" data-l="${k}"${k === lang ? ' aria-current="true"' : ''}><span class="fl">${v.flag}</span>${v.label}${k === lang ? '<svg class="ok" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8.5 6.5 12 13 4.5"/></svg>' : ''}</a></li>`).join('')}</ul>`;
     const btn = box.querySelector('button');
     const close = () => { box.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); };
     btn.addEventListener('click', (e) => { e.stopPropagation(); const o = !box.classList.contains('open'); box.classList.toggle('open', o); btn.setAttribute('aria-expanded', String(o)); });
