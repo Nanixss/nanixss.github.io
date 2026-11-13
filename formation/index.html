@@ -718,6 +718,31 @@
   @media (max-width:560px){.brand span{display:none}.nav-in{gap:12px}.nav-ic{margin-left:0}.nav .btn-s{padding:10px 12px;font-size:13.5px}.nav-x + .btn-s{margin-left:-4px}}
   @media (max-width:370px){.nav-x .i{display:none}}
 
+
+  /* hero : stock réel + preuves */
+  .vx{position:relative;width:min(540px,100%);aspect-ratio:1/1.04;transform-style:preserve-3d;transform:rotateY(var(--ry,-14deg)) rotateX(var(--rx,6deg)) translateZ(var(--sz,0px))}
+  .vx .card{position:absolute;margin:0;border-radius:18px;background:var(--surface);border:1px solid var(--line-2);box-shadow:0 30px 60px -20px rgba(0,0,0,.75);color:var(--text);text-decoration:none}
+  .vx .card small{display:block;font-size:12px;color:var(--text-3);font-weight:500}
+  .c-stock{inset:0 8% 10% 4%;overflow:hidden}
+  .c-stock img{width:100%;height:100%;object-fit:cover;display:block}
+  .c-stock figcaption{position:absolute;left:12px;top:12px;padding:6px 10px;border-radius:999px;background:rgba(3,16,23,.78);font-size:12px;color:var(--text-2)}
+  .c-tk{left:-4%;top:8%;transform:translateZ(110px);display:flex;align-items:center;gap:10px;padding:10px 14px;background:#000!important;border-radius:14px!important}
+  .c-tk b{font-size:14px}
+  .c-lot{right:0;top:30%;transform:translateZ(80px);padding:11px 14px;border-radius:14px!important;background:var(--accent)!important;color:#03231f!important;border:0!important;box-shadow:0 18px 40px -12px rgba(3,210,182,.6)!important}
+  .c-lot b{font-size:14.5px;font-weight:900}.c-lot small{color:#05463f!important}
+  .c-avis{right:-2%;bottom:0;width:62%;transform:translateZ(130px);padding:14px 16px;background:#0b2a31!important}
+  .c-avis .h{display:flex;align-items:center;gap:9px;margin-bottom:7px}.c-avis .av{width:28px;height:28px;border-radius:50%;background:#5865F2;display:grid;place-items:center;font-weight:800;font-size:12px;color:#fff}
+  .c-avis .st{color:#f5c518;font-size:13px}.c-avis .q{display:block;font-size:13px;line-height:1.45;color:var(--text-2)}.c-avis small{margin-top:7px}
+  @media (max-width:900px){.vx{width:min(430px,94%);margin-inline:auto;aspect-ratio:1/1.12}.c-stock{inset:0 4% 22% 4%}.c-stock figcaption{display:none}.c-tk{left:0;top:4%}.c-lot{right:0;top:30%}.c-avis{right:0;bottom:0;width:78%;padding:12px 14px}.c-avis .q{font-size:12.5px}}
+
+  /* captures brutes */
+  .preuves{padding-top:0}
+    .shots{columns:4 240px;column-gap:16px;margin-top:30px}
+  .shot{break-inside:avoid;margin:0 0 16px;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#0b2a31;box-shadow:0 18px 40px -22px rgba(0,0,0,.8)}
+  .shot img{display:block;width:100%;height:auto}
+  .shot figcaption{padding:7px 12px;font-size:12px;color:var(--text-3)}
+  .preuves .note{margin-top:8px;font-size:13px;color:var(--text-3)}
+  @media (max-width:600px){.shots{columns:auto;display:flex;align-items:flex-start;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px;margin-inline:-20px;padding-inline:20px;scrollbar-width:none}.shots::-webkit-scrollbar{display:none}.shot{flex:0 0 82%;scroll-snap-align:center;margin:0}.preuves .head-hint{display:block}}
 </style>
 <script src="/i18n/i18n.js" data-page="formation"></script>
 </head>
@@ -756,12 +781,13 @@
     <a class="brand" href="#top" data-k="formation-logo"><img src="../logo.png" alt="" width="36" height="36"><span>NANIXSS<b>.</b>HUB</span></a>
     <a class="nav-ic" href="../" data-k="formation-nav-accueil" aria-label="Retour à l'accueil" title="Accueil"><svg class="i" viewBox="0 0 24 24"><path d="M3.5 10.5 12 3.5l8.5 7"/><path d="M5.5 9v10.5h4.5V14h4v5.5h4.5V9"/></svg></a>
     <nav class="nav-links" aria-label="Sections">
+      <a href="#preuves">Preuves</a>
+      <a href="#offres">Offres</a>
+      <a href="#lucas">Qui est derrière</a>
       <a href="#programme">Programme</a>
       <a href="#cotes">Les cotes</a>
-      <a href="#offres">Offres</a>
       <a href="#resultats">Résultats</a>
       <a href="#avis">Avis</a>
-      <a href="#lucas">Qui est derrière</a>
       <a href="#faq">FAQ</a>
     </nav>
     <a class="btn btn-ghost btn-s nav-x" href="../elite/" data-k="formation-nav-elite"><svg class="i"><use href="#i-bolt"/></svg>Bot Elite</a>
@@ -777,7 +803,6 @@
         <p class="lead rise d1">La formation de Lucas1up pour se lancer dans l'achat-revente de jeux vidéo : la méthode pas à pas, et <b>les prix de revente de plus de 800 jeux sur 19 consoles</b>, mis à jour régulièrement.</p>
         <div class="ctas rise d2">
           <a class="btn btn-main" href="#offres" data-k="formation-hero"><svg class="i"><use href="#i-book"/></svg>Voir les formations</a>
-          <a class="btn btn-ghost" href="#programme" data-k="formation-hero-programme">Ce qu'il y a dedans</a>
         </div>
         <ul class="assure rise d3">
           <li><a href="#avis"><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span>13 avis, tous 5/5</a></li>
@@ -788,60 +813,37 @@
       </div>
 
       <div class="hero-vis" id="stage" data-scene="phone">
-        <div class="obj-slot o-hero-b" data-obj="pad" aria-hidden="true"></div>
-        <div class="book-rig" id="rig">
-          <div class="book" id="book" role="img" aria-label="La formation avancée : un livre qui s'ouvre sur son sommaire, 11 chapitres, 19 consoles, 171 pages">
-            <div class="bk-back"></div>
-            <div class="bk-spine"></div>
-            <div class="bk-edge" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-            <div class="bk-page" aria-hidden="true">
-              <div class="sm">
-                <div class="sm-top">
-                  <p class="sm-k">GUIDE AVANCÉ</p>
-                  <p class="sm-h">Sommaire</p>
-                  <div class="sm-st"><div><b>11</b>chapitres</div><div><b>19</b>consoles</div><div><b>171</b>pages</div></div>
-                </div>
-                <div class="sm-b">
-                  <p class="sm-t">LES CHAPITRES</p>
-                  <ol class="sm-l">
-                    <li><b>00</b><span>Introduction : l'achat-revente de jeux vidéo</span></li>
-                    <li><b>01</b><span>Pourquoi prendre un bot Vinted ?</span></li>
-                    <li><b>02</b><span>Les différentes niches</span></li>
-                    <li><b>03</b><span>Évaluer la cote d'un jeu / console</span></li>
-                    <li><b>04</b><span>Reconnaître les contrefaçons</span></li>
-                    <li><b>05</b><span>Liste matériel</span></li>
-                    <li><b>06</b><span>Comment vendre, astuces et conseils</span></li>
-                    <li><b>07</b><span>Multicompte</span></li>
-                    <li><b>08</b><span>Négocier à l'achat</span></li>
-                    <li><b>09</b><span>Envois, litiges et arnaques</span></li>
-                    <li><b>10</b><span>Gérer son argent et son stock</span></li>
-                    <li><b>11</b><span>Vendre en règle : statut, Urssaf, impôts</span></li>
-                    <li><b>+</b><span>Bonus : trouver des affaires ailleurs</span></li>
-                    <li><b>✓</b><span>Ta checklist d'achat-revente</span></li>
-                    <li><b>G</b><span>Glossaire</span></li>
-                    <li><b>A</b><span>Annexe : prix des jeux, filtres, liens</span></li>
-                  </ol>
-                  <div class="sm-g"><span>GAME BOY</span><span>GBA</span><span>SUPER NINTENDO</span><span>NES</span><span>NINTENDO 64</span><span>GAMECUBE</span><span>DS</span><span>3DS</span><span>WII</span><span>WII U</span><span>SWITCH</span><span>SWITCH 2</span><span>PS1</span><span>PS2</span><span>PS3</span><span>PS4</span><span>PS5</span><span>PSP/PSVITA</span><span>XBOX</span></div>
-                  <div class="sm-f"><span>L'Achat-Revente de Jeux Vidéo · Guide avancé</span><b>Lucas1up</b></div>
-                </div>
-              </div>
-            </div>
-            <div class="bk-cover" aria-hidden="true">
-              <div class="bk-f">
-                <p class="k">L'ACHAT-REVENTE DE JEUX VIDÉO</p>
-                <h2>Guide <span>avancé</span></h2>
-                <div class="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-                <p class="sig"><b>Lucas1up</b><span>Édition 2026</span></p>
-              </div>
-              <div class="bk-in"><svg><use href="#i-n"/></svg></div>
-            </div>
-          </div>
+        <div class="vx" id="rig">
+          <figure class="card c-stock"><img src="stock.webp" alt="Le stock de jeux vidéo de Lucas sur ses étagères : DS, Switch, Wii, GameCube, PS4, GBA" width="900" height="912" fetchpriority="high"><figcaption>Mon stock, photo prise chez moi</figcaption></figure>
+          <a class="card c-tk" href="https://www.tiktok.com/@nanixss.off" target="_blank" rel="noopener" data-k="formation-hero-tiktok"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M16.6 5.8A4.3 4.3 0 0 1 15.5 3h-3.1v12.4a2.6 2.6 0 1 1-2.6-2.6c.3 0 .5 0 .8.1V9.7a5.7 5.7 0 1 0 4.9 5.7V9a7.4 7.4 0 0 0 4.3 1.4V7.3a4.3 4.3 0 0 1-3.2-1.5z"/></svg><span><b>@nanixss.off</b><small>23 000+ abonnés sur TikTok</small></span></a>
+          <div class="card c-lot"><b>Lot GBA : 213 € → 700 €+</b><small>Acheté et revendu le 21/03/2026</small></div>
+          <a class="card c-avis" href="#avis"><span class="h"><span class="av">N</span><b>Nono</b><span class="st" aria-label="5 sur 5">★★★★★</span></span><span class="q">« La formation m'a permis de gagner pas mal de temps et de mieux structurer mon activité. »</span><small>Avis Discord · Élève Formation Avancée</small></a>
         </div>
       </div>
     </div>
   </section>
 
 
+
+  <section class="sec preuves" id="preuves">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Les vraies captures <span class="hl">du Discord.</span></h2>
+        <p>Pas de retouche : ce sont des captures d'écran des salons avis-formation et flex, telles que les élèves les ont postées.</p>
+      </div>
+      <div class="shots">
+          <figure class="shot"><img src="preuves/avis-celiaa.webp" alt="Avis de Celiaa dans le salon avis-formation : au début elle pensait que c'était une arnaque, puis elle a pris la formation et la conseille" width="720" height="446" loading="lazy"><figcaption>#avis-formation</figcaption></figure>
+          <figure class="shot"><img src="preuves/flex-samuel.webp" alt="Message de samuellibeert dans le salon flex : 4,8K de chiffre d'affaires pour 2,6K de bénéfice" width="720" height="143" loading="lazy"><figcaption>#flex</figcaption></figure>
+          <figure class="shot"><img src="preuves/colis-lucas.webp" alt="Photo postée par Lucas : un sac rempli de colis à envoyer, la journée du 04/03/2026" width="720" height="771" loading="lazy"><figcaption>#flex</figcaption></figure>
+          <figure class="shot"><img src="preuves/avis-aurelien.webp" alt="Avis d'Aurélien.D, 5 étoiles : formation claire et précise" width="720" height="394" loading="lazy"><figcaption>#avis-formation</figcaption></figure>
+          <figure class="shot"><img src="preuves/flex-kaluminium.webp" alt="Tableau de kaluminium pour février : 822 € d'achats, 1 478 € de ventes, 656 € de bénéfice brut" width="720" height="240" loading="lazy"><figcaption>#flex</figcaption></figure>
+          <figure class="shot"><img src="preuves/lot-samuel.webp" alt="Lot d'une trentaine de jeux GameCube posté par samuellibeert, payé 90 €" width="720" height="580" loading="lazy"><figcaption>#flex</figcaption></figure>
+          <figure class="shot"><img src="preuves/avis-snayzz.webp" alt="Avis de snayzz, 5 étoiles : formation incroyable, vaut deux à trois fois son prix" width="720" height="346" loading="lazy"><figcaption>#avis-formation</figcaption></figure>
+          <figure class="shot"><img src="preuves/flex-nono.webp" alt="Message de Nono dans le salon flex : 3,9K de chiffre d'affaires et 1,6K de bénéfice sur le mois" width="720" height="313" loading="lazy"><figcaption>#flex</figcaption></figure>
+      </div>
+      <p class="note">Résultats de membres du Discord. Ils dépendent du temps et de l'argent que chacun investit.</p>
+    </div>
+  </section>
 
   <section class="sec" id="avec" data-scene="versus">
     <div class="wrap">
@@ -883,6 +885,96 @@
     </div>
   </section>
 
+  <section class="sec" id="offres" data-scene="pricing">
+    <div class="wrap">
+      <div class="obj-slot o-price" data-obj="coin" aria-hidden="true"></div>
+      <div class="sec-head c">
+        <h2>Choisis ta <span class="hl">formation.</span></h2>
+        <p>Paiement unique, sécurisé par Stripe. Au paiement, tu indiques ton pseudo Discord et ton e-mail Canva : ton accès s'active tout seul.</p>
+      </div>
+      <div class="plans">
+        <div class="plan tilt">
+          <div class="plan-head"><h3>Starter</h3></div>
+          <p class="for">Pour découvrir les bases avant de te lancer.</p>
+          <div class="price"><b class="num">49,99 €</b></div>
+          <p class="paypal"><span>ou en 4x sans frais avec</span> PayPal</p>
+          <ul>
+            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>L'introduction et les chapitres 1 à 6</li>
+            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Niches, cotes, contrefaçons, matériel, vente</li>
+            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Suivi et salon réservé aux élèves</li>
+            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Rôle Intellectuel sur le Discord</li>
+            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Accès sur Canva</li>
+          </ul>
+          <a class="btn btn-ghost" href="https://buy.stripe.com/dRm14o4Mj81OcT88hB8g006" data-k="formation-starter" rel="noopener">Prendre la Starter</a>
+        </div>
+        <div class="plan elite tilt" id="elite-card">
+          <div class="plan-head"><h3>Avancée</h3><span class="best">La plus complète</span></div>
+          <p class="for">Pour te lancer sérieusement, avec toutes les cotes.</p>
+          <div class="price"><b class="num">399,90 €</b></div>
+          <p class="paypal"><span>ou 4 × 99,98 € sans frais avec</span> PayPal</p>
+          <ul>
+            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Les 11 chapitres, le bonus, la checklist et le glossaire</li>
+            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Négo, litiges, gestion du stock, statut et Urssaf</li>
+            <li class="plus"><span class="ck"><svg class="i"><use href="#i-check"/></svg></span><span><strong>Les prix de plus de 800 jeux</strong> sur 19 consoles</span></li>
+            <li class="plus"><span class="ck"><svg class="i"><use href="#i-check"/></svg></span><span><strong>Mises à jour des cotes</strong> incluses</span></li>
+            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Suivi, salon des élèves et rôle Mastermind</li>
+          </ul>
+          <div class="gift"><img src="../logo.png" alt="" width="34" height="34"><span><b>2 mois de bot Elite offerts</b>, puis 19,99 €/mois au lieu de 24,99 €, tant que tu restes abonné.</span></div>
+          <a class="btn btn-main" href="https://buy.stripe.com/dRmeVe92z0zmcT80P98g005" data-k="formation-avancee" rel="noopener"><svg class="i"><use href="#i-book"/></svg>Prendre l'Avancée</a>
+        </div>
+      </div>
+      <div class="cmp-wrap">
+        <table class="cmp">
+          <thead><tr><th scope="col">Ce que tu reçois</th><th scope="col">Starter</th><th scope="col">Avancée</th></tr></thead>
+          <tbody>
+            <tr><td>Nombre de pages</td><td class="num">26</td><td class="num">171</td></tr>
+            <tr><td>Introduction et chapitres 1 à 6</td><td><span class="ck"><svg class="i"><use href="#i-check"/></svg></span></td><td><span class="ck"><svg class="i"><use href="#i-check"/></svg></span></td></tr>
+            <tr><td>Chapitre 7 : multicompte</td><td class="no">—</td><td><span class="ck"><svg class="i"><use href="#i-check"/></svg></span></td></tr>
+            <tr><td>Chapitres 8 à 11 : négo, litiges, argent, vendre en règle</td><td class="no">—</td><td><span class="ck"><svg class="i"><use href="#i-check"/></svg></span></td></tr>
+            <tr><td>Bonus : trouver des affaires ailleurs</td><td class="no">—</td><td><span class="ck"><svg class="i"><use href="#i-check"/></svg></span></td></tr>
+            <tr><td>Checklist et glossaire</td><td class="no">—</td><td><span class="ck"><svg class="i"><use href="#i-check"/></svg></span></td></tr>
+            <tr><td>Prix des jeux par console</td><td class="no">—</td><td>825 jeux</td></tr>
+            <tr><td>Bot Elite offert</td><td class="no">—</td><td>2 mois</td></tr>
+            <tr><td>Paiement en 4x sans frais</td><td>PayPal</td><td>PayPal</td></tr>
+            <tr><td>Suivi et salon réservé aux élèves</td><td><span class="ck"><svg class="i"><use href="#i-check"/></svg></span></td><td><span class="ck"><svg class="i"><use href="#i-check"/></svg></span></td></tr>
+            <tr><td>Rôle sur le Discord</td><td>Intellectuel</td><td>Mastermind</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <a class="xsell tilt" href="../elite/" data-k="formation-xsell-elite">
+        <img src="../logo.png" alt="" width="52" height="52">
+        <span><b>Tu veux aussi les alertes ?</b>Le bot Elite t'envoie chaque annonce Vinted à l'instant où elle sort, avec l'autocop et l'extension Vinted. Sans engagement, 24,99 €/mois.</span>
+        <em>Découvrir le bot →</em>
+      </a>
+      <p class="fine">Déjà abonné Elite ? Ouvre un ticket sur le Discord pour recevoir ton code de -50 € sur la formation avancée (à la place des 2 mois offerts).<br>En achetant, tu acceptes les <a href="https://nanixsshub.fr/legal/" data-k="formation-cgv-offres">CGV</a>.</p>
+    </div>
+  </section>
+  <section class="sec about" id="lucas" data-scene="about">
+    <div class="wrap about-in">
+      <figure class="about-photo tilt">
+        <img src="../elite/lucas.webp" alt="Lucas, alias Nanixss" width="760" height="950" loading="lazy">
+        <figcaption><span class="pulse"></span>En live sur TikTok · @nanixss.off</figcaption>
+      </figure>
+      <div class="about-txt">
+        <h2>Une méthode tirée de <span class="hl">mon activité.</span></h2>
+        <p class="about-id">Lucas, alias Nanixss · 24 ans · revendeur spécialisé jeux vidéo et consoles depuis début 2025</p>
+        <div class="about-body">
+          <p>Je me suis lancé seul dans l'achat-revente quand j'étais encore aide-soignant. Aujourd'hui, c'est mon métier à temps plein.</p>
+          <p>Dans la formation, je mets ce que j'utilise moi-même tous les jours : la méthode, les niches et les cotes, que je mets à jour régulièrement.</p>
+          <p>Et si tu bloques, tu me trouves sur le Discord et en live.</p>
+        </div>
+        <ul class="about-stats">
+          <li><b class="num">23 000+</b> abonnés sur TikTok</li>
+          <li><b class="num" data-stat="members">700+</b> membres sur Discord</li>
+          <li><b>Temps plein</b> dans l'achat-revente</li>
+        </ul>
+        <div class="ctas">
+          <a class="btn btn-ghost" href="https://www.tiktok.com/@nanixss.off" data-k="formation-tiktok-lucas" target="_blank" rel="noopener"><svg class="i"><use href="#i-play"/></svg>Me suivre sur TikTok</a>
+          <a class="btn btn-ghost" href="https://discord.gg/cyReW8sVJm" data-k="formation-discord-lucas" target="_blank" rel="noopener"><svg class="i"><use href="#i-chat"/></svg>Rejoindre le Discord</a>
+        </div>
+      </div>
+    </div>
+  </section>
   <section class="sec" id="programme" data-scene="steps" style="padding-top:0">
     <div class="wrap">
       <div class="obj-slot o-side" data-obj="cart" aria-hidden="true"></div>
@@ -967,70 +1059,6 @@
     </div>
   </section>
 
-  <section class="sec" id="offres" data-scene="pricing">
-    <div class="wrap">
-      <div class="obj-slot o-price" data-obj="coin" aria-hidden="true"></div>
-      <div class="sec-head c">
-        <h2>Choisis ta <span class="hl">formation.</span></h2>
-        <p>Paiement unique, sécurisé par Stripe. Au paiement, tu indiques ton pseudo Discord et ton e-mail Canva : ton accès s'active tout seul.</p>
-      </div>
-      <div class="plans">
-        <div class="plan tilt">
-          <div class="plan-head"><h3>Starter</h3></div>
-          <p class="for">Pour découvrir les bases avant de te lancer.</p>
-          <div class="price"><b class="num">49,99 €</b></div>
-          <p class="paypal"><span>ou en 4x sans frais avec</span> PayPal</p>
-          <ul>
-            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>L'introduction et les chapitres 1 à 6</li>
-            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Niches, cotes, contrefaçons, matériel, vente</li>
-            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Suivi et salon réservé aux élèves</li>
-            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Rôle Intellectuel sur le Discord</li>
-            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Accès sur Canva</li>
-          </ul>
-          <a class="btn btn-ghost" href="https://buy.stripe.com/dRm14o4Mj81OcT88hB8g006" data-k="formation-starter" rel="noopener">Prendre la Starter</a>
-        </div>
-        <div class="plan elite tilt" id="elite-card">
-          <div class="plan-head"><h3>Avancée</h3><span class="best">La plus complète</span></div>
-          <p class="for">Pour te lancer sérieusement, avec toutes les cotes.</p>
-          <div class="price"><b class="num">399,90 €</b></div>
-          <p class="paypal"><span>ou 4 × 99,98 € sans frais avec</span> PayPal</p>
-          <ul>
-            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Les 11 chapitres, le bonus, la checklist et le glossaire</li>
-            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Négo, litiges, gestion du stock, statut et Urssaf</li>
-            <li class="plus"><span class="ck"><svg class="i"><use href="#i-check"/></svg></span><span><strong>Les prix de plus de 800 jeux</strong> sur 19 consoles</span></li>
-            <li class="plus"><span class="ck"><svg class="i"><use href="#i-check"/></svg></span><span><strong>Mises à jour des cotes</strong> incluses</span></li>
-            <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Suivi, salon des élèves et rôle Mastermind</li>
-          </ul>
-          <div class="gift"><img src="../logo.png" alt="" width="34" height="34"><span><b>2 mois de bot Elite offerts</b>, puis 19,99 €/mois au lieu de 24,99 €, tant que tu restes abonné.</span></div>
-          <a class="btn btn-main" href="https://buy.stripe.com/dRmeVe92z0zmcT80P98g005" data-k="formation-avancee" rel="noopener"><svg class="i"><use href="#i-book"/></svg>Prendre l'Avancée</a>
-        </div>
-      </div>
-      <div class="cmp-wrap">
-        <table class="cmp">
-          <thead><tr><th scope="col">Ce que tu reçois</th><th scope="col">Starter</th><th scope="col">Avancée</th></tr></thead>
-          <tbody>
-            <tr><td>Nombre de pages</td><td class="num">26</td><td class="num">171</td></tr>
-            <tr><td>Introduction et chapitres 1 à 6</td><td><span class="ck"><svg class="i"><use href="#i-check"/></svg></span></td><td><span class="ck"><svg class="i"><use href="#i-check"/></svg></span></td></tr>
-            <tr><td>Chapitre 7 : multicompte</td><td class="no">—</td><td><span class="ck"><svg class="i"><use href="#i-check"/></svg></span></td></tr>
-            <tr><td>Chapitres 8 à 11 : négo, litiges, argent, vendre en règle</td><td class="no">—</td><td><span class="ck"><svg class="i"><use href="#i-check"/></svg></span></td></tr>
-            <tr><td>Bonus : trouver des affaires ailleurs</td><td class="no">—</td><td><span class="ck"><svg class="i"><use href="#i-check"/></svg></span></td></tr>
-            <tr><td>Checklist et glossaire</td><td class="no">—</td><td><span class="ck"><svg class="i"><use href="#i-check"/></svg></span></td></tr>
-            <tr><td>Prix des jeux par console</td><td class="no">—</td><td>825 jeux</td></tr>
-            <tr><td>Bot Elite offert</td><td class="no">—</td><td>2 mois</td></tr>
-            <tr><td>Paiement en 4x sans frais</td><td>PayPal</td><td>PayPal</td></tr>
-            <tr><td>Suivi et salon réservé aux élèves</td><td><span class="ck"><svg class="i"><use href="#i-check"/></svg></span></td><td><span class="ck"><svg class="i"><use href="#i-check"/></svg></span></td></tr>
-            <tr><td>Rôle sur le Discord</td><td>Intellectuel</td><td>Mastermind</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <a class="xsell tilt" href="../elite/" data-k="formation-xsell-elite">
-        <img src="../logo.png" alt="" width="52" height="52">
-        <span><b>Tu veux aussi les alertes ?</b>Le bot Elite t'envoie chaque annonce Vinted à l'instant où elle sort, avec l'autocop et l'extension Vinted. Sans engagement, 24,99 €/mois.</span>
-        <em>Découvrir le bot →</em>
-      </a>
-      <p class="fine">Déjà abonné Elite ? Ouvre un ticket sur le Discord pour recevoir ton code de -50 € sur la formation avancée (à la place des 2 mois offerts).<br>En achetant, tu acceptes les <a href="https://nanixsshub.fr/legal/" data-k="formation-cgv-offres">CGV</a>.</p>
-    </div>
-  </section>
 
   <section class="sec" id="resultats" data-scene="features" style="padding-top:0">
     <div class="wrap">
@@ -1082,32 +1110,6 @@
     </div>
   </section>
 
-  <section class="sec about" id="lucas" data-scene="about">
-    <div class="wrap about-in">
-      <figure class="about-photo tilt">
-        <img src="../elite/lucas.webp" alt="Lucas, alias Nanixss" width="760" height="950" loading="lazy">
-        <figcaption><span class="pulse"></span>En live sur TikTok · @nanixss.off</figcaption>
-      </figure>
-      <div class="about-txt">
-        <h2>Une méthode tirée de <span class="hl">mon activité.</span></h2>
-        <p class="about-id">Lucas, alias Nanixss · 24 ans · revendeur spécialisé jeux vidéo et consoles depuis début 2025</p>
-        <div class="about-body">
-          <p>Je me suis lancé seul dans l'achat-revente quand j'étais encore aide-soignant. Aujourd'hui, c'est mon métier à temps plein.</p>
-          <p>Dans la formation, je mets ce que j'utilise moi-même tous les jours : la méthode, les niches et les cotes, que je mets à jour régulièrement.</p>
-          <p>Et si tu bloques, tu me trouves sur le Discord et en live.</p>
-        </div>
-        <ul class="about-stats">
-          <li><b class="num">23 000+</b> abonnés sur TikTok</li>
-          <li><b class="num" data-stat="members">700+</b> membres sur Discord</li>
-          <li><b>Temps plein</b> dans l'achat-revente</li>
-        </ul>
-        <div class="ctas">
-          <a class="btn btn-ghost" href="https://www.tiktok.com/@nanixss.off" data-k="formation-tiktok-lucas" target="_blank" rel="noopener"><svg class="i"><use href="#i-play"/></svg>Me suivre sur TikTok</a>
-          <a class="btn btn-ghost" href="https://discord.gg/cyReW8sVJm" data-k="formation-discord-lucas" target="_blank" rel="noopener"><svg class="i"><use href="#i-chat"/></svg>Rejoindre le Discord</a>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <section class="sec" id="faq" data-scene="faq" style="padding-top:0">
     <div class="wrap faq-wrap">
