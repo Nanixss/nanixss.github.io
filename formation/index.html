@@ -174,10 +174,19 @@
  ]
 }
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"></noscript>
+<link rel="preload" as="font" type="font/woff2" href="/fonts/poppins-400.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/fonts/poppins-600.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/fonts/poppins-800.woff2" crossorigin>
+<style>
+@font-face{font-family:'Poppins';font-style:normal;font-weight:300;font-display:swap;src:url(/fonts/poppins-300.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Poppins';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/poppins-400.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Poppins';font-style:normal;font-weight:500;font-display:swap;src:url(/fonts/poppins-500.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Poppins';font-style:normal;font-weight:600;font-display:swap;src:url(/fonts/poppins-600.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Poppins';font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/poppins-700.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Poppins';font-style:normal;font-weight:800;font-display:swap;src:url(/fonts/poppins-800.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Poppins';font-style:normal;font-weight:900;font-display:swap;src:url(/fonts/poppins-900.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+</style>
+<script src="/i18n/i18n.js" data-page="formation"></script>
 <style>
   /* Layout : un monde 3D fixe plein écran derrière la page (et devant, pour l'anneau du haut) ; contenu en colonne de 1180 px ;
      hero en deux colonnes ; sections qui laissent l'anneau respirer sur les côtés ; logo 3D qui se recompose à la fin. */
@@ -753,7 +762,7 @@
   .pg-h b{font-size:6cqw;font-weight:800;letter-spacing:-.02em;line-height:1}
   .pg-h span{font-size:2.3cqw;color:#9CC4C4;font-weight:600}
   .pg-t{width:100%;border-collapse:collapse;font-size:2.35cqw}
-  .pg-t th{padding:2.4cqw 2.2cqw 1.6cqw;text-align:left;font-size:1.95cqw;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#0E8F86}
+  .pg-t th{padding:2.4cqw 2.2cqw 1.6cqw;text-align:left;font-size:1.95cqw;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#0A6E67}
   .pg-t td{padding:1.65cqw 2.2cqw;border-top:1px solid #E3EAEB;font-weight:600;white-space:nowrap}
   .pg-t td:first-child{padding-left:5.5cqw;width:52%;overflow:hidden;text-overflow:ellipsis;max-width:0}
   .pg-t th:first-child{padding-left:5.5cqw}
@@ -921,7 +930,7 @@
   .nw{white-space:nowrap}
   .cons-line{margin-top:22px;font-size:14.5px;line-height:1.8;color:var(--text-3);max-width:34em}
 </style>
-<script src="/i18n/i18n.js" data-page="formation" defer></script>
+
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
