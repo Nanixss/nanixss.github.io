@@ -817,6 +817,51 @@
   @media (max-width:1280px){.nav-links{display:none}.nav .nav-x{margin-left:auto}}
   @media (max-width:560px){.brand span{display:none}.nav-in{gap:12px}.nav-ic{margin-left:0}.nav .btn-s{padding:10px 12px;font-size:13.5px}.nav-x + .btn-s{margin-left:-4px}}
   @media (max-width:370px){.nav-x .i{display:none}}
+  /* ---- Démo de l'extension Vinted ---- */
+  .xd{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,470px);gap:clamp(22px,3.4vw,44px);align-items:center;margin-top:clamp(36px,5vw,56px)}
+  .xd-tabs{display:flex;flex-direction:column;gap:10px;list-style:none}
+  .xd-tab{position:relative;overflow:hidden;width:100%;text-align:left;display:grid;grid-template-columns:40px 1fr;gap:4px 14px;align-items:start;padding:16px 18px;border-radius:20px;border:1px solid var(--line);background:rgba(6,34,41,.55);color:var(--text);font:inherit;cursor:pointer;transition:border-color .3s,background .3s,transform .3s}
+  .xd-tab:hover{border-color:var(--line-2)}
+  .xd-tab .ic{grid-row:span 2;display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:rgba(3,210,182,.08);font-size:19px;line-height:1}
+  .xd-tab b{font-size:16px;font-weight:700;letter-spacing:-.01em}
+  .xd-tab span.d{font-size:14px;line-height:1.5;color:var(--text-3);display:none}
+  .xd-tab[aria-selected="true"]{border-color:var(--line-2);background:var(--surface-2);transform:translateX(4px)}
+  .xd-tab[aria-selected="true"] .ic{background:var(--accent);color:var(--bg)}
+  .xd-tab[aria-selected="true"] span.d{display:block;color:var(--text-2)}
+  .xd-tab .pg{position:absolute;left:0;bottom:0;height:3px;width:100%;background:var(--accent);transform:scaleX(0);transform-origin:left}
+  .xd-tab[aria-selected="true"] .pg{animation:xdpg var(--xd-t,5s) linear forwards}
+  .xd.paused .xd-tab .pg{animation-play-state:paused}
+  @keyframes xdpg{to{transform:scaleX(1)}}
+  .xd-win{position:relative;width:100%;max-width:470px;justify-self:center;border-radius:22px;overflow:hidden;background:var(--deep);border:1px solid var(--line-2);box-shadow:0 40px 90px -30px rgba(0,0,0,.75),0 0 0 1px rgba(3,210,182,.06),0 0 80px -20px rgba(3,210,182,.25)}
+  .xd-bar{display:flex;align-items:center;gap:7px;padding:11px 16px;background:#08232A;border-bottom:1px solid var(--line)}
+  .xd-bar i{width:11px;height:11px;border-radius:50%;background:#1E4A50}
+  .xd-bar span{margin-left:12px;flex:1;max-width:340px;height:24px;border-radius:8px;background:rgba(3,210,182,.06);border:1px solid var(--line);font-size:12px;line-height:22px;padding-left:12px;color:var(--text-3)}
+  .xd-scr{position:relative;aspect-ratio:570/730;background:#0B1416}
+  .xd-scr img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.025);transition:opacity .6s ease,transform 1.2s cubic-bezier(.2,.7,.2,1)}
+  .xd-scr img.on{opacity:1;transform:none}
+  .xd-cap{padding:14px 18px;border-top:1px solid var(--line);background:#06212A;font-size:14.5px;color:var(--text-2);min-height:76px}
+  .xd-cap b{color:var(--accent-l);font-weight:700}
+  .xd-more{display:flex;flex-wrap:wrap;gap:10px;margin-top:clamp(28px,4vw,40px);list-style:none}
+  .xd-more li{padding:9px 15px;border-radius:999px;border:1px solid var(--line);background:rgba(6,34,41,.6);font-size:14px;font-weight:500;color:var(--text-2)}
+  .xd-more li:first-child{border-color:transparent;background:none;padding-left:0;color:var(--text);font-weight:700}
+  .xd-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px 28px;margin-top:28px;padding:20px 24px;border-radius:22px;border:1px solid var(--line);background:rgba(6,34,41,.5)}
+  .xd-foot p{display:flex;gap:12px;align-items:center;font-size:14.5px;color:var(--text-2);max-width:620px}
+  .xd-foot p .i{flex:0 0 auto;width:22px;height:22px;color:var(--accent)}
+  @media (max-width:900px){
+    .xd{grid-template-columns:minmax(0,1fr)}
+    .xd-win{order:-1}
+    .xd-tabs{max-width:470px;width:100%;justify-self:center;flex-direction:row;overflow-x:auto;scrollbar-width:none;gap:8px;padding-bottom:4px;scroll-snap-type:x mandatory}
+    .xd-tabs::-webkit-scrollbar{display:none}
+    .xd-tabs li{flex:0 0 auto;scroll-snap-align:start}
+    .xd-tab{grid-template-columns:auto;display:flex;align-items:center;gap:9px;padding:11px 15px;border-radius:999px;white-space:nowrap}
+    .xd-tab .ic{width:28px;height:28px;border-radius:9px;font-size:15px}
+    .xd-tab b{font-size:14.5px}
+    .xd-tab span.d,.xd-tab[aria-selected="true"] span.d{display:none}
+    .xd-tab[aria-selected="true"]{transform:none}
+    .xd-bar span{display:none}
+  }
+  @media (max-width:640px){.xd-more{gap:8px}.xd-more li{font-size:13px;padding:7px 12px}.xd-foot{padding:18px}.xd-foot .btn{width:100%}}
+  @media (prefers-reduced-motion: reduce){.xd-scr img{transition:none;transform:none}.xd-tab .pg{display:none}}
 </style>
 </head>
 <body>
@@ -1309,6 +1354,49 @@
   </section>
 
 
+  <section class="sec" id="extension" data-scene="extension" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>L'extension Vinted, <span class="hl">en action.</span></h2>
+        <p>Incluse dans l'Elite. Elle s'ajoute au navigateur de ton ordinateur et t'aide directement sur Vinted, à l'achat comme à la vente.</p>
+      </div>
+      <div class="xd" id="xd" style="--xd-t:5.5s">
+        <ul class="xd-tabs" role="tablist" aria-label="Fonctions de l'extension">
+          <li><button class="xd-tab" role="tab" aria-selected="true" aria-controls="xd-scr" data-i="0" data-cap="<b>Bénéfice net</b> et offre maximum à faire, avant même d'acheter."><span class="ic" aria-hidden="true">💰</span><b>Calcul de marge</b><span class="d">Frais Vinted, port, Urssaf et emballage déduits automatiquement sur chaque annonce.</span><span class="pg" aria-hidden="true"></span></button></li>
+          <li><button class="xd-tab" role="tab" aria-selected="false" aria-controls="xd-scr" data-i="1" data-cap="Un clic et l'annonce part dans le <b>salon bons plans</b> du Discord."><span class="ic" aria-hidden="true">📣</span><b>Bons plans au Discord</b><span class="d">Partage une annonce avec ton commentaire, et retrouve les infos du Hub et les codes promo partenaires.</span><span class="pg" aria-hidden="true"></span></button></li>
+          <li><button class="xd-tab" role="tab" aria-selected="false" aria-controls="xd-scr" data-i="2" data-cap="Un <b>message prêt pour chacun</b>, tu n'as plus qu'à l'envoyer."><span class="ic" aria-hidden="true">❤️</span><b>Relance des favoris</b><span class="d">La liste de ceux qui ont mis tes articles en favori, avec ton message personnalisé à leur envoyer.</span><span class="pg" aria-hidden="true"></span></button></li>
+          <li><button class="xd-tab" role="tab" aria-selected="false" aria-controls="xd-scr" data-i="3" data-cap="Ton bordereau Vinted au format <b>100 × 150 mm</b>, prêt à imprimer."><span class="ic" aria-hidden="true">🖨️</span><b>Bordereaux thermiques</b><span class="d">Convertis tes bordereaux pour imprimante thermique en un clic, sans recadrer à la main.</span><span class="pg" aria-hidden="true"></span></button></li>
+          <li><button class="xd-tab" role="tab" aria-selected="false" aria-controls="xd-scr" data-i="4" data-cap="<b>6 apparences</b>, et un panneau que tu places où tu veux."><span class="ic" aria-hidden="true">🎨</span><b>À ton style</b><span class="d">Choisis ton thème, déplace et redimensionne le panneau sur la page Vinted.</span><span class="pg" aria-hidden="true"></span></button></li>
+        </ul>
+        <div class="xd-win" id="xd-scr" role="tabpanel" aria-live="polite">
+          <div class="xd-bar" aria-hidden="true"><i></i><i></i><i></i><span>Extension Nanixss Hub</span></div>
+          <div class="xd-scr">
+            <img class="on" src="ext-marge.webp" alt="Panneau de l'extension : calcul de marge sur un jeu Switch, avec frais Vinted, port, Urssaf et bénéfice net" width="570" height="730" loading="lazy" decoding="async">
+            <img src="ext-hub.webp" alt="Panneau de l'extension : partage d'un bon plan sur le Discord et codes promo partenaires" width="570" height="730" loading="lazy" decoding="async">
+            <img src="ext-favoris.webp" alt="Panneau de l'extension : liste des favoris avec un message prêt pour chacun" width="570" height="730" loading="lazy" decoding="async">
+            <img src="ext-bordereau.webp" alt="Bordereau Vinted converti au format imprimante thermique 100 × 150 mm" width="570" height="730" loading="lazy" decoding="async">
+            <img src="ext-themes.webp" alt="Réglages de l'extension : choix parmi 6 thèmes et position du bouton flottant" width="570" height="730" loading="lazy" decoding="async">
+          </div>
+          <p class="xd-cap" id="xd-cap"><b>Bénéfice net</b> et offre maximum à faire, avant même d'acheter.</p>
+        </div>
+      </div>
+      <ul class="xd-more">
+        <li>Et aussi :</li>
+        <li>Comparer les prix sur Leboncoin, eBay et Rakuten</li>
+        <li>Messages types</li>
+        <li>Republication avec photos</li>
+        <li>Baisse de prix rapide</li>
+        <li>Sauvegarde de ta vitrine</li>
+        <li>Aide à la rédaction d'annonce</li>
+        <li>Assistant litige</li>
+      </ul>
+      <div class="xd-foot">
+        <p><svg class="i"><use href="#i-shield"/></svg><span>L'extension ne clique jamais à ta place : elle n'envoie aucun message, ne publie rien et n'achète rien sans toi.</span></p>
+        <a class="btn btn-main" href="https://buy.stripe.com/28EfZigv15TG06mbtN8g001" data-k="elite-extension" rel="noopener"><svg class="i"><use href="#i-bolt"/></svg>Prendre l'Elite <span class="btn-price num">24,99 €/mois</span></a>
+      </div>
+    </div>
+  </section>
+
   <section class="sec" id="faq" data-scene="faq" style="padding-top:0">
     <div class="wrap faq-wrap">
       <div class="sec-head">
@@ -1795,7 +1883,7 @@
         const tr = txtEl.getBoundingClientRect().right;
         const Rp = Math.max(r.width * .56, Math.min(r.width * .92, (cvW() - cx) * .86 / 1.32, cx * .86 / 1.32, cx - tr - 12));
         const [x, y] = toW(cx, r.top + r.height * .62); return [x, y, 0, 1.2, 0, -.2, Rp / ppu() / 3, 1, 0]; },
-      versus: far, steps: far, features: far, reviews: far, faq: far, strip: far,
+      versus: far, steps: far, features: far, extension: far, reviews: far, faq: far, strip: far,
       devices: (m) => { const r = devEl.getBoundingClientRect(); const [x, y] = toW(r.left + r.width / 2, r.top + r.height * .86);
         const Rp = Math.min(r.width * .5, cvW() * .46); return [x, y, -1, 1.44, 0, 0, Rp / ppu() / 3, .85, 0]; },
       about: (m) => { const r = aboutEl.getBoundingClientRect(); const [x, y] = toW(r.left + r.width / 2, r.bottom - r.height * .05);
@@ -1944,6 +2032,54 @@
     const t = () => b.classList.toggle('on', scrollY > innerHeight * 2);
     addEventListener('scroll', t, { passive: true }); t();
   })();
+</script>
+<script>
+/* Démo de l'extension : défilement automatique des écrans, pause au survol, clic sur un onglet */
+(() => {
+  const box = document.getElementById('xd'); if (!box) return;
+  const tabs = [...box.querySelectorAll('.xd-tab')];
+  const imgs = [...box.querySelectorAll('.xd-scr img')];
+  const cap = document.getElementById('xd-cap');
+  const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const DUR = 5500;
+  let cur = 0, timer = null, visible = false, hover = false, left = DUR, started = 0;
+  imgs.forEach(im => { im.loading = 'eager'; });
+  function show(i, user) {
+    cur = (i + tabs.length) % tabs.length;
+    tabs.forEach((t, k) => {
+      t.setAttribute('aria-selected', k === cur ? 'true' : 'false');
+      const pg = t.querySelector('.pg'); if (pg) { pg.style.animation = 'none'; void pg.offsetWidth; pg.style.animation = ''; }
+    });
+    imgs.forEach((im, k) => im.classList.toggle('on', k === cur));
+    cap.innerHTML = tabs[cur].dataset.cap;
+    if (user && innerWidth <= 900) tabs[cur].scrollIntoView({ block: 'nearest', inline: 'center', behavior: RM ? 'auto' : 'smooth' });
+    else if (innerWidth <= 900) { const ul = tabs[cur].closest('ul'); const li = tabs[cur].parentElement; ul.scrollTo({ left: li.offsetLeft - ul.offsetLeft - 8, behavior: RM ? 'auto' : 'smooth' }); }
+    left = DUR; schedule();
+  }
+  function schedule() {
+    clearTimeout(timer);
+    const run = visible && !hover && !RM && !document.hidden;
+    box.classList.toggle('paused', !run);
+    if (!run) return;
+    started = Date.now();
+    timer = setTimeout(() => show(cur + 1), left);
+  }
+  function pause() { if (timer) { clearTimeout(timer); left = Math.max(300, left - (Date.now() - started)); timer = null; } }
+  tabs.forEach((t, k) => {
+    t.addEventListener('click', () => show(k, true));
+    t.addEventListener('keydown', e => {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { e.preventDefault(); show(cur + 1, true); tabs[cur].focus(); }
+      if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { e.preventDefault(); show(cur - 1, true); tabs[cur].focus(); }
+    });
+  });
+  if (matchMedia('(hover:hover)').matches) {
+    box.addEventListener('mouseenter', () => { hover = true; pause(); schedule(); });
+    box.addEventListener('mouseleave', () => { hover = false; schedule(); });
+  }
+  document.addEventListener('visibilitychange', () => { pause(); schedule(); });
+  if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => { visible = e.isIntersecting; pause(); schedule(); }, { threshold: .35 }).observe(box);
+  else { visible = true; schedule(); }
+})();
 </script>
 </body>
 </html>
