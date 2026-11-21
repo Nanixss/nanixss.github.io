@@ -57,6 +57,20 @@
   .btn.hot{border-color:rgba(3,210,182,.55);background:linear-gradient(180deg,rgba(3,210,182,.10),rgba(3,210,182,.02)),var(--card)}
   .badge{position:absolute;top:-10px;right:14px;background:var(--red);color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;letter-spacing:.3px}
 
+  /* Calendrier de l'Avent (affiché jusqu'au 24 décembre, puis masqué automatiquement) */
+  .btn.avent{--gold:#FFC93C;border:1.5px solid rgba(255,201,60,.7);padding:16px;
+             background:radial-gradient(120% 140% at 0% 0%,rgba(255,201,60,.20),transparent 60%),linear-gradient(180deg,rgba(255,201,60,.08),rgba(255,201,60,.02)),var(--card);
+             box-shadow:0 10px 34px rgba(255,201,60,.18);animation:aventGlow 2.6s ease-in-out infinite}
+  .btn.avent:hover{border-color:var(--gold);box-shadow:0 12px 38px rgba(255,201,60,.32)}
+  .btn.avent .ic{background:rgba(255,201,60,.16);font-size:24px}
+  .btn.avent .t1{font-size:16.5px}
+  .btn.avent .t1 b{color:var(--gold);font-weight:800}
+  .btn.avent .t2{color:#E9D9A8}
+  .btn.avent .arrow{color:var(--gold)}
+  .btn.avent .badge{background:var(--gold);color:var(--navy);font-weight:800}
+  @keyframes aventGlow{50%{box-shadow:0 10px 40px rgba(255,201,60,.34)}}
+  @media (prefers-reduced-motion: reduce){.btn.avent{animation:none}}
+
   .sec{width:100%;margin-top:28px;font-size:12.5px;font-weight:700;letter-spacing:2px;color:var(--turq);display:flex;align-items:center;gap:10px}
   .sec::after{content:"";flex:1;height:1px;background:var(--line)}
   .partners{width:100%;margin-top:12px;display:flex;flex-direction:column;gap:10px}
@@ -107,6 +121,12 @@
   </nav>
 
   <section class="links">
+    <a data-k="avent" id="avent" class="btn avent" href="https://discord.gg/cyReW8sVJm" target="_blank" rel="noopener">
+      <span class="badge" id="avent-badge" data-i18n-skip>PARTICIPATION GRATUITE</span>
+      <span class="ic">🎁</span>
+      <span class="txt"><span class="t1" style="display:block">Calendrier de l'Avent · <b>1&nbsp;000&nbsp;€ de lots</b></span><span class="t2" style="display:block" id="avent-sub" data-i18n-skip>Du 1er au 24 décembre · un gagnant chaque soir à 22&nbsp;h sur le Discord</span></span>
+      <span class="arrow">→</span>
+    </a>
     <a data-k="discord" class="btn main" href="https://discord.gg/cyReW8sVJm" target="_blank" rel="noopener">
       <span class="ic"><img src="logo.png" alt=""></span>
       <span class="txt"><span class="t1 d">Rejoindre Nanixss Hub</span><span class="t2" style="display:block">Le Discord · bot Vinted, alertes, entraide</span></span>
@@ -233,6 +253,24 @@
       requestAnimationFrame(tick);
     }
     requestAnimationFrame(tick);
+  })();
+  // Calendrier de l'Avent : compte à rebours avant le 1er décembre, case du jour pendant, masqué après le 24 décembre
+  (() => {
+    const card = document.getElementById('avent'); if (!card) return;
+    const p = Object.fromEntries(new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Paris', year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', hourCycle: 'h23' })
+      .formatToParts(new Date()).map(x => [x.type, +x.value]));
+    const y = p.year, m = p.month, d = p.day, h = p.hour;
+    const badge = document.getElementById('avent-badge'), sub = document.getElementById('avent-sub');
+    if (y > 2026 || (y === 2026 && m === 12 && d > 24) || (y === 2026 && m === 12 && d === 24 && h >= 23)) { card.remove(); return; }
+    if (y === 2026 && m === 12) {
+      badge.textContent = h < 7 ? 'CASE N°' + d + ' À 7 H' : 'CASE N°' + d + ' OUVERTE';
+      sub.textContent = h < 22 ? (d === 24 ? 'Dernier tirage' : 'Tirage') + ' ce soir à 22 h sur le Discord · participation gratuite'
+                               : (d === 24 ? 'Dernier tirage en cours sur le Discord' : 'Tirage en cours · prochaine case demain à 7 h');
+    } else if (y === 2026 && m === 11) {
+      const left = 31 - d; // jours avant le 1er décembre (novembre = 30 jours)
+      badge.textContent = left === 1 ? 'DÉBUT DEMAIN' : 'DÉBUT DANS ' + left + ' JOURS';
+      sub.textContent = 'Participation gratuite · un gagnant chaque soir à 22 h, du 1er au 24 décembre';
+    }
   })();
   // Statistiques anonymes (visites et clics), envoyées au bot Nanixss Hub. Aucun cookie.
   (() => {
