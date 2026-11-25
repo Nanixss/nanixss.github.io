@@ -196,6 +196,7 @@
 </style>
 <script src="/i18n/i18n.js" data-page="elite"></script>
 <script src="/avis-live.js"></script>
+<script src="/bf.js" defer></script>
 <style>
   /* Layout : un monde 3D fixe plein écran derrière la page (et devant, pour l'anneau du haut) ; contenu en colonne de 1180 px ;
      hero en deux colonnes ; sections qui laissent l'anneau respirer sur les côtés ; logo 3D qui se recompose à la fin. */
@@ -917,7 +918,7 @@
         <h1 class="rise">Chaque pépite Vinted, <span class="hl">à l'instant où elle sort.</span></h1>
         <p class="lead rise d1">Le bot Nanixss Hub surveille Vinted selon tes filtres et t'envoie chaque annonce sur Discord, avec un bouton pour l'acheter en un clic. <strong>En Elite, l'autocop achète même à ta place.</strong></p>
         <div class="ctas rise d2">
-          <a class="btn btn-main" href="https://buy.stripe.com/28EfZigv15TG06mbtN8g001" data-k="elite-hero" rel="noopener"><svg class="i"><use href="#i-bolt"/></svg>Prendre l'Elite <span class="btn-price num">24,99 €/mois</span></a>
+          <a class="btn btn-main" href="https://buy.stripe.com/28EfZigv15TG06mbtN8g001" data-k="elite-hero" rel="noopener"><svg class="i"><use href="#i-bolt"/></svg>Prendre l'Elite <span class="btn-price num" data-bf="19,99 €" data-bf-first>24,99 €/mois</span></a>
         </div>
         <ul class="assure rise d3">
           <li><a href="#avis"><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span>Lire les avis des abonnés</a></li>
@@ -1170,7 +1171,7 @@
         <div class="plan tilt">
           <div class="plan-head"><h3>Starter</h3></div>
           <p class="for">Pour recevoir les alertes et cop toi-même.</p>
-          <div class="price"><b class="num">14,99 €</b><span>/ mois</span></div>
+          <div class="price" data-bf-note><b class="num" data-bf="11,99 €">14,99 €</b><span>/ mois</span></div>
           <p class="per-day num">Soit 0,50 € par jour</p>
           <ul>
             <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Alertes Vinted instantanées sur Discord</li>
@@ -1183,7 +1184,7 @@
         <div class="plan elite tilt" id="elite-card">
           <div class="plan-head"><h3>Elite</h3><span class="best">Le plus complet</span></div>
           <p class="for">Pour cop sans être collé à ton écran.</p>
-          <div class="price"><b class="num">24,99 €</b><span>/ mois</span></div>
+          <div class="price" data-bf-note><b class="num" data-bf="19,99 €">24,99 €</b><span>/ mois</span></div>
           <p class="per-day num">Soit 0,83 € par jour</p>
           <ul>
             <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Tout le Starter</li>
@@ -1393,7 +1394,7 @@
       </ul>
       <div class="xd-foot">
         <p><svg class="i"><use href="#i-shield"/></svg><span>L'extension ne clique jamais à ta place : elle n'envoie aucun message, ne publie rien et n'achète rien sans toi.</span></p>
-        <a class="btn btn-main" href="https://buy.stripe.com/28EfZigv15TG06mbtN8g001" data-k="elite-extension" rel="noopener"><svg class="i"><use href="#i-bolt"/></svg>Prendre l'Elite <span class="btn-price num">24,99 €/mois</span></a>
+        <a class="btn btn-main" href="https://buy.stripe.com/28EfZigv15TG06mbtN8g001" data-k="elite-extension" rel="noopener"><svg class="i"><use href="#i-bolt"/></svg>Prendre l'Elite <span class="btn-price num" data-bf="19,99 €" data-bf-first>24,99 €/mois</span></a>
       </div>
     </div>
   </section>
@@ -1424,7 +1425,7 @@
       <h2>La prochaine pépite est <span class="hl">pour toi.</span></h2>
       <p>Rejoins les abonnés Elite et reçois chaque annonce Vinted à l'instant où elle sort.</p>
       <div class="ctas">
-        <a class="btn btn-main" href="https://buy.stripe.com/28EfZigv15TG06mbtN8g001" data-k="elite-final" rel="noopener"><svg class="i"><use href="#i-bolt"/></svg>Prendre l'Elite <span class="btn-price num">24,99 €/mois</span></a>
+        <a class="btn btn-main" href="https://buy.stripe.com/28EfZigv15TG06mbtN8g001" data-k="elite-final" rel="noopener"><svg class="i"><use href="#i-bolt"/></svg>Prendre l'Elite <span class="btn-price num" data-bf="19,99 €" data-bf-first>24,99 €/mois</span></a>
         <a class="btn btn-ghost" href="https://discord.gg/cyReW8sVJm" data-k="elite-discord-final" target="_blank" rel="noopener"><svg class="i"><use href="#i-chat"/></svg>Rejoindre le Discord</a>
       </div>
     </div>
@@ -1444,7 +1445,7 @@
 </footer>
 
 <div class="bar" id="bar">
-  <div class="p"><b>Elite · <span class="num">24,99 €/mois</span></b>Sans engagement</div>
+  <div class="p"><b>Elite · <span class="num" data-bf="19,99 €" data-bf-first>24,99 €/mois</span></b>Sans engagement</div>
   <a class="btn btn-main" href="https://buy.stripe.com/28EfZigv15TG06mbtN8g001" data-k="elite-bar" rel="noopener"><svg class="i"><use href="#i-bolt"/></svg>Prendre l'Elite</a>
 </div>
 

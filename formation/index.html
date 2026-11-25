@@ -187,6 +187,7 @@
 @font-face{font-family:'Poppins';font-style:normal;font-weight:900;font-display:swap;src:url(/fonts/poppins-900.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 </style>
 <script src="/i18n/i18n.js" data-page="formation"></script>
+<script src="/bf.js" defer></script>
 <script src="/avis-live.js"></script>
 <style>
   /* Layout : un monde 3D fixe plein écran derrière la page (et devant, pour l'anneau du haut) ; contenu en colonne de 1180 px ;
@@ -1157,7 +1158,7 @@
         <div class="plan tilt">
           <div class="plan-head"><h3>Starter</h3></div>
           <p class="for">Pour découvrir les bases avant de te lancer.</p>
-          <div class="price"><b class="num">49,99 €</b></div>
+          <div class="price" data-bf-note="-20 %"><b class="num" data-bf="39,99 €">49,99 €</b></div>
           <p class="paypal"><span>ou en 4x sans frais avec</span> PayPal</p>
           <ul>
             <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>L'introduction et les chapitres 1 à 6</li>
@@ -1171,8 +1172,8 @@
         <div class="plan elite tilt" id="elite-card">
           <div class="plan-head"><h3>Avancée</h3><span class="best">La plus complète</span></div>
           <p class="for">Pour te lancer sérieusement, avec toutes les cotes.</p>
-          <div class="price"><b class="num">399,90 €</b></div>
-          <p class="paypal"><span>ou 4 × 99,98 € sans frais avec</span> PayPal</p>
+          <div class="price" data-bf-note="-20 %"><b class="num" data-bf="319,92 €">399,90 €</b></div>
+          <p class="paypal"><span data-bf-replace="99,98=79,98;99.98=79.98">ou 4 × 99,98 € sans frais avec</span> PayPal</p>
           <ul>
             <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Les 11 chapitres, le bonus, la checklist et le glossaire</li>
             <li><span class="ck"><svg class="i"><use href="#i-check"/></svg></span>Négo, litiges, gestion du stock, statut et Urssaf</li>
@@ -1287,8 +1288,8 @@
       <h2>Arrête d'acheter <span class="hl">au hasard.</span></h2>
       <p>Rejoins les plus de 40 élèves de la formation et achète en sachant ce que vaut chaque jeu.</p>
       <div class="ctas">
-        <a class="btn btn-main" href="https://buy.stripe.com/dRmeVe92z0zmcT80P98g005" data-k="formation-final-avancee" rel="noopener"><svg class="i"><use href="#i-book"/></svg>Prendre l'Avancée <span class="btn-price num">399,90 €</span></a>
-        <a class="btn btn-ghost" href="https://buy.stripe.com/dRm14o4Mj81OcT88hB8g006" data-k="formation-final-starter" rel="noopener">Prendre la Starter · 49,99 €</a>
+        <a class="btn btn-main" href="https://buy.stripe.com/dRmeVe92z0zmcT80P98g005" data-k="formation-final-avancee" rel="noopener"><svg class="i"><use href="#i-book"/></svg>Prendre l'Avancée <span class="btn-price num" data-bf="319,92 €">399,90 €</span></a>
+        <a class="btn btn-ghost" href="https://buy.stripe.com/dRm14o4Mj81OcT88hB8g006" data-k="formation-final-starter" rel="noopener">Prendre la Starter · <span data-bf="39,99 €">49,99 €</span></a>
       </div>
     </div>
   </section>
@@ -1307,7 +1308,7 @@
 </footer>
 
 <div class="bar" id="bar">
-  <div class="p"><b>Dès <span class="num">49,99 €</span></b>ou en 4x sans frais avec PayPal</div>
+  <div class="p"><b>Dès <span class="num" data-bf="39,99 €">49,99 €</span></b>ou en 4x sans frais avec PayPal</div>
   <a class="btn btn-main" href="#offres" data-k="formation-bar">Les offres</a>
 </div>
 
