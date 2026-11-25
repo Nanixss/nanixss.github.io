@@ -110,6 +110,11 @@
         el.textContent = '−50 % · Black Friday'; el.setAttribute('data-i18n-skip', '');
         vtUndo.push(() => { el.innerHTML = html; el.removeAttribute('data-i18n-skip'); });
       });
+      document.querySelectorAll('[data-vt-href]').forEach((el) => {
+        const href = el.getAttribute('href');
+        el.setAttribute('href', el.dataset.vtHref);
+        vtUndo.push(() => el.setAttribute('href', href));
+      });
       document.querySelectorAll('[data-vt-code]').forEach((el) => {
         const text = el.textContent, code = el.dataset.code;
         el.textContent = VT_CODE; el.dataset.code = VT_CODE; el.setAttribute('data-i18n-skip', '');
