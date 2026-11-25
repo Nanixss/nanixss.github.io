@@ -10,6 +10,10 @@
   // liens de paiement concernés par le code (Elite, Starter, Formation Starter, Formation Avancée)
   const LINKS = ['28EfZigv15TG06mbtN8g001', 'bJecN6gv15TG2eubtN8g002', 'dRm14o4Mj81OcT88hB8g006', 'dRmeVe92z0zmcT80P98g005'];
   if (Date.now() >= END) return;
+  // Code V-Tools du Black Friday : N50 (-50 %) jusqu'au 30/11/2026 inclus, puis retour à N10 tout seul
+  const VT_END = Date.UTC(2026, 10, 30, 22, 59, 59); // 30/11/2026 23:59:59 à Paris
+  const VT_CODE = 'N50';
+  const vtUndo = [];
 
   const T = {
     fr: { t: 'Black Friday', d: '-20 % sur le bot (1er mois) et les formations avec le code', end: 'Fin dans', copy: 'Copier', ok: 'Copié !', first: '1er mois', j: 'j' },
@@ -76,6 +80,22 @@
       tag.innerHTML = `<span class="bf-tag" data-i18n-skip>${el.dataset.bfNote || `-20 % · ${L.first}`}</span>`;
       el.after(tag); undo.push(() => tag.remove());
     });
+    // prix dans un texte (traduit ou non) : « 24,99 €/mois », « €24.99/month »… → ancien barré + nouveau
+    document.querySelectorAll('[data-bf-swap]').forEach((el) => {
+      const [oldP, newP, first] = el.dataset.bfSwap.split('|');
+      const num = oldP.replace(/[.,]/, '[.,]');
+      const re = new RegExp(`(€\\s?${num}|${num}(?:&nbsp;|\\s| )?€)(\\/[^\\s<·]+)?`);
+      const html = el.innerHTML;
+      const out = html.replace(re, (m) => {
+        const dot = /\d\.\d/.test(m);
+        const n = dot ? newP.replace(',', '.') : newP;
+        const price = m.trim().startsWith('€') ? `€${n}` : `${n}&nbsp;€`;
+        return `<s class="bf-old">${m}</s> ${price}` + (first ? ` ${L.first}` : '');
+      });
+      if (out === html) return;
+      el.innerHTML = out; el.setAttribute('data-i18n-skip', '');
+      undo.push(() => { el.innerHTML = html; el.removeAttribute('data-i18n-skip'); });
+    });
     document.querySelectorAll('a[href*="buy.stripe.com/"]').forEach((a) => {
       if (!LINKS.some((id) => a.href.includes(id))) return;
       const href = a.getAttribute('href');
@@ -84,11 +104,25 @@
       undo.push(() => a.setAttribute('href', href));
     });
 
+    if (Date.now() < VT_END) {
+      document.querySelectorAll('[data-vt-text]').forEach((el) => {
+        const html = el.innerHTML;
+        el.textContent = '−50 % · Black Friday'; el.setAttribute('data-i18n-skip', '');
+        vtUndo.push(() => { el.innerHTML = html; el.removeAttribute('data-i18n-skip'); });
+      });
+      document.querySelectorAll('[data-vt-code]').forEach((el) => {
+        const text = el.textContent, code = el.dataset.code;
+        el.textContent = VT_CODE; el.dataset.code = VT_CODE; el.setAttribute('data-i18n-skip', '');
+        vtUndo.push(() => { el.textContent = text; el.dataset.code = code; el.removeAttribute('data-i18n-skip'); });
+      });
+    }
+
     tick();
     timer = setInterval(tick, 1000);
   }
 
   function tick() {
+    if (vtUndo.length && Date.now() >= VT_END) while (vtUndo.length) { try { vtUndo.pop()(); } catch (e) {} }
     const left = END - Date.now();
     if (left <= 0) return off();
     const b = bar && bar.querySelector('.bf-end b');
@@ -98,6 +132,7 @@
   function off() {
     clearInterval(timer);
     while (undo.length) { try { undo.pop()(); } catch (e) {} }
+    while (vtUndo.length) { try { vtUndo.pop()(); } catch (e) {} }
   }
 
   // attendre que la traduction du site (i18n.js) ait fini, pour ne pas se faire écraser
